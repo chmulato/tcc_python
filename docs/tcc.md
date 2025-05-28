@@ -1,28 +1,12 @@
-   ___________________________________________________________
-  |                                                           |
-  |  🍽️  SIMULADOR DE TEMPO DE PERMANÊNCIA EM RESTAURANTES   |
-  |___________________________________________________________|
-  |                                                           |
-  |   +---------+    +---------+    +--------+    +------+    |
-  |   |  Fila   +--> | Buffet  +--> |Balança +--> |Caixa |    |
-  |   +---------+    +---------+    +--------+    +------+    |
-  |                                               |    $ |    |
-  |                                               +------+    |
-  |                                                   |       |
-  |                                                   v       |
-  |                                               +-------+   |
-  |                                               | Mesa  |   |
-  |                                               +-------+   |
-  |                                                   |       |
-  |                                                   v       |
-  |                                                 Saída     |
-  |___________________________________________________________|
-  |                                                           |
-  |  Trabalho de Conclusão de Curso - Engenharia de Processos |
-  |  Autor: Christian Vladimir Uhdre Mulato                   |
-  |  Ano: Junho de 2025                                       |
-  |___________________________________________________________|
-
++---------------------------------------------------------------+
+| SIMULADOR DE TEMPO DE PERMANÊNCIA EM RESTAURANTES             |
+|---------------------------------------------------------------|
+| Fila --> Buffet --> Balança --> Caixa --> Mesa --> Saída      |
+|                                                               |
+| Trabalho de Conclusão de Curso - Engenharia de Processos      |
+| Autor: Christian Vladimir Uhdre Mulato                        |
+| Ano: Junho de 2025                                            |
++---------------------------------------------------------------+
 ---
 
 # Capítulo 1 – Introdução
