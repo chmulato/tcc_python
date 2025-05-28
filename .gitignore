@@ -1,0 +1,5 @@
+__pycache__/
+**/__init__.py
+docs/graficos_e_diagramas/
+monitoramento/temp_frames/
+resultados/relatorios/

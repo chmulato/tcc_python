@@ -1,0 +1,13 @@
+clientes_por_minuto: 12
+tempo_medio_almoco: 30
+cadeiras_por_mesa: 4
+numero_de_mesas: 25
+tempo_medio_atendimento: 15
+tempo_medio_espera: 5
+tempo_total_simulacao: 120
+variabilidade_almoco: 0.15
+variabilidade_chegada: 0.10
+capacidade_maxima_fila: 50
+modo_ocupacao: "grupo"
+numero_caixas: 2
+tempo_entre_clientes: 5
