@@ -837,6 +837,41 @@ A utilização de dados reais e simulados demonstra a flexibilidade do simulador
 
 ---
 
+#### Exemplo de ficha de coleta de dados para simulação
+
+```plaintext
+|------------------------------------|-------------------|----------------------------------------------|------------------|
+| Parâmetro                          | Unidade           | Método de Coleta / Observação                | Exemplo de Valor |
+|------------------------------------|-------------------|----------------------------------------------|------------------|
+| Data da coleta                     | -                 | Registro manual                              | 01/06/2025       |
+| Horário de início/fim              | hh:mm             | Observação direta                            | 11:30 - 14:00    |
+| Número de mesas                    | unidades          | Contagem                                     | 4                |
+| Cadeiras por mesa                  | unidades          | Contagem                                     | 4                |
+| Número de buffets                  | unidades          | Contagem                                     | 1                |
+| Número de caixas                   | unidades          | Contagem                                     | 1                |
+| Tempo médio de refeição            | minutos           | Cronometragem de clientes                    | 30               |
+| Desvio padrão do tempo de refeição | minutos           | Cálculo estatístico                          | 5                |
+| Tempo médio no buffet              | minutos           | Cronometragem                                | 2                |
+| Tempo médio na balança             | minutos           | Cronometragem                                | 1                |
+| Tempo médio no caixa               | minutos           | Cronometragem                                | 2                |
+| Taxa de chegada de clientes        | clientes/minuto   | Contagem de chegadas por intervalo de tempo  | 2                |
+| Distribuição de chegada            | -                 | Observação (constante, pico, etc.)           | Pico 12h-13h     |
+| Capacidade máxima do salão         | clientes          | Cálculo (mesas × cadeiras)                   | 16               |
+| Tempo total de simulação           | minutos           | Definido pelo período de análise             | 120              |
+| Layout do restaurante              | ASCII/matriz      | Desenho ou foto convertida                   | (ver exemplo)    |
+|------------------------------------|-------------------|----------------------------------------------|------------------|
+```
+> **Instruções de uso:**  
+> Esta ficha deve ser preenchida com os dados coletados durante a observação do restaurante. Os valores devem ser registrados de forma precisa e detalhada, a fim de garantir a qualidade das simulações.
+>
+> **Observação:**  
+> Recomenda-se coletar dados em diferentes dias e horários para capturar variações de demanda e comportamento dos clientes.
+
+**Exemplo de uso:**  
+Esta ficha pode ser impressa e preenchida durante a observação em campo, ou utilizada como checklist para parametrizar cenários simulados no sistema.
+
+---
+
 ### 5.3 Análise dos resultados: gargalos, otimizações sugeridas
 
 A análise dos resultados obtidos a partir das simulações, tanto com dados reais quanto simulados, permite identificar de forma objetiva os principais gargalos operacionais do restaurante e propor estratégias de otimização para o fluxo de clientes.
