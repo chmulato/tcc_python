@@ -1151,3 +1151,110 @@ Legenda:
 > Recomenda-se consultar este anexo sempre que houver dúvidas sobre o uso do simulador, formatos de arquivos aceitos ou procedimentos de exportação.
 
 ---
+
+## Anexo B – Fichas e Relatórios Auxiliares
+
+Este anexo reúne os principais instrumentos de apoio utilizados no levantamento de dados reais em campo e na documentação dos resultados para o cliente. Inclui modelos de fichas de coleta, tabelas de análise e exemplo de relatório executivo.
+
+---
+
+### B.1 Ficha de Coleta de Dados em Campo
+
+Utilizada para registrar os parâmetros operacionais do restaurante durante a observação direta.
+
+```plaintext
+|------------------------------------|-------------------|----------------------------------------------|------------------|
+| Parâmetro                          | Unidade           | Método de Coleta / Observação                | Exemplo de Valor |
+|------------------------------------|-------------------|----------------------------------------------|------------------|
+| Data da coleta                     | -                 | Registro manual                              | 01/06/2025       |
+| Horário de início/fim              | hh:mm             | Observação direta                            | 11:30 - 14:00    |
+| Número de mesas                    | unidades          | Contagem                                     | 4                |
+| Cadeiras por mesa                  | unidades          | Contagem                                     | 4                |
+| Número de buffets                  | unidades          | Contagem                                     | 1                |
+| Número de caixas                   | unidades          | Contagem                                     | 1                |
+| Tempo médio de refeição            | minutos           | Cronometragem de clientes                    | 30               |
+| Desvio padrão do tempo de refeição | minutos           | Cálculo estatístico                          | 5                |
+| Tempo médio no buffet              | minutos           | Cronometragem                                | 2                |
+| Tempo médio na balança             | minutos           | Cronometragem                                | 1                |
+| Tempo médio no caixa               | minutos           | Cronometragem                                | 2                |
+| Taxa de chegada de clientes        | clientes/minuto   | Contagem de chegadas por intervalo de tempo  | 2                |
+| Distribuição de chegada            | -                 | Observação (constante, pico, etc.)           | Pico 12h-13h     |
+| Capacidade máxima do salão         | clientes          | Cálculo (mesas × cadeiras)                   | 16               |
+| Tempo total de simulação           | minutos           | Definido pelo período de análise             | 120              |
+| Layout do restaurante              | ASCII/matriz      | Desenho ou foto convertida                   | (ver exemplo)    |
+|------------------------------------|-------------------|----------------------------------------------|------------------|
+```
+
+---
+
+### B.2 Ficha Comparativa para Análise de Variação de Parâmetros
+
+Permite registrar os efeitos de diferentes configurações ao longo de dias ou cenários simulados.
+
+```plaintext
+|---------------------------|---------------|------------------------|---------------|------------------------|---------------|------------------------|
+| Parâmetro Variado         | Dia 1 (Valor) | Dia 1 (Resultado)      | Dia 2 (Valor) | Dia 2 (Resultado)      | Dia 3 (Valor) | Dia 3 (Resultado)      |
+|---------------------------|---------------|------------------------|---------------|------------------------|---------------|------------------------|
+| Número de mesas           | 4             | 8 clientes rejeitados  | 6             | 2 clientes rejeitados  | 8             | 0 clientes rejeitados  |
+| Tempo médio de refeição   | 30 min        | 92% ocupação           | 25 min        | 85% ocupação           | 20 min        | 78% ocupação           |
+| Taxa de chegada (pico)    | 2/min         | 16 min espera máxima   | 3/min         | 25 min espera máxima   | 1.5/min       | 8 min espera máxima    |
+| Layout                    | Padrão        | 7 filas formadas       | Otimizado     | 3 filas formadas       | Otimizado     | 2 filas formadas       |
+| Tempo médio no caixa      | 2 min         | 5 min fila caixa       | 1.5 min       | 3 min fila caixa       | 1 min         | 1 min fila caixa       |
+|---------------------------|---------------|------------------------|---------------|------------------------|---------------|------------------------|
+```
+
+---
+
+### B.3 Modelo de Relatório Executivo para o Cliente
+
+Exemplo de relatório gerado pelo simulador, entregue ao gestor do restaurante.
+
+```plaintext
+---------------------------------------------------------------
+RELATÓRIO EXECUTIVO DE SIMULAÇÃO – RESTAURANTE POR QUILO
+---------------------------------------------------------------
+
+1. Dados do Estabelecimento
+   - Nome: Restaurante Exemplo
+   - Data da Simulação: 01/06/2025
+
+2. Parâmetros Utilizados na Simulação
+   | Parâmetro                   | Valor           | Observação                      |
+   |-----------------------------|-----------------|---------------------------------|
+   | Número de mesas             | 4               | Conforme layout ASCII           |
+   | Cadeiras por mesa           | 4               | Capacidade total: 16 lugares    |
+   | Tempo médio de refeição     | 30 min          | Normal (desvio padrão: 5 min)   |
+   | Tempo médio no buffet       | 2 min           | Por cliente                     |
+   | Tempo médio na balança      | 1 min           | Por cliente                     |
+   | Tempo médio no caixa        | 2 min           | Por cliente                     |
+   | Taxa de chegada de clientes | 2 clientes/min  | Horário de pico                 |
+   | Tempo total de simulação    | 120 min         | Período do almoço               |
+
+3. Resultados Principais
+   - Clientes atendidos: 220
+   - Clientes rejeitados (por lotação): 8
+   - Tempo médio de espera por mesa: 4,2 min
+   - Tempo médio total no restaurante: 38,5 min
+   - Taxa média de ocupação das mesas: 92%
+   - Tamanho máximo da fila: 7 clientes
+
+4. Análise e Recomendações
+   - O principal gargalo identificado foi a formação de filas para mesas entre 12h e 13h.
+   - Recomenda-se avaliar a possibilidade de aumentar o número de mesas ou incentivar a rotatividade.
+   - O tempo médio de atendimento no caixa está adequado, sem formação de filas significativas.
+
+5. Visualizações
+   - Gráfico do fluxo de chegada de clientes ao longo do tempo.
+   - GIF animado do layout do restaurante durante a simulação.
+   - Tabela de ocupação das mesas minuto a minuto.
+
+---------------------------------------------------------------
+Este relatório é um modelo adaptável, podendo ser customizado conforme a necessidade do cliente. O simulador exporta automaticamente um relatório em PDF com informações semelhantes, e pode incluir gráficos, tabelas adicionais, recomendações específicas e anexos com os dados brutos da simulação.
+---------------------------------------------------------------
+```
+---
+
+> **Observação:**  
+> Recomenda-se utilizar estas fichas e modelos como referência para padronizar a coleta de dados em campo e a apresentação dos resultados ao cliente, garantindo transparência, rastreabilidade e qualidade nas análises realizadas.
+
+---
