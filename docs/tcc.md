@@ -688,6 +688,171 @@ Por fim, justificou-se a adoção de uma abordagem prática e realista, que alia
 
 ---
 
+## Capítulo 5 – Estudo de Caso e Simulações
+
+Este capítulo apresenta a aplicação prática do simulador desenvolvido, por meio de um estudo de caso representativo do funcionamento de um restaurante por quilo. Inicialmente, são detalhados os principais parâmetros utilizados na simulação, como o layout do ambiente, o número de mesas disponíveis, o tempo médio de refeição dos clientes e a taxa de chegada ao restaurante. Em seguida, são realizados testes com dados reais e/ou simulados, buscando reproduzir situações típicas do cotidiano operacional.
+
+A análise dos resultados obtidos permite identificar gargalos no atendimento, avaliar o impacto de diferentes configurações do ambiente e propor otimizações para o fluxo de clientes. Por fim, discute-se como a variação de parâmetros-chave — como o aumento do número de mesas, a redução do tempo médio de permanência ou a alteração do layout — pode influenciar o desempenho do restaurante, fornecendo subsídios para a tomada de decisão gerencial baseada em evidências quantitativas.
+
+O objetivo deste capítulo é demonstrar, de forma clara e objetiva, o potencial do simulador como ferramenta de apoio à gestão, evidenciando sua utilidade na identificação de oportunidades de melhoria e na avaliação de cenários alternativos para o negócio.
+
+---
+
+### 5.1 Parâmetros utilizados na simulação (layout, número de mesas, tempo médio)
+
+Para garantir a representatividade e a precisão dos resultados obtidos, a simulação foi configurada com base em parâmetros que refletem as principais características operacionais de um restaurante por quilo típico. Os parâmetros adotados abrangem tanto aspectos físicos do ambiente quanto variáveis relacionadas ao comportamento dos clientes e à dinâmica do atendimento.
+
+Entre os principais parâmetros utilizados destacam-se:
+
+- **Layout do restaurante:** O arranjo físico do salão, incluindo a disposição das mesas, o posicionamento do buffet, balança, caixa e áreas de circulação, foi modelado a partir de um layout realista, permitindo avaliar o impacto do espaço na fluidez do atendimento e no tempo de permanência dos clientes.
+- **Número de mesas e cadeiras:** A quantidade total de mesas disponíveis e o número de cadeiras por mesa foram definidos conforme a capacidade máxima do estabelecimento, influenciando diretamente a taxa de ocupação e a formação de filas de espera.
+- **Tempo médio de refeição:** O tempo que cada cliente permanece na mesa foi modelado a partir de dados históricos e/ou observações reais, utilizando distribuições estatísticas para refletir a variabilidade natural do comportamento dos clientes.
+- **Taxa de chegada de clientes:** A frequência com que novos clientes chegam ao restaurante durante o período simulado, expressa em clientes por minuto, foi ajustada para representar diferentes cenários de demanda, como horários de pico e períodos de menor movimento.
+- **Tempos médios de atendimento:** Foram considerados os tempos médios de atendimento em cada etapa do processo (buffet, balança, caixa), também modelados com variabilidade estatística.
+
+Esses parâmetros foram definidos a partir de dados reais, quando disponíveis, ou de estimativas baseadas em referências do setor. A seguir, são apresentados os valores adotados para cada parâmetro na simulação principal, bem como o racional para sua escolha.
+
+---
+
+#### 5.1.1 Layout de exemplo utilizado na simulação
+
+Para ilustrar a aplicação do simulador, foi utilizado um layout representativo de restaurante por quilo, modelado em matriz ASCII. Essa abordagem permite visualizar de forma clara a disposição dos principais elementos do ambiente, como mesas, buffet, caixa e áreas de circulação.
+
+Abaixo está um exemplo de layout utilizado em uma das simulações:
+
+```plaintext
+###########
+# B   M M #
+#     M M #
+# C       #
+###########
+```
+
+**Legenda dos símbolos:**
+- `#` : Parede
+- `M` : Mesa
+- `B` : Buffet
+- `C` : Caixa
+- Espaço em branco: área livre/circulação
+
+Neste exemplo, o restaurante possui:
+- Um buffet próximo à parede superior esquerda,
+- Quatro mesas distribuídas no salão,
+- Um caixa localizado na parede inferior esquerda,
+- Áreas de circulação amplas,
+- Paredes delimitando o ambiente.
+
+A utilização desse layout permite avaliar o impacto da disposição física dos recursos no fluxo de clientes, nos tempos de deslocamento e na formação de filas, fornecendo subsídios para a análise dos resultados e para a proposição de melhorias operacionais.
+---
+
+#### 5.1.2 Extrapolação: análise da variação do fluxo de chegada de clientes
+
+Além da configuração de parâmetros fixos, o simulador desenvolvido permite explorar cenários mais realistas e avançados, nos quais a taxa de chegada de clientes varia ao longo do tempo. Essa extrapolação é fundamental para representar o comportamento típico de restaurantes, especialmente durante o horário de almoço, quando há picos de demanda seguidos por períodos de menor movimento.
+
+Ao incorporar diferentes padrões de chegada — como aumento gradual do fluxo próximo ao meio-dia, pico entre 12h e 13h, e queda após esse intervalo —, o simulador possibilita avaliar de forma detalhada:
+
+- A formação e dissipação de filas em diferentes horários;
+- O impacto dos picos de demanda sobre o tempo de espera, a taxa de ocupação das mesas e o atendimento no buffet e no caixa;
+- A eficiência das estratégias operacionais adotadas para lidar com variações bruscas no fluxo de clientes;
+- A necessidade de ajustes no layout, número de mesas ou escala de funcionários para acomodar as flutuações de demanda.
+
+Por meio dessa abordagem, gestores podem antecipar gargalos, testar políticas de incentivo para horários alternativos, planejar melhor a alocação de recursos e tomar decisões baseadas em dados sobre o funcionamento do restaurante ao longo do dia.
+
+A análise da variação do fluxo de chegada de clientes amplia o potencial do simulador, tornando-o uma ferramenta robusta para o planejamento operacional e estratégico, capaz de apoiar a gestão em diferentes cenários e contribuir para a melhoria contínua do atendimento e da experiência do cliente.
+
+---
+
+##### Exemplo de diagrama: Variação do fluxo de chegada de clientes ao longo do tempo
+
+```plaintext
+Clientes
+  ^ 
+  |         *
+  |        * *
+  |       *   *
+  |      *     *
+  |     *       *
+  |    *         *
+  |   *           *
+  |  *             *
+  | *               *
+  +--------------------------> Horário
+   11h   12h   13h   14h
+
+Legenda:
+* O eixo vertical representa o número de clientes chegando por minuto.
+* O eixo horizontal representa o horário do almoço.
+* O pico ocorre entre 12h e 13h, ilustrando o aumento e a queda do fluxo de chegada.
+```
+
+Esse diagrama mostra como o simulador pode modelar cenários realistas, com picos de chegada no horário de maior movimento e menor fluxo antes e depois do almoço. Isso permite analisar o impacto dessas variações sobre filas, ocupação e desempenho do restaurante.
+
+---
+
+### 5.2 Teste com dados reais/simulados
+
+Para validar o funcionamento e a aplicabilidade do simulador, foram realizados testes utilizando tanto dados reais coletados em um restaurante por quilo quanto dados simulados, representando diferentes cenários operacionais. Essa abordagem permite avaliar a aderência do modelo à realidade e explorar situações hipotéticas que auxiliam na tomada de decisão.
+
+**Dados reais:**  
+Os dados reais foram obtidos por meio de observação direta do fluxo de clientes, registro dos horários de chegada, tempos médios de atendimento em cada etapa (buffet, balança, caixa) e tempo de permanência nas mesas. Esses dados serviram de base para parametrizar o simulador, garantindo maior realismo nas análises e permitindo a comparação dos resultados simulados com o desempenho observado no restaurante.
+
+**Dados simulados:**  
+Além dos dados reais, foram criados cenários simulados para testar o comportamento do sistema sob diferentes condições, como aumento da demanda em horários de pico, redução do número de mesas ou alteração do layout. Os parâmetros foram ajustados para representar situações extremas ou alternativas, possibilitando a análise de gargalos, a identificação de limites operacionais e a avaliação de estratégias de otimização.
+
+**Execução dos testes:**  
+Os testes consistiram na configuração dos parâmetros no simulador, execução das simulações e análise dos resultados gerados, incluindo indicadores como tempo médio de espera, taxa de ocupação das mesas, número de clientes atendidos e rejeitados, e formação de filas em diferentes etapas do atendimento.
+
+A utilização de dados reais e simulados demonstra a flexibilidade do simulador e sua capacidade de apoiar gestores na avaliação de cenários diversos, contribuindo para a melhoria contínua dos processos e para a tomada de decisões baseadas em evidências.
+
+---
+
+### 5.3 Análise dos resultados: gargalos, otimizações sugeridas
+
+A análise dos resultados obtidos a partir das simulações, tanto com dados reais quanto simulados, permite identificar de forma objetiva os principais gargalos operacionais do restaurante e propor estratégias de otimização para o fluxo de clientes.
+
+Durante os testes, observou-se que os maiores pontos de congestionamento tendem a ocorrer em etapas críticas do processo, como o atendimento no buffet, a espera por mesas disponíveis e o pagamento no caixa, especialmente nos períodos de pico de chegada de clientes. O simulador possibilitou quantificar o tempo médio de espera em cada etapa, a taxa de ocupação das mesas e a frequência de formação de filas, fornecendo uma visão detalhada do desempenho do sistema sob diferentes configurações.
+
+Com base nesses resultados, foram sugeridas algumas otimizações, tais como:
+
+- **Ajuste no número de mesas e cadeiras:** Aumentar a quantidade de mesas disponíveis pode reduzir significativamente o tempo de espera dos clientes por assentos, especialmente em horários de maior demanda.
+- **Redução do tempo médio de permanência:** Incentivar a rotatividade das mesas, seja por meio de melhorias no atendimento ou estratégias de autosserviço, contribui para aumentar a capacidade de atendimento sem necessidade de grandes alterações estruturais.
+- **Reorganização do layout:** Alterações na disposição do buffet, caixa e áreas de circulação podem facilitar o fluxo de clientes, minimizar cruzamentos e reduzir o tempo de deslocamento interno.
+- **Gestão de filas e atendimento:** Implementar sistemas de senha, otimizar o atendimento no caixa ou reforçar o número de funcionários em horários críticos pode diminuir gargalos e melhorar a experiência do cliente.
+
+A utilização do simulador demonstrou ser fundamental para testar previamente essas alternativas, permitindo ao gestor avaliar o impacto de cada mudança antes de implementá-la no ambiente real. Dessa forma, é possível tomar decisões mais assertivas, baseadas em evidências quantitativas, e promover melhorias contínuas na operação do restaurante.
+
+---
+
+### 5.4 Discussão sobre os efeitos da variação de parâmetros
+
+A realização de simulações com diferentes configurações de parâmetros permitiu analisar de forma aprofundada como pequenas alterações no ambiente ou no comportamento dos clientes podem impactar significativamente o desempenho do restaurante. Entre os principais parâmetros avaliados destacam-se: número de mesas, tempo médio de refeição, taxa de chegada de clientes, disposição do layout e tempos médios de atendimento em cada etapa.
+
+Os resultados demonstraram que:
+
+```plaintext
+| Parâmetro Variado                | Efeito Observado no Sistema                                    | Possíveis Otimizações                  |
+|-----------------------------------|----------------------------------------------------------------|----------------------------------------|
+| Número de mesas                   | Reduz tempo de espera por assento; diminui rejeição de clientes| Ajustar layout para acomodar mais mesas|
+| Tempo médio de refeição           | Reduzindo, aumenta rotatividade e capacidade de atendimento    | Incentivar rotatividade, autosserviço  |
+| Taxa de chegada de clientes       | Picos aumentam filas e tempo de espera                         | Promoções em horários alternativos     |
+| Layout do restaurante             | Layout ruim aumenta deslocamento e cruzamentos                 | Reorganizar buffet, caixa, circulação  |
+| Tempos médios de atendimento      | Atendimentos lentos geram filas em etapas específicas          | Treinamento, reforço de equipe         |
+```
+
+Essas análises reforçam a utilidade do simulador como ferramenta de apoio à decisão, permitindo ao gestor testar virtualmente diferentes cenários antes de implementar mudanças no ambiente real. A possibilidade de avaliar os efeitos da variação de parâmetros de forma quantitativa contribui para uma gestão mais eficiente, baseada em dados e focada na melhoria contínua dos processos e da experiência do cliente.
+
+---
+
+### Considerações finais
+
+O estudo de caso apresentado neste capítulo demonstrou, na prática, a versatilidade e a utilidade do simulador desenvolvido para análise e otimização do funcionamento de restaurantes por quilo. A partir da configuração de parâmetros realistas, da realização de testes com dados reais e simulados e da análise detalhada dos resultados, foi possível identificar gargalos operacionais, propor melhorias e avaliar o impacto de diferentes cenários sobre o desempenho do sistema.
+
+A possibilidade de variar parâmetros como número de mesas, tempo médio de refeição, layout do ambiente e taxa de chegada de clientes evidenciou o potencial do simulador como ferramenta de apoio à tomada de decisão gerencial. Os resultados obtidos reforçam a importância de uma abordagem quantitativa e baseada em dados para o planejamento e a gestão de restaurantes, permitindo antecipar problemas, testar soluções e promover melhorias contínuas nos processos.
+
+Dessa forma, o simulador se consolida como um recurso valioso para gestores que buscam aumentar a eficiência operacional, melhorar a experiência do cliente e adaptar o negócio a diferentes demandas e desafios do mercado.
+
+---
+
 # Referências Bibliográficas
 
 BALLOU, R. H. Logística Empresarial: Transportes, Administração de Materiais e Distribuição Física. 2006.

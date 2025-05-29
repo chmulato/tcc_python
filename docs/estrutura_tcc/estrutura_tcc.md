@@ -37,10 +37,10 @@
 
 ## Capítulo 5 – Estudo de Caso e Simulações
 - [X] Parâmetros utilizados na simulação (layout, número de mesas, tempo médio).
-- [ ] Teste com dados reais/simulados.
-- [ ] Análise dos resultados: gargalos, otimizações sugeridas.
-- [ ] Discussão sobre os efeitos da variação de parâmetros.
-- [ ] Conclusão do capítulo.
+- [X] Teste com dados reais/simulados.
+- [X] Análise dos resultados: gargalos, otimizações sugeridas.
+- [X] Discussão sobre os efeitos da variação de parâmetros.
+- [X] Conclusão do capítulo.
 
 ## Capítulo 6 – Estratégia de Negócio e Aplicabilidade Comercial
 - [ ] Público-alvo: donos de restaurantes e arrendatários.
