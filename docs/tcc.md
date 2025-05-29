@@ -742,7 +742,30 @@ Neste exemplo, o restaurante possui:
 - Áreas de circulação amplas,
 - Paredes delimitando o ambiente.
 
+#### Tabela 1 – Parâmetros utilizados na simulação (layout 5.1.1)
+
+```plaintext
+|------------------------------|--------------------|--------------------------------------------|
+| Parâmetro                    | Valor adotado      | Observação                                 |
+|------------------------------|--------------------|--------------------------------------------|
+| Número de mesas              | 4                  | Conforme layout ASCII                      |
+| Cadeiras por mesa            | 4                  | Capacidade total: 16 lugares               |
+| Número de buffets            | 1                  | Próximo à parede superior esquerda         |
+| Número de caixas             | 1                  | Próximo à parede inferior esquerda         |
+| Tempo médio de refeição      | 30 min             | Distribuição normal (desvio padrão: 5 min) |
+| Tempo médio no buffet        | 2 min              | Por cliente                                |
+| Tempo médio na balança       | 1 min              | Por cliente                                |
+| Tempo médio no caixa         | 2 min              | Por cliente                                |
+| Taxa de chegada de clientes  | 2 clientes/minuto  | Horário de pico                            |
+| Tempo total de simulação     | 120 min            | Período do almoço                          |
+|------------------------------|--------------------|--------------------------------------------|
+```
+Esses parâmetros foram escolhidos para representar um cenário típico de funcionamento de um restaurante por quilo durante o horário de almoço, permitindo analisar o desempenho do sistema e identificar possíveis gargalos no atendimento.
+
 A utilização desse layout permite avaliar o impacto da disposição física dos recursos no fluxo de clientes, nos tempos de deslocamento e na formação de filas, fornecendo subsídios para a análise dos resultados e para a proposição de melhorias operacionais.
+
+> **Nota:** Os valores apresentados na Tabela 1 são exemplificativos e foram definidos para fins de ilustração da aplicação do simulador. Em situações reais, recomenda-se a coleta de dados diretamente no restaurante para parametrização mais precisa do modelo.
+
 ---
 
 #### 5.1.2 Extrapolação: análise da variação do fluxo de chegada de clientes

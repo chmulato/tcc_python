@@ -30,15 +30,15 @@
 - [X] 24/06 – Introduzir teoria das filas.
 - [X] 25/06 – Análise de layout e fluxo de pessoas.
 - [X] 26/06 – Explicar simulação discreta de eventos.
-- [ ] 27/06 – Esboçar equações e modelo lógico.
-- [ ] 28/06 – Finalizar Capítulo 4.
+- [X] 27/06 – Esboçar equações e modelo lógico.
+- [X] 28/06 – Finalizar Capítulo 4.
 
 ## Semana 5 (01/07 a 05/07) – Estudo de Caso e Simulações
-- [ ] 01/07 – Simular cenário base com dados fictícios.
+- [X] 01/07 – Simular cenário base com dados fictícios.
 - [ ] 02/07 – Documentar parâmetros e resultados.
-- [ ] 03/07 – Simular variações e analisar gargalos.
-- [ ] 04/07 – Redigir Capítulo 5.
-- [ ] 05/07 – Gerar gráficos para ilustração.
+- [X] 03/07 – Simular variações e analisar gargalos.
+- [X] 04/07 – Redigir Capítulo 5.
+- [X] 05/07 – Gerar gráficos para ilustração.
 
 ## Semana 6 (08/07 a 12/07) – Estratégia de Negócio
 - [ ] 08/07 – Definir público-alvo e abordagem comercial.
