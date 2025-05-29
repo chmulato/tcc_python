@@ -913,6 +913,31 @@ Essas análises reforçam a utilidade do simulador como ferramenta de apoio à d
 
 ---
 
+#### 5.4.1 Exemplo de ficha para análise dos efeitos da variação de parâmetros ao longo dos dias simulados
+
+Para avaliar de forma sistemática como as variações de parâmetros impactam o desempenho do restaurante em diferentes dias ou cenários, recomenda-se o uso de uma ficha de análise comparativa. Essa ficha permite registrar, lado a lado, os principais indicadores de desempenho para cada configuração testada, facilitando a identificação de tendências, gargalos e oportunidades de melhoria.
+
+Abaixo, um exemplo de ficha para análise dos efeitos das variações de parâmetros:
+
+```plaintext
+|---------------------------|---------------|------------------------|---------------|------------------------|---------------|------------------------|
+| Parâmetro Variado         | Dia 1 (Valor) | Dia 1 (Resultado)      | Dia 2 (Valor) | Dia 2 (Resultado)      | Dia 3 (Valor) | Dia 3 (Resultado)      |
+|---------------------------|---------------|------------------------|---------------|------------------------|---------------|------------------------|
+| Número de mesas           | 4             | 8 clientes rejeitados  | 6             | 2 clientes rejeitados  | 8             | 0 clientes rejeitados  |
+| Tempo médio de refeição   | 30 min        | 92% ocupação           | 25 min        | 85% ocupação           | 20 min        | 78% ocupação           |
+| Taxa de chegada (pico)    | 2/min         | 16 min espera máxima   | 3/min         | 25 min espera máxima   | 1.5/min       | 8 min espera máxima    |
+| Layout                    | Padrão        | 7 filas formadas       | Otimizado     | 3 filas formadas       | Otimizado     | 2 filas formadas       |
+| Tempo médio no caixa      | 2 min         | 5 min fila caixa       | 1.5 min       | 3 min fila caixa       | 1 min         | 1 min fila caixa       |
+|---------------------------|---------------|------------------------|---------------|------------------------|---------------|------------------------|
+```
+
+> **Observação:**  
+> Os resultados podem incluir indicadores como: número de clientes rejeitados, tempo médio de espera, taxa de ocupação das mesas, tamanho máximo das filas, entre outros relevantes para a análise.
+
+Essa ficha pode ser adaptada para incluir mais dias, diferentes parâmetros ou cenários específicos (ex: promoções, mudanças de layout, variação de equipe). O uso sistemático desse tipo de registro facilita a comparação dos efeitos das variações e embasa recomendações de otimização para o gestor do restaurante.
+
+---
+
 ### 5.5 Modelos de documentação entregue ao cliente
 
 A documentação dos parâmetros utilizados e dos resultados obtidos na simulação é fundamental para garantir a transparência, a rastreabilidade e a utilidade prática do simulador para gestores de restaurantes. O sistema desenvolvido gera automaticamente relatórios executivos em formato PDF, que podem ser entregues ao cliente como produto final da análise.
@@ -931,6 +956,7 @@ RELATÓRIO EXECUTIVO DE SIMULAÇÃO – RESTAURANTE POR QUILO
    - Data da Simulação: 01/06/2025
 
 2. Parâmetros Utilizados na Simulação
+   |-----------------------------|-----------------|---------------------------------|
    | Parâmetro                   | Valor           | Observação                      |
    |-----------------------------|-----------------|---------------------------------|
    | Número de mesas             | 4               | Conforme layout ASCII           |
@@ -941,6 +967,7 @@ RELATÓRIO EXECUTIVO DE SIMULAÇÃO – RESTAURANTE POR QUILO
    | Tempo médio no caixa        | 2 min           | Por cliente                     |
    | Taxa de chegada de clientes | 2 clientes/min  | Horário de pico                 |
    | Tempo total de simulação    | 120 min         | Período do almoço               |
+   |-----------------------------|-----------------|---------------------------------|
 
 3. Resultados Principais
    - Clientes atendidos: 220
@@ -973,9 +1000,9 @@ Esse modelo demonstra como o simulador pode entregar valor ao cliente, documenta
 
 ### 5.6 Considerações finais
 
-O estudo de caso apresentado neste capítulo evidenciou, de forma prática, a versatilidade e a utilidade do simulador desenvolvido para análise e otimização do funcionamento de restaurantes por quilo. A partir da configuração de parâmetros realistas, da realização de testes com dados reais e simulados e da análise detalhada dos resultados, foi possível identificar gargalos operacionais, propor melhorias e avaliar o impacto de diferentes cenários sobre o desempenho do sistema.
+O estudo de caso apresentado neste capítulo demonstrou, de forma prática, a flexibilidade e a utilidade do simulador desenvolvido para análise e otimização do funcionamento de restaurantes por quilo. A partir da configuração de parâmetros realistas, da realização de testes com dados reais e simulados e da análise detalhada dos resultados, foi possível identificar gargalos operacionais, propor melhorias e avaliar o impacto de diferentes cenários sobre o desempenho do sistema.
 
-A possibilidade de variar parâmetros como número de mesas, tempo médio de refeição, layout do ambiente e taxa de chegada de clientes demonstrou o potencial do simulador como ferramenta de apoio à tomada de decisão gerencial. Os resultados obtidos reforçam a importância de uma abordagem quantitativa e baseada em dados para o planejamento e a gestão de restaurantes, permitindo antecipar problemas, testar soluções e promover melhorias contínuas nos processos.
+A possibilidade de variar parâmetros como número de mesas, tempo médio de refeição, layout do ambiente e taxa de chegada de clientes evidenciou o potencial do simulador como ferramenta de apoio à tomada de decisão gerencial. Os resultados reforçam a importância de uma abordagem quantitativa e baseada em dados para o planejamento e a gestão de restaurantes, permitindo antecipar problemas, testar soluções e promover melhorias contínuas nos processos.
 
 Além disso, a documentação estruturada dos parâmetros e resultados, por meio de relatórios executivos e visualizações gráficas, facilita a comunicação dos achados e recomendações aos gestores, tornando o simulador uma ferramenta prática e acessível para o dia a dia do negócio.
 
