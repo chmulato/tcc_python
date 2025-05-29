@@ -870,7 +870,7 @@ Essas análises reforçam a utilidade do simulador como ferramenta de apoio à d
 
 ---
 
-### Considerações finais
+### 5.5 Considerações finais
 
 O estudo de caso apresentado neste capítulo demonstrou, na prática, a versatilidade e a utilidade do simulador desenvolvido para análise e otimização do funcionamento de restaurantes por quilo. A partir da configuração de parâmetros realistas, da realização de testes com dados reais e simulados e da análise detalhada dos resultados, foi possível identificar gargalos operacionais, propor melhorias e avaliar o impacto de diferentes cenários sobre o desempenho do sistema.
 
