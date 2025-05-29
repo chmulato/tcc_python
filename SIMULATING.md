@@ -32,6 +32,7 @@ A simulação DES modela o sistema como uma sequência de eventos (chegada, aten
 
 ## 4. Tabela Comparativa
 
+```plaintext
 | Característica                | Determinística                        | Eventos Discretos (DES)           |
 |-------------------------------|---------------------------------------|-----------------------------------|
 | Tempo de execução             | Muito rápido                          | Mais lento (simula cada evento)   |
@@ -41,6 +42,7 @@ A simulação DES modela o sistema como uma sequência de eventos (chegada, aten
 | Complexidade do modelo        | Baixa                                 | Alta                              |
 | Uso recomendado               | Estimativas rápidas, cenários simples | Análise detalhada, cenários reais |
 | Exemplos de uso               | Capacidade máxima, uso médio          | Tempos de espera, gargalos        |
+```
 
 ---
 
@@ -70,6 +72,7 @@ Na simulação DES, as variáveis de entrada são usadas para gerar eventos indi
 
 ### Resumo das Variáveis
 
+```plaintext
 | Variável                  | Determinística (uso)          | DES (uso)                                 |
 |---------------------------|-------------------------------|-------------------------------------------|
 | clientes_por_minuto       | Valor fixo para cálculo       | Gera eventos de chegada                   |
@@ -82,6 +85,7 @@ Na simulação DES, as variáveis de entrada são usadas para gerar eventos indi
 | variabilidade_almoco      | Ignorado                      | Controla aleatoriedade do almoço          |
 | variabilidade_chegada     | Ignorado                      | Controla aleatoriedade das chegadas       |
 | capacidade_maxima_fila    | Ignorado                      | Limita tamanho das filas                  |
+```
 
 ---
 
@@ -99,7 +103,9 @@ Claro! Aqui estão exemplos práticos para o **Tópico 7** do seu arquivo SIMULA
 
 ### Fluxo típico do cliente no restaurante
 
+```plaintext
 [Fila] → [Buffet/Serve] → [Balança/Pesa] → [Caixa/Paga] → [Mesa/Come] → [Saída]
+```
 
 ---
 
@@ -169,5 +175,3 @@ Neste modo, cada cliente é simulado individualmente:
 Para obter uma visão completa do sistema, recomenda-se rodar ambos os tipos de simulação e comparar os resultados.
 
 ---
-
-Se quiser exemplos com outros parâmetros ou cenários, é só pedir!
