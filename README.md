@@ -130,7 +130,7 @@ Essas variáveis podem ser ajustadas nos arquivos de configuração (YAML, Excel
 
 ## 📁 Estrutura de Pastas
 
-```
+```plaintext
 simulador_restaurante/
 │
 ├── main.py                # Ponto de entrada da aplicação
@@ -158,6 +158,7 @@ simulador_restaurante/
 │   └── logo.png                   # Imagem da logo exibida na interface gráfica
 ├── requirements.txt               # Lista de dependências Python
 └── README.md                      # Este arquivo de documentação
+```
 
 ---
 
@@ -223,6 +224,7 @@ Essas visualizações são incluídas automaticamente nos relatórios PDF e nos 
 
 ## 🔄 Diagrama de Sequência (Resumo)
 
+```plaintext
 Usuário
   |
   v
@@ -252,6 +254,7 @@ Usuário
   |
   v
 Relatórios e animações gerados em resultados/relatorios/
+```
 
 ---
 
