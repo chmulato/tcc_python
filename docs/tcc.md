@@ -396,7 +396,7 @@ Além da possibilidade de criar layouts personalizados, o simulador disponibiliz
 
 ## 4.3 Simulação Discreta de Eventos (Discrete Event Simulation – DES): lógica e implementação
 
-**Nota**: Neste trabalho, a sigla DES (do inglês Discrete Event Simulation) será utilizada para se referir à Simulação Discreta de Eventos.
+> **Nota:** Neste trabalho, a sigla DES (do inglês Discrete Event Simulation) será utilizada para se referir à Simulação Discreta de Eventos.
 
 A Simulação Discreta de Eventos (Discrete Event Simulation – DES) é uma abordagem poderosa para modelar sistemas dinâmicos nos quais o estado muda em pontos específicos do tempo, denominados eventos. No contexto de restaurantes, essa técnica permite representar com realismo o fluxo de clientes, a ocupação das mesas, a formação de filas e a utilização dos recursos disponíveis.
 
@@ -742,6 +742,8 @@ Neste exemplo, o restaurante possui:
 - Áreas de circulação amplas,
 - Paredes delimitando o ambiente.
 
+A utilização desse layout permite avaliar o impacto da disposição física dos recursos no fluxo de clientes, nos tempos de deslocamento e na formação de filas, fornecendo subsídios para a análise dos resultados e para a proposição de melhorias operacionais.
+
 #### Tabela 1 – Parâmetros utilizados na simulação (layout 5.1.1)
 
 ```plaintext
@@ -761,8 +763,6 @@ Neste exemplo, o restaurante possui:
 |------------------------------|--------------------|--------------------------------------------|
 ```
 Esses parâmetros foram escolhidos para representar um cenário típico de funcionamento de um restaurante por quilo durante o horário de almoço, permitindo analisar o desempenho do sistema e identificar possíveis gargalos no atendimento.
-
-A utilização desse layout permite avaliar o impacto da disposição física dos recursos no fluxo de clientes, nos tempos de deslocamento e na formação de filas, fornecendo subsídios para a análise dos resultados e para a proposição de melhorias operacionais.
 
 > **Nota:** Os valores apresentados na Tabela 1 são exemplificativos e foram definidos para fins de ilustração da aplicação do simulador. Em situações reais, recomenda-se a coleta de dados diretamente no restaurante para parametrização mais precisa do modelo.
 
