@@ -3,3 +3,4 @@ __pycache__/
 docs/graficos_e_diagramas/
 monitoramento/temp_frames/
 resultados/relatorios/
+monitoramento/log_execucao.log
