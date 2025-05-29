@@ -108,21 +108,24 @@ Loader Loader Parser
 
 ## 1.5 Estrutura do trabalho
 
-Este trabalho está organizado em capítulos que abordam, de forma sequencial e lógica, o desenvolvimento e a aplicação do simulador de tempo de permanência em restaurantes:
+Este trabalho está organizado em capítulos que abordam, de forma sequencial e lógica, o desenvolvimento, a fundamentação e a aplicação do simulador de tempo de permanência em restaurantes:
 
-- **Capítulo 1 – Introdução:** Apresenta a contextualização do problema, a justificativa para o desenvolvimento do simulador, os objetivos do estudo, a metodologia adotada e a estrutura geral do trabalho.
-- **Capítulo 2 – Fundamentação Teórica:** Explora os conceitos de simulação, modelagem de sistemas, gestão de filas e operações em restaurantes, além de revisar trabalhos relacionados.
-- **Capítulo 3 – Desenvolvimento do Simulador:** Detalha o processo de modelagem, implementação do simulador, definição dos parâmetros e integração dos módulos do sistema.
-- **Capítulo 4 – Resultados e Discussão:** Apresenta os cenários simulados, análise dos resultados obtidos, avaliação do desempenho do simulador e discussão das principais descobertas.
-- **Capítulo 5 – Considerações Finais:** Resume as conclusões do trabalho, destaca as contribuições alcançadas e sugere possíveis melhorias e trabalhos futuros.
+- **Capítulo 1 – Introdução:** Apresenta a contextualização do problema, a justificativa para o desenvolvimento do simulador, os objetivos do estudo, a metodologia aplicada e a estrutura geral do trabalho.
+- **Capítulo 2 – Referencial Teórico:** Explora os principais conceitos sobre gestão de tempo em restaurantes, aplicações de simulação em ambientes de serviço, sistemas computacionais de apoio à decisão em pequenas empresas e o uso prático do Python em Engenharia de Processos.
+- **Capítulo 3 – Especificação do Sistema de Simulação:** Detalha a aplicação desenvolvida, suas funcionalidades principais (entrada de dados, importação de planilhas e arquivos ASCII, exportação de resultados em PDF, interface gráfica, visualização do layout e animação), além da arquitetura modular e organização do projeto.
+- **Capítulo 4 – Fundamentos Matemáticos e Conceituais da Simulação:** Apresenta os fundamentos teóricos e matemáticos que embasam o simulador, incluindo Teoria das Filas, análise do layout e deslocamento interno, lógica da Simulação Discreta de Eventos (DES), estatística aplicada aos tempos de atendimento e consumo, equação geral do tempo de residência e justificativa da abordagem prática adotada.
+- **Capítulo 5 – Estudo de Caso e Simulações:** Descreve os parâmetros utilizados na simulação, testes com dados reais ou simulados, análise dos resultados (gargalos, otimizações sugeridas), discussão sobre os efeitos da variação de parâmetros e conclusão do capítulo.
+- **Capítulo 6 – Estratégia de Negócio e Aplicabilidade Comercial:** Apresenta o público-alvo do sistema, proposta de valor, pacotes de entrega e monetização, limitações, estratégias de fidelização, possibilidades de expansão futura e conclusão do capítulo.
+- **Capítulo 7 – Conclusão:** Sintetiza os resultados obtidos, destaca as contribuições técnicas e práticas do projeto, traz recomendações para adoção e desenvolvimento contínuo, sugestões para trabalhos futuros (como integração com sensores ou aplicativos móveis) e as considerações finais do trabalho.
+- **Anexos:** Incluem o código-fonte principal do sistema, layout das planilhas de entrada, fluxogramas da simulação e modelos de documentação entregue ao cliente.
 
-Essa estrutura visa proporcionar uma compreensão clara e progressiva do tema, desde a identificação do problema até a apresentação dos resultados e conclusões.
+Essa estrutura visa proporcionar uma compreensão clara e progressiva do tema, desde a identificação do problema até a apresentação dos resultados, aplicações práticas e perspectivas futuras, facilitando o entendimento do leitor sobre o desenvolvimento e a aplicação do simulador proposto.
 
 ---
 
-## 1.6 Considerações finais do Capítulo 1
+## 1.6 Considerações finais
 
-O Capítulo 1 apresentou a fundamentação inicial para o desenvolvimento deste trabalho, destacando a relevância da gestão eficiente do tempo de permanência dos clientes em restaurantes e os desafios enfrentados pelo setor. A justificativa para a criação de um simulador foi embasada na necessidade de ferramentas que auxiliem gestores na tomada de decisões estratégicas, proporcionando maior eficiência operacional e melhor experiência ao cliente.
+Este capítulo apresentou a fundamentação inicial para o desenvolvimento deste trabalho, destacando a relevância da gestão eficiente do tempo de permanência dos clientes em restaurantes e os desafios enfrentados pelo setor. A justificativa para a criação de um simulador foi embasada na necessidade de ferramentas que auxiliem gestores na tomada de decisões estratégicas, proporcionando maior eficiência operacional e melhor experiência ao cliente.
 
 Foram definidos os objetivos geral e específicos, que orientam o desenvolvimento do simulador, bem como a metodologia aplicada, baseada em simulação por eventos discretos. Por fim, a estrutura do trabalho foi detalhada, oferecendo ao leitor uma visão clara do percurso a ser seguido nos próximos capítulos. Dessa forma, estabelece-se o contexto e a motivação para as etapas seguintes, que aprofundarão a fundamentação teórica, o desenvolvimento da solução proposta e a análise dos resultados obtidos.
 
@@ -130,7 +133,7 @@ Foram definidos os objetivos geral e específicos, que orientam o desenvolviment
 
 # Capítulo 2 – Referencial Teórico
 
-Este capítulo apresenta os principais conceitos e estudos que fundamentam o desenvolvimento do simulador de tempo de permanência em restaurantes. São abordados temas como gestão de tempo em ambientes de serviço, aplicações de simulação, sistemas computacionais de apoio à decisão em pequenas empresas e o uso prático do Python em Engenharia de Processos.
+Aqui vamos apresentaros principais conceitos e estudos que fundamentam o desenvolvimento do simulador de tempo de permanência em restaurantes. São abordados temas como gestão de tempo em ambientes de serviço, aplicações de simulação, sistemas computacionais de apoio à decisão em pequenas empresas e o uso prático do Python em Engenharia de Processos.
 
 ---
 
@@ -182,7 +185,7 @@ No contexto da Engenharia de Processos, Python oferece recursos poderosos para m
 
 ---
 
-## 2.5 Conclusão do capítulo
+## 2.5 Considerações finais
 
 O referencial teórico apresentado neste capítulo evidencia a importância da gestão eficiente do tempo em restaurantes e o papel fundamental da simulação computacional como ferramenta de apoio à tomada de decisão, especialmente em pequenas empresas. Destacou-se também como o uso do computador e de sistemas computacionais democratizou o acesso a técnicas avançadas de análise e otimização de processos, tornando-as viáveis para negócios de diferentes portes.
 
@@ -242,9 +245,9 @@ Essas funcionalidades tornam o simulador uma ferramenta completa para análise, 
 
 ---
 
-## 3.3 Considerações finais do Capítulo 3
+## 3.3 Considerações finais
 
-O Capítulo 3 apresentou a especificação detalhada do sistema de simulação desenvolvido para análise do tempo de permanência de clientes em restaurantes. Foram descritas as principais funcionalidades da aplicação, destacando a flexibilidade na entrada de dados, a integração com diferentes formatos de arquivos, a geração automática de relatórios e visualizações, além do cuidado com a usabilidade e a organização modular do projeto.
+Apresentamos a especificação detalhada do sistema de simulação desenvolvido para análise do tempo de permanência de clientes em restaurantes. Foram descritas as principais funcionalidades da aplicação, destacando a flexibilidade na entrada de dados, a integração com diferentes formatos de arquivos, a geração automática de relatórios e visualizações, além do cuidado com a usabilidade e a organização modular do projeto.
 
 A abordagem adotada visa proporcionar aos gestores uma ferramenta robusta, intuitiva e adaptável a diferentes realidades operacionais, permitindo a avaliação de cenários variados e a identificação de oportunidades de melhoria no atendimento e na utilização dos recursos do restaurante. A estrutura modular e a clareza na organização dos componentes facilitam a manutenção e a evolução futura do sistema, assegurando sua relevância e aplicabilidade prática.
 
@@ -471,11 +474,11 @@ Na matemática estatística, a variabilidade dos tempos de atendimento e consumo
 Usada quando os tempos variam em torno de uma média, com dispersão simétrica.
 Exemplo: tempo médio de refeição com pequenas variações para mais ou para menos.
 
-X ~ N(mu, sigma^2)
+X ~ N(mu, sigma²)
 
 Onde:
 - mu = média dos tempos
-- sigma^2 = variância dos tempos
+- sigma² = variância dos tempos
 
 **Distribuição Exponencial:**
 
@@ -500,15 +503,34 @@ Onde:
 
 Quando se utiliza dados históricos reais para construir a distribuição dos tempos.
 
-**Exemplo prático:**
+**Exemplo prático I: Aplicação da Distribuição Normal ao Tempo de Refeição**
 
-Se o tempo médio de refeição é 30 minutos com desvio padrão de 5 minutos, pode-se modelar:
+Imagine que, a partir de observações reais em um restaurante, constatou-se que o tempo médio de permanência dos clientes na mesa durante a refeição é de 30 minutos, com um desvio padrão de 5 minutos. Para representar essa variabilidade no simulador, utiliza-se a distribuição normal:
 
-T_refeicao ~ N(30, 5^2)
+T_refeicao ~ N(30, 5²)
 
-Ou seja, cada cliente terá um tempo de refeição sorteado dessa distribuição, refletindo a diversidade de comportamentos reais.
+Na prática, isso significa que, a cada simulação, o tempo de refeição de cada cliente será sorteado aleatoriamente a partir dessa distribuição. Por exemplo, enquanto alguns clientes podem terminar a refeição em 25 minutos, outros podem levar 35 minutos ou mais, refletindo diferenças individuais de comportamento, conversas ou ritmo de alimentação.
 
-Dessa forma, a estatística entra na simulação por meio das distribuições de probabilidade, que modelam a incerteza e a variabilidade dos tempos de atendimento e consumo, permitindo análises mais precisas e realistas do sistema.
+Ao aplicar essa abordagem estatística, o simulador consegue reproduzir de forma mais realista o fluxo de ocupação das mesas. Isso permite, por exemplo, analisar como a variabilidade no tempo de refeição impacta a formação de filas de espera por mesas em horários de pico, ajudando o gestor a identificar gargalos e a dimensionar melhor os recursos do restaurante.
+
+Assim, a estatística não apenas representa a incerteza dos tempos de atendimento e consumo, mas também fornece subsídios para decisões mais precisas e fundamentadas na gestão operacional do restaurante.
+
+**Exemplo prático II: Tempo médio de espera na fila do caixa**
+
+Suponha que, em determinado restaurante, a taxa média de chegada de clientes ao caixa seja de 12 clientes por hora (λ = 12) e a taxa média de atendimento do caixa seja de 15 clientes por hora (μ = 15). Considerando que há apenas um caixa (modelo de fila M/M/1), o tempo médio de espera na fila pode ser calculado pela fórmula:
+
+Tempo médio de espera na fila (Wq):
+
+Wq = λ / [μ * (μ - λ)]
+
+Substituindo os valores:
+
+Wq = 12 / [15 * (15 - 12)]
+Wq = 12 / [15 * 3]
+Wq = 12 / 45
+Wq ≈ 0,267 horas ≈ 16 minutos
+
+Ou seja, em média, cada cliente espera cerca de 16 minutos na fila do caixa. Esse cálculo permite ao gestor avaliar se a quantidade de caixas é suficiente e, se necessário, simular o impacto da adição de mais um caixa para reduzir o tempo de espera.
 
 ---
 
