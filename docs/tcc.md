@@ -878,13 +878,73 @@ Essas análises reforçam a utilidade do simulador como ferramenta de apoio à d
 
 ---
 
-### 5.5 Considerações finais
+### 5.5 Modelos de documentação entregue ao cliente
 
-O estudo de caso apresentado neste capítulo demonstrou, na prática, a versatilidade e a utilidade do simulador desenvolvido para análise e otimização do funcionamento de restaurantes por quilo. A partir da configuração de parâmetros realistas, da realização de testes com dados reais e simulados e da análise detalhada dos resultados, foi possível identificar gargalos operacionais, propor melhorias e avaliar o impacto de diferentes cenários sobre o desempenho do sistema.
+A documentação dos parâmetros utilizados e dos resultados obtidos na simulação é fundamental para garantir a transparência, a rastreabilidade e a utilidade prática do simulador para gestores de restaurantes. O sistema desenvolvido gera automaticamente relatórios executivos em formato PDF, que podem ser entregues ao cliente como produto final da análise.
 
-A possibilidade de variar parâmetros como número de mesas, tempo médio de refeição, layout do ambiente e taxa de chegada de clientes evidenciou o potencial do simulador como ferramenta de apoio à tomada de decisão gerencial. Os resultados obtidos reforçam a importância de uma abordagem quantitativa e baseada em dados para o planejamento e a gestão de restaurantes, permitindo antecipar problemas, testar soluções e promover melhorias contínuas nos processos.
+A seguir, apresenta-se um modelo simplificado de relatório, elaborado para fins ilustrativos. Embora o simulador exporte um relatório com informações semelhantes, o formato e o conteúdo podem ser facilmente adaptados conforme a necessidade do cliente, incluindo ou removendo seções, gráficos, tabelas e recomendações específicas.
 
-Dessa forma, o simulador se consolida como um recurso valioso para gestores que buscam aumentar a eficiência operacional, melhorar a experiência do cliente e adaptar o negócio a diferentes demandas e desafios do mercado.
+#### Exemplo de estrutura de relatório entregue ao cliente
+
+```plaintext
+---------------------------------------------------------------
+RELATÓRIO EXECUTIVO DE SIMULAÇÃO – RESTAURANTE POR QUILO
+---------------------------------------------------------------
+
+1. Dados do Estabelecimento
+   - Nome: Restaurante Exemplo
+   - Data da Simulação: 01/06/2025
+
+2. Parâmetros Utilizados na Simulação
+   | Parâmetro                   | Valor           | Observação                      |
+   |-----------------------------|-----------------|---------------------------------|
+   | Número de mesas             | 4               | Conforme layout ASCII           |
+   | Cadeiras por mesa           | 4               | Capacidade total: 16 lugares    |
+   | Tempo médio de refeição     | 30 min          | Normal (desvio padrão: 5 min)   |
+   | Tempo médio no buffet       | 2 min           | Por cliente                     |
+   | Tempo médio na balança      | 1 min           | Por cliente                     |
+   | Tempo médio no caixa        | 2 min           | Por cliente                     |
+   | Taxa de chegada de clientes | 2 clientes/min  | Horário de pico                 |
+   | Tempo total de simulação    | 120 min         | Período do almoço               |
+
+3. Resultados Principais
+   - Clientes atendidos: 220
+   - Clientes rejeitados (por lotação): 8
+   - Tempo médio de espera por mesa: 4,2 min
+   - Tempo médio total no restaurante: 38,5 min
+   - Taxa média de ocupação das mesas: 92%
+   - Tamanho máximo da fila: 7 clientes
+
+4. Análise e Recomendações
+   - O principal gargalo identificado foi a formação de filas para mesas entre 12h e 13h.
+   - Recomenda-se avaliar a possibilidade de aumentar o número de mesas ou incentivar a rotatividade.
+   - O tempo médio de atendimento no caixa está adequado, sem formação de filas significativas.
+
+5. Visualizações
+   - Gráfico do fluxo de chegada de clientes ao longo do tempo.
+   - GIF animado do layout do restaurante durante a simulação.
+   - Tabela de ocupação das mesas minuto a minuto.
+
+---------------------------------------------------------------
+Este relatório é um modelo adaptável, podendo ser customizado conforme a necessidade do cliente. O simulador exporta automaticamente um relatório em PDF com informações semelhantes, e pode incluir gráficos, tabelas adicionais, recomendações específicas e anexos com os dados brutos da simulação.
+---------------------------------------------------------------
+```
+
+> **Observação:** O modelo acima serve como referência e pode ser ajustado para atender diferentes demandas de apresentação dos resultados ao cliente.
+
+Esse modelo demonstra como o simulador pode entregar valor ao cliente, documentando de forma clara os parâmetros utilizados, os resultados alcançados e as recomendações para otimização do restaurante, com flexibilidade para personalização do relatório final.
+
+---
+
+### 5.6 Considerações finais
+
+O estudo de caso apresentado neste capítulo evidenciou, de forma prática, a versatilidade e a utilidade do simulador desenvolvido para análise e otimização do funcionamento de restaurantes por quilo. A partir da configuração de parâmetros realistas, da realização de testes com dados reais e simulados e da análise detalhada dos resultados, foi possível identificar gargalos operacionais, propor melhorias e avaliar o impacto de diferentes cenários sobre o desempenho do sistema.
+
+A possibilidade de variar parâmetros como número de mesas, tempo médio de refeição, layout do ambiente e taxa de chegada de clientes demonstrou o potencial do simulador como ferramenta de apoio à tomada de decisão gerencial. Os resultados obtidos reforçam a importância de uma abordagem quantitativa e baseada em dados para o planejamento e a gestão de restaurantes, permitindo antecipar problemas, testar soluções e promover melhorias contínuas nos processos.
+
+Além disso, a documentação estruturada dos parâmetros e resultados, por meio de relatórios executivos e visualizações gráficas, facilita a comunicação dos achados e recomendações aos gestores, tornando o simulador uma ferramenta prática e acessível para o dia a dia do negócio.
+
+Dessa forma, o simulador se consolida como um recurso valioso para gestores que buscam aumentar a eficiência operacional, melhorar a experiência do cliente e adaptar o negócio a diferentes demandas e desafios do mercado, promovendo uma gestão mais eficiente, inovadora e orientada por dados.
 
 ---
 

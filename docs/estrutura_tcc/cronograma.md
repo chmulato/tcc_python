@@ -35,7 +35,7 @@
 
 ## Semana 5 (01/07 a 05/07) – Estudo de Caso e Simulações
 - [X] 01/07 – Simular cenário base com dados fictícios.
-- [ ] 02/07 – Documentar parâmetros e resultados.
+- [X] 02/07 – Documentar parâmetros e resultados.
 - [X] 03/07 – Simular variações e analisar gargalos.
 - [X] 04/07 – Redigir Capítulo 5.
 - [X] 05/07 – Gerar gráficos para ilustração.
