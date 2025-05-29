@@ -1023,3 +1023,131 @@ SOUZA, J. R.; CUNHA, C. B. Gestão de Operações em Serviços. 2012.
 SILVA, M. A.; OLIVEIRA, L. C. Gestão de Restaurantes: Teoria e Prática. 2006.
 
 LAURINDO, F. J. B.; CARVALHO, M. M. Sistemas de Informação: Planejamento e Alinhamento Estratégico. 2012.
+
+---
+
+## Anexo A – Documentação de Uso do Simulador
+
+### A.1 Interface Gráfica do Simulador
+
+A interface gráfica foi desenvolvida em Tkinter para facilitar a interação do usuário com o simulador. Abaixo, estão descritos os principais elementos da interface:
+
+- **Campos de entrada:** Permitem inserir manualmente parâmetros como número de mesas, cadeiras, tempo médio de refeição, etc.
+- **Botões de importação:** Possibilitam importar arquivos de configuração (YAML, Excel) e layout ASCII.
+- **Botão de execução:** Inicia a simulação com os parâmetros definidos.
+- **Área de mensagens:** Exibe avisos, erros e confirmações de operações.
+- **Botões de exportação:** Permitem salvar o relatório PDF e o GIF animado gerados pela simulação.
+
+> **Tela Esquemática do Simulador:**  
+```plaintext
++---------------------------------------------------------------------+
+|                  Simulador de Permanência                           |
++---------------------------------------------------------------------+
+| Clientes por minuto:           [__________]                         |
+| Tempo médio de almoço (min):   [__________]                         |
+| Número de mesas:               [__________]                         |
+| Cadeiras por mesa:             [__________]                         |
+| Tempo total da simulação (min):[__________]                         |
+| Número de caixas:              [__________] (preenchido via layout) |
++---------------------------------------------------------------------+
+| Importar parâmetros de: ( ) YAML   ( ) Excel                        |
++---------------------------------------------------------------------+
+| [Importar Parâmetros] [Importar Layout] [Simular]                   |
++---------------------------------------------------------------------+
+| * Mensagens de status e avisos aparecem aqui *                      |
++---------------------------------------------------------------------+
+```
+---
+
+### A.2 Importação de Arquivos
+
+O simulador aceita a importação dos seguintes arquivos:
+
+- **YAML:** Arquivo de configuração com parâmetros da simulação.
+- **Excel (.xlsx):** Planilha com dados operacionais do restaurante.
+- **ASCII (.txt):** Arquivo de layout do restaurante em matriz ASCII.
+
+**Procedimento:**
+1. Clique no botão correspondente à importação desejada.
+2. Selecione o arquivo no seu computador.
+3. O sistema valida o conteúdo e exibe mensagem de sucesso ou erro.
+
+> **Exemplo de mensagem:**  
+> “Arquivo YAML importado com sucesso. Parâmetros carregados.”
+
+---
+
+### A.3 Exportação de Relatórios PDF
+
+Após a simulação, o usuário pode exportar um relatório executivo em PDF contendo:
+
+- Parâmetros utilizados na simulação
+- Indicadores de desempenho (tempo médio de espera, ocupação, rejeição, etc.)
+- Gráficos e tabelas de resultados
+- Recomendações automáticas do sistema
+
+O PDF é salvo automaticamente na pasta `resultados/relatorios` (ou outra definida pelo usuário). O caminho do arquivo é exibido na interface após a exportação.
+
+---
+
+### A.4 Exportação do GIF Animado
+
+O simulador gera um GIF animado ilustrando a evolução do layout do restaurante durante a simulação, destacando a ocupação das mesas e o fluxo de clientes.
+
+- O GIF é salvo na mesma pasta dos relatórios PDF.
+- O nome do arquivo inclui data e hora para fácil identificação.
+- O usuário pode visualizar o GIF diretamente pela interface ou acessar o arquivo salvo.
+
+---
+
+### A.5 Exemplos de Arquivos
+
+**Exemplo de arquivo YAML de configuração:**
+```yaml
+numero_de_mesas: 4
+cadeiras_por_mesa: 4
+tempo_medio_refeicao: 30
+taxa_chegada_clientes: 2
+layout_ascii: "layout_exemplo.txt"
+```
+
+**Exemplo de layout ASCII:**
+```plaintext
+###########
+# B   M M #
+#     M M #
+# C       #
+###########
+```
+
+---
+
+### A.6 Exemplo de Histograma de Clientes Atendidos e Não Atendidos
+
+O simulador gera histogramas que permitem visualizar a distribuição de clientes atendidos e não atendidos ao longo do período simulado. Esse tipo de gráfico auxilia na identificação de gargalos e na avaliação da eficiência operacional do restaurante.
+
+Abaixo, um exemplo esquemático de histograma:
+
+```plaintext
+Clientes
+  ^
+  |        █
+  |        █
+  |        █      █
+  |        █      █
+  |        █      █
+  |        █      █
+  |        █      █
+  +------------------------>
+           Atendidos   Não Atendidos
+
+Legenda:
+- A barra da esquerda representa o número de clientes atendidos.
+- A barra da direita representa o número de clientes não atendidos (rejeitados por lotação ou fila).
+```
+
+> **Observações:**  
+> O histograma real pode ser exportado em formato de imagem (PNG, JPG) e incluído nos relatórios PDF ou anexos, facilitando a análise visual dos resultados pelo gestor.
+> Recomenda-se consultar este anexo sempre que houver dúvidas sobre o uso do simulador, formatos de arquivos aceitos ou procedimentos de exportação.
+
+---

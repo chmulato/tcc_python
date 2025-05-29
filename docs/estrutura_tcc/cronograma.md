@@ -21,9 +21,9 @@
 
 ## Semana 3 (17/06 a 21/06) – Especificação do Sistema
 - [X] 17/06 – Descrever funcionalidades principais.
-- [ ] 18/06 – Documentar interface gráfica (Tkinter).
-- [ ] 19/06 – Documentar importação de arquivos.
-- [ ] 20/06 – Documentar exportação em PDF e estrutura de pastas.
+- [X] 18/06 – Documentar interface gráfica (Tkinter).
+- [X] 19/06 – Documentar importação de arquivos.
+- [X] 20/06 – Documentar exportação em PDF e GIF animado da ocupação do restaurante.
 - [X] 21/06 – Revisar Capítulo 3.
 
 ## Semana 4 (24/06 a 28/06) – Fundamentos Matemáticos

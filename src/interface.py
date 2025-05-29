@@ -1,24 +1,25 @@
 # ===============================================
 # Copyright (c) 2025 Christian Vladimir Uhdre Mulato
 # Licensed under the MIT License. See LICENSE file in the project root for full license information.
-# ===============================================
-# Projeto: Simulador de Tempo de Permanência em Restaurantes
+# ==============================================================================
+# Projeto: Simulador de Tempo de Permanência em Restaurantes por Quilo
 # Módulo: interface.py
 # Descrição:
-#   Este módulo implementa a interface gráfica da aplicação
-#   utilizando Tkinter. Permite entrada de dados manuais ou
-#   importação de arquivos para simulação.
+#   Implementa a interface gráfica da aplicação utilizando Tkinter.
+#   Permite entrada manual de dados ou importação de arquivos de configuração
+#   (YAML/Excel) e layout ASCII para simulação.
 #
 # Funcionalidades:
-#   - Campos para entrada de parâmetros
-#   - Botão de importação de configuração YAML ou Excel
-#   - Botão de importação de layout ASCII
-#   - Execução da simulação e geração de relatório PDF
-#   - Exportação de resultado
+#   - Campos para entrada de parâmetros da simulação
+#   - Importação de parâmetros via YAML ou Excel
+#   - Importação de layout ASCII
+#   - Execução da simulação e geração de relatórios PDF
+#   - Exportação do layout em PDF
+#   - Geração e salvamento do arquivo GIF animado do layout simulado
 #
-# Dependências Python:
-#   - tkinter (padrão da biblioteca Python)
-#   - os (padrão da biblioteca Python)
+# Dependências:
+#   - tkinter (interface gráfica)
+#   - os (operações de sistema de arquivos)
 #   - src.simulador (lógica da simulação)
 #   - src.layout_parser (leitura do layout)
 #   - src.logger_config (logger do sistema)
@@ -26,9 +27,10 @@
 #   - src.excel_loader (importação de Excel)
 #   - src.pdf_exporter (geração de PDF)
 #   - src.layout_pdf_exporter (geração de PDF do layout ASCII)
+#   - src.visualizador_layout (geração do GIF animado)
 #
 # Autor: Christian Mulato
-# Data: 27/05/2025
+# Data: 29/05/2025
 # ===============================================
 
 import tkinter as tk
