@@ -1,3 +1,4 @@
+```plaintext
 +---------------------------------------------------------------+
 | SIMULADOR DE TEMPO DE PERMANÊNCIA EM RESTAURANTES             |
 |---------------------------------------------------------------|
@@ -7,6 +8,8 @@
 | Autor: Christian Vladimir Uhdre Mulato                        |
 | Ano: Junho de 2025                                            |
 +---------------------------------------------------------------+
+```
+
 ---
 
 # Capítulo 1 – Introdução
@@ -29,6 +32,7 @@ Diante desse contexto, torna-se fundamental o desenvolvimento de soluções que 
 
 ### Fluxograma do fluxo do cliente em um restaurante
 
+```plaintext
    Entrada do Cliente
         |
         v
@@ -48,6 +52,7 @@ Diante desse contexto, torna-se fundamental o desenvolvimento de soluções que 
         |
         v
      Saída
+```
 
 ---
 
@@ -91,6 +96,7 @@ A escolha pela simulação por eventos discretos se deve à sua capacidade de re
 
 ### Diagrama de componentes do simulador
 
+```plaintext
 +-------------------+
 | Interface Gráfica |
 +-------------------+
@@ -103,6 +109,7 @@ A escolha pela simulação por eventos discretos se deve à sua capacidade de re
    v     v     v
 YAML  Excel  Layout
 Loader Loader Parser
+```
 
 ---
 
@@ -149,7 +156,9 @@ Além disso, pesquisas recentes mostram que a adoção de tecnologias e métodos
 
 Abaixo, uma representação simplificada da trajetória típica do cliente:
 
+```plaintext
 [Entrada] --(fila)--> [Buffet/Serve] --(pesa)--> [Caixa/Paga] --(mesa/come)--> [Saída]
+```
 
 ---
 
@@ -293,6 +302,7 @@ No simulador desenvolvido, os conceitos de filas são incorporados tanto na lóg
 
 Para ilustrar a aplicação da Teoria das Filas no contexto de restaurantes, apresenta-se abaixo um diagrama esquemático do fluxo típico de um cliente, destacando os principais pontos de formação de filas e atendimento:
 
+```plaintext
 +-------------------+
 | Entrada do Cliente|
 +-------------------+
@@ -326,6 +336,7 @@ Para ilustrar a aplicação da Teoria das Filas no contexto de restaurantes, apr
 +-------------------+
 |      Saída        |
 +-------------------+
+```
 
 **Legenda**:
 
@@ -416,6 +427,7 @@ A DES, portanto, oferece uma representação fiel da operação real de um resta
 
 Para ilustrar o funcionamento da Simulação Discreta de Eventos (Discrete Event Simulation – DES), apresenta-se abaixo um exemplo simplificado do ciclo de eventos e transições típicos no simulador de restaurantes. Cada evento representa uma mudança de estado no sistema, desencadeando novas ações e agendando futuros eventos.
 
+```plaintext
 [Chegada do Cliente]
           |
           v
@@ -434,6 +446,8 @@ Para ilustrar o funcionamento da Simulação Discreta de Eventos (Discrete Event
       |                |
       v                |
 [Saída do Cliente] <---+
+
+```
 
 **Descrição dos principais eventos e transições:**
 
@@ -474,7 +488,9 @@ Na matemática estatística, a variabilidade dos tempos de atendimento e consumo
 Usada quando os tempos variam em torno de uma média, com dispersão simétrica.
 Exemplo: tempo médio de refeição com pequenas variações para mais ou para menos.
 
+```plaintext
 X ~ N(mu, sigma²)
+```
 
 Onde:
 - mu = média dos tempos
@@ -484,7 +500,9 @@ Onde:
 
 Usada para modelar tempos entre eventos aleatórios, como o tempo até o próximo cliente chegar ou o tempo de atendimento quando a chance de terminar é constante a cada instante.
 
+```plaintext
 f(t) = lambda * exp(-lambda * t)
+```
 
 Onde: 
 - lambda = taxa média de atendimento
@@ -493,7 +511,9 @@ Onde:
 
 Quando qualquer valor dentro de um intervalo é igualmente provável.
 
+```plaintext
 X ~ U(a, b)
+```
 
 Onde:
 - a = limite inferior do intervalo
@@ -507,7 +527,9 @@ Quando se utiliza dados históricos reais para construir a distribuição dos te
 
 Imagine que, a partir de observações reais em um restaurante, constatou-se que o tempo médio de permanência dos clientes na mesa durante a refeição é de 30 minutos, com um desvio padrão de 5 minutos. Para representar essa variabilidade no simulador, utiliza-se a distribuição normal:
 
+```plaintext
 T_refeicao ~ N(30, 5²)
+```
 
 Na prática, isso significa que, a cada simulação, o tempo de refeição de cada cliente será sorteado aleatoriamente a partir dessa distribuição. Por exemplo, enquanto alguns clientes podem terminar a refeição em 25 minutos, outros podem levar 35 minutos ou mais, refletindo diferenças individuais de comportamento, conversas ou ritmo de alimentação.
 
@@ -521,7 +543,9 @@ Suponha que, em determinado restaurante, a taxa média de chegada de clientes ao
 
 Tempo médio de espera na fila (Wq):
 
+```plaintext
 Wq = λ / [μ * (μ - λ)]
+```
 
 Substituindo os valores:
 
@@ -540,10 +564,12 @@ O tempo de residência, também chamado de tempo total de permanência do client
 
 Matematicamente, o tempo de residência (T_res) pode ser expresso como a soma dos tempos gastos em cada etapa do processo:
 
+```plaintext
 T_res = T_entrada_fila + T_fila_mesa + T_deslocamento_buffet + T_fila_buffet + T_atendimento_buffet
       + T_deslocamento_balcao + T_fila_balcao + T_atendimento_balcao
       + T_deslocamento_caixa + T_fila_caixa + T_atendimento_caixa
       + T_deslocamento_mesa + T_refeicao + T_deslocamento_saida
+```
 
 Onde:
 
@@ -574,6 +600,8 @@ No arquivo simulador.py, o cálculo do tempo de residência de cada cliente é r
 
 O fluxo básico implementado pode ser representado da seguinte forma:
 
+
+```plaintext
 [Chegada do Cliente]
         |
         v
@@ -601,6 +629,7 @@ O fluxo básico implementado pode ser representado da seguinte forma:
     |                |
     v                |
 [Saída do Cliente] <-+
+```
 
 No código, cada etapa é tratada por meio de eventos agendados em uma fila de prioridade (agenda de eventos). Para cada cliente, o tempo de residência é acumulado somando:
 
@@ -619,6 +648,7 @@ No código, cada etapa é tratada por meio de eventos agendados em uma fila de p
 
 Em termos de variáveis e funções do código, o tempo total de residência é calculado como:
 
+```plaintext
 tempo_residencia = tempo_fila_buffet
                 + tempo_atendimento_buffet
                 + tempo_fila_balcao
@@ -628,6 +658,7 @@ tempo_residencia = tempo_fila_buffet
                 + tempo_espera_mesa
                 + tempo_refeicao
                 + tempo_deslocamento_saida
+```
 
 Cada um desses tempos pode ser sorteado a partir de uma distribuição estatística (normal, exponencial, uniforme ou empírica), conforme parametrizado pelo usuário ou definido no início da simulação.
 
