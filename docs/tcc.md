@@ -252,12 +252,6 @@ Com a especificação apresentada neste capítulo, estabelece-se uma base sólid
 
 ---
 
-## Capítulo 4 - Fundamentos matemáticos e conceituais da simulação
-
-Claro! Aqui está uma sugestão de introdução para o **Capítulo 4 – Fundamentos matemáticos e conceituais da simulação**:
-
----
-
 ## Capítulo 4 – Fundamentos matemáticos e conceituais da simulação
 
 Este capítulo apresenta os fundamentos teóricos e matemáticos que embasam o desenvolvimento do simulador de tempo de permanência em restaurantes. O objetivo é contextualizar e justificar as escolhas metodológicas adotadas, demonstrando como conceitos clássicos da Engenharia de Processos, Estatística e Pesquisa Operacional foram aplicados para modelar o fluxo de clientes e o funcionamento do ambiente simulado.
@@ -269,12 +263,6 @@ O capítulo também detalha a lógica da Simulação Discreta de Eventos (DES), 
 Por fim, é apresentada a equação geral do tempo de residência dos clientes no sistema, integrando os diferentes componentes do processo, e justifica-se a adoção de uma abordagem prática e realista para a simulação, alinhada às necessidades do setor de restaurantes e à busca por resultados aplicáveis à tomada de decisão gerencial.
 
 Esta fundamentação teórica serve de base para a implementação do simulador e para a análise crítica dos resultados apresentados nos capítulos seguintes.
-
----
-
-## 4.1 Teoria das Filas aplicadas ao fluxo de clientes
-
-Claro! Aqui está uma sugestão para o tópico **4.1 Teoria das Filas aplicadas ao fluxo de clientes**:
 
 ---
 
@@ -357,24 +345,6 @@ O cálculo do deslocamento interno dos clientes é realizado considerando as dis
 Essa abordagem possibilita analisar o impacto de diferentes layouts sobre o tempo total de permanência dos clientes, identificando, por exemplo, se a localização do buffet ou do caixa está provocando acúmulo de pessoas em determinados pontos ou aumentando o tempo de espera. Com isso, gestores podem tomar decisões embasadas para reorganizar o espaço físico, reduzir deslocamentos e melhorar o fluxo operacional do restaurante.
 
 A integração da análise do layout ao modelo de simulação torna o sistema mais realista e alinhado à dinâmica dos ambientes de alimentação, permitindo que o simulador seja utilizado como uma ferramenta prática de apoio ao planejamento e à otimização do espaço interno
-
----
-
-## 4.2.1 Exemplo prático de representação do layout
-
-Para facilitar a modelagem e a análise do ambiente físico do restaurante, o simulador utiliza uma matriz ASCII como representação do layout. Cada caractere ou símbolo na matriz corresponde a um elemento do restaurante, permitindo a visualização e manipulação flexível da disposição dos recursos.
-
-Abaixo, apresenta-se um exemplo simplificado de layout em matriz ASCII:
-
-##########
-#   B    #
-#  MMM   #
-#  MCM   #
-#  MMM   #
-#   $    #
-##########
-
-Claro! Veja uma sugestão de sub-item para explicar melhor o layout com um exemplo prático:
 
 ---
 
