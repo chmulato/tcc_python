@@ -44,6 +44,9 @@ def exportar_layout_ascii_para_pdf(layout_ascii, caminho_pdf, cadeiras_por_mesa=
         novo_nome = f"{data_str}_{base}{ext}"
         novo_caminho_pdf = os.path.join(os.path.dirname(caminho_pdf), novo_nome)
 
+        # Garante que a pasta de destino existe
+        os.makedirs(os.path.dirname(novo_caminho_pdf), exist_ok=True)
+
         # Detecta se é caminho de arquivo ou lista de linhas
         if isinstance(layout_ascii, str) and os.path.isfile(layout_ascii):
             logger.info(f"Iniciando exportação do layout ASCII para PDF: {layout_ascii} -> {novo_caminho_pdf}")

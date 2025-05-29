@@ -241,6 +241,10 @@ def montar_gif_a_partir_de_frames(temp_dir="monitoramento/temp_frames", nome_gif
     datahora_str = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
     nome_gif_data = f"{datahora_str}_{nome_gif}"
     caminho_gif = os.path.join(pasta_saida, nome_gif_data)
+
+    # Garante que a pasta de destino existe
+    os.makedirs(pasta_saida, exist_ok=True)
+
     try:
         logger.info(f"Tentando salvar GIF animado em: {caminho_gif}")
         imageio.mimsave(caminho_gif, imagens, duration=0.25)
