@@ -1,79 +1,20 @@
-2025-05-28 18:58:47,840 - INFO - Iniciando a aplicação. [main.py:53]
-2025-05-28 18:58:47,894 - INFO - Interface gráfica inicializada. [interface.py:66]
-2025-05-28 18:58:56,159 - INFO - Iniciando importação do YAML: C:/Users/devel/OneDrive - Develcode/Documentos/tcc_python/simulador_restaurante/config/parametros.yaml [interface.py:129]
-2025-05-28 18:58:56,159 - INFO - Iniciando importação do arquivo YAML: C:/Users/devel/OneDrive - Develcode/Documentos/tcc_python/simulador_restaurante/config/parametros.yaml [yaml_loader.py:46]
-2025-05-28 18:58:56,160 - INFO - Parâmetros importados do YAML: {'clientes_por_minuto': 12, 'tempo_medio_almoco': 30, 'cadeiras_por_mesa': 4, 'numero_de_mesas': 25, 'tempo_medio_atendimento': 15, 'tempo_medio_espera': 5, 'tempo_total_simulacao': 120, 'variabilidade_almoco': 0.15, 'variabilidade_chegada': 0.1, 'capacidade_maxima_fila': 50, 'modo_ocupacao': 'grupo', 'numero_caixas': 2, 'tempo_entre_clientes': 5} [yaml_loader.py:71]
-2025-05-28 18:58:57,242 - INFO - Parâmetros importados do YAML: {'clientes_por_minuto': 12, 'tempo_medio_almoco': 30, 'cadeiras_por_mesa': 4, 'numero_de_mesas': 25, 'tempo_medio_atendimento': 15, 'tempo_medio_espera': 5, 'tempo_total_simulacao': 120, 'variabilidade_almoco': 0.15, 'variabilidade_chegada': 0.1, 'capacidade_maxima_fila': 50, 'modo_ocupacao': 'grupo', 'numero_caixas': 2, 'tempo_entre_clientes': 5} [interface.py:137]
-2025-05-28 18:58:57,242 - INFO - Ao importar o layout, o número de caixas será priorizado em relação ao YAML ou campos manuais. [interface.py:138]
-2025-05-28 18:59:02,300 - INFO - Iniciando importação do layout: C:/Users/devel/OneDrive - Develcode/Documentos/tcc_python/simulador_restaurante/layouts/layout_medio.txt [interface.py:166]
-2025-05-28 18:59:02,307 - INFO - Layout ASCII lido com sucesso: C:/Users/devel/OneDrive - Develcode/Documentos/tcc_python/simulador_restaurante/layouts/layout_medio.txt [layout_parser.py:51]
-2025-05-28 18:59:02,307 - INFO - Elementos identificados no layout: {'buffet': 2, 'mesas': 15, 'caixa': 2, 'livres': 209} [layout_parser.py:86]
-2025-05-28 18:59:02,308 - INFO - Número de caixas definido pelo layout: 2 (prioridade sobre YAML ou manual) [interface.py:193]
-2025-05-28 18:59:02,308 - INFO - Layout importado com sucesso. Mesas: 15, Caixas: 2, Buffets: 2, Cadeiras: 60 [interface.py:194]
-2025-05-28 18:59:04,469 - INFO - Parâmetro 'numero_caixas' priorizado do layout: 2 [interface.py:231]
-2025-05-28 18:59:04,469 - INFO - Executando simulação com parâmetros: {'clientes_por_minuto': 12.0, 'tempo_medio_almoco': 30.0, 'numero_de_mesas': 15, 'cadeiras_por_mesa': 4, 'tempo_total_simulacao': 120, 'numero_caixas': 2} [interface.py:232]
-2025-05-28 18:59:04,469 - INFO - Iniciando simulação com os seguintes parâmetros: [simulador.py:332]
-2025-05-28 18:59:04,469 - INFO - ENTRADA: {'clientes_por_minuto': 12.0, 'tempo_medio_almoco': 30.0, 'numero_de_mesas': 15, 'cadeiras_por_mesa': 4, 'tempo_total_simulacao': 120, 'numero_caixas': 2} [simulador.py:333]
-2025-05-28 18:59:04,469 - INFO - LAYOUT (primeiras linhas): [['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'], ['#', ' ', 'M', ' ', ' ', ' ', 'M', ' ', ' ', ' ', 'M', ' ', ' ', ' ', 'M', ' ', ' ', ' ', 'M', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'], ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'], ['#', ' ', 'M', ' ', ' ', ' ', 'M', ' ', ' ', ' ', 'M', ' ', ' ', ' ', 'M', ' ', ' ', ' ', 'M', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'], ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#']] [simulador.py:336]
-2025-05-28 18:59:04,469 - INFO - Executando simulação por eventos discretos (DES). [simulador.py:341]
-2025-05-28 18:59:04,473 - INFO - Evento no tempo 121 ignorado (limite tempo_total_simulacao = 120). [simulador.py:106]
-2025-05-28 18:59:04,474 - INFO - Iniciando geração dos frames PNG com 121 quadros. [visualizador_layout.py:152]
-2025-05-28 18:59:04,474 - INFO - Simulação cobre 121 minutos. [visualizador_layout.py:153]
-2025-05-28 18:59:04,484 - INFO - [Frame 0] Mesas ocupadas: 0 - [] [visualizador_layout.py:74]
-2025-05-28 18:59:04,484 - INFO - [Frame 0] Mesas livres: 15 | Mesas ocupadas: 0 [visualizador_layout.py:118]
-2025-05-28 18:59:04,779 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00000.png [visualizador_layout.py:148]
-2025-05-28 18:59:04,779 - INFO - [Frame 10] Mesas ocupadas: 6 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2)] [visualizador_layout.py:74]
-2025-05-28 18:59:04,779 - INFO - [Frame 10] Mesas livres: 9 | Mesas ocupadas: 6 [visualizador_layout.py:118]
-2025-05-28 18:59:04,900 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00010.png [visualizador_layout.py:148]
-2025-05-28 18:59:04,900 - INFO - [Frame 20] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:04,901 - INFO - [Frame 20] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:05,020 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00020.png [visualizador_layout.py:148]
-2025-05-28 18:59:05,020 - INFO - [Frame 30] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:05,021 - INFO - [Frame 30] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:05,147 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00030.png [visualizador_layout.py:148]
-2025-05-28 18:59:05,147 - INFO - [Frame 40] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:05,148 - INFO - [Frame 40] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:05,268 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00040.png [visualizador_layout.py:148]
-2025-05-28 18:59:05,268 - INFO - [Frame 50] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:05,269 - INFO - [Frame 50] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:05,394 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00050.png [visualizador_layout.py:148]
-2025-05-28 18:59:05,394 - INFO - [Frame 60] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:05,394 - INFO - [Frame 60] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:05,518 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00060.png [visualizador_layout.py:148]
-2025-05-28 18:59:05,519 - INFO - [Frame 70] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:05,519 - INFO - [Frame 70] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:05,644 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00070.png [visualizador_layout.py:148]
-2025-05-28 18:59:05,644 - INFO - [Frame 80] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:05,645 - INFO - [Frame 80] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:05,763 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00080.png [visualizador_layout.py:148]
-2025-05-28 18:59:05,763 - INFO - [Frame 90] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:05,763 - INFO - [Frame 90] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:05,884 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00090.png [visualizador_layout.py:148]
-2025-05-28 18:59:05,884 - INFO - [Frame 100] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:05,885 - INFO - [Frame 100] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:06,006 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00100.png [visualizador_layout.py:148]
-2025-05-28 18:59:06,006 - INFO - [Frame 110] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:06,007 - INFO - [Frame 110] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:06,127 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00110.png [visualizador_layout.py:148]
-2025-05-28 18:59:06,127 - INFO - [Frame 120] Mesas ocupadas: 15 - [(1, 2), (1, 6), (1, 10), (1, 14), (1, 18), (3, 2), (3, 6), (3, 10), (3, 14), (3, 18)] ... [visualizador_layout.py:74]
-2025-05-28 18:59:06,128 - INFO - [Frame 120] Mesas livres: 0 | Mesas ocupadas: 15 [visualizador_layout.py:118]
-2025-05-28 18:59:06,276 - INFO - Imagem do layout salva: monitoramento\temp_frames\2025_28_05_18_59_04_frame_00120.png [visualizador_layout.py:148]
-2025-05-28 18:59:06,276 - INFO - Total de frames salvos em monitoramento\temp_frames: 13 [visualizador_layout.py:199]
-2025-05-28 18:59:06,276 - INFO - Os frames PNG estão prontos para montagem do GIF em etapa separada. [visualizador_layout.py:200]
-2025-05-28 18:59:06,276 - INFO - Ordem dos frames para o GIF: ['monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00000.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00010.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00020.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00030.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00040.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00050.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00060.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00070.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00080.png', 'monitoramento\\temp_frames\\2025_28_05_18_59_04_frame_00090.png'] ... [visualizador_layout.py:224]
-2025-05-28 18:59:06,446 - INFO - Tentando salvar GIF animado em: resultados/relatorios\2025_05_28_18_59_06_layout_animacao.gif [visualizador_layout.py:245]
-2025-05-28 18:59:07,078 - INFO - GIF animado salvo com sucesso em: resultados/relatorios\2025_05_28_18_59_06_layout_animacao.gif [visualizador_layout.py:248]
-2025-05-28 18:59:07,081 - INFO - GIF animado salvo com sucesso em: resultados/relatorios\2025_05_28_18_59_06_layout_animacao.gif [visualizador_layout.py:210]
-2025-05-28 18:59:07,081 - INFO - GIF animado do layout gerado em: resultados/relatorios\2025_05_28_18_59_06_layout_animacao.gif [simulador.py:263]
-2025-05-28 18:59:07,081 - INFO - Simulação concluída com sucesso. [simulador.py:347]
-2025-05-28 18:59:07,081 - INFO - SAÍDA: {'eventos_processados': 877, 'clientes_simulados': 121, 'clientes_processados': 45, 'tempo_medio_permanencia_cliente': 41.27, 'clientes_que_esperaram_mesa': 45, 'tempo_medio_espera_fila_mesa': 25.09, 'tamanho_max_fila_mesa': 31, 'clientes_nao_atendidos': 0, 'uso_medio_mesas': 90.0, 'clientes_por_minuto': 12.0, 'tempo_medio_almoco': 30.0, 'numero_de_mesas': 15, 'cadeiras_por_mesa': 4, 'tempo_total_simulacao': 120, 'numero_caixas': 2, 'gif_layout': 'resultados/relatorios\\2025_05_28_18_59_06_layout_animacao.gif'} [simulador.py:348]
-2025-05-28 18:59:07,081 - INFO - Resultado da simulação: {'eventos_processados': 877, 'clientes_simulados': 121, 'clientes_processados': 45, 'tempo_medio_permanencia_cliente': 41.27, 'clientes_que_esperaram_mesa': 45, 'tempo_medio_espera_fila_mesa': 25.09, 'tamanho_max_fila_mesa': 31, 'clientes_nao_atendidos': 0, 'uso_medio_mesas': 90.0, 'clientes_por_minuto': 12.0, 'tempo_medio_almoco': 30.0, 'numero_de_mesas': 15, 'cadeiras_por_mesa': 4, 'tempo_total_simulacao': 120, 'numero_caixas': 2, 'gif_layout': 'resultados/relatorios\\2025_05_28_18_59_06_layout_animacao.gif'} [interface.py:234]
-2025-05-28 18:59:07,081 - INFO - Iniciando exportação do relatório PDF: resultados/relatorios\2025_05_28_18_59_07_resultado_simulacao.pdf [pdf_exporter.py:50]
-2025-05-28 18:59:07,083 - INFO - Resumo do relatório PDF: Gerados=121, Atendidos=45, Rejeitados=0, Tempo médio de espera=25.09, Tempo médio de refeição=41.27, Ocupação média das mesas=90.0% [pdf_exporter.py:104]
-2025-05-28 18:59:07,185 - INFO - Relatório PDF gerado com sucesso em: resultados/relatorios/resultado_simulacao.pdf [pdf_exporter.py:196]
-2025-05-28 18:59:07,185 - INFO - Relatório PDF gerado em: resultados/relatorios/resultado_simulacao.pdf [interface.py:239]
-2025-05-28 18:59:07,185 - INFO - Iniciando exportação do layout ASCII em PDF separado: resultados/relatorios/layout_da_simulacao.pdf [interface.py:244]
-2025-05-28 18:59:07,185 - INFO - Iniciando exportação do layout ASCII (lista) para PDF: resultados/relatorios\2025_05_28_18_59_07_layout_da_simulacao.pdf [layout_pdf_exporter.py:53]
-2025-05-28 18:59:07,185 - INFO - Layout lido com sucesso para exportação. [layout_pdf_exporter.py:58]
-2025-05-28 18:59:07,187 - INFO - PDF do layout gerado com sucesso em: resultados/relatorios\2025_05_28_18_59_07_layout_da_simulacao.pdf [layout_pdf_exporter.py:117]
-2025-05-28 18:59:07,187 - INFO - Layout ASCII exportado em PDF separado com sucesso: resultados/relatorios/layout_da_simulacao.pdf [interface.py:247]
+2025-06-01 10:00:00 - Início da simulação
+2025-06-01 10:00:05 - Cliente 1 entrou na fila
+2025-06-01 10:00:10 - Cliente 1 foi para o buffet
+2025-06-01 10:00:15 - Cliente 1 pesou sua comida
+2025-06-01 10:00:20 - Cliente 1 pagou no caixa
+2025-06-01 10:00:25 - Cliente 1 ocupou uma mesa
+2025-06-01 10:00:30 - Cliente 1 saiu do restaurante
+2025-06-01 10:00:35 - Cliente 2 entrou na fila
+2025-06-01 10:00:40 - Cliente 2 foi para o buffet
+2025-06-01 10:00:45 - Cliente 2 pesou sua comida
+2025-06-01 10:00:50 - Cliente 2 pagou no caixa
+2025-06-01 10:00:55 - Cliente 2 ocupou uma mesa
+2025-06-01 10:01:00 - Cliente 2 saiu do restaurante
+2025-06-01 10:01:05 - Cliente 3 entrou na fila
+2025-06-01 10:01:10 - Cliente 3 foi para o buffet
+2025-06-01 10:01:15 - Cliente 3 pesou sua comida
+2025-06-01 10:01:20 - Cliente 3 pagou no caixa
+2025-06-01 10:01:25 - Cliente 3 ocupou uma mesa
+2025-06-01 10:01:30 - Cliente 3 saiu do restaurante
+2025-06-01 10:01:35 - Fim da simulação

@@ -28,6 +28,7 @@
 # Última atualização: 26/05/2025
 # ===============================================
 
+
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from datetime import datetime
@@ -41,6 +42,14 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
     Gera um relatório executivo em PDF no formato solicitado.
     """
     try:
+        if parametros is None:
+            parametros = {
+                "clientes_por_minuto": resultado.get("clientes_por_minuto"),
+                "tempo_medio_almoco": resultado.get("tempo_medio_almoco"),
+                "numero_de_mesas": resultado.get("numero_de_mesas"),
+                "cadeiras_por_mesa": resultado.get("cadeiras_por_mesa"),
+            }
+
         # Gera nome com data e hora no formato YYYY_MM_DD_HH_MM_SS_nome.pdf
         data_str = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
         base, ext = os.path.splitext(os.path.basename(caminho_pdf))
@@ -56,7 +65,7 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
         largura, altura = A4
         y = altura - 50
 
-        # Título centralizado
+        # Título
         c.setFont("Helvetica-Bold", 14)
         c.drawCentredString(largura / 2, y, "==================================================")
         y -= 18
@@ -65,12 +74,12 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
         c.drawCentredString(largura / 2, y, "==================================================")
         y -= 30
 
-        # Período simulado centralizado
+        # Período simulado
         c.setFont("Helvetica-Bold", 12)
         c.drawCentredString(largura / 2, y, f"🗓️ Período simulado: {resultado.get('tempo_total_simulacao_min', 'N/A')} minutos")
         y -= 25
 
-        # Clientes no período centralizado
+        # Clientes no período
         c.setFont("Helvetica-Bold", 12)
         c.drawCentredString(largura / 2, y, "👥 Clientes no período:")
         y -= 18
@@ -82,7 +91,7 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
         c.drawCentredString(largura / 2, y, f"- Rejeitados: {resultado.get('clientes_nao_atendidos', 'N/A')}")
         y -= 22
 
-        # Desempenho operacional centralizado
+        # Desempenho
         c.setFont("Helvetica-Bold", 12)
         c.drawCentredString(largura / 2, y, "⏱️ Desempenho operacional:")
         y -= 18
@@ -95,7 +104,7 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
         c.drawCentredString(largura / 2, y, f"- Ocupação média das mesas: {round(uso_mesas, 2)}%")
         y -= 22
 
-        # LOG dos dados do relatório
+        # Log resumo
         clientes_gerados = resultado.get('clientes_simulados', resultado.get('total_clientes', 1))
         clientes_atendidos = resultado.get('clientes_processados', 'N/A')
         clientes_nao_atendidos = resultado.get('clientes_nao_atendidos', 0)
@@ -109,13 +118,13 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
             f"Ocupação média das mesas={uso_mesas}%"
         )
 
-        # Interpretação centralizada
+        # Interpretação
         c.setFont("Helvetica-Bold", 12)
         c.drawCentredString(largura / 2, y, "📌 Interpretação (gerada por IA):")
         y -= 18
         c.setFont("Helvetica", 11)
         interpretacao = (
-            f"Durante o período analisado, observou-se que {resultado.get('clientes_nao_atendidos', 'N/A')} clientes não conseguiram ser atendidos devido à lotação máxima.\n"
+            f"Durante o período analisado, observou-se que {clientes_nao_atendidos} clientes não conseguiram ser atendidos devido à lotação máxima.\n"
             f"A taxa de ocupação média foi de {round(uso_mesas, 2)}%, sugerindo que as mesas foram utilizadas de forma eficiente,\n"
             f"mas podem estar próximas do limite operacional."
         )
@@ -124,7 +133,7 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
             y -= 15
         y -= 10
 
-        # Recomendação centralizada
+        # Recomendação
         c.setFont("Helvetica-Bold", 12)
         c.drawCentredString(largura / 2, y, "📈 Recomendação:")
         y -= 18
@@ -144,13 +153,11 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
             y -= 15
         y -= 10
 
-        # Parâmetros técnicos centralizados
+        # Parâmetros técnicos
         c.setFont("Helvetica-Bold", 12)
         c.drawCentredString(largura / 2, y, "⚙️ Parâmetros técnicos utilizados:")
         y -= 18
         c.setFont("Helvetica", 11)
-        if parametros is None:
-            parametros = {}
         c.drawCentredString(largura / 2, y, f"- Clientes por minuto: {parametros.get('clientes_por_minuto', 'N/A')}")
         y -= 15
         c.drawCentredString(largura / 2, y, f"- Tempo médio de refeição: {parametros.get('tempo_medio_almoco', 'N/A')} min")
@@ -160,12 +167,18 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
         c.drawCentredString(largura / 2, y, f"- Cadeiras por mesa: {parametros.get('cadeiras_por_mesa', 'N/A')}")
         y -= 22
 
-        # Observação sobre layout centralizada
+        logger.info(
+            f"Parâmetros técnicos: Clientes por minuto={parametros.get('clientes_por_minuto', 'N/A')}, "
+            f"Tempo médio de refeição={parametros.get('tempo_medio_almoco', 'N/A')}, "
+            f"Número de mesas={parametros.get('numero_de_mesas', 'N/A')}, "
+            f"Cadeiras por mesa={parametros.get('cadeiras_por_mesa', 'N/A')}"
+        )
+
         c.setFont("Helvetica-Oblique", 10)
         c.drawCentredString(largura / 2, y, "📍 Observação: layout físico do restaurante disponível ao final deste relatório (visual ASCII).")
         y -= 30
 
-        # Gráfico de barras centralizado em nova página
+        # Gráfico de barras
         try:
             import matplotlib.pyplot as plt
             fig, ax = plt.subplots(figsize=(4, 3))
@@ -190,11 +203,10 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
         except Exception as e:
             logger.error(f"Erro ao gerar gráfico de barras: {e}")
 
-        # NÃO GERA MAIS A PÁGINA DO LAYOUT ASCII
-
         c.save()
-        logger.info(f"Relatório PDF gerado com sucesso em: {caminho_pdf}")
-        return caminho_pdf
+        logger.info(f"Relatório PDF gerado com sucesso em: {novo_caminho_pdf}")
+        return novo_caminho_pdf
+
     except Exception as e:
         logger.error(f"Erro ao exportar PDF: {caminho_pdf}")
         logger.error(e)
