@@ -329,6 +329,11 @@ def rodar_simulacao(parametros, layout=None, exportar_pdf_automatico=False, cami
         dict com os resultados da simulação
     """
     try:
+        # Limita o tempo máximo de simulação a 720 minutos (12 horas)
+        if parametros.get("tempo_total_simulacao", 0) > 720:
+            logger.warning("tempo_total_simulacao maior que 720 minutos. Ajustando para 720.")
+            parametros["tempo_total_simulacao"] = 720
+
         logger.info("Iniciando simulação com os seguintes parâmetros:")
         logger.info(f"ENTRADA: {parametros}")
         if layout:

@@ -158,6 +158,14 @@ class SimuladorGUI:
     def executar_simulacao(self):
         try:
             parametros = {chave: var.get() for chave, var in self.campos.items()}
+            # Validação do tempo máximo de simulação (12h = 720 min)
+            if parametros["tempo_total_simulacao"] > 720:
+                parametros["tempo_total_simulacao"] = 720
+                self.campos["tempo_total_simulacao"].set(720)
+                messagebox.showwarning(
+                    "Limite de tempo",
+                    "O tempo máximo de simulação é 12 horas (720 minutos). O valor foi ajustado automaticamente."
+                )
             logger.info(f"Executando simulação com parâmetros: {parametros}")
             layout = []  # Adapte se quiser usar um layout ASCII
             self.resultado_simulacao = executar_simulacao(parametros, layout)
@@ -167,7 +175,7 @@ class SimuladorGUI:
         except Exception as e:
             logger.error(f"Erro na simulação: {e}")
             messagebox.showerror("Erro", f"Erro na simulação: {e}")
-
+            
     def exportar_pdf(self):
         if not self.resultado_simulacao:
             logger.warning("Tentativa de exportar PDF sem simulação realizada.")
