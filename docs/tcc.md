@@ -1,8 +1,16 @@
 ```plaintext
 +---------------------------------------------------------------+
-| SIMULADOR DE TEMPO DE PERMANÊNCIA EM RESTAURANTES             |
+|           SIMULADOR DE TEMPO DE PERMANÊNCIA EM                |
+|                    RESTAURANTES POR QUILO                     |
 |---------------------------------------------------------------|
-| Fila --> Buffet --> Balança --> Caixa --> Mesa --> Saída      |
+|   _______         _______         _______         _______     |
+|  |       |       |       |       |       |       |       |    |
+|  | Mesa  |       | Mesa  |       | Mesa  |       | Mesa  |    |
+|  |_______|       |_______|       |_______|       |_______|    |
+|                                                           _   |
+|   [Entrada] --> [Buffet] --> [Balança] --> [Caixa] --> [Mesa] |
+|                                                           |   |
+|                                                        [Saída]|
 |                                                               |
 | Trabalho de Conclusão de Curso - Engenharia de Processos      |
 | Autor: Christian Vladimir Uhdre Mulato                        |
