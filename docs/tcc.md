@@ -852,16 +852,20 @@ A realização de simulações com diferentes configurações de parâmetros per
 
 Os resultados demonstraram que:
 
+#### Tabela 2 – Efeitos da variação dos principais parâmetros sobre o desempenho do restaurante
+
 ```plaintext
-| Parâmetro Variado                | Efeito Observado no Sistema                                    | Possíveis Otimizações                  |
+
+|-----------------------------------|----------------------------------------------------------------|----------------------------------------|
+| Parâmetro Variado                | Efeito Observado no Sistema                                     | Possíveis Otimizações                  |
 |-----------------------------------|----------------------------------------------------------------|----------------------------------------|
 | Número de mesas                   | Reduz tempo de espera por assento; diminui rejeição de clientes| Ajustar layout para acomodar mais mesas|
 | Tempo médio de refeição           | Reduzindo, aumenta rotatividade e capacidade de atendimento    | Incentivar rotatividade, autosserviço  |
 | Taxa de chegada de clientes       | Picos aumentam filas e tempo de espera                         | Promoções em horários alternativos     |
 | Layout do restaurante             | Layout ruim aumenta deslocamento e cruzamentos                 | Reorganizar buffet, caixa, circulação  |
-| Tempos médios de atendimento      | Atendimentos lentos geram filas em etapas específicas          | Treinamento, reforço de equipe         |
+| Tempos médios de atendimento      | Atendimentos lentos geram filas em etapas específicas          | Treinamento, reforço de equipe        |
+|-----------------------------------|---------------------------------------------------------------|----------------------------------------|
 ```
-
 Essas análises reforçam a utilidade do simulador como ferramenta de apoio à decisão, permitindo ao gestor testar virtualmente diferentes cenários antes de implementar mudanças no ambiente real. A possibilidade de avaliar os efeitos da variação de parâmetros de forma quantitativa contribui para uma gestão mais eficiente, baseada em dados e focada na melhoria contínua dos processos e da experiência do cliente.
 
 ---
