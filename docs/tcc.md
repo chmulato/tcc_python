@@ -59,7 +59,7 @@ Prof. GPT (Geppetto), Dr.
 ______________________________________
 Prof. Assistente Gemini, Dr.
 
-Campo Largo, PR, Junho de 2025
+Campo Largo, PR, 01 de Junho de 2025
 ```
 ---
 
@@ -108,13 +108,14 @@ This Final Paper presents the development of a computational simulator for the a
 5. Esquema do fluxo de filas em um restaurante
 6. Exemplo de histograma de clientes atendidos e não atendidos
 7. Tela esquemática da interface gráfica do simulador
+8. Fluxograma da Simulação
 
 ---
 
 ## Lista de Tabelas
 
 1. Tabela 1 – Parâmetros utilizados na simulação (layout 5.1.1)
-2. Tabela 2 – Efeitos da variação dos principais parâmetros sobre o desempenho
+2. Tabela 2 – Efeitos da variação dos principais parâmetros sobre o desempenho do restaurante
 3. Tabela 3 – Exemplos de valores para pacotes de entrega e monetização
 4. Ficha 01 - Ficha de coleta de dados para simulação
 5. Ficha 02 - Ficha comparativa para análise de variação de parâmetros
@@ -124,13 +125,14 @@ This Final Paper presents the development of a computational simulator for the a
 ## Lista de Abreviaturas e Siglas
 
 - **API**: Application Programming Interface (Interface de Programação de Aplicações)
-- **ASCII**: American Standard Code for Information Interchange  
-- **DES**: Discrete Event Simulation (Simulação Discreta de Eventos)  
-- **ERP**: Enterprise Resource Planning (Sistema Integrado de Gestão Empresarial)  
-- **PDF**: Portable Document Format  
-- **IoT**: Internet of Things (Internet das Coisas)  
-- **FIFO**: First In, First Out (Primeiro a Entrar, Primeiro a Sair)  
-- **SaaS**: Software as a Service  
+- **ASCII**: American Standard Code for Information Interchange
+- **DES**: Discrete Event Simulation (Simulação Discreta de Eventos)
+- **ERP**: Enterprise Resource Planning (Sistema Integrado de Gestão Empresarial)
+- **PDF**: Portable Document Format
+- **IoT**: Internet of Things (Internet das Coisas)
+- **FIFO**: First In, First Out (Primeiro a Entrar, Primeiro a Sair)
+- **SaaS**: Software as a Service
+- **YAML**: YAML Ain't Markup Language (formato de arquivo de configuração)
 
 ---
 # Sumário
@@ -1269,7 +1271,7 @@ A definição do modelo de monetização deve considerar o perfil do público-al
 
 ---
 
-#### Tabela – Exemplos de valores para pacotes de entrega e monetização
+#### Tabela 3 – Exemplos de valores para pacotes de entrega e monetização
 
 ```plaintext
 |------------------------------------|-----------------------------------------------------------------|--------------------------|----------------------------------------------|
