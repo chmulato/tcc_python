@@ -545,55 +545,52 @@ Um engenheiro mecânico precisa analisar a deformação de uma viga sob diferent
 - Calcular a deflexão (y) da viga em função da posição (x) ao longo do comprimento, usando as seguintes fórmulas:
 
 - Deflexão para Carga Uniforme:
-``
+```plaintext
 y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
 ```
 
 - Deflexão para Carga Pontual:
-
-```
+```plaintext
 Para 0 ≤ x ≤ L/2:
-
 y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
 ```
 
-```
+```plaintext
 Para L/2 < x ≤ L:
-
 y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
 ```
 
 Onde:
 
 - Deflexão para Carga Uniforme:
-
 ```plaintext
    y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
 ```
 
 - Deflexão para Carga Pontual:
-
 ```plaintext
 Para 0 ≤ x ≤ L/2:
 y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
 ```
+
 ```plaintext
 Para L/2 < x ≤ L:
 y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
 ```
 
 Onde:
-   y = Deflexão da viga
-   x = Posição ao longo do comprimento da viga
-   w = Intensidade da carga uniforme
-   P = Magnitude da carga pontual
-   L = Comprimento da viga
-   E = Módulo de elasticidade
-   I = Momento de inércia
+- y = Deflexão da viga
+- x = Posição ao longo do comprimento da viga
+- w = Intensidade da carga uniforme
+- P = Magnitude da carga pontual
+- L = Comprimento da viga
+- E = Módulo de elasticidade
+- I = Momento de inércia
 
 3. **Geração do Gráfico:**
 
 Usar a biblioteca MAT_PLOT_LIB para gerar um gráfico da deflexão (y) em função da posição (x).
+
 O gráfico deve ter título, rótulos nos eixos e grade.
 
 4. **Saída de Dados:**
@@ -614,6 +611,7 @@ Digite o tipo de carregamento (1-Uniforme, 2-Pontual): 1
 Digite a intensidade da carga (N/m): 1000
 ```
 **Resultado:**
+
 ![RESULTADO](imagens/05_imagem_resultado.png)
 
 **Código em Python:**
