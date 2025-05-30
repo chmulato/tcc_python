@@ -671,8 +671,9 @@ No exemplo do cálculo da deflexão da viga, a teoria física aplicada é a da *
 1.	**Deflexão para Carga Uniforme:**
 
 **Fórmula:**
-    y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
-
+```
+y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
+```
 **Teoria:**
 - Esta fórmula é derivada da equação diferencial da linha elástica para uma viga submetida a uma carga uniformemente distribuída.
 - A equação da linha elástica relaciona a curvatura da viga com o momento fletor interno.
@@ -681,12 +682,13 @@ No exemplo do cálculo da deflexão da viga, a teoria física aplicada é a da *
 2.	**Deflexão para Carga Pontual:**
 
 **Fórmula:**
+```
     Para 0 <= x <= L/2:
-
     y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
 
     Para L/2 < x <= L:
     y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+```
 
 **Teoria:**
 - Estas fórmulas são derivadas da equação da linha elástica para uma viga com uma carga concentrada aplicada no meio do vão.
@@ -694,21 +696,20 @@ No exemplo do cálculo da deflexão da viga, a teoria física aplicada é a da *
 - As mesmas suposições da teoria da carga uniforme se aplicam aqui.
 
 Onde:
-    y = Deflexão da viga (deslocamento vertical)
-    x = Posição ao longo do comprimento da viga
-    L = Comprimento total da viga
-    E = Módulo de elasticidade do material (resistência do material à deformação elástica)
-    I = Momento de inércia da seção transversal da viga (resistência da seção da viga à flexão)
-    w = Intensidade da carga uniforme (força por unidade de comprimento)
-    P = Magnitude da carga pontual (força concentrada)
+- y = Deflexão da viga (deslocamento vertical)
+- x = Posição ao longo do comprimento da viga
+- L = Comprimento total da viga
+- E = Módulo de elasticidade do material (resistência do material à deformação elástica)
+- I = Momento de inércia da seção transversal da viga (resistência da seção da viga à flexão)
+- w = Intensidade da carga uniforme (força por unidade de comprimento)
+- P = Magnitude da carga pontual (força concentrada)
 
 **Importância na Engenharia:**
 
 Essas fórmulas e a teoria da flexão de vigas são fundamentais na engenharia estrutural e mecânica. Engenheiros usam esses princípios para:
-
-    - Dimensionar vigas: Determinar as dimensões e o material de uma viga para suportar cargas com segurança e dentro de limites aceitáveis de deflexão.
-    - Analisar estruturas: Calcular as tensões e deformações em estruturas que contêm vigas.
-    - Projetar máquinas: Garantir que os componentes de máquinas que atuam como vigas (eixos, suportes etc.) funcionem corretamente.
+- Dimensionar vigas: Determinar as dimensões e o material de uma viga para suportar cargas com segurança e dentro de limites aceitáveis de deflexão.
+- Analisar estruturas: Calcular as tensões e deformações em estruturas que contêm vigas.
+- Projetar máquinas: Garantir que os componentes de máquinas que atuam como vigas (eixos, suportes etc.) funcionem corretamente.
 
 Compreender a teoria por trás das fórmulas é crucial para aplicar corretamente os resultados dos cálculos e garantir a segurança e a eficiência dos projetos de engenharia.
 
