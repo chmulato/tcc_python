@@ -468,12 +468,12 @@ Terreno viável para construção: Sim
 ```
 
 **Dicas:**
-        - Use os tipos de dados FLOAT para representar as medidas do terreno e a área mínima.
-        - Use os operadores aritméticos *, + e \ para realizar os cálculos.
-        - Use os operadores lógicos >= e < e o operador and para realizar as verificações de viabilidade.
-        - Use a função input() para obter os dados do usuário.
-        - Use a função print() para exibir os resultados.
-        - Use f-strings para formatar a saída com duas casas decimais.
+    - Use os tipos de dados FLOAT para representar as medidas do terreno e a área mínima.
+    - Use os operadores aritméticos *, + e \ para realizar os cálculos.
+    - Use os operadores lógicos >= e < e o operador and para realizar as verificações de viabilidade.
+    - Use a função input() para obter os dados do usuário.
+    - Use a função print() para exibir os resultados.
+    - Use f-strings para formatar a saída com duas casas decimais.
 
 **Código Python de Exemplo:**
 ```python
@@ -515,12 +515,12 @@ Um engenheiro mecânico precisa analisar a deformação de uma viga sob diferent
 
 1. **Entrada de Dados:**
 
-   - O programa deve solicitar ao usuário que insira o comprimento da viga (L) em metros.
-   - O programa deve solicitar ao usuário o módulo de elasticidade do material da viga (E) em Pascal (Pa).
-   - O programa deve solicitar ao usuário o momento de inércia da seção transversal da viga (I) em m⁴.
-   - O programa deve solicitar ao usuário o tipo de carregamento (1 para carga uniforme, 2 para carga pontual no meio).
-   - Se o carregamento for uniforme, solicitar a intensidade da carga (w) em N/m.
-   - Se o carregamento for pontual, solicitar a magnitude da carga (P) em N.
+- O programa deve solicitar ao usuário que insira o comprimento da viga (L) em metros.
+- O programa deve solicitar ao usuário o módulo de elasticidade do material da viga (E) em Pascal (Pa).
+- O programa deve solicitar ao usuário o momento de inércia da seção transversal da viga (I) em m⁴.
+- O programa deve solicitar ao usuário o tipo de carregamento (1 para carga uniforme, 2 para carga pontual no meio).
+- Se o carregamento for uniforme, solicitar a intensidade da carga (w) em N/m.
+- Se o carregamento for pontual, solicitar a magnitude da carga (P) em N.
 
 2. **Cálculos:**
 
@@ -557,13 +557,13 @@ Onde:
     y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
 
 Onde:
-• y = Deflexão da viga
-• x = Posição ao longo do comprimento da viga
-• w = Intensidade da carga uniforme
-• P = Magnitude da carga pontual
-• L = Comprimento da viga
-• E = Módulo de elasticidade
-• I = Momento de inércia
+   y = Deflexão da viga
+   x = Posição ao longo do comprimento da viga
+   w = Intensidade da carga uniforme
+   P = Magnitude da carga pontual
+   L = Comprimento da viga
+   E = Módulo de elasticidade
+   I = Momento de inércia
 
 3. **Geração do Gráfico:**
 
@@ -572,9 +572,9 @@ O gráfico deve ter título, rótulos nos eixos e grade.
 
 4. **Saída de Dados:**
 
-Exibir os valores de entrada (L, E, I, w ou P).
-Exibir o valor máximo da deflexão.
-Salvar o gráfico em um arquivo PNG.
+    - Exibir os valores de entrada (L, E, I, w ou P).
+    - Exibir o valor máximo da deflexão.
+    - Salvar o gráfico em um arquivo PNG.
 
 ![EXERCICIO_PROPOSTO](imagens/04_imagem_exercicio_proposto.png)
 
@@ -638,7 +638,6 @@ print("Gráfico da deflexão salvo como deflexao_viga.png")
 ```
 
 **Resultado:**
-
 ```plaintext
 Digite o comprimento da viga (m): 5
 Digite o módulo de elasticidade (Pa): 200000000000
@@ -661,6 +660,7 @@ Este exercício é mais completo e envolve:
 
 Este tipo de problema é representativo de análises comuns em engenharia mecânica e demonstra a utilidade da programação para resolver problemas complexos e visualizar resultados
 
+---
 
 ### 2.2.6. Curiosidade – Mecânica dos Sólidos
 
@@ -674,28 +674,26 @@ No exemplo do cálculo da deflexão da viga, a teoria física aplicada é a da *
     y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
 
 **Teoria:**
-
-    - Esta fórmula é derivada da equação diferencial da linha elástica para uma viga submetida a uma carga uniformemente distribuída.
-    - A equação da linha elástica relaciona a curvatura da viga com o momento fletor interno.
-    - As suposições incluem que o material da viga é linearmente elástico, homogêneo e isotrópico, e que as deflexões são pequenas em comparação com o comprimento da viga.
+- Esta fórmula é derivada da equação diferencial da linha elástica para uma viga submetida a uma carga uniformemente distribuída.
+- A equação da linha elástica relaciona a curvatura da viga com o momento fletor interno.
+- As suposições incluem que o material da viga é linearmente elástico, homogêneo e isotrópico, e que as deflexões são pequenas em comparação com o comprimento da viga.
 
 2.	**Deflexão para Carga Pontual:**
 
 **Fórmula:**
-    
     Para 0 <= x <= L/2:
-    
+
     y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
 
     Para L/2 < x <= L:
     y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
 
 **Teoria:**
+- Estas fórmulas são derivadas da equação da linha elástica para uma viga com uma carga concentrada aplicada no meio do vão.
+- Existem duas equações porque o comportamento da viga é diferente à esquerda e à direita da carga pontual.
+- As mesmas suposições da teoria da carga uniforme se aplicam aqui.
 
-    - Estas fórmulas são derivadas da equação da linha elástica para uma viga com uma carga concentrada aplicada no meio do vão.
-    - Existem duas equações porque o comportamento da viga é diferente à esquerda e à direita da carga pontual.
-    - As mesmas suposições da teoria da carga uniforme se aplicam aqui.
-**Onde:**
+Onde:
     y = Deflexão da viga (deslocamento vertical)
     x = Posição ao longo do comprimento da viga
     L = Comprimento total da viga
@@ -713,5 +711,7 @@ Essas fórmulas e a teoria da flexão de vigas são fundamentais na engenharia e
     - Projetar máquinas: Garantir que os componentes de máquinas que atuam como vigas (eixos, suportes etc.) funcionem corretamente.
 
 Compreender a teoria por trás das fórmulas é crucial para aplicar corretamente os resultados dos cálculos e garantir a segurança e a eficiência dos projetos de engenharia.
+
+---
 
 
