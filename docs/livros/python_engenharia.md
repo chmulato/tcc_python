@@ -160,10 +160,11 @@ Compreender esses tipos de dados é essencial para escrever programas que manipu
 
 ### 2.1.5. Exemplo: Cálculo da Tensão em um Resistor
 
-Imagine que você precisa calcular a tensão em um resistor usando a Lei de Ohm (V = I * R), onde:
-• V é a tensão (em Volts)
-• I é a corrente (em Amperes)
-• R é a resistência (em Ohms)
+Imagine que você precisa calcular a tensão em um resistor usando a Lei de Ohm (V = I * R),
+onde:
+- V é a tensão (em Volts)
+- I é a corrente (em Amperes)
+- R é a resistência (em Ohms)
 
 Além disso, vamos verificar se a potência dissipada no resistor (P = V * I) excede um valor limite. 
 
@@ -211,7 +212,9 @@ print("Tensão (V, inteiro):", tensao_inteira)
 **Como usar este código no Visual Studio Code:**
 
 **1.	Abra o Visual Studio Code.**
-**2.	Crie um arquivo** (Arquivo > Novo Arquivo) e salve-o com um nome como calculo_resistor.py. A extensão .py é importante para que o **VS Code** reconheça que é um arquivo Python.
+**2.	Crie um arquivo** (Arquivo > Novo Arquivo) e salve-o com um nome como calculo_resistor.py.
+A extensão .py é importante para que o **VS Code** reconheça que é um arquivo Python.
+
 **3.	Copie e cole o código** acima no arquivo.
 **4.	Execute o código:**
 - Você pode clicar com o botão direito na janela do editor e selecionar "Executar Python no Terminal".
@@ -220,11 +223,12 @@ print("Tensão (V, inteiro):", tensao_inteira)
 **5.	Observe a saída no terminal:** O programa irá imprimir os valores da tensão, potência e a verificação do limite.
 
 **Explicação do Código:**
-    - **Tipos de Dados:** O código demonstra claramente o uso de float para grandezas físicas como corrente, resistência, tensão e potência, str para o nome do resistor, e bool para o resultado da comparação da potência com o limite.
-    -**Cálculos:** Realiza cálulos típicos de engenharia elétrica usando os operadores aritméticos * (multiplicação).
-    - **Tomada de Decisão:** Utiliza uma expressão booleana (potencia > potencia_limite) para simular uma verificação de segurança ou especificação de projeto.
-    - **Saída Formatada:** Imprime os resultados de forma clara e identificada, o que é crucial para a comunicação de resultados em engenharia.
-    - **Conversão de Tipo:** A última parte (conversão para int) é um exemplo de como você pode converter um tipo de dado em outro. Note que, neste caso, a parte decimal da tensão é truncada.
+
+- **Tipos de Dados:** O código demonstra claramente o uso de float para grandezas físicas como corrente, resistência, tensão e potência, str para o nome do resistor, e bool para o resultado da comparação da potência com o limite.
+- **Cálculos:** Realiza cálculos típicos de engenharia elétrica usando os operadores aritméticos * (multiplicação).
+- **Tomada de Decisão:** Utiliza uma expressão booleana (potencia > potencia_limite) para simular uma verificação de segurança ou especificação de projeto.
+- **Saída Formatada:** Imprime os resultados de forma clara e identificada, o que é crucial para a comunicação de resultados em engenharia.
+- **Conversão de Tipo:** A última parte (conversão para int) é um exemplo de como você pode converter um tipo de dado em outro. Note que, neste caso, a parte decimal da tensão é truncada.
 
 Este exemplo prático mostra como os tipos de dados fundamentais são aplicados em um problema simples de engenharia, combinando cálculo, lógica e representação de informações do mundo real.
 
@@ -298,7 +302,6 @@ print(f"Tipo da variável 'nome_projétil': {type(nome_projétil)}") # Mostrando
 print(f"A altura máxima atingida foi: {max(posicoes_y):.2f} m")
 ```
 **Como usar este código no Visual Studio Code:**
-
 1. **Abra o Visual Studio Code.**
 2. **Crie um arquivo** e salve-o como trajetoria_projetil.py.
 3. **Copie e cole o código** acima no arquivo.
@@ -307,16 +310,22 @@ print(f"A altura máxima atingida foi: {max(posicoes_y):.2f} m")
 6. **Observe a saída:** Além da saída no terminal, uma janela com o gráfico da trajetória do projétil será exibida.
 
 **Explicação do Código:**
-    **Tipos de Dados:**
-        **FLOAT:** Usado para velocidade, ângulo (em radianos), gravidade, tempo e as posições x e y.
-        **INT:** Usado para o ângulo em graus.
-        **STR:** Usado para o nome do projétil.
-        **LIST:** Usado para armazenar sequências de valores de tempo, posições x e posições y. Listas são estruturas de dados que armazenam múltiplos valores do mesmo tipo (neste caso, float).
-    **Cálculos:** O código realiza cálculos de física para determinar a trajetória do projétil, decompondo a velocidade inicial em componentes horizontal e vertical e usando as equações do movimento uniformemente variado.
-    **Visualização:** A biblioteca matplotlib.pyplot é usada para criar o gráfico da trajetória. plt.plot() desenha a linha, plt.title(), plt.xlabel(), plt.ylabel() e plt.grid() definem o título, rótulos dos eixos e a grade do gráfico, respectivamente. plt.show() exibe o gráfico. plt.text() adiciona texto informativo ao gráfico.
-    **Estruturas de Dados:** As listas tempos, posicoes_x e posicoes_y são usadas para armazenar múltiplos valores de dados, o que é essencial para plotar o gráfico.
-    **Conversão de Tipo:** A função math.radians() converte o ângulo de graus para radianos, demonstrando a conversão entre tipos relacionados.
-    **Formatação de Saída:** O uso de f-strings (strings formatadas) com especificadores de formatação (:.2f) permite controlar o número de casas decimais na saída. type() é usado para exibir o tipo de uma variável.
+
+**Tipos de Dados:**
+- **FLOAT:** Usado para velocidade, ângulo (em radianos), gravidade, tempo e as posições x e y.
+- **INT:** Usado para o ângulo em graus.
+- **STR:** Usado para o nome do projétil.
+- **LIST:** Usado para armazenar sequências de valores de tempo, posições x e posições y. Listas são estruturas de dados que armazenam múltiplos valores do mesmo tipo (neste caso, float).
+
+**Cálculos:** O código realiza cálculos de física para determinar a trajetória do projétil, decompondo a velocidade inicial em componentes horizontal e vertical e usando as equações do movimento uniformemente variado.
+
+**Visualização:** A biblioteca matplotlib.pyplot é usada para criar o gráfico da trajetória. plt.plot() desenha a linha, plt.title(), plt.xlabel(), plt.ylabel() e plt.grid() definem o título, rótulos dos eixos e a grade do gráfico, respectivamente. plt.show() exibe o gráfico. plt.text() adiciona texto informativo ao gráfico.
+
+**Estruturas de Dados:** As listas tempos, posicoes_x e posicoes_y são usadas para armazenar múltiplos valores de dados, o que é essencial para plotar o gráfico.
+
+**Conversão de Tipo:** A função math.radians() converte o ângulo de graus para radianos, demonstrando a conversão entre tipos relacionados.
+
+**Formatação de Saída:** O uso de f-strings (strings formatadas) com especificadores de formatação (:.2f) permite controlar o número de casas decimais na saída. type() é usado para exibir o tipo de uma variável.
 
 Este exemplo é mais complexo e demonstra como os tipos de dados são usados em conjunto com cálculos matemáticos e bibliotecas de visualização para resolver e apresentar um problema de engenharia de forma completa.
 
@@ -477,12 +486,12 @@ Terreno viável para construção: Sim
 ```
 
 **Dicas:**
-    - Use os tipos de dados FLOAT para representar as medidas do terreno e a área mínima.
-    - Use os operadores aritméticos *, + e \ para realizar os cálculos.
-    - Use os operadores lógicos >= e < e o operador and para realizar as verificações de viabilidade.
-    - Use a função input() para obter os dados do usuário.
-    - Use a função print() para exibir os resultados.
-    - Use f-strings para formatar a saída com duas casas decimais.
+- Use os tipos de dados FLOAT para representar as medidas do terreno e a área mínima.
+- Use os operadores aritméticos *, + e \ para realizar os cálculos.
+- Use os operadores lógicos >= e < e o operador and para realizar as verificações de viabilidade.
+- Use a função input() para obter os dados do usuário.
+- Use a função print() para exibir os resultados.
+- Use f-strings para formatar a saída com duas casas decimais.
 
 **Código Python de Exemplo:**
 ```python
@@ -544,8 +553,13 @@ y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
 
 ```
 Para 0 ≤ x ≤ L/2:
+
 y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+```
+
+```
 Para L/2 < x ≤ L:
+
 y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
 ```
 
@@ -553,15 +567,17 @@ Onde:
 
 - Deflexão para Carga Uniforme:
 
-```
+```plaintext
    y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
 ```
 
 - Deflexão para Carga Pontual:
 
-```        
+```plaintext
 Para 0 ≤ x ≤ L/2:
 y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+```
+```plaintext
 Para L/2 < x ≤ L:
 y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
 ```
@@ -586,9 +602,18 @@ O gráfico deve ter título, rótulos nos eixos e grade.
     - Exibir o valor máximo da deflexão.
     - Salvar o gráfico em um arquivo PNG.
 
-![EXERCICIO_PROPOSTO](imagens/04_imagem_exercicio_proposto.png)
+![EXERCICIO_PROPOSTO](imagens/04_imagem_exercicio.png)
 
 **Exemplo de Interação:**
+
+```plaintext
+Digite o comprimento da viga (m): 5
+Digite o módulo de elasticidade (Pa): 200000000000
+Digite o momento de inércia (m^4): 0.0001
+Digite o tipo de carregamento (1-Uniforme, 2-Pontual): 1
+Digite a intensidade da carga (N/m): 1000
+```
+**Resultado:**
 ![RESULTADO](imagens/05_imagem_resultado.png)
 
 **Código em Python:**
