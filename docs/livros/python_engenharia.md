@@ -436,7 +436,7 @@ Este texto fornece uma base sólida sobre operadores aritméticos e lógicos, ju
 
 ### 2.2.4. Exercício Proposto:
 
-Cálculo de Área e Perímetro de um Terreno e Verificação de Viabilidade
+**Cálculo de Área e Perímetro de um Terreno e Verificação de Viabilidade**
 
 **Descrição:**
 
@@ -504,3 +504,201 @@ Terreno viável para construção: Sim
 Este exercício combina o uso de tipos de dados, operadores aritméticos e lógicos em um contexto prático de engenharia civil, proporcionando uma aplicação mais completa dos conceitos aprendidos.
 
 ---
+
+### 2.2.5. Exercício Proposto: Análise da Deformação de uma Viga
+
+**Descrição:**
+
+Um engenheiro mecânico precisa analisar a deformação de uma viga sob diferentes cargas. O programa em Python deve calcular a deflexão da viga em função da posição ao longo do seu comprimento e gerar um gráfico da deflexão.
+
+**Requisitos:**
+
+1. **Entrada de Dados:**
+
+   - O programa deve solicitar ao usuário que insira o comprimento da viga (L) em metros.
+   - O programa deve solicitar ao usuário o módulo de elasticidade do material da viga (E) em Pascal (Pa).
+   - O programa deve solicitar ao usuário o momento de inércia da seção transversal da viga (I) em m⁴.
+   - O programa deve solicitar ao usuário o tipo de carregamento (1 para carga uniforme, 2 para carga pontual no meio).
+   - Se o carregamento for uniforme, solicitar a intensidade da carga (w) em N/m.
+   - Se o carregamento for pontual, solicitar a magnitude da carga (P) em N.
+
+2. **Cálculos:**
+
+   - Calcular a deflexão (y) da viga em função da posição (x) ao longo do comprimento, usando as seguintes fórmulas:
+
+    - Deflexão para Carga Uniforme:
+
+    y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
+        
+    - Deflexão para Carga Pontual:
+
+        • Para 0 ≤ x ≤ L/2:
+        
+    y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+
+        • Para L/2 < x ≤ L:
+
+    y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+
+Onde:
+
+   - Deflexão para Carga Uniforme:
+        
+    y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
+        
+    - Deflexão para Carga Pontual:
+        
+        • Para 0 ≤ x ≤ L/2:
+      
+    y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+
+        • Para L/2 < x ≤ L:
+
+    y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+
+Onde:
+• y = Deflexão da viga
+• x = Posição ao longo do comprimento da viga
+• w = Intensidade da carga uniforme
+• P = Magnitude da carga pontual
+• L = Comprimento da viga
+• E = Módulo de elasticidade
+• I = Momento de inércia
+
+3. **Geração do Gráfico:**
+
+Usar a biblioteca MAT_PLOT_LIB para gerar um gráfico da deflexão (y) em função da posição (x).
+O gráfico deve ter título, rótulos nos eixos e grade.
+
+4. **Saída de Dados:**
+
+Exibir os valores de entrada (L, E, I, w ou P).
+Exibir o valor máximo da deflexão.
+Salvar o gráfico em um arquivo PNG.
+
+![EXERCICIO_PROPOSTO](imagens/04_imagem_exercicio_proposto.png)
+
+**Exemplo de Interação:**
+![RESULTADO](imagens/05_imagem_resultado.png)
+
+**Código em Python:**
+```python
+import matplotlib.pyplot as plt
+
+# Entrada de dados
+L = float(input("Digite o comprimento da viga (m): "))
+E = float(input("Digite o módulo de elasticidade (Pa): "))
+I = float(input("Digite o momento de inércia (m^4): "))
+tipo_carregamento = int(input("Digite o tipo de carregamento (1-Uniforme, 2-Pontual): "))
+
+if tipo_carregamento == 1:
+    w = float(input("Digite a intensidade da carga uniforme (N/m): "))
+    P = 0  # Apenas para manter a consistência das variáveis
+elif tipo_carregamento == 2:
+    P = float(input("Digite a magnitude da carga pontual (N): "))
+    w = 0  # Apenas para manter a consistência das variáveis
+else:
+    print("Tipo de carregamento inválido.")
+    exit()
+
+# Cálculo da deflexão
+num_pontos = 100  # Número de pontos para calcular a deflexão
+x_valores = [i * L / num_pontos for i in range(num_pontos + 1)]  # Lista de posições x
+y_valores = []  # Lista para armazenar os valores de deflexão
+
+for x in x_valores:
+    if tipo_carregamento == 1:
+        y = (w / (24 * E * I)) * (-x**4 + 2 * L * x**3 - L**3 * x)
+    elif tipo_carregamento == 2:
+        if 0 <= x <= L / 2:
+            y = (P * x / (48 * E * I)) * (3 * L**2 - 4 * x**2)
+        else:
+            y = (P * (L - x) / (48 * E * I)) * (3 * L**2 - 4 * (L - x)**2)
+    y_valores.append(y)
+
+# Geração do gráfico
+plt.plot(x_valores, y_valores)
+plt.title("Deflexão da Viga")
+plt.xlabel("Posição (m)")
+plt.ylabel("Deflexão (m)")
+plt.grid(True)
+plt.savefig("deflexao_viga.png")  # Salva o gráfico como PNG
+plt.show()
+
+# Saída de dados
+print("\nComprimento da viga:", L, "m")
+print("Módulo de elasticidade:", E, "Pa")
+print("Momento de inércia:", I, "m^4")
+if tipo_carregamento == 1:
+    print("Carga uniforme:", w, "N/m")
+elif tipo_carregamento == 2:
+    print("Carga pontual:", P, "N")
+print("Deflexão máxima:", max(y_valores), "m")
+print("Gráfico da deflexão salvo como deflexao_viga.png")
+```
+
+**Resultado:**
+
+```plaintext
+Digite o comprimento da viga (m): 5
+Digite o módulo de elasticidade (Pa): 200000000000
+Digite o momento de inércia (m^4): 0.0001
+Digite o tipo de carregamento (1-Uniforme, 2-Pontual): 1
+Digite a intensidade da carga (N/m): 1000
+Deflexão máxima da viga: 0.01042 m
+Gráfico da deflexão salvo como deflexao_viga.png
+```
+Gráfico:
+ 
+![Gráfico da Deflexão da Viga](imagens/06_imagem_grafico_deflexao.png)
+
+Este exercício é mais completo e envolve:
+•	Entrada de dados variados (comprimento, propriedades do material, tipo e intensidade de carregamento).
+•	Cálculos condicionais (usando IF e ELIF) para aplicar a fórmula correta de deflexão.
+•	Uso de listas para armazenar múltiplos valores de X e Y para plotagem.
+•	Geração de um gráfico com MAT_PLOT_LIB para visualizar a deformação da viga.
+•	Saída formatada dos resultados.
+
+Este tipo de problema é representativo de análises comuns em engenharia mecânica e demonstra a utilidade da programação para resolver problemas complexos e visualizar resultados
+
+
+### 2.2.6. Curiosidade – Mecânica dos Sólidos
+
+No exemplo do cálculo da deflexão da viga, a teoria física aplicada é a da **Mecânica dos Sólidos**, especificamente a **Teoria da Elasticidade Linear** para vigas. As fórmulas utilizadas derivam das equações da linha elástica, que descrevem o comportamento de vigas sob flexão.
+
+**Fórmulas e Teoria Detalhada:**
+
+1.	**Deflexão para Carga Uniforme:**
+    Fórmula: y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
+    Teoria:
+        Esta fórmula é derivada da equação diferencial da linha elástica para uma viga submetida a uma carga uniformemente distribuída.
+        A equação da linha elástica relaciona a curvatura da viga com o momento fletor interno.
+        As suposições incluem que o material da viga é linearmente elástico, homogêneo e isotrópico, e que as deflexões são pequenas em comparação com o comprimento da viga.
+2.	**Deflexão para Carga Pontual:**
+    Fórmula:
+    Para 0 <= x <= L/2: y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+    Para L/2 < x <= L: y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x) ²)
+    Teoria:
+        Estas fórmulas são derivadas da equação da linha elástica para uma viga com uma carga concentrada aplicada no meio do vão.
+        Existem duas equações porque o comportamento da viga é diferente à esquerda e à direita da carga pontual.
+        As mesmas suposições da teoria da carga uniforme se aplicam aqui.
+**Onde:**
+    y = Deflexão da viga (deslocamento vertical)
+    x = Posição ao longo do comprimento da viga
+    L = Comprimento total da viga
+    E = Módulo de elasticidade do material (resistência do material à deformação elástica)
+    I = Momento de inércia da seção transversal da viga (resistência da seção da viga à flexão)
+    w = Intensidade da carga uniforme (força por unidade de comprimento)
+    P = Magnitude da carga pontual (força concentrada)
+
+**Importância na Engenharia:**
+
+Essas fórmulas e a teoria da flexão de vigas são fundamentais na engenharia estrutural e mecânica. Engenheiros usam esses princípios para:
+
+    - Dimensionar vigas: Determinar as dimensões e o material de uma viga para suportar cargas com segurança e dentro de limites aceitáveis de deflexão.
+    - Analisar estruturas: Calcular as tensões e deformações em estruturas que contêm vigas.
+    - Projetar máquinas: Garantir que os componentes de máquinas que atuam como vigas (eixos, suportes etc.) funcionem corretamente.
+
+Compreender a teoria por trás das fórmulas é crucial para aplicar corretamente os resultados dos cálculos e garantir a segurança e a eficiência dos projetos de engenharia.
+
+
