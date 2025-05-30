@@ -9,60 +9,38 @@
 ---
 
 ### Título: Introdução à Programação Python Aplicada à Engenharia
+### Autor: Christian Vladimir Uhdre Mulato
 
 ### Sumário
 
 1. [Apresentação](#1-apresentação)
 2. [Fundamentos da Programação em Python](#2-fundamentos-da-programação-em-python)
-    - [2.1. Tipos de dados (INT, FLOAT, STR, BOOL)](#21-tipos-de-dados-em-python)
-    - [2.2. Operadores aritméticos e lógicos](#22-operadores-aritméticos-e-lógicos-em-python)
-    - [2.3. Entrada e saída de dados](#23-entrada-e-saída-de-dados)
-    - [2.4. Primeiros cálculos aplicados à engenharia](#24-primeiros-cálculos-aplicados-à-engenharia)
+    - [2.1. Tipos de Dados em Python](#21-tipos-de-dados-em-python)
+        - [2.1.1. Inteiros (INT)](#211-inteiros-int)
+        - [2.1.2. Números de Ponto Flutuante (FLOAT)](#212-números-de-ponto-flutuante-float)
+        - [2.1.3. Cadeias de Caracteres (STR)](#213-cadeias-de-caracteres-str)
+        - [2.1.4. Booleanos (BOOL)](#214-booleanos-bool)
+        - [2.1.5. Exemplo: Cálculo da Tensão em um Resistor](#215-exemplo-cálculo-da-tensão-em-um-resistor)
+        - [2.1.6. Exemplo: Simulação da Trajetória de um Projétil](#216-exemplo-simulação-da-trajetória-de-um-projétil)
+    - [2.2. Operadores Aritméticos e Lógicos em Python](#22-operadores-aritméticos-e-lógicos-em-python)
+        - [2.2.1. Operadores Aritméticos](#221-operadores-aritméticos)
+        - [2.2.2. Operadores Lógicos](#222-operadores-lógicos)
+        - [2.2.3. Exemplos Aplicados à Engenharia](#223-exemplos-aplicados-à-engenharia)
+        - [2.2.4. Exercício Proposto: Cálculo de Área e Perímetro de um Terreno e Verificação de Viabilidade](#224-exercício-proposto-cálculo-de-área-e-perímetro-de-um-terreno-e-verificação-de-viabilidade)
+        - [2.2.5. Exercício Proposto: Análise da Deformação de uma Viga](#225-exercício-proposto-análise-da-deformação-de-uma-viga)
+        - [2.2.6. Curiosidade – Mecânica dos Sólidos](#226-curiosidade--mecânica-dos-sólidos)
+    - [2.3. Entrada e Saída de Dados em Python](#23-entrada-e-saída-de-dados-em-python)
+        - [2.3.1. Entrada de Dados: input()](#231-entrada-de-dados-input)
+        - [2.3.2. Saída de Dados: print()](#232-saída-de-dados-print)
+        - [2.3.4. Exercício Proposto: Cálculo de Conversão em um Reator](#234-exercício-proposto-cálculo-de-conversão-em-um-reator)
+        - [Figura 2.3.1 – Esquema Técnico](#figura-231--esquema-técnico)
+    - [2.4. Primeiros Cálculos Aplicados à Engenharia](#24-primeiros-cálculos-aplicados-à-engenharia)
+        - [2.4.1. Engenharia Civil: Cálculo da Área de uma Viga](#241-engenharia-civil-cálculo-da-área-de-uma-viga)
+        - [2.4.2. Engenharia Elétrica: Lei de Ohm](#242-engenharia-elétrica-lei-de-ohm)
+        - [2.4.3. Engenharia Mecânica: Energia Potencial Gravitacional](#243-engenharia-mecânica-energia-potencial-gravitacional)
+        - [2.4.4. Engenharia Química: Vazão Molar](#244-engenharia-química-vazão-molar)
+        - [2.4.5. Engenharia Ambiental: Cálculo de Concentração](#245-engenharia-ambiental-cálculo-de-concentração)
     - [2.5. Conclusão](#25-conclusão)
-3. [Estruturas de Controle](#3-estruturas-de-controle)
-    - [3.1. Condicionais: IF, ELIF, ELSE](#31-condicionais-if-elif-else)
-    - [3.2. Laços de repetição: FOR, WHILE](#32-laços-de-repetição-for-while)
-    - [3.3. Aplicações práticas em verificação de condições operacionais](#33-aplicações-práticas-em-verificação-de-condições-operacionais)
-    - [3.4. Conclusão](#34-conclusão)
-4. [Funções e Modularização](#4-funções-e-modularização)
-    - [4.1. Definição de funções](#41-definição-de-funções)
-    - [4.2. Parâmetros e retorno](#42-parâmetros-e-retorno)
-    - [4.3. Organização de código em módulos reutilizáveis](#43-organização-de-código-em-módulos-reutilizáveis)
-    - [4.4. Conclusão](#44-conclusão)
-5. [Estruturas de Dados](#5-estruturas-de-dados)
-    - [5.1. Listas, tuplas e dicionários](#51-listas-tuplas-e-dicionários)
-    - [5.2. Iteração e manipulação de dados](#52-iteração-e-manipulação-de-dados)
-    - [5.3. Aplicações em vetores de parâmetros de processo](#53-aplicações-em-vetores-de-parâmetros-de-processo)
-    - [5.4. Conclusão](#54-conclusão)
-6. [Manipulação de Arquivos e Dados](#6-manipulação-de-arquivos-e-dados)
-    - [6.1. Leitura e escrita de arquivos .txt e .csv](#61-leitura-e-escrita-de-arquivos-txt-e-csv)
-    - [6.2. Introdução ao PANDAS](#62-introdução-ao-pandas)
-    - [6.3. Análise de dados experimentais e de simulações](#63-análise-de-dados-experimentais-e-de-simulações)
-    - [6.4. Conclusão](#64-conclusão)
-7. [Visualização de Dados](#7-visualização-de-dados)
-    - [7.1. MAT_PLOT_LIB e SEABORN](#71-mat_plot_lib-e-seaborn)
-    - [7.2. Gráficos de linha, barras, dispersão e histogramas](#72-gráficos-de-linha-barras-dispersão-e-histogramas)
-    - [7.3. Visualização de curvas e resultados de processos](#73-visualização-de-curvas-e-resultados-de-processos)
-    - [7.4. Conclusão](#74-conclusão)
-8. [Cálculo Numérico com NUM_PY](#8-cálculo-numérico-com-num_py)
-    - [8.1. Arrays e operações vetoriais](#81-arrays-e-operações-vetoriais)
-    - [8.2. Matrizes e álgebra linear](#82-matrizes-e-álgebra-linear)
-    - [8.3. Aplicações em balanços e sistemas lineares](#83-aplicações-em-balanços-e-sistemas-lineares)
-    - [8.4. Conclusão](#84-conclusão)
-9. [Modelagem Matemática Simples](#9-modelagem-matemática-simples)
-    - [9.1. Equações algébricas e sistemas lineares](#91-equações-algébricas-e-sistemas-lineares)
-    - [9.2. Equações diferenciais ordinárias (EDOs)](#92-equações-diferenciais-ordinárias-edos)
-    - [9.3. Simulações de tanques, reatores e processos dinâmicos](#93-simulações-de-tanques-reatores-e-processos-dinâmicos)
-    - [9.4. Otimização de funções com scipy.optimize](#94-otimização-de-funções-com-scipyoptimize)
-    - [9.5. Conclusão](#95-conclusão)
-10. [Mini Projetos Aplicados à Engenharia](#10-mini-projetos-aplicados-à-engenharia)
-    - [10.1. Estudo de caso: tanque com entrada e saída](#101-estudo-de-caso-tanque-com-entrada-e-saída)
-    - [10.2. Balanço de massa e energia com dados reais ou simulados](#102-balanço-de-massa-e-energia-com-dados-reais-ou-simulados)
-    - [10.3. Integração de módulos anteriores em soluções prática](#103-integração-de-módulos-anteriores-em-soluções-prática)
-    - [10.4. Conclusão](#104-conclusão)
-11. [Finalização e Agradecimentos](#11-finalização-e-agradecimentos)
-12. [Adendo: Configuração do Ambiente Python e VS Code](#12-adendo-configuração-do-ambiente-python-e-vs-code)
-13. [Referências Bibliográficas](#13-referências-bibliográficas)
 
 ---
 
@@ -125,36 +103,37 @@ Exemplos em engenharia:
 
 ### 2.1.2. Números de Ponto Flutuante (FLOAT)
 
-O tipo de dado float representa números reais, ou seja, números que podem possuir uma parte decimal. 
+O tipo de dado `float` representa números reais, ou seja, números que podem possuir uma parte decimal.
 
-• Exemplos em engenharia:
+Exemplos em engenharia:
 
-- Aceleração da gravidade: gravidade = 9.81 (m/s²)
-- Tensão em um circuito elétrico: tensao = 220.5 (V)
-- Coeficiente de atrito: atrito = 0.25
-- Vazão de um fluido: vazao = 2.75 (m³/s)
+- Aceleração da gravidade: `gravidade = 9.81` (m/s²)
+- Tensão em um circuito elétrico: `tensao = 220.5` (V)
+- Coeficiente de atrito: `atrito = 0.25`
+- Vazão de um fluido: `vazao = 2.75` (m³/s)
+- Temperatura de um processo: `temperatura = 37.5` (°C)
 
 ### 2.1.3. Cadeias de Caracteres (STR)
 
-O tipo de dado str representa texto, ou seja, uma sequência de caracteres. As cadeias de caracteres são delimitadas por aspas simples (') ou aspas duplas (").
+O tipo de dado `str` representa texto, ou seja, uma sequência de caracteres. As cadeias de caracteres são delimitadas por aspas simples (') ou aspas duplas (").
 
-• Exemplos em engenharia: 
+Exemplos em engenharia:
 
-- Nome de um material: material = "Aço Carbono"
-- Descrição de um componente: componente = "Válvula de Segurança"
-- Unidade de medida: unidade = "MPa" (MegaPascal)
-- Resultado de um ensaio: resultado_ensaio = "Aprovado"
+- Nome de um material: `material = "Aço Carbono"`
+- Descrição de um componente: `componente = "Válvula de Segurança"`
+- Unidade de medida: `unidade = "MPa"` (MegaPascal)
+- Resultado de um ensaio: `resultado_ensaio = "Aprovado"`
 
 ### 2.1.4. Booleanos (BOOL)
 
-O tipo de dado bool representa valores lógicos, ou seja, verdadeiro (True) ou falso (False). Eles são fundamentais para realizar testes condicionais e controlar o fluxo de execução de um programa.
+O tipo de dado `bool` representa valores lógicos, ou seja, verdadeiro (True) ou falso (False). Eles são fundamentais para realizar testes condicionais e controlar o fluxo de execução de um programa.
 
-• Exemplos em engenharia:
+Exemplos em engenharia:
 
-- Status de um sensor: sensor_ligado = True
-- Verificação de um limite: temperatura_acima_limite = False
-- Condição de falha: falha_detectada = False
-- Estado de uma válvula: valvula_aberta = True
+- Status de um sensor: `sensor_ligado = True`
+- Verificação de um limite: `temperatura_acima_limite = False`
+- Condição de falha: `falha_detectada = False`
+- Estado de uma válvula: `valvula_aberta = True`
 
 Compreender esses tipos de dados é essencial para escrever programas que manipulem informações de forma correta e eficiente em aplicações de engenharia.
 
@@ -212,14 +191,14 @@ print("Tensão (V, inteiro):", tensao_inteira)
 **Como usar este código no Visual Studio Code:**
 
 **1.	Abra o Visual Studio Code.**
-**2.	Crie um arquivo** (Arquivo > Novo Arquivo) e salve-o com um nome como calculo_resistor.py.
+**2.	Crie um arquivo** (Arquivo > Novo Arquivo) e salve-o com um nome como 01_codigo_calculo_resistor.py.
 A extensão .py é importante para que o **VS Code** reconheça que é um arquivo Python.
 
 **3.	Copie e cole o código** acima no arquivo.
 **4.	Execute o código:**
 - Você pode clicar com o botão direito na janela do editor e selecionar "Executar Python no Terminal".
 - Ou você pode usar o atalho Ctrl+Shift+B (ou Cmd+Shift+B no MacOS) se você já tiver configurado uma "Build Task" para Python.
-- Ou você pode abrir o terminal integrado do VS Code (Visualizar > Terminal) e digitar python calculo_resistor.py e pressionar Enter.
+- Ou você pode abrir o terminal integrado do VS Code (Visualizar > Terminal) e digitar python 01_codigo_calculo_resistor.py e pressionar Enter.
 **5.	Observe a saída no terminal:** O programa irá imprimir os valores da tensão, potência e a verificação do limite.
 
 **Explicação do Código:**
@@ -303,7 +282,7 @@ print(f"A altura máxima atingida foi: {max(posicoes_y):.2f} m")
 ```
 **Como usar este código no Visual Studio Code:**
 1. **Abra o Visual Studio Code.**
-2. **Crie um arquivo** e salve-o como trajetoria_projetil.py.
+2. **Crie um arquivo** e salve-o como 02_codigo_trajetoria_projetil.py.
 3. **Copie e cole o código** acima no arquivo.
 4. **Certifique-se de ter o Matplotlib instalado.** Se não tiver, abra o terminal no VS Code e digite: pip install matplotlib e pressione Enter.
 5. **Execute o código** da mesma forma que no exemplo anterior.
@@ -747,6 +726,324 @@ Essas fórmulas e a teoria da flexão de vigas são fundamentais na engenharia e
 - Projetar máquinas: Garantir que os componentes de máquinas que atuam como vigas (eixos, suportes etc.) funcionem corretamente.
 
 Compreender a teoria por trás das fórmulas é crucial para aplicar corretamente os resultados dos cálculos e garantir a segurança e a eficiência dos projetos de engenharia.
+
+---
+
+## 2.3. Entrada e Saída de Dados em Python
+
+Em programação, a entrada e saída de dados referem-se à forma como um programa recebe informações (entrada) e como ele apresenta os resultados (saída). Em Python, as funções input() e print() são as mais comuns para realizar essas operações.
+
+### 2.3.1. Entrada de Dados: input()
+
+A função input() permite que o programa receba dados do usuário através do teclado.
+
+- Sintaxe: variavel = input("Mensagem para o usuário")
+- Funcionamento:
+1. A função input() exibe a "Mensagem para o usuário" (também chamada de prompt) na tela, solicitando que o usuário forneça alguma informação.
+2. O usuário digita a informação e pressiona Enter.
+3. A função input() retorna a informação digitada pelo usuário como uma string (cadeia de caracteres).
+4. A informação retornada é atribuída à variavel.
+• Importante: Mesmo que o usuário digite números, a função input() sempre retorna uma STRING. Se você precisar usar a entrada como um número, será necessário convertê-la explicitamente usando as funções int() (para inteiros) ou float() (para números de ponto flutuante).
+
+• Exemplos em engenharia:
+
+Solicitar ao usuário o diâmetro de um tubo:
+
+```python
+diametro_tubo = float(input("Digite o diâmetro do tubo (em metros): "))
+print("Diâmetro do tubo:", diametro_tubo, "m")
+```
+
+Pedir a vazão de um fluido:
+
+```python
+vazao_fluido = float(input("Digite a vazão do fluido (em m³/s): "))
+print("Vazão do fluido:", vazao_fluido, "m³/s")
+```
+
+Obter o nome de um material:
+
+```python
+nome_material = input("Digite o nome do material: ")
+print("Nome do material:", nome_material)
+```
+### 2.3.2. Saída de Dados: print()
+
+A função print() exibe informações na tela do computador.
+• Sintaxe: print(argumento1, argumento2, ..., argumentoN)
+• Funcionamento:
+1. A função print() exibe os valores dos argumentos na tela.
+2. Os argumentos podem ser variáveis, valores literais (números, strings etc.) ou expressões.
+3. Múltiplos argumentos são separados por vírgula, e a função print() os exibe separados por espaço.
+4. Por padrão, a função print() adiciona uma quebra de linha ao final da saída, ou seja, o próximo print() exibirá na linha seguinte.
+• Formatação de saída: Python oferece várias maneiras de formatar a saída para torná-la mais clara e organizada. As f-strings (strings formatadas) são uma forma conveniente de formatar strings incluindo variáveis.
+• Exemplos em engenharia:
+
+Exibir o resultado de um cálculo:
+
+```python
+resultado = 2 + 2
+print("O resultado da soma é:", resultado)
+```
+
+Mostrar uma mensagem de alerta:
+
+```python
+print("Atenção: Verifique os dados de entrada!")
+```
+Exibir informações formatadas:
+
+```python
+nome_material = "Aço"
+diametro_tubo = 0.1
+print(f"Dados do tubo:")
+print(f"Nome do material: {nome_material}")
+print(f"Diâmetro: {diametro_tubo} m")
+```
+
+Apresentar os dados de um experimento:
+```python
+temperatura = 25.5
+pressao = 101.3
+print(f"Dados do experimento:")
+print(f"Temperatura: {temperatura} °C")
+print(f"Pressão: {pressao} kPa")
+```
+
+A habilidade de obter dados do usuário e apresentar resultados de forma clara é fundamental para criar programas interativos e úteis em engenharia.
+
+---
+
+### 2.3.4. Exercício Proposto: Cálculo de Conversão em um Reator
+
+**Descrição:**
+
+Um engenheiro químico precisa de um programa para calcular a conversão de um reagente em um reator.
+O programa deve solicitar ao usuário a quantidade inicial do reagente, a quantidade final após a reação e exibir a conversão calculada. Além disso, deve pedir informações sobre o tipo de reator e o tempo de reação.
+
+**Requisitos:**
+
+    1. Entrada de Dados:
+
+- O programa deve solicitar ao usuário o nome do reagente (string).
+- O programa deve solicitar ao usuário a quantidade inicial do reagente em mols (float).
+- O programa deve solicitar ao usuário a quantidade final do reagente em mols (float).
+- O programa deve solicitar ao usuário o tipo do reator (string).
+- O programa deve solicitar ao usuário o tempo de reação em minutos (float).
+
+    2. Cálculo:
+
+Calcular a conversão do reagente usando a fórmula:
+
+```python
+conversao = (quantidade_inicial - quantidade_final) / quantidade_inicial * 100
+```
+
+    3. Saída de Dados:
+
+- Exibir o nome do reagente.
+- Exibir a quantidade inicial e final do reagente, formatadas com 2 casas decimais.
+- Exibir a conversão calculada, formatada como porcentagem com 2 casas decimais (ex: 0.85 deve ser exibido como 85.00%).
+- Exibir o tipo do reator e o tempo de reação.
+
+Exemplo de Interação:
+```plaintext
+Digite o nome do reagente: Amoníaco
+Digite a quantidade inicial do reagente (em mols): 10.0
+Digite a quantidade final do reagente (em mols): 2.0
+Digite o tipo do reator: Reator de Batelada
+Digite o tempo de reação (em minutos): 30.0
+Reagente: Amoníaco
+Quantidade inicial: 10.00 mols
+Quantidade final: 2.00 mols
+Conversão: 80.00%
+Tipo do reator: Reator de Batelada
+Tempo de reação: 30.00 minutos
+```
+
+```python
+# Solicitar entrada do usuário
+nome_reagente = input("Digite o nome do reagente: ")
+quantidade_inicial = float(input("Digite a quantidade inicial do reagente (em mols): "))
+quantidade_final = float(input("Digite a quantidade final do reagente (em mols): "))
+tipo_reator = input("Digite o tipo do reator: ")
+tempo_reacao = float(input("Digite o tempo de reação (em minutos): "))
+# Cálculo da conversão
+conversao = (quantidade_inicial - quantidade_final) / quantidade_inicial * 100
+print(f"\nReagente: {nome_reagente}")
+print(f"Quantidade inicial: {quantidade_inicial:.2f} mols")
+print(f"Quantidade final: {quantidade_final:.2f} mols")
+print(f"Conversão: {conversao:.2f}%")
+print(f"Tipo do reator: {tipo_reator}")
+print(f"Tempo de reação: {tempo_reacao:.2f} minutos")
+```
+
+**Dicas:**
+- Use a função input() para obter os dados do usuário.
+- Use os tipos de dados FLOAT e STR para armazenar os valores.
+- Lembre-se de converter as entradas numéricas de input() para FLOAT.
+- Use o operador aritmético para calcular a conversão.
+- Use f-strings para formatar a saída, especialmente a conversão (multiplique por 100 e use:.2f%).
+
+---
+
+## Figura 2.3.1 – Esquema Técnico
+
+![Figura Esquema Técnico](/imagens/06_imagem_esquema_tecnico.png)
+
+**Descrição do Esquema:**
+1.	**Programa Python:** Representa o código Python que o engenheiro escreve para resolver um problema específico (e.g., cálculo de tensões, simulação de um circuito).
+2.	**input() function:** Indica o ponto onde o programa interage com o usuário para receber dados. A função input() aguarda que o usuário digite informações através do teclado.
+3.	**Dados do Usuário (Teclado):** Mostra a entrada de dados feita pelo usuário, que podem ser valores numéricos, texto etc.
+4.	**Processamento (Cálculos, Lógica):** Representa a parte do programa onde os dados de entrada são manipulados, cálculos são realizados, decisões lógicas são tomadas etc.
+5.	**print() function:** Indica o ponto onde o programa exibe os resultados ou informações para o usuário. A função print() envia a saída para a tela.
+6.	**Resultados (Tela):** Mostra a saída do programa, que pode incluir números, texto, mensagens, gráficos (em módulos mais avançados) etc.
+
+**Detalhes Técnicos:**
+- O esquema é genérico e se aplica a muitos programas que interagem com o usuário.
+- As setas indicam a direção do fluxo de dados.
+- Os retângulos representam componentes ou processos do programa.
+- Não há cores para manter o estilo técnico.
+
+Este esquema ajuda a visualizar o fluxo de informações em um programa Python, desde a obtenção dos dados até a apresentação dos resultados.
+
+**Código Python:**
+
+```python
+# Entrada de dados
+nome_reagente = input("Digite o nome do reagente: ")
+quantidade_inicial = float(input("Digite a quantidade inicial de " + nome_reagente + " (mols): "))
+quantidade_final = float(input("Digite a quantidade final de " + nome_reagente + " (mols): "))
+tipo_reator = input("Digite o tipo do reator: ")
+tempo_reacao = float(input("Digite o tempo de reação (minutos): "))
+
+# Cálculo da conversão
+conversao = (quantidade_inicial - quantidade_final) / quantidade_inicial
+
+# Saída de dados
+print("\nReagente:", nome_reagente)
+print(f"Quantidade Inicial: {quantidade_inicial:.2f} mols")
+print(f"Quantidade Final: {quantidade_final:.2f} mols")
+print(f"Conversão: {conversao * 100:.2f} %")
+print("Tipo do Reator:", tipo_reator)
+print("Tempo de Reação:", tempo_reacao, "minutos")
+```
+
+**Resultado:**
+```plaintext
+Reagente: Amoníaco
+Quantidade Inicial: 10.00 mols
+Quantidade Final: 2.00 mols
+Conversão: 80.00 %
+Tipo do Reator: Reator de Batelada
+Tempo de Reação: 30.00 minutos
+```
+Este exercício aborda um problema prático de engenharia química e reforça o uso de entrada e saída de dados com formatação.
+
+---
+
+## 2.4. Primeiros Cálculos Aplicados à Engenharia
+
+Nesta seção, vamos explorar como aplicar os fundamentos da programação Python para realizar cálculos simples em problemas de engenharia. Os exemplos a seguir ilustram como usar os tipos de dados, operadores aritméticos e entrada/saída para resolver tarefas comuns em diferentes disciplinas da engenharia.
+
+
+### 2.4.1. Engenharia Civil: Cálculo da Área de uma Viga
+
+**Problema:** Calcular a área da seção transversal de uma viga retangular.
+**Fórmula:** Área = base * altura
+**Código Python:**
+```python
+# Entrada de dados
+base = float(input("Digite a base da viga (m): "))
+altura = float(input("Digite a altura da viga (m): "))
+
+# Cálculo da área
+area = base * altura
+
+# Saída de dados
+print(f"A área da seção transversal da viga é: {area:.2f} m²")
+```
+
+### 2.4.2. Engenharia Elétrica: Lei de Ohm
+
+**Problema:** Calcular a corrente elétrica em um resistor dado a tensão e a resistência.
+**Fórmula:** Corrente = Tensão / Resistência
+**Código Python:**
+```python
+# Entrada de dados
+tensao = float(input("Digite a tensão (V): "))
+resistencia = float(input("Digite a resistência (Ω): "))
+
+# Cálculo da corrente
+corrente = tensao / resistencia
+
+# Saída de dados
+print(f"A corrente elétrica é: {corrente:.2f} A")
+```
+
+### 2.4.3. Engenharia Mecânica: Energia Potencial Gravitacional
+
+**Problema:** Calcular a energia potencial gravitacional de um objeto.
+**Fórmula:** Energia Potencial = massa * gravidade * altura
+**Código Python:**
+```python
+# Entrada de dados
+massa = float(input("Digite a massa do objeto (kg): "))
+gravidade = 9.81  # Aceleração da gravidade (m/s²)
+altura = float(input("Digite a altura (m): "))
+
+# Cálculo da energia potencial
+energia_potencial = massa * gravidade * altura
+
+# Saída de dados
+print(f"A energia potencial gravitacional é: {energia_potencial:.2f} J")
+```
+
+### 2.4.4. Engenharia Química: Vazão Molar
+
+**Problema:** Converter vazão mássica para vazão molar.
+**Fórmula:** Vazão Molar = Vazão Mássica / Massa Molar
+**Código Python:**
+
+```python
+# Entrada de dados
+vazao_massica = float(input("Digite a vazão mássica (kg/s): "))
+massa_molar = float(input("Digite a massa molar (kg/mol): "))
+
+# Cálculo da vazão molar
+vazao_molar = vazao_massica / massa_molar
+
+# Saída de dados
+print(f"A vazão molar é: {vazao_molar:.2f} mol/s")
+```
+
+### 2.4.5. Engenharia Ambiental: Cálculo de Concentração
+
+**Problema:** Calcular a concentração de um poluente em uma solução.
+**Fórmula:** Concentração = Massa do Poluente / Volume da Solução
+**Código Python:**
+
+```python
+# Entrada de dados
+massa_poluente = float(input("Digite a massa do poluente (kg): "))
+volume_solucao = float(input("Digite o volume da solução (m³): "))
+
+# Cálculo da concentração
+concentracao = massa_poluente / volume_solucao
+
+# Saída de dados
+print(f"A concentração do poluente é: {concentracao:.2f} kg/m³")
+```
+---
+
+## 2.5. Conclusão
+
+Estes exemplos demonstram como os conceitos básicos de Python podem ser aplicados para resolver problemas simples em diferentes áreas da engenharia.
+Eles reforçam a importância de:
+- Entender os tipos de dados apropriados para representar grandezas físicas.
+- Utilizar os operadores aritméticos corretamente para realizar os cálculos.
+- Interagir com o usuário para obter os dados necessários e apresentar os resultados de forma clara.
+Nos próximos módulos, exploraremos conceitos mais avançados de Python para resolver problemas de engenharia mais complexos.
 
 ---
 
