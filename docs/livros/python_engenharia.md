@@ -109,51 +109,51 @@ O tipo de dado int representa números inteiros, ou seja, números que não poss
 
 Exemplos em engenharia: 
 
-o	Número de peças em um sistema: numero_pecas = 150
-o	Quantidade de andares de um edifício: andares = 12
-o	Número de iterações em um cálculo: iteracoes = 1000
+- Número de peças em um sistema: numero_pecas = 150
+- Quantidade de andares de um edifício: andares = 12
+- Número de iterações em um cálculo: iteracoes = 1000
 
 ### 2.1.2. Números de Ponto Flutuante (FLOAT)
 
 O tipo de dado float representa números reais, ou seja, números que podem possuir uma parte decimal. 
 
-Exemplos em engenharia:
+• Exemplos em engenharia:
 
-o	Aceleração da gravidade: gravidade = 9.81 (m/s²)
-o	Tensão em um circuito elétrico: tensao = 220.5 (V)
-o	Coeficiente de atrito: atrito = 0.25
-o	Vazão de um fluido: vazao = 2.75 (m³/s)
+- Aceleração da gravidade: gravidade = 9.81 (m/s²)
+- Tensão em um circuito elétrico: tensao = 220.5 (V)
+- Coeficiente de atrito: atrito = 0.25
+- Vazão de um fluido: vazao = 2.75 (m³/s)
 
 ### 2.1.3. Cadeias de Caracteres (STR)
 
 O tipo de dado str representa texto, ou seja, uma sequência de caracteres. As cadeias de caracteres são delimitadas por aspas simples (') ou aspas duplas (").
 
-Exemplos em engenharia: 
+• Exemplos em engenharia: 
 
-o	Nome de um material: material = "Aço Carbono"
-o	Descrição de um componente: componente = "Válvula de Segurança"
-o	Unidade de medida: unidade = "MPa" (MegaPascal)
-o	Resultado de um ensaio: resultado_ensaio = "Aprovado"
- 
+- Nome de um material: material = "Aço Carbono"
+- Descrição de um componente: componente = "Válvula de Segurança"
+- Unidade de medida: unidade = "MPa" (MegaPascal)
+- Resultado de um ensaio: resultado_ensaio = "Aprovado"
+
 ### 2.1.4. Booleanos (BOOL)
 
 O tipo de dado bool representa valores lógicos, ou seja, verdadeiro (True) ou falso (False). Eles são fundamentais para realizar testes condicionais e controlar o fluxo de execução de um programa.
 
-•	Exemplos em engenharia: 
+• Exemplos em engenharia:
 
-o	Status de um sensor:	sensor_ligado = True
-o	Verificação de um limite:	temperatura_acima_limite = False
-o	Condição de falha:		falha_detectada = False
-o	Estado de uma válvula:	valvula_aberta = True
+- Status de um sensor: sensor_ligado = True
+- Verificação de um limite: temperatura_acima_limite = False
+- Condição de falha: falha_detectada = False
+- Estado de uma válvula: valvula_aberta = True
 
 Compreender esses tipos de dados é essencial para escrever programas que manipulem informações de forma correta e eficiente em aplicações de engenharia.
 
 ### 2.1.5. Exemplo: Cálculo da Tensão em um Resistor
 
 Imagine que você precisa calcular a tensão em um resistor usando a Lei de Ohm (V = I * R), onde:
-•	V é a tensão (em Volts)
-•	I é a corrente (em Amperes)
-•	R é a resistência (em Ohms)
+• V é a tensão (em Volts)
+• I é a corrente (em Amperes)
+• R é a resistência (em Ohms)
 
 Além disso, vamos verificar se a potência dissipada no resistor (P = V * I) excede um valor limite. 
 
