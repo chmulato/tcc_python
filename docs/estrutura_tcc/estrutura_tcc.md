@@ -43,12 +43,12 @@
 - [X] Conclusão do capítulo.
 
 ## Capítulo 6 – Estratégia de Negócio e Aplicabilidade Comercial
-- [ ] Público-alvo: donos de restaurantes e arrendatários.
-- [ ] Proposta de valor do sistema.
-- [ ] Pacotes de entrega e monetização.
-- [ ] Limitações e formas de fidelização sem aprisionamento explícito.
-- [ ] Possibilidades de expansão futura do produto.
-- [ ] Conclusão do capítulo.
+- [X] Público-alvo: donos de restaurantes e arrendatários.
+- [X] Proposta de valor do sistema.
+- [X] Pacotes de entrega e monetização.
+- [X] Limitações e formas de fidelização sem aprisionamento explícito.
+- [X] Possibilidades de expansão futura do produto.
+- [X] Conclusão do capítulo.
 
 ## Capítulo 7 – Conclusão
 - [ ] Síntese dos resultados obtidos.

@@ -41,11 +41,11 @@
 - [X] 05/07 – Gerar gráficos para ilustração.
 
 ## Semana 6 (08/07 a 12/07) – Estratégia de Negócio
-- [ ] 08/07 – Definir público-alvo e abordagem comercial.
-- [ ] 09/07 – Descrever pacotes e monetização.
-- [ ] 10/07 – Discutir diferenciais e valor de mercado.
-- [ ] 11/07 – Redigir Capítulo 6.
-- [ ] 12/07 – Criar tabela de preços e proposta de venda.
+- [X] 08/07 – Definir público-alvo e abordagem comercial.
+- [X] 09/07 – Descrever pacotes e monetização.
+- [X] 10/07 – Discutir diferenciais e valor de mercado.
+- [X] 11/07 – Redigir Capítulo 6.
+- [X] 12/07 – Criar tabela de preços e proposta de venda.
 
 ## Semana 7 (15/07 a 19/07) – Conclusão
 - [ ] 15/07 – Redigir síntese dos resultados.
