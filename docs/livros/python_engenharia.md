@@ -524,37 +524,38 @@ Um engenheiro mecânico precisa analisar a deformação de uma viga sob diferent
 
 2. **Cálculos:**
 
-   - Calcular a deflexão (y) da viga em função da posição (x) ao longo do comprimento, usando as seguintes fórmulas:
+- Calcular a deflexão (y) da viga em função da posição (x) ao longo do comprimento, usando as seguintes fórmulas:
 
-    - Deflexão para Carga Uniforme:
+- Deflexão para Carga Uniforme:
+``
+y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
+```
 
-    y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
-        
-    - Deflexão para Carga Pontual:
+- Deflexão para Carga Pontual:
 
-        • Para 0 ≤ x ≤ L/2:
-        
-    y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
-
-        • Para L/2 < x ≤ L:
-
-    y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+```
+Para 0 ≤ x ≤ L/2:
+y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+Para L/2 < x ≤ L:
+y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+```
 
 Onde:
 
-   - Deflexão para Carga Uniforme:
-        
-    y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
-        
-    - Deflexão para Carga Pontual:
-        
-        • Para 0 ≤ x ≤ L/2:
-      
-    y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+- Deflexão para Carga Uniforme:
 
-        • Para L/2 < x ≤ L:
+```
+   y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
+```
 
-    y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+- Deflexão para Carga Pontual:
+
+```        
+Para 0 ≤ x ≤ L/2:
+y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+Para L/2 < x ≤ L:
+y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+```
 
 Onde:
    y = Deflexão da viga
