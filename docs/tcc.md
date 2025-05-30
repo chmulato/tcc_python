@@ -65,7 +65,7 @@ Campo Largo, PR, 01 de Junho de 2025
 
 ## Dedicatória
 
-Dedico este trabalho à minha família, especialmente aos meus filhos Alexandre e Guilherme, e à minha esposa Helen, pela paciência, compreensão e apoio incondicional durante toda esta jornada. Sem vocês, nada disso seria possível.
+Dedico este trabalho à minha família, especialmente aos meus filhos Alexandre e Guilherme, e à minha esposa Helen, pela paciência, compreensão e apoio incondicional durante toda esta jornada. À minha neta Maria, pela alegria que traz em suas visitas, e à minha mãe Clarice, minha fortaleza, pelo apoio incondicional. Sem vocês, nada disso seria possível.
 
 ---
 
