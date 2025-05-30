@@ -599,6 +599,7 @@ O gráfico deve ter título, rótulos nos eixos e grade.
     - Exibir o valor máximo da deflexão.
     - Salvar o gráfico em um arquivo PNG.
 
+**Exemplo de Imagem do Exercício:**
 ![EXERCICIO_PROPOSTO](imagens/04_imagem_exercicio.png)
 
 **Exemplo de Interação:**
