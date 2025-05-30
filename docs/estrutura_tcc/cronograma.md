@@ -48,21 +48,21 @@
 - [X] 12/07 – Criar tabela de preços e proposta de venda.
 
 ## Semana 7 (15/07 a 19/07) – Conclusão
-- [ ] 15/07 – Redigir síntese dos resultados.
-- [ ] 16/07 – Destacar contribuições técnicas.
-- [ ] 17/07 – Recomendações futuras.
-- [ ] 18/07 – Finalizar Capítulo 7.
-- [ ] 19/07 – Revisar redação dos capítulos anteriores.
+- [X] 15/07 – Redigir síntese dos resultados.
+- [X] 16/07 – Destacar contribuições técnicas.
+- [X] 17/07 – Recomendações futuras.
+- [X] 18/07 – Finalizar Capítulo 7.
+- [X] 19/07 – Revisar redação dos capítulos anteriores.
 
 ## Semana 8 (22/07 a 26/07) – Anexos e Revisão Técnica
-- [ ] 22/07 – Organizar anexos (fluxogramas, código, modelos).
-- [ ] 23/07 – Revisar ortografia e consistência textual.
-- [ ] 24/07 – Montar índice automático.
-- [ ] 25/07 – Testar exportação final em PDF.
-- [ ] 26/07 – Enviar para revisão de orientador (se aplicável).
+- [X] 22/07 – Organizar anexos (fluxogramas, código, modelos).
+- [X] 23/07 – Revisar ortografia e consistência textual.
+- [X] 24/07 – Montar índice automático.
+- [X] 25/07 – Testar exportação final em PDF.
+- [X] 26/07 – Enviar para revisão de orientador (se aplicável).
 
 ## Semanas 9 a 13 (29/07 a 30/08) – Ajustes e Entrega
-- [ ] 29/07 a 09/08 – Realizar ajustes solicitados.
-- [ ] 12/08 a 16/08 – Testar diferentes versões do sistema.
-- [ ] 19/08 a 23/08 – Finalizar layout, capa, folha de rosto e normas.
-- [ ] 26/08 a 30/08 – Entrega final e backup.
+- [X] 29/07 a 09/08 – Realizar ajustes solicitados.
+- [X] 12/08 a 16/08 – Testar diferentes versões do sistema.
+- [X] 19/08 a 23/08 – Finalizar layout, capa, folha de rosto e normas.
+- [X] 26/08 a 30/08 – Entrega final e backup.

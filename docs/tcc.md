@@ -17,6 +17,199 @@
 | Ano: Junho de 2025                                            |
 +---------------------------------------------------------------+
 ```
+---
+```plaintext
+UNIVERSIDADE MICROSOFT COPILOT
+FACULDADE DE ENGENHARIA
+CURSO DE ENGENHARIA DE PROCESSOS
+
+SIMULADOR DE TEMPO DE PERMANÊNCIA EM RESTAURANTES POR QUILO
+
+Trabalho de Conclusão de Curso apresentado ao Curso de Engenharia de Processos da Universidade Microsoft Copilot, como requisito parcial para obtenção do título de Engenheiro de Processos.
+
+Autor: Christian Vladimir Uhdre Mulato
+
+Orientador: Prof. Copilot, Dr.
+
+Cidade: Campo Largo, PR
+Ano: Junho de 2025
+```
+---
+```plaintext
+UNIVERSIDADE MICROSOFT COPILOT
+FACULDADE DE ENGENHARIA
+CURSO DE ENGENHARIA DE PROCESSOS
+
+SIMULADOR DE TEMPO DE PERMANÊNCIA EM RESTAURANTES POR QUILO
+
+Trabalho de Conclusão de Curso apresentado ao Curso de Engenharia de Processos da Universidade Microsoft Copilot, como requisito parcial para obtenção do título de Engenheiro de Processos.
+
+Autor: Christian Vladimir Uhdre Mulato
+
+Aprovado em: ____/____/2025
+
+Banca Examinadora:
+
+______________________________________
+Prof. Copilot, Dr. (Orientador)
+
+______________________________________
+Prof. GPT (Geppetto), Dr.
+
+______________________________________
+Prof. Assistente Gemini, Dr.
+
+Campo Largo, PR, Junho de 2025
+```
+---
+
+## Dedicatória
+
+Dedico este trabalho à minha família, especialmente aos meus filhos Alexandre e Guilherme, e à minha esposa Helen, pela paciência, compreensão e apoio incondicional durante toda esta jornada. Sem vocês, nada disso seria possível.
+
+---
+
+## Agradecimentos
+
+Agradeço primeiramente à minha família, pelo incentivo constante e por compreenderem os momentos de ausência necessários para a realização deste projeto.
+
+Agradeço também à Universidade Microsoft Copilot e a todos os professores que contribuíram para minha formação acadêmica e profissional.
+
+Um agradecimento especial à tecnologia da Microsoft, que patrocinou financeiramente a OpenAI, tornando possível o acesso a ferramentas inovadoras de inteligência artificial que auxiliaram no desenvolvimento deste trabalho.
+
+A todos que, direta ou indiretamente, colaboraram para a concretização deste TCC, meu sincero muito obrigado.
+
+---
+
+## Resumo
+
+Este Trabalho de Conclusão de Curso apresenta o desenvolvimento de um simulador computacional para análise e otimização do tempo de permanência de clientes em restaurantes por quilo. O objetivo principal é fornecer aos gestores uma ferramenta prática e acessível para avaliar diferentes configurações operacionais, identificar gargalos, reduzir tempos de espera e melhorar a experiência do cliente. O simulador foi implementado em Python, com interface gráfica intuitiva, permitindo a entrada manual de dados ou importação de arquivos, além de gerar relatórios executivos em PDF e visualizações animadas do layout do restaurante. Foram realizados testes com dados reais e simulados, demonstrando a utilidade do sistema para apoiar a tomada de decisão baseada em evidências. Os resultados evidenciam que a simulação computacional pode contribuir significativamente para a eficiência operacional, a profissionalização da gestão e a competitividade dos restaurantes. O trabalho também discute estratégias de comercialização, possibilidades de expansão futura e recomendações para adoção e desenvolvimento contínuo da solução.
+
+**Palavras-chave:** simulação, restaurantes por quilo, tempo de permanência, otimização, gestão operacional, Python.
+
+---
+
+---
+
+## Abstract
+
+This Final Paper presents the development of a computational simulator for the analysis and optimization of customer dwell time in pay-by-weight restaurants. The main objective is to provide managers with a practical and accessible tool to evaluate different operational configurations, identify bottlenecks, reduce waiting times, and improve the customer experience. The simulator was implemented in Python, with an intuitive graphical interface, allowing manual data entry or file import, as well as generating executive reports in PDF and animated visualizations of the restaurant layout. Tests were carried out with real and simulated data, demonstrating the usefulness of the system to support evidence-based decision making. The results show that computational simulation can significantly contribute to operational efficiency, professional management, and restaurant competitiveness. The work also discusses commercialization strategies, future expansion possibilities, and recommendations for the adoption and continuous development of the solution.
+
+**Keywords:** simulation, pay-by-weight restaurants, dwell time, optimization, operational management, Python.
+
+---
+
+## Lista de Figuras
+
+1. Fluxograma do fluxo do cliente em um restaurante
+2. Linha do tempo do cliente em um restaurante
+3. Exemplo de layout ASCII do restaurante
+4. Diagrama: Variação do fluxo de chegada de clientes ao longo do tempo
+5. Esquema do fluxo de filas em um restaurante
+6. Exemplo de histograma de clientes atendidos e não atendidos
+7. Tela esquemática da interface gráfica do simulador
+
+---
+
+## Lista de Tabelas
+
+1. Tabela 1 – Parâmetros utilizados na simulação (layout 5.1.1)
+2. Tabela 2 – Efeitos da variação dos principais parâmetros sobre o desempenho
+3. Tabela 3 – Exemplos de valores para pacotes de entrega e monetização
+4. Ficha 01 - Ficha de coleta de dados para simulação
+5. Ficha 02 - Ficha comparativa para análise de variação de parâmetros
+
+---
+
+## Lista de Abreviaturas e Siglas
+
+- **API**: Application Programming Interface (Interface de Programação de Aplicações)
+- **ASCII**: American Standard Code for Information Interchange  
+- **DES**: Discrete Event Simulation (Simulação Discreta de Eventos)  
+- **ERP**: Enterprise Resource Planning (Sistema Integrado de Gestão Empresarial)  
+- **PDF**: Portable Document Format  
+- **IoT**: Internet of Things (Internet das Coisas)  
+- **FIFO**: First In, First Out (Primeiro a Entrar, Primeiro a Sair)  
+- **SaaS**: Software as a Service  
+
+---
+# Sumário
+
+- [Capítulo 1 – Introdução](#capítulo-1--introdução)
+  - [1.1 Contextualização do problema enfrentado por restaurantes](#11-contextualização-do-problema-enfrentado-por-restaurantes)
+  - [1.2 Justificativa da escolha pelo desenvolvimento de um simulador](#12-justificativa-da-escolha-pelo-desenvolvimento-de-um-simulador)
+  - [1.3 Objetivos](#13-objetivos)
+  - [1.4 Metodologia aplicada](#14-metodologia-aplicada)
+  - [1.5 Estrutura do trabalho](#15-estrutura-do-trabalho)
+  - [1.6 Considerações finais](#16-considerações-finais)
+
+- [Capítulo 2 – Referencial Teórico](#capítulo-2--referencial-teórico)
+  - [2.1 Breve revisão sobre gestão de tempo em restaurantes](#21-breve-revisão-sobre-gestão-de-tempo-em-restaurantes)
+  - [2.2 Aplicações de simulação em ambientes de serviços](#22-aplicações-de-simulação-em-ambientes-de-serviços)
+  - [2.3 Sistemas computacionais em apoio à tomada de decisão em pequenas empresas](#23-sistemas-computacionais-em-apoio-à-tomada-de-decisão-em-pequenas-empresas)
+  - [2.4 Abordagens práticas no uso de Python em Engenharia de Processos](#24-abordagens-práticas-no-uso-de-python-em-engenharia-de-processos)
+  - [2.5 Considerações finais](#25-considerações-finais)
+
+- [Capítulo 3 – Especificação do Sistema de Simulação](#capítulo-3--especificação-do-sistema-de-simulação)
+  - [3.1 Descrição geral da aplicação](#31-descrição-geral-da-aplicação)
+  - [3.2 Funcionalidades principais](#32-funcionalidades-principais)
+  - [3.3 Considerações finais](#33-considerações-finais)
+
+- [Capítulo 4 – Fundamentos matemáticos e conceituais da simulação](#capítulo-4--fundamentos-matemáticos-e-conceituais-da-simulação)
+  - [4.1 Teoria das Filas aplicadas ao fluxo de clientes](#41-teoria-das-filas-aplicadas-ao-fluxo-de-clientes)
+    - [4.1.1 Esquema do fluxo de filas em um restaurante](#411-esquema-do-fluxo-de-filas-em-um-restaurante)
+  - [4.2 Análise do layout e cálculo do deslocamento interno](#42-análise-do-layout-e-cálculo-do-deslocamento-interno)
+    - [4.2.1 Exemplo prático de representação do layout](#421-exemplo-prático-de-representação-do-layout)
+  - [4.3 Simulação Discreta de Eventos (DES): lógica e implementação](#43-simulação-discreta-de-eventos-des-lógica-e-implementação)
+    - [4.3.1 Exemplo de eventos e transições](#431-exemplo-de-eventos-e-transições)
+  - [4.4 Estatística aplicada aos tempos de atendimento e consumo](#44-estatística-aplicada-aos-tempos-de-atendimento-e-consumo)
+    - [4.4.1 Distribuições estatísticas aplicadas aos tempos de atendimento e consumo](#441-distribuições-estatísticas-aplicadas-aos-tempos-de-atendimento-e-consumo)
+  - [4.5 Equação geral do tempo de residência dos clientes no sistema (restaurante)](#45-equação-geral-do-tempo-de-residência-dos-clientes-no-sistema-restaurante)
+    - [4.5.1 Fluxo implementado no código simulador.py](#451-fluxo-implementado-no-código-simuladorpy)
+  - [4.6 Justificativa da abordagem prática e realista adotada](#46-justificativa-da-abordagem-prática-e-realista-adotada)
+  - [4.7 Conclusão](#47-conclusão)
+
+- [Capítulo 5 – Estudo de Caso e Simulações](#capítulo-5--estudo-de-caso-e-simulações)
+  - [5.1 Parâmetros utilizados na simulação (layout, número de mesas, tempo médio)](#51-parâmetros-utilizados-na-simulação-layout-número-de-mesas-tempo-médio)
+    - [5.1.1 Layout de exemplo utilizado na simulação](#511-layout-de-exemplo-utilizado-na-simulação)
+    - [5.1.2 Extrapolação: análise da variação do fluxo de chegada de clientes](#512-extrapolação-análise-da-variação-do-fluxo-de-chegada-de-clientes)
+  - [5.2 Teste com dados reais/simulados](#52-teste-com-dados-reais-simulados)
+  - [5.3 Análise dos resultados: gargalos, otimizações sugeridas](#53-análise-dos-resultados-gargalos-otimizações-sugeridas)
+  - [5.4 Discussão sobre os efeitos da variação de parâmetros](#54-discussão-sobre-os-efeitos-da-variação-de-parâmetros)
+    - [5.4.1 Exemplo de ficha para análise dos efeitos da variação de parâmetros ao longo dos dias simulados](#541-exemplo-de-ficha-para-análise-dos-efeitos-da-variação-de-parâmetros-ao-longo-dos-dias-simulados)
+  - [5.5 Modelos de documentação entregue ao cliente](#55-modelos-de-documentação-entregue-ao-cliente)
+  - [5.6 Considerações finais](#56-considerações-finais)
+
+- [Capítulo 6 – Estratégia de Negócio e Aplicabilidade Comercial](#capítulo-6--estratégia-de-negócio-e-aplicabilidade-comercial)
+  - [6.1 Público-alvo: donos de restaurantes e arrendatários](#61-público-alvo-donos-de-restaurantes-e-arrendatários)
+  - [6.2 Proposta de valor do sistema](#62-proposta-de-valor-do-sistema)
+  - [6.3 Modelos de entrega e monetização do produto](#63-modelos-de-entrega-e-monetização-do-produto)
+  - [6.4 Limitações e formas de fidelização sem aprisionamento explícito](#64-limitações-e-formas-de-fidelização-sem-aprisionamento-explícito)
+  - [6.5 Possibilidades de expansão futura do produto](#65-possibilidades-de-expansão-futura-do-produto)
+  - [6.6 Considerações finais](#66-considerações-finais)
+
+- [Capítulo 7 – Conclusão e Considerações Finais](#capítulo-7--conclusão-e-considerações-finais)
+  - [7.1 Síntese dos principais resultados e contribuições do trabalho](#71-síntese-dos-principais-resultados-e-contribuições-do-trabalho)
+  - [7.2 Contribuições técnicas e práticas do projeto](#72-contribuições-técnicas-e-práticas-do-projeto)
+  - [7.3 Recomendações para adoção e desenvolvimento contínuo](#73-recomendações-para-adoção-e-desenvolvimento-contínuo)
+  - [7.4 Trabalhos futuros](#74-trabalhos-futuros)
+  - [7.5 Considerações finais do trabalho](#75-considerações-finais-do-trabalho)
+
+- [Referências Bibliográficas](#referências-bibliográficas)
+
+- [Anexo A – Documentação de Uso do Simulador](#anexo-a--documentação-de-uso-do-simulador)
+  - [A.1 Interface Gráfica do Simulador](#a1-interface-gráfica-do-simulador)
+  - [A.2 Importação de Arquivos](#a2-importação-de-arquivos)
+  - [A.3 Exportação de Relatórios PDF](#a3-exportação-de-relatórios-pdf)
+  - [A.4 Exportação do GIF Animado](#a4-exportação-do-gif-animado)
+  - [A.5 Exemplos de Arquivos](#a5-exemplos-de-arquivos)
+  - [A.6 Exemplo de Histograma de Clientes Atendidos e Não Atendidos](#a6-exemplo-de-histograma-de-clientes-atendidos-e-não-atendidos)
+
+- [Anexo B – Fichas e Relatórios Auxiliares](#anexo-b--fichas-e-relatórios-auxiliares)
+  - [B.1 Ficha de Coleta de Dados em Campo](#b1-ficha-de-coleta-de-dados-em-campo)
+  - [B.2 Ficha Comparativa para Análise de Variação de Parâmetros](#b2-ficha-comparativa-para-análise-de-variação-de-parâmetros)
+  - [B.3 Modelo de Relatório Executivo para o Cliente](#b3-modelo-de-relatório-executivo-para-o-cliente)
+  - [B.4 Fluxograma da Simulação](#b4-fluxograma-da-simulação)
 
 ---
 
@@ -1146,6 +1339,87 @@ Além disso, as possibilidades de expansão futura, como integração com sistem
 
 Dessa forma, o simulador se consolida como uma solução comercial viável, capaz de agregar valor ao negócio, promover a profissionalização da gestão e contribuir para a competitividade e sustentabilidade dos restaurantes no cenário atual e futuro.
 
+---
+
+## Capítulo 7 – Conclusão e Considerações Finais
+
+Este capítulo final apresenta uma síntese dos principais resultados alcançados ao longo do desenvolvimento do simulador de tempo de permanência em restaurantes por quilo, destacando as contribuições técnicas e práticas do projeto para a gestão operacional desses estabelecimentos. São discutidas as recomendações para adoção e evolução contínua da solução, bem como sugestões para trabalhos futuros que possam ampliar o escopo e a aplicabilidade do sistema.
+
+A conclusão busca consolidar os aprendizados obtidos, evidenciar o impacto do simulador como ferramenta de apoio à tomada de decisão e reforçar sua relevância para a melhoria da eficiência, da experiência do cliente e da competitividade no setor de alimentação.
+
+---
+
+## 7.1 Síntese dos principais resultados e contribuições do trabalho
+
+O desenvolvimento do simulador de tempo de permanência em restaurantes por quilo proporcionou avanços significativos tanto do ponto de vista técnico quanto prático. Ao longo do trabalho, foi possível:
+
+- Modelar de forma realista o fluxo de clientes em restaurantes, incorporando etapas como filas, atendimento no buffet, pesagem, pagamento e ocupação das mesas.
+- Implementar uma ferramenta flexível, com interface gráfica intuitiva, que permite a configuração de diferentes cenários operacionais e a personalização de parâmetros conforme a realidade de cada estabelecimento.
+- Validar o simulador por meio de testes com dados reais e simulados, demonstrando sua aderência à dinâmica dos restaurantes e sua utilidade para a identificação de gargalos, análise de filas e avaliação do impacto de mudanças no layout ou nos processos.
+- Gerar relatórios executivos em PDF e visualizações gráficas, incluindo GIF animado do layout, facilitando a comunicação dos resultados e recomendações aos gestores.
+- Oferecer uma solução acessível para pequenos e médios restaurantes, democratizando o uso de técnicas avançadas de simulação e análise operacional.
+
+Esses resultados evidenciam que o simulador desenvolvido é capaz de apoiar gestores na tomada de decisões estratégicas, promovendo a eficiência operacional, a melhoria da experiência do cliente e a sustentabilidade do negócio. O trabalho contribui ainda para a disseminação de ferramentas quantitativas no setor de alimentação, incentivando a profissionalização da gestão e a adoção de práticas baseadas em dados.
+
+---
+
+## 7.2 Contribuições técnicas e práticas do projeto
+
+O projeto desenvolvido trouxe contribuições relevantes tanto no âmbito técnico quanto na aplicação prática para o setor de restaurantes por quilo. Entre as principais contribuições, destacam-se:
+
+- **Desenvolvimento de um simulador customizável:** O sistema permite a modelagem detalhada do ambiente de um restaurante, com flexibilidade para ajustar parâmetros, layout e regras operacionais conforme diferentes realidades e necessidades dos gestores.
+- **Integração de múltiplas tecnologias:** A solução combina interface gráfica intuitiva (Tkinter), processamento de dados (Python), geração de relatórios em PDF e visualizações animadas (GIF), promovendo uma experiência completa e acessível ao usuário.
+- **Facilidade de uso e acessibilidade:** O simulador foi projetado para ser utilizado por gestores sem conhecimento técnico avançado, democratizando o acesso a ferramentas de simulação e análise operacional.
+- **Apoio à tomada de decisão baseada em dados:** A ferramenta possibilita a análise quantitativa de cenários, identificação de gargalos, avaliação de alternativas e comunicação clara dos resultados por meio de relatórios e gráficos.
+- **Padronização e documentação dos processos:** O projeto inclui modelos de fichas de coleta de dados, relatórios executivos e documentação de uso, facilitando a replicação da metodologia em outros estabelecimentos.
+- **Potencial de expansão e adaptação:** A arquitetura modular e a documentação detalhada permitem a evolução do sistema, com possibilidade de integração a outros softwares, inclusão de novos módulos e adaptação para diferentes segmentos do setor de alimentação.
+
+Essas contribuições reforçam o papel do simulador como uma ferramenta inovadora e prática para a gestão de restaurantes, promovendo a profissionalização do setor, a eficiência operacional e a melhoria contínua dos processos.
+
+---
+
+## 7.3 Recomendações para adoção e desenvolvimento contínuo
+
+Para que o simulador de tempo de permanência em restaurantes por quilo alcance seu pleno potencial e gere valor sustentável para os gestores, recomenda-se:
+
+- **Capacitação dos usuários:** Promover treinamentos práticos para que os gestores e equipes compreendam o funcionamento do simulador, saibam interpretar os resultados e possam ajustar os parâmetros conforme a realidade do restaurante.
+- **Coleta sistemática de dados reais:** Incentivar a coleta periódica de dados operacionais (fluxo de clientes, tempos de atendimento, ocupação das mesas) para garantir a precisão das simulações e a atualização constante dos cenários analisados.
+- **Adoção gradual e validação dos resultados:** Implementar o simulador inicialmente em cenários-piloto, comparando os resultados simulados com os dados reais do restaurante, ajustando o modelo conforme necessário para aumentar sua aderência à operação.
+- **Integração com processos de gestão:** Utilizar os relatórios e análises gerados pelo simulador como apoio à tomada de decisão, planejamento de recursos, dimensionamento de equipes e reorganização do layout físico.
+- **Atualização e evolução do sistema:** Manter o simulador atualizado com novas funcionalidades, correções e melhorias sugeridas pelos usuários, acompanhando as tendências tecnológicas e as demandas do setor.
+- **Abertura para customizações:** Adaptar o sistema para diferentes perfis de restaurantes, permitindo a inclusão de módulos específicos, integrações com outros softwares e personalização dos relatórios conforme as necessidades do cliente.
+
+Ao seguir essas recomendações, os gestores poderão extrair o máximo benefício do simulador, promovendo uma gestão mais eficiente, inovadora e orientada por dados, além de garantir a evolução contínua da ferramenta em sintonia com as mudanças do mercado e as necessidades do setor de alimentação.
+
+---
+
+## 7.4 Trabalhos futuros
+
+O simulador desenvolvido neste trabalho representa um avanço significativo para a gestão operacional de restaurantes por quilo, mas ainda há diversas oportunidades para aprimoramento e expansão de suas funcionalidades. Entre as principais sugestões para trabalhos futuros, destacam-se:
+
+- **Integração com sensores IoT:** Incorporar sensores de presença, contadores de pessoas ou dispositivos de monitoramento em tempo real para coletar automaticamente dados de fluxo de clientes, ocupação de mesas e formação de filas, tornando as simulações ainda mais precisas e dinâmicas.
+- **Desenvolvimento de aplicativos móveis:** Criar aplicativos para smartphones e tablets que facilitem a coleta de dados em campo, o acompanhamento das simulações e a visualização dos resultados, ampliando o acesso e a usabilidade do sistema para gestores e equipes operacionais.
+- **Expansão para outros segmentos de alimentação:** Adaptar o simulador para diferentes tipos de estabelecimentos, como cafeterias, fast-foods, praças de alimentação e eventos, considerando as particularidades de cada operação.
+- **Módulos de previsão de demanda:** Implementar algoritmos de previsão baseados em inteligência artificial ou séries temporais para estimar o fluxo de clientes em diferentes dias e horários, permitindo simulações mais realistas e planejamento antecipado de recursos.
+- **Visualização avançada e relatórios customizáveis:** Desenvolver novas formas de visualização dos resultados, como dashboards interativos, gráficos 3D e relatórios personalizáveis conforme as necessidades do usuário.
+- **Integração com sistemas de gestão (ERP):** Permitir a troca automática de informações entre o simulador e softwares de gestão já utilizados pelos restaurantes, facilitando a atualização de parâmetros e o uso de dados reais nas simulações.
+- **Simulação de cenários avançados:** Incluir variáveis como promoções, sazonalidade, mudanças no cardápio ou alterações no quadro de funcionários, ampliando o realismo e a aplicabilidade do simulador para a tomada de decisão estratégica.
+
+Essas direções apontam para a evolução contínua do simulador, tornando-o cada vez mais robusto, flexível e alinhado às demandas do setor de alimentação, além de abrir novas possibilidades de pesquisa e inovação para a área de Engenharia de Processos e Gestão de Serviços.
+
+---
+
+## 7.5 Considerações finais do trabalho
+
+O desenvolvimento e aplicação do simulador de tempo de permanência em restaurantes por quilo demonstraram a importância de ferramentas quantitativas e acessíveis para a gestão eficiente de operações no setor de alimentação. Ao longo deste trabalho, foi possível evidenciar que a simulação computacional, aliada à coleta e análise de dados reais, pode transformar a tomada de decisão dos gestores, tornando-a mais embasada, ágil e orientada para resultados.
+
+O simulador proposto se destacou por sua flexibilidade, facilidade de uso e capacidade de adaptação a diferentes cenários, permitindo a identificação de gargalos, a avaliação de alternativas operacionais e a comunicação clara dos resultados por meio de relatórios e visualizações. A validação com dados reais e simulados reforçou sua utilidade prática, enquanto a documentação detalhada e os exemplos de aplicação facilitaram sua replicação e adoção por outros estabelecimentos.
+
+Além das contribuições técnicas e práticas, o trabalho abre caminho para futuras inovações, como integração com sensores, aplicativos móveis e módulos de previsão de demanda, ampliando ainda mais o potencial de impacto do simulador no setor.
+
+Conclui-se que a adoção de soluções como a desenvolvida neste projeto pode promover a profissionalização da gestão, a melhoria contínua dos processos e a sustentabilidade dos restaurantes, contribuindo para a competitividade e excelência no atendimento ao cliente.
+
+Portanto, o simulador não apenas representa uma ferramenta valiosa para os gestores de restaurantes por quilo, mas também um passo importante na direção de uma gestão mais eficiente, inovadora e orientada por dados no setor de alimentação. Acredita-se que, com a continuidade do desenvolvimento e a adoção das recomendações apresentadas, o simulador poderá se consolidar como um recurso indispensável para a melhoria da experiência do cliente e a otimização das operações nos restaurantes.
 
 ---
 
@@ -1393,7 +1667,80 @@ Este relatório é um modelo adaptável, podendo ser customizado conforme a nece
 ```
 ---
 
+---
+
+### B.4 Fluxograma da Simulação
+
+O fluxograma abaixo representa, de forma simplificada, as principais etapas e decisões do processo de simulação do tempo de permanência em restaurantes por quilo. Ele pode ser utilizado como referência para entendimento do fluxo lógico implementado no sistema.
+
+```plaintext
++---------------------+
+| Início da Simulação |
++---------------------+
+           |
+           v
++-----------------------------+
+| Leitura dos Parâmetros      |
+| (layout, mesas, tempos, etc)|
++-----------------------------+
+           |
+           v
++-----------------------------+
+| Geração dos Clientes        |
+| (taxa de chegada, horários) |
++-----------------------------+
+           |
+           v
++-----------------------------+
+| Para cada Cliente:          |
++-----------------------------+
+           |
+           v
++-----------------------------+
+| Verifica disponibilidade de |
+| mesa                        |
++-----------------------------+
+      | Sim           | Não
+      v               v
++----------------+   +----------------------+
+| Ocupa mesa     |   | Entra na fila de     |
+|                |   | espera por mesa      |
++----------------+   +----------------------+
+      |                   |
+      v                   v
++----------------+   +----------------------+
+| Serve-se no    |   | Aguarda liberação de |
+| buffet         |   | mesa                 |
++----------------+   +----------------------+
+      |                   |
+      v                   v
++----------------+   +----------------------+
+| Pesa na balança|   | Quando liberada,     |
++----------------+   | ocupa mesa           |
+      |                   |
+      v                   v
++----------------+   +----------------------+
+| Paga no caixa  |   | Serve-se no buffet   |
++----------------+   +----------------------+
+      |                   |
+      v                   v
++-----------------------------+
+| Consome refeição            |
++-----------------------------+
+           |
+           v
++-----------------------------+
+| Libera mesa e sai do sistema|
++-----------------------------+
+           |
+           v
++---------------------+
+| Fim da Simulação    |
++---------------------+
+```
+
 > **Observação:**  
-> Recomenda-se utilizar estas fichas e modelos como referência para padronizar a coleta de dados em campo e a apresentação dos resultados ao cliente, garantindo transparência, rastreabilidade e qualidade nas análises realizadas.
+> Este fluxograma pode ser adaptado conforme as regras específicas do simulador (ex: etapas opcionais como balança, diferentes políticas de fila, etc.).  
+> Para apresentações ou relatórios, recomenda-se também a criação de um fluxograma gráfico utilizando ferramentas como draw.io, Lucidchart ou PowerPoint, caso deseje uma versão visual mais elaborada.
 
 ---

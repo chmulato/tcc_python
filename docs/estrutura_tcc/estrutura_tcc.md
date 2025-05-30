@@ -51,14 +51,14 @@
 - [X] Conclusão do capítulo.
 
 ## Capítulo 7 – Conclusão
-- [ ] Síntese dos resultados obtidos.
-- [ ] Contribuições técnicas e práticas do projeto.
-- [ ] Recomendações para adoção e desenvolvimento contínuo.
-- [ ] Trabalhos futuros (ex: integração com sensores ou apps móveis).
-- [ ] Considerações finais do trabalho.
+- [X] Síntese dos resultados obtidos.
+- [X] Contribuições técnicas e práticas do projeto.
+- [X] Recomendações para adoção e desenvolvimento contínuo.
+- [X] Trabalhos futuros (ex: integração com sensores ou apps móveis).
+- [X] Considerações finais do trabalho.
 
 ## Anexos
 - [X] Código-fonte principal do sistema.
 - [X] Layout de planilhas de entrada.
 - [X] Fluxogramas da simulação.
-- [ ] Modelos de documentação entregue ao cliente.
+- [X] Modelos de documentação entregue ao cliente.
