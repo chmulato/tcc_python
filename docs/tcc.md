@@ -206,8 +206,8 @@ This Final Paper presents the development of a computational simulator for the a
   - [A.6 Exemplo de Histograma de Clientes Atendidos e Não Atendidos](#a6-exemplo-de-histograma-de-clientes-atendidos-e-não-atendidos)
 
 - [Anexo B – Fichas e Relatórios Auxiliares](#anexo-b--fichas-e-relatórios-auxiliares)
-  - [B.1 Ficha de Coleta de Dados em Campo](#b1-ficha-de-coleta-de-dados-em-campo)
-  - [B.2 Ficha Comparativa para Análise de Variação de Parâmetros](#b2-ficha-comparativa-para-análise-de-variação-de-parâmetros)
+  - [B.1 Ficha 01 - Ficha de Coleta de Dados em Campo](#b1-ficha-de-coleta-de-dados-em-campo)
+  - [B.2 Ficha 02 - Ficha Comparativa para Análise de Variação de Parâmetros](#b2-ficha-comparativa-para-análise-de-variação-de-parâmetros)
   - [B.3 Modelo de Relatório Executivo para o Cliente](#b3-modelo-de-relatório-executivo-para-o-cliente)
   - [B.4 Fluxograma da Simulação](#b4-fluxograma-da-simulação)
 
@@ -322,10 +322,11 @@ Este trabalho está organizado em capítulos que abordam, de forma sequencial e 
 - **Capítulo 2 – Referencial Teórico:** Explora os principais conceitos sobre gestão de tempo em restaurantes, aplicações de simulação em ambientes de serviço, sistemas computacionais de apoio à decisão em pequenas empresas e o uso prático do Python em Engenharia de Processos.
 - **Capítulo 3 – Especificação do Sistema de Simulação:** Detalha a aplicação desenvolvida, suas funcionalidades principais (entrada de dados, importação de planilhas e arquivos ASCII, exportação de resultados em PDF, interface gráfica, visualização do layout e animação), além da arquitetura modular e organização do projeto.
 - **Capítulo 4 – Fundamentos Matemáticos e Conceituais da Simulação:** Apresenta os fundamentos teóricos e matemáticos que embasam o simulador, incluindo Teoria das Filas, análise do layout e deslocamento interno, lógica da Simulação Discreta de Eventos (DES), estatística aplicada aos tempos de atendimento e consumo, equação geral do tempo de residência e justificativa da abordagem prática adotada.
-- **Capítulo 5 – Estudo de Caso e Simulações:** Descreve os parâmetros utilizados na simulação, testes com dados reais ou simulados, análise dos resultados (gargalos, otimizações sugeridas), discussão sobre os efeitos da variação de parâmetros e conclusão do capítulo.
+- **Capítulo 5 – Estudo de Caso e Simulações:** Descreve os parâmetros utilizados na simulação, testes com dados reais ou simulados, análise dos resultados (gargalos, otimizações sugeridas), discussão sobre os efeitos da variação de parâmetros, modelos de documentação entregue ao cliente e conclusão do capítulo.
 - **Capítulo 6 – Estratégia de Negócio e Aplicabilidade Comercial:** Apresenta o público-alvo do sistema, proposta de valor, pacotes de entrega e monetização, limitações, estratégias de fidelização, possibilidades de expansão futura e conclusão do capítulo.
-- **Capítulo 7 – Conclusão:** Sintetiza os resultados obtidos, destaca as contribuições técnicas e práticas do projeto, traz recomendações para adoção e desenvolvimento contínuo, sugestões para trabalhos futuros (como integração com sensores ou aplicativos móveis) e as considerações finais do trabalho.
-- **Anexos:** Incluem o código-fonte principal do sistema, layout das planilhas de entrada, fluxogramas da simulação e modelos de documentação entregue ao cliente.
+- **Capítulo 7 – Conclusão e Considerações Finais:** Sintetiza os resultados obtidos, destaca as contribuições técnicas e práticas do projeto, traz recomendações para adoção e desenvolvimento contínuo, sugestões para trabalhos futuros (como integração com sensores ou aplicativos móveis) e as considerações finais do trabalho.
+- **Anexo A – Documentação de Uso do Simulador:** Inclui instruções de uso, exemplos de interface gráfica, procedimentos de importação e exportação de arquivos, exemplos de arquivos de configuração, histogramas e orientações para o usuário.
+- **Anexo B – Fichas e Relatórios Auxiliares:** Reúne modelos de fichas de coleta de dados em campo, fichas comparativas para análise de variação de parâmetros, modelo de relatório executivo entregue ao cliente e o fluxograma da simulação.
 
 Essa estrutura visa proporcionar uma compreensão clara e progressiva do tema, desde a identificação do problema até a apresentação dos resultados, aplicações práticas e perspectivas futuras, facilitando o entendimento do leitor sobre o desenvolvimento e a aplicação do simulador proposto.
 
@@ -1030,7 +1031,7 @@ A utilização de dados reais e simulados demonstra a flexibilidade do simulador
 
 ---
 
-#### Exemplo de ficha de coleta de dados para simulação
+#### Ficha 01 - Exemplo de ficha de coleta de dados para simulação
 
 ```plaintext
 |------------------------------------|-------------------|----------------------------------------------|------------------|
@@ -1451,7 +1452,8 @@ A interface gráfica foi desenvolvida em Tkinter para facilitar a interação do
 - **Área de mensagens:** Exibe avisos, erros e confirmações de operações.
 - **Botões de exportação:** Permitem salvar o relatório PDF e o GIF animado gerados pela simulação.
 
-> **Tela Esquemática do Simulador:**  
+> **Tela Esquemática do Simulador:** 
+
 ```plaintext
 +---------------------------------------------------------------------+
 |                  Simulador de Permanência                           |
@@ -1571,7 +1573,7 @@ Este anexo reúne os principais instrumentos de apoio utilizados no levantamento
 
 ---
 
-### B.1 Ficha de Coleta de Dados em Campo
+### B.1 Ficha 01 - Ficha de Coleta de Dados em Campo
 
 Utilizada para registrar os parâmetros operacionais do restaurante durante a observação direta.
 
@@ -1600,7 +1602,7 @@ Utilizada para registrar os parâmetros operacionais do restaurante durante a ob
 
 ---
 
-### B.2 Ficha Comparativa para Análise de Variação de Parâmetros
+### B.2 Ficha 02 - Ficha Comparativa para Análise de Variação de Parâmetros
 
 Permite registrar os efeitos de diferentes configurações ao longo de dias ou cenários simulados.
 
@@ -1665,8 +1667,6 @@ RELATÓRIO EXECUTIVO DE SIMULAÇÃO – RESTAURANTE POR QUILO
 Este relatório é um modelo adaptável, podendo ser customizado conforme a necessidade do cliente. O simulador exporta automaticamente um relatório em PDF com informações semelhantes, e pode incluir gráficos, tabelas adicionais, recomendações específicas e anexos com os dados brutos da simulação.
 ---------------------------------------------------------------
 ```
----
-
 ---
 
 ### B.4 Fluxograma da Simulação
