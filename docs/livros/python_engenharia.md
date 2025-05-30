@@ -8,7 +8,7 @@
 
 ---
 
-### Título:Introdução à Programação Python Aplicada à Engenharia
+### Título: Introdução à Programação Python Aplicada à Engenharia
 
 ### Sumário
 
@@ -63,6 +63,7 @@
 11. [Finalização e Agradecimentos](#11-finalização-e-agradecimentos)
 12. [Adendo: Configuração do Ambiente Python e VS Code](#12-adendo-configuração-do-ambiente-python-e-vs-code)
 13. [Referências Bibliográficas](#13-referências-bibliográficas)
+
 ---
 
 ### 1. Apresentação
@@ -72,10 +73,10 @@ O conteúdo foi organizado em módulos progressivos, partindo dos fundamentos da
 
 Ao final, o leitor será capaz de:
 
-•	Compreender os principais conceitos da linguagem Python.
-•	Resolver problemas matemáticos aplicados à engenharia com auxílio de bibliotecas como NUM_PY, PANDAS, MAT_PLOT_LIB e SCI_PY.
-•	Modelar, simular e visualizar sistemas físicos e processos.
-•	Desenvolver soluções computacionais práticas com uma abordagem estruturada.
+- Compreender os principais conceitos da linguagem Python.
+- Resolver problemas matemáticos aplicados à engenharia com auxílio de bibliotecas como NUM_PY, PANDAS, MAT_PLOT_LIB e SCI_PY.
+- Modelar, simular e visualizar sistemas físicos e processos.
+- Desenvolver soluções computacionais práticas com uma abordagem estruturada.
 
 Esta apostila é indicada para estudantes de cursos técnicos e superiores em engenharia e áreas afins, bem como profissionais que desejam iniciar no uso da programação para aplicações técnicas.
 
@@ -83,6 +84,7 @@ Boa leitura e bons estudos!
 
 Christian V. Uhdre Mulato
 Engenheiro Químico e Desenvolvedor de Sistemas
+
 Campo Largo – PR
 
 ---
@@ -310,6 +312,7 @@ print(f"A altura máxima atingida foi: {max(posicoes_y):.2f} m")
 Este exemplo é mais complexo e demonstra como os tipos de dados são usados em conjunto com cálculos matemáticos e bibliotecas de visualização para resolver e apresentar um problema de engenharia de forma completa.
 
 **Resultado:**
+
 ![PROJETIL](imagens/03_imagem_projetil.png)
 
 ---
@@ -319,6 +322,23 @@ Este exemplo é mais complexo e demonstra como os tipos de dados são usados em 
 Em Python, operadores são símbolos especiais que realizam operações em valores (chamados de operandos). Eles são essenciais para realizar cálculos, comparações e manipular dados em geral. Nesta seção, vamos explorar os operadores aritméticos e lógicos, que são fundamentais para a programação em engenharia.
 
 ### 2.2.1. Operadores Aritméticos
+
+**Código Python:**
+```python
+# Exemplo de uso de operadores aritméticos
+a = 10
+b = 5
+
+soma = a + b
+subtracao = a - b
+multiplicacao = a * b
+divisao = a / b
+
+print("Soma:", soma)
+print("Subtração:", subtracao)
+print("Multiplicação:", multiplicacao)
+print("Divisão:", divisao)
+```
 
 Os operadores aritméticos são usados para realizar operações matemáticas básicas.
 
@@ -377,6 +397,7 @@ largura = 5.0     # metros (float)
 area = comprimento * largura  # metros quadrados (float)
 print("Área do retângulo:", area, "m²")
 ```
+
 **Resultado:**
 ```plaintext
 Área do retângulo: 52.5 m²
