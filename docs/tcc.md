@@ -1078,9 +1078,9 @@ A definição do modelo de monetização deve considerar o perfil do público-al
 #### Tabela – Exemplos de valores para pacotes de entrega e monetização
 
 ```plaintext
-|-------------------------------------|-----------------------------------------------------------------|--------------------------|----------------------------------------------|
+|------------------------------------|-----------------------------------------------------------------|--------------------------|----------------------------------------------|
 | Pacote/Modelo                      | Descrição resumida                                              | Valor sugerido (R$)      | Observações                                  |
-|-------------------------------------|-----------------------------------------------------------------|--------------------------|----------------------------------------------|
+|------------------------------------|-----------------------------------------------------------------|--------------------------|----------------------------------------------|
 | Licença de uso avulsa              | Licença permanente, suporte básico                              | 2.500,00 (único)         | Inclui 1 ano de suporte e atualizações       |
 | Assinatura mensal (SaaS)           | Uso via assinatura, atualizações e suporte contínuos            | 180,00/mês               | Cancelamento a qualquer momento              |
 | Assinatura anual (SaaS)            | Uso via assinatura anual, desconto sobre mensal                 | 1.800,00/ano             | Equivale a 2 meses grátis                    |
@@ -1088,7 +1088,7 @@ A definição do modelo de monetização deve considerar o perfil do público-al
 | Pacote básico                      | Simulação, PDF, GIF animado                                     | 2.000,00 (único)         | Suporte e atualizações por 6 meses           |
 | Pacote premium                     | Todos recursos do básico + integrações e relatórios avançados   | 3.500,00 (único)         | Suporte e atualizações por 1 ano             |
 | Licenciamento para redes/franquias | Uso em múltiplas unidades, gestão centralizada                  | Sob consulta             | Valor negociado conforme número de unidades  |
-|-------------------------------------|-----------------------------------------------------------------|--------------------------|----------------------------------------------|
+|------------------------------------|-----------------------------------------------------------------|--------------------------|----------------------------------------------|
 
 ```
 
