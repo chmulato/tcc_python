@@ -82,8 +82,8 @@ Esta apostila é indicada para estudantes de cursos técnicos e superiores em en
 
 Boa leitura e bons estudos!
 
-Christian V. Uhdre Mulato
-Engenheiro Químico e Desenvolvedor de Sistemas
+- Christian V. Uhdre Mulato
+- Engenheiro Químico e Desenvolvedor de Sistemas
 
 Campo Largo – PR
 
@@ -648,16 +648,16 @@ Digite a intensidade da carga (N/m): 1000
 Deflexão máxima da viga: 0.01042 m
 Gráfico da deflexão salvo como deflexao_viga.png
 ```
-Gráfico:
+**Gráfico:**
  
 ![Gráfico da Deflexão da Viga](imagens/06_imagem_grafico_deflexao.png)
 
 Este exercício é mais completo e envolve:
-•	Entrada de dados variados (comprimento, propriedades do material, tipo e intensidade de carregamento).
-•	Cálculos condicionais (usando IF e ELIF) para aplicar a fórmula correta de deflexão.
-•	Uso de listas para armazenar múltiplos valores de X e Y para plotagem.
-•	Geração de um gráfico com MAT_PLOT_LIB para visualizar a deformação da viga.
-•	Saída formatada dos resultados.
+- Entrada de dados variados (comprimento, propriedades do material, tipo e intensidade de carregamento).
+- Cálculos condicionais (usando IF e ELIF) para aplicar a fórmula correta de deflexão.
+- Uso de listas para armazenar múltiplos valores de X e Y para plotagem.
+- Geração de um gráfico com MAT_PLOT_LIB para visualizar a deformação da viga.
+- Saída formatada dos resultados.
 
 Este tipo de problema é representativo de análises comuns em engenharia mecânica e demonstra a utilidade da programação para resolver problemas complexos e visualizar resultados
 
@@ -669,19 +669,32 @@ No exemplo do cálculo da deflexão da viga, a teoria física aplicada é a da *
 **Fórmulas e Teoria Detalhada:**
 
 1.	**Deflexão para Carga Uniforme:**
-    Fórmula: y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
-    Teoria:
-        Esta fórmula é derivada da equação diferencial da linha elástica para uma viga submetida a uma carga uniformemente distribuída.
-        A equação da linha elástica relaciona a curvatura da viga com o momento fletor interno.
-        As suposições incluem que o material da viga é linearmente elástico, homogêneo e isotrópico, e que as deflexões são pequenas em comparação com o comprimento da viga.
+
+**Fórmula:**
+    y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
+
+**Teoria:**
+
+    - Esta fórmula é derivada da equação diferencial da linha elástica para uma viga submetida a uma carga uniformemente distribuída.
+    - A equação da linha elástica relaciona a curvatura da viga com o momento fletor interno.
+    - As suposições incluem que o material da viga é linearmente elástico, homogêneo e isotrópico, e que as deflexões são pequenas em comparação com o comprimento da viga.
+
 2.	**Deflexão para Carga Pontual:**
-    Fórmula:
-    Para 0 <= x <= L/2: y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
-    Para L/2 < x <= L: y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x) ²)
-    Teoria:
-        Estas fórmulas são derivadas da equação da linha elástica para uma viga com uma carga concentrada aplicada no meio do vão.
-        Existem duas equações porque o comportamento da viga é diferente à esquerda e à direita da carga pontual.
-        As mesmas suposições da teoria da carga uniforme se aplicam aqui.
+
+**Fórmula:**
+    
+    Para 0 <= x <= L/2:
+    
+    y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
+
+    Para L/2 < x <= L:
+    y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+
+**Teoria:**
+
+    - Estas fórmulas são derivadas da equação da linha elástica para uma viga com uma carga concentrada aplicada no meio do vão.
+    - Existem duas equações porque o comportamento da viga é diferente à esquerda e à direita da carga pontual.
+    - As mesmas suposições da teoria da carga uniforme se aplicam aqui.
 **Onde:**
     y = Deflexão da viga (deslocamento vertical)
     x = Posição ao longo do comprimento da viga
