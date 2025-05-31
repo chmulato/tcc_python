@@ -1422,17 +1422,20 @@ Os laços de repetição são ferramentas poderosas para automatizar tarefas, pr
 
 **Descrição:**
 Um engenheiro químico precisa simular a conversão de um reagente A em um produto B em um reator batelada isotérmico. A reação segue uma cinética de primeira ordem:
-A → B
+
+```plaintext
+Reação: A → B
+```
 
 A taxa de reação é dada por:
 ```math
 - rA = -k * CA
+```
 
 Onde:
 - -rA é a taxa de desaparecimento do reagente A (mol/L·min)
 - k é a constante de velocidade da reação (min⁻¹)
 - CA é a concentração do reagente A (mol/L)
-```
 
 O programa deve calcular a concentração de A e a conversão de A ao longo do tempo.
 
