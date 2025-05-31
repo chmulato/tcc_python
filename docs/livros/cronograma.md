@@ -26,11 +26,11 @@
   - [X] 3.3 Aplicações práticas em verificação de condições operacionais
   - [X] 3.4 Conclusão
 
-- [ ] Capítulo 4 – Funções e Modularização
-  - [ ] 4.1 Definição de funções
-  - [ ] 4.2 Parâmetros e retorno
-  - [ ] 4.3 Organização de código em módulos reutilizáveis
-  - [ ] 4.4 Conclusão
+- [X] Capítulo 4 – Funções e Modularização
+  - [X] 4.1 Definição de funções
+  - [X] 4.2 Parâmetros e retorno
+  - [X] 4.3 Organização de código em módulos reutilizáveis
+  - [X] 4.4 Conclusão
 
 ---
 
