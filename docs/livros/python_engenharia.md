@@ -62,7 +62,7 @@
         - [3.3.4. Contagem de Ciclos de um Equipamento](#334-contagem-de-ciclos-de-um-equipamento)
         - [3.3.5. Análise de Dados de Sensores](#335-análise-de-dados-de-sensores)
     - [3.4. Conclusão](#34-conclusão)
-4. [Funções e Modularizações](#44-funções-e-modularizações)
+4. [Funções e Modularizações](#4-funções-e-modularizações)
     - [4.1. Definição de Funções](#41-definição-de-funções)
         - [4.1.1. Sintaxe de Definição de Função](#411-sintaxe-de-definição-de-função)
         - [4.1.2. Exemplo de Definição de Função](#412-exemplo-de-definição-de-função)
