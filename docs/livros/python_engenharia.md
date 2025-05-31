@@ -82,7 +82,7 @@
 
 ---
 
-## 1. Apresentação
+# 1. Apresentação
 
 A presente apostila tem como objetivo introduzir os conceitos fundamentais de programação em linguagem Python com foco na aplicação em problemas práticos de engenharia. Python é uma linguagem moderna, acessível e amplamente adotada nas áreas de ciência, tecnologia e automação de processos industriais. Seu ecossistema rico em bibliotecas permite que engenheiros realizem desde simples análises numéricas até simulações e otimizações complexas com rapidez e precisão.
 O conteúdo foi organizado em módulos progressivos, partindo dos fundamentos da programação até aplicações reais por meio de projetos. A ideia é desenvolver a lógica de programação, incentivar a experimentação e fortalecer a capacidade de modelar problemas de engenharia utilizando ferramentas computacionais.
@@ -105,7 +105,7 @@ Campo Largo – PR
 
 ---
 
-## 2. Fundamentos da Programação em Python
+# 2. Fundamentos da Programação em Python
 
 Este primeiro módulo tem como objetivo estabelecer uma base sólida em programação Python, essencial para todas as aplicações que veremos ao longo desta apostila. Dominar os fundamentos da linguagem é crucial para compreender e desenvolver soluções computacionais eficazes para problemas de engenharia.
 
@@ -119,7 +119,7 @@ Ao concluir estes módulos, você estará apto a escrever programas Python simpl
 
 ---
 
-### 2.1. Tipos de Dados em Python
+## 2.1. Tipos de Dados em Python
 
 Em Python, assim como em outras linguagens de programação, os dados são classificados em diferentes tipos. Cada tipo de dado possui características e comportamentos específicos, o que permite ao computador interpretar e manipular as informações corretamente.
 
@@ -1104,7 +1104,7 @@ Nos próximos módulos, exploraremos conceitos mais avançados de Python para re
 
 ---
 
-## 3. Estrutura de Controle
+# 3. Estrutura de Controle
 
 Neste módulo sobre estrutura de controle, exploramos os tipos de dados, operadores e entrada/saída, que nos permitem realizar cálculos e interagir com o usuário. No entanto, a capacidade de um programa de tomar decisões e repetir ações é fundamental para resolver problemas mais complexos. É aqui que entram as estruturas de controle.
 Este módulo é dedicado ao estudo das estruturas de controle em Python, que são ferramentas essenciais para direcionar o fluxo de execução de um programa. Vamos nos aprofundar em como controlar quais partes do código são executadas e quantas vezes, com base em condições específicas.
@@ -1701,7 +1701,7 @@ Nos próximos módulos, continuaremos a explorar conceitos mais avançados de Py
 
 ---
 
-## 4.4. Funções e Modularizações
+# 4. Funções e Modularizações
 
 Neste módulo 4, vamos explorar dois conceitos fundamentais para a organização e reutilização de código em Python: funções e modularização.
 Primeiramente, abordaremos a definição de funções. Funções são blocos de código nomeados que realizam tarefas específicas. Aprenderemos a criar nossas próprias funções para encapsular a lógica de cálculos, processos ou outras operações que precisam ser executadas repetidamente em um programa. Isso evita a duplicação de código e torna os programas mais legíveis e fáceis de manter.
