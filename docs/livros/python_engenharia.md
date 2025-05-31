@@ -554,76 +554,47 @@ Um engenheiro mecânico precisa analisar a deformação de uma viga sob diferent
 **Requisitos:**
 
 1. **Entrada de Dados:**
-
-- O programa deve solicitar ao usuário que insira o comprimento da viga (L) em metros.
-- O programa deve solicitar ao usuário o módulo de elasticidade do material da viga (E) em Pascal (Pa).
-- O programa deve solicitar ao usuário o momento de inércia da seção transversal da viga (I) em m⁴.
-- O programa deve solicitar ao usuário o tipo de carregamento (1 para carga uniforme, 2 para carga pontual no meio).
-- Se o carregamento for uniforme, solicitar a intensidade da carga (w) em N/m.
-- Se o carregamento for pontual, solicitar a magnitude da carga (P) em N.
+    - O programa deve solicitar ao usuário que insira o comprimento da viga (L) em metros.
+    - O programa deve solicitar ao usuário o módulo de elasticidade do material da viga (E) em Pascal (Pa).
+    - O programa deve solicitar ao usuário o momento de inércia da seção transversal da viga (I) em m⁴.
+    - O programa deve solicitar ao usuário o tipo de carregamento (1 para carga uniforme, 2 para carga pontual no meio).
+    - Se o carregamento for uniforme, solicitar a intensidade da carga (w) em N/m.
+    - Se o carregamento for pontual, solicitar a magnitude da carga (P) em N.
 
 2. **Cálculos:**
+    - Calcular a deflexão (y) da viga em função da posição (x) ao longo do comprimento, usando as seguintes fórmulas:
 
-- Calcular a deflexão (y) da viga em função da posição (x) ao longo do comprimento, usando as seguintes fórmulas:
+    - **Deflexão para Carga Uniforme:**
+        ```
+        y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
+        ```
 
-- Deflexão para Carga Uniforme:
-```plaintext
-y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
-```
+    - **Deflexão para Carga Pontual:**
+        ```
+        Para 0 ≤ x ≤ L/2:
+        y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
 
-- Deflexão para Carga Pontual:
-```plaintext
-Para 0 ≤ x ≤ L/2:
-y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
-```
+        Para L/2 < x ≤ L:
+        y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
+        ```
 
-```plaintext
-Para L/2 < x ≤ L:
-y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
-```
-
-Onde:
-
-- Deflexão para Carga Uniforme:
-```plaintext
-   y = (w / (24 * E * I)) * (-x⁴ + 2 * L * x³ - L³ * x)
-```
-
-- Deflexão para Carga Pontual:
-```plaintext
-Para 0 ≤ x ≤ L/2:
-y = (P * x / (48 * E * I)) * (3 * L² - 4 * x²)
-```
-
-```plaintext
-Para L/2 < x ≤ L:
-y = (P * (L - x) / (48 * E * I)) * (3 * L² - 4 * (L - x)²)
-```
-
-Onde:
-- y = Deflexão da viga
-- x = Posição ao longo do comprimento da viga
-- w = Intensidade da carga uniforme
-- P = Magnitude da carga pontual
-- L = Comprimento da viga
-- E = Módulo de elasticidade
-- I = Momento de inércia
+    Onde:
+    - y = Deflexão da viga
+    - x = Posição ao longo do comprimento da viga
+    - w = Intensidade da carga uniforme
+    - P = Magnitude da carga pontual
+    - L = Comprimento da viga
+    - E = Módulo de elasticidade
+    - I = Momento de inércia
 
 3. **Geração do Gráfico:**
-
-Usar a biblioteca MAT_PLOT_LIB para gerar um gráfico da deflexão (y) em função da posição (x).
-
-O gráfico deve ter título, rótulos nos eixos e grade.
+    - Usar a biblioteca `matplotlib` para gerar um gráfico da deflexão (y) em função da posição (x).
+    - O gráfico deve ter título, rótulos nos eixos e grade.
 
 4. **Saída de Dados:**
-
     - Exibir os valores de entrada (L, E, I, w ou P).
     - Exibir o valor máximo da deflexão.
     - Salvar o gráfico em um arquivo PNG.
-
-**Exemplo de Imagem do Exercício:**
-
-![EXERCICIO_PROPOSTO](imagens/04_imagem_exercicio.png)
 
 **Exemplo de Interação:**
 
@@ -634,11 +605,9 @@ Digite o momento de inércia (m^4): 0.0001
 Digite o tipo de carregamento (1-Uniforme, 2-Pontual): 1
 Digite a intensidade da carga (N/m): 1000
 ```
-**Resultado:**
 
-![RESULTADO](imagens/05_imagem_resultado.png)
+**Código Python de Exemplo:**
 
-**Código em Python:**
 ```python
 import matplotlib.pyplot as plt
 
@@ -650,18 +619,18 @@ tipo_carregamento = int(input("Digite o tipo de carregamento (1-Uniforme, 2-Pont
 
 if tipo_carregamento == 1:
     w = float(input("Digite a intensidade da carga uniforme (N/m): "))
-    P = 0  # Apenas para manter a consistência das variáveis
+    P = 0
 elif tipo_carregamento == 2:
     P = float(input("Digite a magnitude da carga pontual (N): "))
-    w = 0  # Apenas para manter a consistência das variáveis
+    w = 0
 else:
     print("Tipo de carregamento inválido.")
     exit()
 
 # Cálculo da deflexão
-num_pontos = 100  # Número de pontos para calcular a deflexão
-x_valores = [i * L / num_pontos for i in range(num_pontos + 1)]  # Lista de posições x
-y_valores = []  # Lista para armazenar os valores de deflexão
+num_pontos = 100
+x_valores = [i * L / num_pontos for i in range(num_pontos + 1)]
+y_valores = []
 
 for x in x_valores:
     if tipo_carregamento == 1:
@@ -679,7 +648,7 @@ plt.title("Deflexão da Viga")
 plt.xlabel("Posição (m)")
 plt.ylabel("Deflexão (m)")
 plt.grid(True)
-plt.savefig("deflexao_viga.png")  # Salva o gráfico como PNG
+plt.savefig("deflexao_viga.png")
 plt.show()
 
 # Saída de dados
@@ -695,27 +664,31 @@ print("Gráfico da deflexão salvo como deflexao_viga.png")
 ```
 
 **Resultado:**
+
 ```plaintext
 Digite o comprimento da viga (m): 5
 Digite o módulo de elasticidade (Pa): 200000000000
 Digite o momento de inércia (m^4): 0.0001
 Digite o tipo de carregamento (1-Uniforme, 2-Pontual): 1
 Digite a intensidade da carga (N/m): 1000
-Deflexão máxima da viga: 0.01042 m
+Deflexão máxima: 0.01042 m
 Gráfico da deflexão salvo como deflexao_viga.png
 ```
+
 **Gráfico:**
- 
+
 ![Gráfico da Deflexão da Viga](imagens/06_imagem_grafico_deflexao.png)
+
+---
 
 Este exercício é mais completo e envolve:
 - Entrada de dados variados (comprimento, propriedades do material, tipo e intensidade de carregamento).
 - Cálculos condicionais (usando IF e ELIF) para aplicar a fórmula correta de deflexão.
 - Uso de listas para armazenar múltiplos valores de X e Y para plotagem.
-- Geração de um gráfico com MAT_PLOT_LIB para visualizar a deformação da viga.
+- Geração de um gráfico com `matplotlib` para visualizar a deformação da viga.
 - Saída formatada dos resultados.
 
-Este tipo de problema é representativo de análises comuns em engenharia mecânica e demonstra a utilidade da programação para resolver problemas complexos e visualizar resultados
+Este tipo de problema é representativo de análises comuns em engenharia mecânica e demonstra a utilidade da programação para resolver problemas complexos e visualizar resultados.
 
 ---
 
