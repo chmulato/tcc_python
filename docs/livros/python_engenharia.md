@@ -469,9 +469,7 @@ Este texto fornece uma base sólida sobre operadores aritméticos e lógicos, ju
 
 ---
 
-### 2.2.4. Exercício Proposto:
-
-**Cálculo de Área e Perímetro de um Terreno e Verificação de Viabilidade**
+### 2.2.4. Exercício Proposto: Cálculo de Área e Perímetro de um Terreno e Verificação de Viabilidade
 
 **Descrição:**
 
@@ -480,19 +478,23 @@ Um engenheiro civil precisa desenvolver um programa em Python para auxiliar no c
 **Requisitos:**
 
 1. **Entrada de Dados:**
-        - O programa deve solicitar ao usuário que insira o comprimento e a largura do terreno em metros.
-        - O programa deve solicitar ao usuário a área mínima permitida para construção no local.
+    - O programa deve solicitar ao usuário que insira o comprimento e a largura do terreno em metros.
+    - O programa deve solicitar ao usuário a área mínima permitida para construção no local.
+
 2. **Cálculos:**
-        - Calcular a área do terreno (área = comprimento * largura).
-        - Calcular o perímetro do terreno (perímetro = 2 * (comprimento + largura)).
+    - Calcular a área do terreno (`área = comprimento * largura`).
+    - Calcular o perímetro do terreno (`perímetro = 2 * (comprimento + largura)`).
+
 3. **Verificação de Viabilidade:**
-        - Verificar se a área do terreno é maior ou igual à área mínima permitida para construção.
-        - Verificar se o perímetro do terreno é menor que um valor máximo (por exemplo, 100 metros - este valor pode ser fixo no programa).
+    - Verificar se a área do terreno é maior ou igual à área mínima permitida para construção.
+    - Verificar se o perímetro do terreno é menor que um valor máximo (por exemplo, 100 metros - este valor pode ser fixo no programa).
+
 4. **Saída de Dados:**
-        - Exibir a área e o perímetro do terreno com duas casas decimais.
-        - Exibir uma mensagem indicando se o terreno é viável para construção, com base nos critérios de área e perímetro.
+    - Exibir a área e o perímetro do terreno com duas casas decimais.
+    - Exibir uma mensagem indicando se o terreno é viável para construção, com base nos critérios de área e perímetro.
 
 **Exemplo de Interação:**
+
 ```plaintext
 Digite o comprimento do terreno (m): 50
 Digite a largura do terreno (m): 30
@@ -503,14 +505,15 @@ Terreno viável para construção: Sim
 ```
 
 **Dicas:**
-- Use os tipos de dados FLOAT para representar as medidas do terreno e a área mínima.
-- Use os operadores aritméticos *, + e \ para realizar os cálculos.
-- Use os operadores lógicos >= e < e o operador and para realizar as verificações de viabilidade.
-- Use a função input() para obter os dados do usuário.
-- Use a função print() para exibir os resultados.
+- Use os tipos de dados `float` para representar as medidas do terreno e a área mínima.
+- Use os operadores aritméticos `*`, `+` e `/` para realizar os cálculos.
+- Use os operadores lógicos `>=` e `<` e o operador `and` para realizar as verificações de viabilidade.
+- Use a função `input()` para obter os dados do usuário.
+- Use a função `print()` para exibir os resultados.
 - Use f-strings para formatar a saída com duas casas decimais.
 
 **Código Python de Exemplo:**
+
 ```python
 # Solicitar entrada do usuário
 comprimento = float(input("Digite o comprimento do terreno (m): "))
@@ -529,7 +532,9 @@ print(f"Área do terreno: {area:.2f} m²")
 print(f"Perímetro do terreno: {perimetro:.2f} m")
 print(f"Terreno viável para construção: {'Sim' if viavel else 'Não'}")
 ```
+
 **Resultado:**
+
 ```plaintext
 Área do terreno: 1500.00 m²
 Perímetro do terreno: 160.00 m
