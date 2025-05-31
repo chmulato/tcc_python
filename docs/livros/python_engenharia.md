@@ -1217,9 +1217,9 @@ Qualidade do ar: Moderada
 ```
 
 **Pontos-chave:**
-•	**Indentação:** A indentação (espaços ou tabulações) é crucial em Python para definir os blocos de código dentro das estruturas condicionais. O código dentro de um bloco if, elif ou else deve ser indentado.
-•	**Operadores Lógicos:** As condições nas estruturas condicionais geralmente envolvem operadores lógicos (and, or, not) e operadores de comparação (==, !=, >, <, >=, <=).
-•	**Flexibilidade:** As estruturas condicionais podem ser aninhadas (uma dentro da outra) para criar lógicas de decisão mais complexas.
+- **Indentação:** A indentação é crucial em Python para definir os blocos de código dentro das estruturas condicionais. O código dentro de um bloco if, elif ou else deve ser indentado.
+- **Operadores Lógicos:** As condições nas estruturas condicionais geralmente envolvem operadores lógicos (and, or, not) e operadores de comparação (==, !=, >, <, >=, <=).
+- **Flexibilidade:** As estruturas condicionais podem ser aninhadas (uma dentro da outra) para criar lógicas de decisão mais complexas.
 Compreender e aplicar corretamente as estruturas condicionais é essencial para desenvolver programas que resolvam problemas reais de engenharia, onde a tomada de decisões é uma parte fundamental do processo.
 
 ### 3.1.4. Exercício Proposto: Classificação de Solos
