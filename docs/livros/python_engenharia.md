@@ -925,7 +925,41 @@ print(f"Tempo de reação: {tempo_reacao:.2f} minutos")
 
 ## Figura 2.3.1 – Esquema Técnico
 
-![Figura Esquema Técnico](/imagens/06_imagem_esquema_tecnico.png)
+```plain
++---------------------+
+|   Programa Python   |
++---------------------+
+         ||
++---------------------+
+|   Entrada de Dados  |
++---------------------+
+         ||
++---------------------+
+|       input()       |
++---------------------+
+         ||
++-----------------------------+
+|  Dados do Usuário (Teclado) |
++-----------------------------+
+         ||
++-------------------------------+
+| Processamento (Cálculos, Lógica) |
++-------------------------------+
+         ||
++---------------------+
+|   Saída de Dados    |
++---------------------+
+         ||
++---------------------+
+|      print()        |
++---------------------+
+         ||
++---------------------+
+|    Resultados       |
+|      (Tela)         |
++---------------------+
+         ||
+```
 
 **Descrição do Esquema:**
 1.	**Programa Python:** Representa o código Python que o engenheiro escreve para resolver um problema específico (e.g., cálculo de tensões, simulação de um circuito).
@@ -1241,7 +1275,7 @@ Compreender e aplicar corretamente as estruturas condicionais é essencial para 
 **Descrição:**
 Um engenheiro civil precisa de um programa para classificar amostras de solo com base em seu Índice de Plasticidade (IP) e Limite de Liquidez (LL). O programa deve solicitar ao usuário os valores de IP e LL e exibir a classificação do solo de acordo com a tabela a seguir:
 
-![CLASSIFICAÇÃO](imagens/08_imagem_exercicio.png)
+![CLASSIFICAÇÃO](imagens/07_imagem_exercicio.png)
 
 **Requisitos:**
 
@@ -1376,7 +1410,7 @@ while condicao:
 
 **Exemplos em engenharia:**
 Iterar sobre uma lista de medições de temperatura:
-![ITERAÇÃO_WHILE](imagens/09_imagem_exercicio.png) 
+![ITERAÇÃO_WHILE](imagens/08_imagem_exercicio.png) 
 
 Calcular a soma dos quadrados dos 10 primeiros números inteiros:
 
@@ -1955,6 +1989,8 @@ Um engenheiro florestal precisa desenvolver um sistema para gerenciar o inventá
 **Requisitos:**
 1. Criar um módulo `calculos_florestais.py` com funções para calcular o volume de uma árvore, a idade de corte e gerar relatórios.
 2. No programa principal, importar o módulo, definir dados de exemplo de uma parcela florestal (lista de dicionários), chamar as funções do módulo e exibir o relatório na tela.
+
+![EXERCICIO_PROPOSTO](imagens/09_imagem_exercicio_proposto.png)
 
 ---
 
