@@ -82,7 +82,7 @@
 
 ---
 
-### 1. Apresentação
+## 1. Apresentação
 
 A presente apostila tem como objetivo introduzir os conceitos fundamentais de programação em linguagem Python com foco na aplicação em problemas práticos de engenharia. Python é uma linguagem moderna, acessível e amplamente adotada nas áreas de ciência, tecnologia e automação de processos industriais. Seu ecossistema rico em bibliotecas permite que engenheiros realizem desde simples análises numéricas até simulações e otimizações complexas com rapidez e precisão.
 O conteúdo foi organizado em módulos progressivos, partindo dos fundamentos da programação até aplicações reais por meio de projetos. A ideia é desenvolver a lógica de programação, incentivar a experimentação e fortalecer a capacidade de modelar problemas de engenharia utilizando ferramentas computacionais.
@@ -105,7 +105,7 @@ Campo Largo – PR
 
 ---
 
-### 2. Fundamentos da Programação em Python
+## 2. Fundamentos da Programação em Python
 
 Este primeiro módulo tem como objetivo estabelecer uma base sólida em programação Python, essencial para todas as aplicações que veremos ao longo desta apostila. Dominar os fundamentos da linguagem é crucial para compreender e desenvolver soluções computacionais eficazes para problemas de engenharia.
 
@@ -910,7 +910,7 @@ print(f"Tempo de reação: {tempo_reacao:.2f} minutos")
 
 ---
 
-## Figura 2.3.1 – Esquema Técnico
+#### Figura 2.3.1 – Esquema Técnico
 
 ```plain
 +---------------------+
@@ -1093,7 +1093,7 @@ print(f"A concentração do poluente é: {concentracao:.2f} kg/m³")
 ```
 ---
 
-## 2.5. Conclusão
+### 2.5. Conclusão
 
 Estes exemplos demonstram como os conceitos básicos de Python podem ser aplicados para resolver problemas simples em diferentes áreas da engenharia.
 Eles reforçam a importância de:
@@ -1104,7 +1104,7 @@ Nos próximos módulos, exploraremos conceitos mais avançados de Python para re
 
 ---
 
-### 3. Estrutura de Controle
+## 3. Estrutura de Controle
 
 Neste módulo sobre estrutura de controle, exploramos os tipos de dados, operadores e entrada/saída, que nos permitem realizar cálculos e interagir com o usuário. No entanto, a capacidade de um programa de tomar decisões e repetir ações é fundamental para resolver problemas mais complexos. É aqui que entram as estruturas de controle.
 Este módulo é dedicado ao estudo das estruturas de controle em Python, que são ferramentas essenciais para direcionar o fluxo de execução de um programa. Vamos nos aprofundar em como controlar quais partes do código são executadas e quantas vezes, com base em condições específicas.
@@ -1331,7 +1331,7 @@ Dominar as estruturas condicionais **IF, ELIF e ELSE** é um marco importante na
 
 ---
 
-### 3.2. Laços de Repetição: for, while
+## 3.2. Laços de Repetição: for, while
 
 Os laços de repetição são fundamentais na programação, permitindo que um bloco de código seja executado várias vezes, com base em uma condição. Em Python, os principais tipos de laços são o `for` e o `while`.
 
@@ -1555,11 +1555,11 @@ Compreender como usar esses laços é essencial para desenvolver programas efici
 
 ---
 
-### 3.3. Aplicações Práticas em Verificação de Condições Operacionais
+## 3.3. Aplicações Práticas em Verificação de Condições Operacionais
 
 As estruturas de controle (IF, ELIF, ELSE, FOR, WHILE) são extremamente úteis para monitorar e controlar condições operacionais em sistemas de engenharia. Nesta seção, apresentaremos exemplos práticos de como essas estruturas podem ser aplicadas para garantir a segurança, eficiência e correto funcionamento de processos e equipamentos.
 
-#### 3.3.1. Monitoramento de Temperatura em um Reator Químico
+### 3.3.1. Monitoramento de Temperatura em um Reator Químico
 
 Em um reator químico, a temperatura é um parâmetro crítico que deve ser mantido dentro de limites seguros para evitar reações indesejadas ou danos ao equipamento. O código abaixo demonstra como usar condicionais para verificar a temperatura e emitir alertas:
 
@@ -1585,7 +1585,7 @@ Digite a temperatura do reator em °C: 50
 Temperatura dentro dos limites normais.
 ```
 
-#### 3.3.2. Controle de Nível em um Tanque
+### 3.3.2. Controle de Nível em um Tanque
 
 O nível de líquido em um tanque é outro parâmetro importante em muitos processos industriais. O código a seguir ilustra como usar condicionais para controlar o nível e acionar bombas ou válvulas:
 
@@ -1611,7 +1611,7 @@ Digite o nível do líquido no tanque em %: 50
 Nível dentro dos limites normais.
 ```
 
-#### 3.3.3. Verificação de Pressão em um Sistema de Tubulação
+### 3.3.3. Verificação de Pressão em um Sistema de Tubulação
 
 A pressão em um sistema de tubulação deve ser monitorada para evitar vazamentos ou rupturas. O código abaixo mostra como usar condicionais para verificar a pressão e emitir avisos:
 
@@ -1636,7 +1636,7 @@ Alerta: Pressão muito baixa!
 Digite a pressão do sistema em bar: 5
 Pressão dentro dos limites normais.
 ```
-#### 3.3.4. Contagem de Ciclos de um Equipamento
+### 3.3.4. Contagem de Ciclos de um Equipamento
 
 Em engenharia mecânica, é importante monitorar o número de ciclos de operação de um equipamento para programar a manutenção preventiva. O código a seguir usa um laço WHILE para simular a operação de um equipamento e contar os ciclos:
 
@@ -1665,7 +1665,7 @@ Ciclos de operação: 2
 O equipamento está em operação? (s/n): n
 Operação encerrada.
 ```
-#### 3.3.5. Análise de Dados de Sensores
+### 3.3.5. Análise de Dados de Sensores
 
 Em sistemas de automação, os dados dos sensores precisam ser analisados para tomar decisões em tempo real. O código a seguir usa um laço for para processar dados de um sensor de vibração e identificar valores anormais:
 
@@ -1701,7 +1701,7 @@ Nos próximos módulos, continuaremos a explorar conceitos mais avançados de Py
 
 ---
 
-### 4.4. Funções e Modularizações
+## 4.4. Funções e Modularizações
 
 Neste módulo 4, vamos explorar dois conceitos fundamentais para a organização e reutilização de código em Python: funções e modularização.
 Primeiramente, abordaremos a definição de funções. Funções são blocos de código nomeados que realizam tarefas específicas. Aprenderemos a criar nossas próprias funções para encapsular a lógica de cálculos, processos ou outras operações que precisam ser executadas repetidamente em um programa. Isso evita a duplicação de código e torna os programas mais legíveis e fáceis de manter.
@@ -1711,12 +1711,12 @@ Ao concluir este módulo, você estará apto a criar funções para organizar se
 
 ---
 
-### 4.1. Definição de Funções
+## 4.1. Definição de Funções
 
 Em Python, uma função é um bloco de código organizado e reutilizável que executa uma tarefa específica. Funções ajudam a dividir programas complexos em partes menores e gerenciáveis, tornando o código mais legível, organizado e fácil de manter.
 As funções são definidas usando a palavra-chave `def`, seguida pelo nome da função e parênteses que podem conter parâmetros. O corpo da função é indentado abaixo da definição e contém o código que será executado quando a função for chamada.
 
-#### 4.1.1. Sintaxe de Definição de Função
+### 4.1.1. Sintaxe de Definição de Função
 
 A sintaxe para definir uma função em Python é a seguinte:
 ```python
@@ -1730,7 +1730,7 @@ def nome_da_funcao(parametros):
 - `parametros`: uma lista de variáveis que a função pode receber como entrada (opcional).
 - `pass`: um comando que indica que a função não faz nada (pode ser substituído pelo código real da função).
 
-#### 4.1.2. Exemplo de Definição de Função
+### 4.1.2. Exemplo de Definição de Função
 
 Vamos criar uma função simples que calcula a área de um retângulo. A função receberá dois parâmetros: a base e a altura do retângulo, e retornará a área calculada.
 
@@ -1758,11 +1758,11 @@ As funções oferecem vários benefícios importantes na programação, especial
 
 No contexto da engenharia, as funções podem ser usadas para encapsular cálculos complexos, simulações, análises de dados e outras tarefas comuns, promovendo a eficiência e a clareza no desenvolvimento de software.
 
-### 4.2. Parâmetros e Retorno
+## 4.2. Parâmetros e Retorno
 
 Parâmetros e retorno são mecanismos que permitem que as funções se comuniquem com o "mundo exterior", ou seja, que recebam dados para trabalhar e que forneçam resultados de volta para quem as chamou.
 
-#### 4.2.1. Parâmetros
+### 4.2.1. Parâmetros
 
 Os parâmetros são variáveis que você define na declaração da função e que permitem que a função receba valores de entrada quando é chamada. Eles são especificados entre parênteses na definição da função.
 
@@ -1800,7 +1800,7 @@ exemplo_args(1, 2, 3, 4)
 exemplo_kwargs(nome="João", idade=30, cidade="São Paulo")
 ```
 
-#### 4.2.2. Retorno
+### 4.2.2. Retorno
 
 O retorno é o mecanismo pelo qual uma função envia um resultado de volta para quem a chamou. Você pode usar a palavra-chave `return` para especificar o valor que a função deve retornar.
 
@@ -1830,7 +1830,7 @@ A média das notas é: 7.75
 **Importância:**
 Parâmetros tornam as funções flexíveis e reutilizáveis, permitindo que operem em diferentes dados. O retorno permite que as funções produzam resultados que podem ser usados em outras partes do programa. Juntos, parâmetros e retorno são cruciais para a criação de funções modulares e eficientes.
 
-#### 4.2.3. Benefícios de Parâmetros e Retorno
+### 4.2.3. Benefícios de Parâmetros e Retorno
 
 Parâmetros e retorno oferecem vários benefícios importantes na programação, especialmente em engenharia:
 - Flexibilidade: Permitem que as funções operem em diferentes dados, tornando-as reutilizáveis em várias situações.
@@ -1842,11 +1842,11 @@ Esses benefícios são essenciais para o desenvolvimento de software de engenhar
 
 ---
 
-### 4.3. Organização de Código em Módulos Reutilizáveis
+## 4.3. Organização de Código em Módulos Reutilizáveis
 
 A organização de código em módulos reutilizáveis é uma prática fundamental na programação, especialmente em projetos maiores e mais complexos. Módulos permitem que você divida seu código em arquivos separados, cada um contendo funções, classes e variáveis relacionadas a uma funcionalidade específica. Isso promove a reutilização de código, facilita a manutenção e melhora a legibilidade do programa.
 
-#### 4.3.1. O que são Módulos?
+### 4.3.1. O que são Módulos?
 Módulos são arquivos Python que contêm definições de funções, classes e variáveis. Eles permitem que você organize seu código em partes lógicas, facilitando a reutilização e a manutenção. Você pode importar módulos em outros arquivos Python para acessar suas funcionalidades.
 
 **Exemplo de Módulo:**
@@ -1861,7 +1861,7 @@ def soma(a, b):
 mensagem = "Este é um módulo de exemplo."
 ```
 
-#### 4.3.2. Criando Módulos
+### 4.3.2. Criando Módulos
 
 Para criar um módulo, basta salvar o código Python em um arquivo .py.
 
@@ -1877,7 +1877,7 @@ def perimetro_circulo(raio):
     import math
     return 2 * math.pi * raio
 ```
-#### 4.3.3. Importando Módulos
+### 4.3.3. Importando Módulos
 
 Para usar um módulo em outro arquivo Python, você deve importá-lo. Existem várias maneiras de importar módulos:
 
@@ -1903,7 +1903,7 @@ Para usar um módulo em outro arquivo Python, você deve importá-lo. Existem v�
    print(soma(5, 10))
    ```
 
-#### 4.3.4. Benefícios da Modularização
+### 4.3.4. Benefícios da Modularização
 
 A modularização oferece vários benefícios importantes na programação, especialmente em engenharia:
 - Reutilização de Código: Módulos permitem que você reutilize funções e classes em diferentes projetos, economizando tempo e esforço.
@@ -2047,7 +2047,7 @@ Este exercício simula um sistema de gestão de inventário florestal, onde o en
 
 ---
 
-### 4.4. Conclusão
+## 4.4. Conclusão
 
 Neste módulo, mergulhamos nos conceitos de funções e modularização em Python, aprendendo a criar funções para encapsular a lógica de tarefas específicas, a utilizar parâmetros para torná-las flexíveis e a retornar valores para comunicar resultados. Demonstramos como a modularização permite organizar o código em módulos reutilizáveis, facilitando a manutenção, a colaboração e a escalabilidade de projetos. O exemplo prático de gestão de inventário florestal ilustrou a aplicação desses conceitos em um problema real de engenharia, evidenciando como funções e módulos contribuem para o desenvolvimento de soluções mais estruturadas, eficientes e fáceis de manter. O domínio desses conceitos é um passo fundamental para o desenvolvimento de software de alta qualidade em engenharia.
 
