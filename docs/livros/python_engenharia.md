@@ -41,6 +41,28 @@
         - [2.4.4. Engenharia Química: Vazão Molar](#244-engenharia-química-vazão-molar)
         - [2.4.5. Engenharia Ambiental: Cálculo de Concentração](#245-engenharia-ambiental-cálculo-de-concentração)
     - [2.5. Conclusão](#25-conclusão)
+3. [Estrutura de Controle](#3-estrutura-de-controle)
+    - [3.1. Condicionais: if, elif, else](#31-condicionais-if-elif-else)
+        - [3.1.1. A estrutura if](#311-a-estrutura-if)
+        - [3.1.2. A estrutura if-else](#312-a-estrutura-if-else)
+        - [3.1.3. A estrutura if-elif-else](#313-a-estrutura-if-elif-else)
+        - [3.1.4. Exercício Proposto: Classificação de Solos](#314-exercício-proposto-classificação-de-solos)
+        - [3.1.5. Curiosidade – Engenharia Civil](#315-curiosidade--engenharia-civil)
+        - [3.1.6. Conclusão](#316-conclusão)
+    - [3.2. Laços de Repetição: for, while](#32-laços-de-repetição-for-while)
+        - [3.2.1. O laço for](#321-o-laço-for)
+        - [3.2.2. O laço while](#322-o-laço-while)
+        - [3.2.3. Exercício Proposto: Simulação de um Reator Batelada Isotérmico](#323-exercício-proposto-simulação-de-um-reator-batelada-isotérmico)
+        - [3.2.4. Curiosidade – Engenharia Química](#324-curiosidade--engenharia-química)
+        - [3.2.5. Conclusão](#325-conclusão)
+    - [3.3. Aplicações Práticas em Verificação de Condições Operacionais](#33-aplicações-práticas-em-verificação-de-condições-operacionais)
+        - [3.3.1. Monitoramento de Temperatura em um Reator Químico](#331-monitoramento-de-temperatura-em-um-reator-químico)
+        - [3.3.2. Controle de Nível em um Tanque](#332-controle-de-nível-em-um-tanque)
+        - [3.3.3. Verificação de Pressão em um Sistema de Tubulação](#333-verificação-de-pressão-em-um-sistema-de-tubulação)
+        - [3.3.4. Contagem de Ciclos de um Equipamento](#334-contagem-de-ciclos-de-um-equipamento)
+        - [3.3.5. Análise de Dados de Sensores](#335-análise-de-dados-de-sensores)
+    - [3.4. Conclusão](#34-conclusão)
+4. [Funções e Modularizações](#44-funções-e-modularizações)
 
 ---
 
@@ -735,17 +757,18 @@ Em programação, a entrada e saída de dados referem-se à forma como um progra
 
 ### 2.3.1. Entrada de Dados: input()
 
-A função input() permite que o programa receba dados do usuário através do teclado.
+A função `input()` permite que o programa receba dados do usuário através do teclado.
 
-- Sintaxe: variavel = input("Mensagem para o usuário")
-- Funcionamento:
-1. A função input() exibe a "Mensagem para o usuário" (também chamada de prompt) na tela, solicitando que o usuário forneça alguma informação.
-2. O usuário digita a informação e pressiona Enter.
-3. A função input() retorna a informação digitada pelo usuário como uma string (cadeia de caracteres).
-4. A informação retornada é atribuída à variavel.
-• Importante: Mesmo que o usuário digite números, a função input() sempre retorna uma STRING. Se você precisar usar a entrada como um número, será necessário convertê-la explicitamente usando as funções int() (para inteiros) ou float() (para números de ponto flutuante).
+- **Sintaxe:** `variavel = input("Mensagem para o usuário")`
+- **Funcionamento:**
+    1. A função `input()` exibe a mensagem para o usuário (prompt) na tela.
+    2. O usuário digita a informação e pressiona Enter.
+    3. A função `input()` retorna a informação digitada como uma string.
+    4. A informação retornada é atribuída à variável.
 
-• Exemplos em engenharia:
+- **Importante:** Mesmo que o usuário digite números, a função `input()` sempre retorna uma STRING. Se você precisar usar a entrada como número, será necessário convertê-la explicitamente usando as funções `int()` (para inteiros) ou `float()` (para números de ponto flutuante).
+
+- **Exemplos em engenharia:**
 
 Solicitar ao usuário o diâmetro de um tubo:
 
@@ -823,15 +846,14 @@ O programa deve solicitar ao usuário a quantidade inicial do reagente, a quanti
 
 **Requisitos:**
 
-    1. Entrada de Dados:
+1. Entrada de Dados:
+   - O programa deve solicitar ao usuário o nome do reagente (string).
+   - O programa deve solicitar ao usuário a quantidade inicial do reagente em mols (float).
+   - O programa deve solicitar ao usuário a quantidade final do reagente em mols (float).
+   - O programa deve solicitar ao usuário o tipo do reator (string).
+   - O programa deve solicitar ao usuário o tempo de reação em minutos (float).
 
-- O programa deve solicitar ao usuário o nome do reagente (string).
-- O programa deve solicitar ao usuário a quantidade inicial do reagente em mols (float).
-- O programa deve solicitar ao usuário a quantidade final do reagente em mols (float).
-- O programa deve solicitar ao usuário o tipo do reator (string).
-- O programa deve solicitar ao usuário o tempo de reação em minutos (float).
-
-    2. Cálculo:
+2. Cálculo:
 
 Calcular a conversão do reagente usando a fórmula:
 
@@ -1047,4 +1069,628 @@ Nos próximos módulos, exploraremos conceitos mais avançados de Python para re
 
 ---
 
+### 3. Estrutura de Controle
 
+Neste módulo sobre estrutura de controle, exploramos os tipos de dados, operadores e entrada/saída, que nos permitem realizar cálculos e interagir com o usuário. No entanto, a capacidade de um programa de tomar decisões e repetir ações é fundamental para resolver problemas mais complexos. É aqui que entram as estruturas de controle.
+Este módulo é dedicado ao estudo das estruturas de controle em Python, que são ferramentas essenciais para direcionar o fluxo de execução de um programa. Vamos nos aprofundar em como controlar quais partes do código são executadas e quantas vezes, com base em condições específicas.
+Primeiramente, abordaremos as condicionais (IF, ELIF, ELSE). As condicionais permitem que o programa escolha diferentes caminhos de execução, dependendo se uma determinada condição é verdadeira ou falsa. Isso é crucial para implementar a lógica de decisão em problemas de engenharia, como verificar se um sensor excedeu um limite de segurança ou classificar dados de acordo com critérios específicos.
+Em seguida, exploraremos os laços de repetição (FOR, WHILE). Os laços de repetição nos permitem executar um bloco de código repetidamente, até que uma condição seja satisfeita. Isso é extremamente útil para automatizar tarefas repetitivas, como iterar sobre conjuntos de dados, realizar cálculos iterativos ou simular o comportamento de sistemas ao longo do tempo.
+Finalmente, demonstraremos aplicações práticas em verificação de condições operacionais. Através de exemplos relevantes para a engenharia, mostraremos como as estruturas de controle podem ser usadas para monitorar processos, garantir a segurança de sistemas e automatizar a tomada de decisões em tempo real.
+Ao concluir este módulo, você estará apto a desenvolver programas Python que não apenas realizam cálculos, mas também tomam decisões lógicas e executam ações repetitivas, abrindo caminho para a criação de soluções de engenharia mais robustas e inteligentes.
+
+---
+
+### 3.1. Condicionais: if, elif, else
+
+As estruturas condicionais são fundamentais para controlar o fluxo de execução de um programa, permitindo que diferentes blocos de código sejam executados dependendo se uma condição é verdadeira ou falsa. Em Python, as palavras-chave if, elif (abreviação de "else if") e else são usadas para definir essas estruturas.
+
+#### 3.1.1. A estrutura if
+
+A estrutura if é a mais básica e executa um bloco de código somente se uma condição especificada for verdadeira.
+
+**Sintaxe:**
+```python
+if condição:
+    # bloco de código a ser executado se a condição for verdadeira
+    pass
+```
+**Funcionamento:**
+- A condição é uma expressão que pode ser avaliada como True (verdadeiro) ou False (falso).
+- Se a condição for True, o bloco de código indentado abaixo do if é executado.
+- Se a condição for False, o bloco de código é ignorado e o programa continua a execução na próxima linha após o bloco if.
+
+- **Exemplo em engenharia:** Verificar se a temperatura de um sistema excedeu um limite de segurança.
+
+**Código Python:**
+```python
+indice_poluicao = float(input("Digite o índice de poluição do ar: "))
+
+if indice_poluicao <= 50:
+    print("Qualidade do ar: Boa")
+elif indice_poluicao <= 100:
+    print("Qualidade do ar: Moderada")
+elif indice_poluicao <= 150:
+    print("Qualidade do ar: Insatisfatória")
+elif indice_poluicao <= 200:
+    print("Qualidade do ar: Ruim")
+else:
+    print("Qualidade do ar: Muito Ruim")
+```
+**Resultado:**
+
+```plaintext
+Digite o índice de poluição do ar: 75
+Qualidade do ar: Moderada
+```
+
+---
+
+
+#### 3.1.2. A estrutura if-else
+
+A estrutura if-else permite executar um bloco de código se a condição for verdadeira e outro bloco de código se a condição for falsa.
+**Sintaxe:**
+
+```python
+if condição:
+    # bloco de código a ser executado se a condição for verdadeira
+    pass
+else:
+    # bloco de código a ser executado se a condição for falsa
+    pass
+```
+
+**Funcionamento:**
+- A condição é avaliada.
+- Se a condição for True, o bloco de código do if é executado.
+- Se a condição for False, o bloco de código do else é executado.
+- Apenas um dos blocos de código (o do if ou o do else) é executado.
+
+- **Exemplo em engenharia:** Classificar um material como "resistente" ou "não resistente" com base em um teste de tensão.
+
+**Código Python:**
+
+```python
+tensao = float(input("Digite a tensão aplicada (N/m²): "))
+limite = 100.0
+
+if tensao > limite:
+    print("Material não resistente.")
+else:
+    print("Material resistente.")
+```
+
+**Resultado:**
+
+```plaintext
+Digite a tensão aplicada (N/m²): 75
+Material resistente.
+```
+---
+
+#### 3.1.3. A estrutura if-elif-else
+
+A estrutura if-elif-else permite verificar múltiplas condições em sequência. O elif (else if) especifica uma nova condição a ser verificada se a condição anterior for falsa.
+
+**Sintaxe:**
+
+```python
+if condição1:
+    # bloco de código a ser executado se condição1 for verdadeira
+    pass
+elif condição2:
+    # bloco de código a ser executado se condição2 for verdadeira
+    pass
+else:
+    # bloco de código a ser executado se nenhuma das condições anteriores for verdadeira
+    pass
+```
+
+**Funcionamento:**
+- As condições são avaliadas em ordem.
+- Se uma condição for True, o bloco de código correspondente é executado e o restante da estrutura (elif e else) é ignorado.
+- Se nenhuma condição for True, o bloco de código do else (se houver) é executado.
+- Pode haver qualquer número de blocos elif. O bloco else é opcional.
+
+**Exemplo em engenharia:** Classificar a qualidade do ar com base no índice de poluição.
+
+**Código Python:**
+```python
+indice_poluicao = float(input("Digite o índice de poluição do ar: "))
+
+if indice_poluicao <= 50:
+    print("Qualidade do ar: Boa")
+elif indice_poluicao <= 100:
+    print("Qualidade do ar: Moderada")
+elif indice_poluicao <= 150:
+    print("Qualidade do ar: Insatisfatória")
+elif indice_poluicao <= 200:
+    print("Qualidade do ar: Ruim")
+else:
+    print("Qualidade do ar: Muito Ruim")
+```
+**Resultado:**
+
+```plaintext
+Digite o índice de poluição do ar: 75
+Qualidade do ar: Moderada
+```
+
+**Pontos-chave:**
+•	**Indentação:** A indentação (espaços ou tabulações) é crucial em Python para definir os blocos de código dentro das estruturas condicionais. O código dentro de um bloco if, elif ou else deve ser indentado.
+•	**Operadores Lógicos:** As condições nas estruturas condicionais geralmente envolvem operadores lógicos (and, or, not) e operadores de comparação (==, !=, >, <, >=, <=).
+•	**Flexibilidade:** As estruturas condicionais podem ser aninhadas (uma dentro da outra) para criar lógicas de decisão mais complexas.
+Compreender e aplicar corretamente as estruturas condicionais é essencial para desenvolver programas que resolvam problemas reais de engenharia, onde a tomada de decisões é uma parte fundamental do processo.
+
+### 3.1.4. Exercício Proposto: Classificação de Solos
+
+**Descrição:**
+Um engenheiro civil precisa de um programa para classificar amostras de solo com base em seu Índice de Plasticidade (IP) e Limite de Liquidez (LL). O programa deve solicitar ao usuário os valores de IP e LL e exibir a classificação do solo de acordo com a tabela a seguir:
+
+![CLASSIFICAÇÃO](imagens/08_imagem_exercicio.png)
+
+**Requisitos:**
+
+1. **Entrada de Dados:**
+   - O programa deve solicitar ao usuário o Limite de Liquidez (LL) do solo (FLOAT).
+   - O programa deve solicitar ao usuário o Índice de Plasticidade (IP) do solo (FLOAT).
+2. **Classificação:**
+   - Utilizar estruturas condicionais (IF, ELIF, ELSE) para classificar o solo de acordo com a tabela fornecida.
+3. **Saída de Dados:**
+   - Exibir o Limite de Liquidez (LL) e o Índice de Plasticidade (IP) inseridos pelo usuário, formatados com duas casas decimais.
+   - Exibir a classificação do solo.
+
+**Exemplo de Interação:**
+```plaintext
+Digite o Limite de Liquidez (LL) do solo: 45
+Digite o Índice de Plasticidade (IP) do solo: 25
+Limite de Liquidez (LL): 45.00
+Índice de Plasticidade (IP): 25.00
+Classificação do Solo: Solo Argiloso
+```
+
+**Dicas:**
+
+- Use a função input() para obter os valores de LL e IP do usuário.
+- Use os tipos de dados FLOAT para armazenar os valores de LL e IP.
+- Lembre-se de converter as entradas de input() para FLOAT.
+- Use os operadores de comparação (>=, <, ==) e os operadores lógicos (AND, OR, NOT) para implementar as condições de classificação.
+- Use f-strings para formatar a saída com duas casas decimais.
+
+**Código Python:**
+```python
+# Entrada de dados
+ll = float(input("Digite o Limite de Liquidez (LL): "))
+ip = float(input("Digite o Índice de Plasticidade (IP): "))
+
+# Classificação do solo
+if ll >= 50 and ip >= 7:
+    classificacao = "Argila"
+elif ll < 50 and 4 <= ip < 7:
+    classificacao = "Silte"
+else:
+    classificacao = "Solo Não Plástico"
+
+# Saída de dados
+print(f"\nLimite de Liquidez (LL): {ll:.2f}")
+print(f"Índice de Plasticidade (IP): {ip:.2f}")
+print(f"Classificação do Solo: {classificacao}")
+```
+**Resultado:**
+```plaintext
+Limite de Liquidez (LL): 45.00
+Índice de Plasticidade (IP): 25.00
+Classificação do Solo: Solo Argiloso
+```
+Este exercício aplica as estruturas condicionais em um problema prático de engenharia civil, demonstrando como a lógica de decisão pode ser implementada em programas para classificar dados e auxiliar na análise de materiais.
+
+### 3.1.5. Curiosidade – Engenharia Civil
+
+Na engenharia civil, a classificação de solos é uma etapa crucial no projeto e construção de fundações, estradas e outras estruturas. A tabela de classificação de solos baseada no Índice de Plasticidade (IP) e Limite de Liquidez (LL) é amplamente utilizada para entender as propriedades mecânicas do solo.
+A classificação de solos é baseada em normas técnicas, como a ASTM D2487, que define os critérios para categorizar solos em diferentes grupos, como argilas, siltes e solos não plásticos. Esses grupos são importantes porque influenciam diretamente o comportamento do solo sob carga, sua capacidade de suporte e sua suscetibilidade à deformação.
+A tabela de classificação apresentada no exercício é uma simplificação, mas reflete os princípios básicos usados na prática. A classificação correta do solo é essencial para garantir a segurança e a estabilidade das estruturas construídas sobre ele.
+
+### 3.1.6. Conclusão
+
+Dominar as estruturas condicionais **IF, ELIF e ELSE** é um marco importante na jornada de programação. Elas fornecem a base para criar programas que não apenas executam cálculos, mas também respondem dinamicamente a diferentes entradas e condições. Nos próximos itens e módulos, veremos como essa habilidade será aplicada em contextos mais complexos, como laços de repetição, funções e projetos de engenharia.
+
+---
+
+### 3.2. Laços de Repetição: for, while
+
+Os laços de repetição são fundamentais na programação, permitindo que um bloco de código seja executado várias vezes, com base em uma condição. Em Python, os principais tipos de laços são o `for` e o `while`.
+
+O laço `for` é usado para iterar sobre uma sequência (como uma lista, tupla ou string) e executar um bloco de código para cada item da sequência. A sintaxe básica é:
+
+```python
+for item in sequencia:
+    # bloco de código
+```
+
+O laço `while`, por outro lado, executa um bloco de código enquanto uma condição específica for verdadeira. A sintaxe básica é:
+
+```python
+while condicao:
+    # bloco de código
+```
+Ambos os tipos de laços são amplamente utilizados em problemas de engenharia, como simulações, otimizações e análises de dados.
+
+### 3.2.1. O laço for
+
+Os laços de repetição são estruturas de controle que permitem executar um bloco de código repetidamente, um número específico de vezes ou enquanto uma condição for verdadeira. Em Python, os dois tipos principais de laços são FOR e WHILE.
+O laço `for` é usado para iterar sobre uma sequência (como uma lista, tupla ou string) e executar um bloco de código para cada item da sequência. A sintaxe básica é:
+
+```python
+for item in sequencia:
+    # bloco de código
+```
+**Funcionamento:**
+- A variável `item` assume o valor de cada elemento da `sequencia` a cada iteração.
+- O bloco de código indentado abaixo do `for` é executado para cada item.
+- O laço termina quando todos os itens da sequência foram processados.
+**Exemplo em engenharia:** Calcular a média de uma série de medidas de temperatura.
+
+```python
+temperaturas = [20.5, 22.0, 19.8, 21.5, 23.0]
+soma_temperaturas = 0.0
+for temperatura in temperaturas:
+    soma_temperaturas += temperatura
+media_temperatura = soma_temperaturas / len(temperaturas)
+print(f"Média de temperatura: {media_temperatura:.2f} °C")
+```
+**Resultado:**
+```plaintext
+Média de temperatura: 21.16 °C
+```
+---
+
+### 3.2.2. O laço while
+
+O laço `while` executa um bloco de código enquanto uma condição específica for verdadeira. É útil quando o número de iterações não é conhecido previamente.
+
+**Sintaxe:**
+```python
+while condicao:
+    # bloco de código
+```
+
+**Funcionamento:**
+- A condição é avaliada antes de cada iteração.
+- Se a condição for True, o bloco de código indentado é executado.
+- Após a execução do bloco, a condição é verificada novamente.
+- O laço continua até que a condição se torne False.
+
+**Exemplos em engenharia:**
+Iterar sobre uma lista de medições de temperatura:
+![ITERAÇÃO_WHILE](imagens/09_imagem_exercicio.png) 
+
+Calcular a soma dos quadrados dos 10 primeiros números inteiros:
+
+```python
+soma_quadrados = 0
+contador = 1
+while contador <= 10:
+    soma_quadrados += contador**2
+    contador += 1
+print(f"Soma dos quadrados: {soma_quadrados}")
+```
+**Funcionamento:**
+- A condição é avaliada antes de cada iteração.
+- Se a condição for True, o bloco de código indentado é executado.
+- Após a execução do bloco, a condição é verificada novamente.
+- O laço continua até que a condição se torne False.
+
+**Exemplo em engenharia:** Simular o resfriamento de um líquido até atingir uma temperatura segura.
+
+```python
+temperatura = 100.0  # Temperatura inicial em °C
+while temperatura > 30.0:  # Condição de resfriamento
+    print(f"Temperatura atual: {temperatura:.2f} °C")
+    temperatura -= 5.0  # Resfriamento de 5 °C por iteração
+print("Temperatura segura alcançada.")
+```
+**Resultado:**
+```plaintext
+Temperatura atual: 100.00 °C
+Temperatura atual: 95.00 °C
+Temperatura atual: 90.00 °C
+Temperatura atual: 85.00 °C
+Temperatura atual: 80.00 °C
+Temperatura atual: 75.00 °C
+Temperatura atual: 70.00 °C
+Temperatura atual: 65.00 °C
+Temperatura atual: 60.00 °C
+Temperatura atual: 55.00 °C
+Temperatura atual: 50.00 °C
+Temperatura atual: 45.00 °C
+Temperatura atual: 40.00 °C
+Temperatura atual: 35.00 °C
+Temperatura segura alcançada.
+```
+
+**Pontos-chave:**
+- **Controle de Iteração:** O laço `for` é ideal quando se sabe o número de iterações ou quando se está iterando sobre uma sequência. O laço `while` é mais flexível, permitindo que o número de iterações dependa de uma condição dinâmica.
+- **Condição de Parada:** É crucial definir uma condição de parada para os laços `while` para evitar laços infinitos (onde o laço nunca termina).
+- **Variáveis de Controle:** As variáveis usadas nas condições dos laços (como `contador`, `temperatura`, etc.) devem ser atualizadas dentro do laço para garantir que a condição de parada seja eventualmente alcançada.
+- **range():** A função `range()` é frequentemente usada com o laço `for` para gerar sequências de números. Por exemplo, `for i in range(10):` itera de 0 a 9.
+
+Os laços de repetição são ferramentas poderosas para automatizar tarefas, processar grandes conjuntos de dados e implementar algoritmos iterativos em diversas aplicações de engenharia. Eles permitem que os engenheiros desenvolvam soluções eficientes e escaláveis para problemas complexos, economizando tempo e esforço no desenvolvimento de software.
+
+---
+
+### 3.2.3. Exercício Proposto: Simulação de um Reator Batelada Isotérmico
+
+**Descrição:**
+Um engenheiro químico precisa simular a conversão de um reagente A em um produto B em um reator batelada isotérmico. A reação segue uma cinética de primeira ordem:
+A → B
+
+A taxa de reação é dada por:
+```math
+- rA = -k * CA
+
+Onde:
+- -rA é a taxa de desaparecimento do reagente A (mol/L·min)
+- k é a constante de velocidade da reação (min⁻¹)
+- CA é a concentração do reagente A (mol/L)
+```
+
+O programa deve calcular a concentração de A e a conversão de A ao longo do tempo.
+
+**Requisitos:**
+
+1. **Entrada de Dados:**
+- O programa deve solicitar ao usuário a concentração inicial de A (CA0) em mol/L (FLOAT).
+- O programa deve solicitar ao usuário a constante de velocidade da reação (k) em min⁻¹ (FLOAT).
+- O programa deve solicitar ao usuário o tempo total de simulação (tempo_final) em minutos (FLOAT).
+- O programa deve solicitar ao usuário o número de pontos no tempo para calcular a concentração (num_pontos) (INT).
+
+2. **Cálculos:**
+- Usar um laço for para iterar sobre o tempo, dividindo o tempo total em intervalos iguais.
+- Dentro do laço, calcular a concentração de A (CA) em cada ponto no tempo usando a equação integrada para uma reação de primeira ordem em um reator batelada:
+
+```math
+CA(t) = CA0 * exp(-k * t)
+```
+
+```python
+import math
+
+# Entrada de Dados
+CA0 = float(input("Concentração inicial de A (CA0) em mol/L: "))
+k = float(input("Constante de velocidade da reação (k) em min⁻¹: "))
+tempo_final = float(input("Tempo total de simulação (tempo_final) em minutos: "))
+num_pontos = int(input("Número de pontos no tempo para calcular a concentração (num_pontos): "))
+
+# Cálculos
+tempos = []
+concentracoes_A = []
+for i in range(num_pontos + 1):
+    t = i * (tempo_final / num_pontos)  # Tempo atual
+    CA = CA0 * math.exp(-k * t)  # Cálculo da concentração de A
+    tempos.append(t)
+    concentracoes_A.append(CA)
+
+# Exibição dos resultados
+for i in range(len(tempos)):
+    print(f"Tempo: {tempos[i]:.1f} min, [A]: {concentracoes_A[i]:.2f} mol/L, [B]: {1 - concentracoes_A[i]:.2f} mol/L")
+
+# Entrada de Dados
+CA0 = float(input("Concentração inicial de A (CA0) em mol/L: "))
+k = float(input("Constante de velocidade da reação (k) em min⁻¹: "))
+tempo_final = float(input("Tempo total de simulação (tempo_final) em minutos: "))
+num_pontos = int(input("Número de pontos no tempo para calcular a concentração (num_pontos): "))
+
+# Cálculos
+tempos = []
+concentracoes_A = []
+for i in range(num_pontos + 1):
+    t = i * (tempo_final / num_pontos)  # Tempo atual
+    CA = CA0 * math.exp(-k * t)  # Cálculo da concentração de A
+    tempos.append(t)
+    concentracoes_A.append(CA)
+
+# Exibição dos resultados
+for i in range(len(tempos)):
+    print(f"Tempo: {tempos[i]:.1f} min, [A]: {concentracoes_A[i]:.2f} mol/L, [B]: {1 - concentracoes_A[i]:.2f} mol/L")
+```
+**Saída de Dados:**
+```plaintext
+Concentração inicial de A (CA0) em mol/L: 1.0
+Constante de velocidade da reação (k) em min⁻¹: 0.1
+Tempo total de simulação (tempo_final) em minutos: 10
+Número de pontos no tempo para calcular a concentração (num_pontos): 10
+Tempo: 0.0 min, [A]: 1.00 mol/L, [B]: 0.00 mol/L
+Tempo: 1.0 min, [A]: 0.90 mol/L, [B]: 0.10 mol/L
+Tempo: 2.0 min, [A]: 0.82 mol/L, [B]: 0.18 mol/L
+Tempo: 3.0 min, [A]: 0.74 mol/L, [B]: 0.26 mol/L
+Tempo: 4.0 min, [A]: 0.67 mol/L, [B]: 0.33 mol/L
+Tempo: 5.0 min, [A]: 0.61 mol/L, [B]: 0.39 mol/L
+Tempo: 6.0 min, [A]: 0.55 mol/L, [B]: 0.45 mol/L
+Tempo: 7.0 min, [A]: 0.50 mol/L, [B]: 0.50 mol/L
+Tempo: 8.0 min, [A]: 0.45 mol/L, [B]: 0.55 mol/L
+Tempo: 9.0 min, [A]: 0.41 mol/L, [B]: 0.59 mol/L
+Tempo: 10.0 min, [A]: 0.37 mol/L, [B]: 0.63 mol/L
+Tempo: 0.0 min, [A]: 1.00 mol/L, [B]: 0.00 mol/L
+Tempo: 1.0 min, [A]: 0.90 mol/L, [B]: 0.10 mol/L
+```
+Este exercício simula um processo fundamental em engenharia química (reação em reator) e demonstra o uso de laços for para realizar cálculos iterativos ao longo do tempo.
+
+**Dicas:**
+- Use a função `input()` para obter os valores de CA0, k, tempo_final e num_pontos do usuário.
+- Use os tipos de dados FLOAT para CA0, k e tempo_final, e INT para num_pontos.
+- Use a função `math.exp()` para calcular a exponencial na equação da concentração de A.
+- Use um laço `for` para iterar sobre o número de pontos no tempo e calcular a concentração de A em cada ponto.
+- Use f-strings para formatar a saída com duas casas decimais.
+
+---
+
+### 3.2.4. Curiosidade – Engenharia Química
+
+Na engenharia química, a simulação de reatores é uma prática comum para entender o comportamento de reações químicas em diferentes condições. O exemplo apresentado no exercício propõe uma simulação de um reator batelada isotérmico, onde a concentração de um reagente A diminui ao longo do tempo devido à reação com uma constante de velocidade k.
+A cinética de primeira ordem é uma das mais simples e comuns em reações químicas, onde a taxa de reação é proporcional à concentração do reagente. A equação integrada para a concentração de A ao longo do tempo é fundamental para prever como a reação evolui, permitindo aos engenheiros otimizar as condições de operação do reator.
+A simulação de reatores é essencial para o design e operação de processos químicos, ajudando a prever a conversão de reagentes, a formação de produtos e a eficiência do processo. Compreender como implementar laços de repetição em Python para simular essas dinâmicas é uma habilidade valiosa para engenheiros químicos.
+
+### 3.2.5. Conclusão
+
+Os laços de repetição `for` e `while` são ferramentas poderosas na programação, permitindo a execução de blocos de código múltiplas vezes com base em condições específicas. Eles são amplamente utilizados em problemas de engenharia para automatizar tarefas, processar dados e simular comportamentos dinâmicos.
+Compreender como usar esses laços é essencial para desenvolver programas eficientes e eficazes. Nos próximos módulos, veremos como combinar laços de repetição com outras estruturas de controle, como condicionais e funções, para criar soluções mais complexas e robustas em Python.
+
+---
+
+### 3.3. Aplicações Práticas em Verificação de Condições Operacionais
+
+As estruturas de controle (IF, ELIF, ELSE, FOR, WHILE) são extremamente úteis para monitorar e controlar condições operacionais em sistemas de engenharia. Nesta seção, apresentaremos exemplos práticos de como essas estruturas podem ser aplicadas para garantir a segurança, eficiência e correto funcionamento de processos e equipamentos.
+
+#### 3.3.1. Monitoramento de Temperatura em um Reator Químico
+
+Em um reator químico, a temperatura é um parâmetro crítico que deve ser mantido dentro de limites seguros para evitar reações indesejadas ou danos ao equipamento. O código abaixo demonstra como usar condicionais para verificar a temperatura e emitir alertas:
+
+**Código Python:**
+
+```python
+temperatura = float(input("Digite a temperatura do reator em °C: "))
+if temperatura > 100:
+    print("Alerta: Temperatura excessiva!")
+elif temperatura < 20:
+    print("Alerta: Temperatura muito baixa!")
+else:
+    print("Temperatura dentro dos limites normais.")
+```
+
+**Resultado:**
+```plaintext
+Digite a temperatura do reator em °C: 120
+Alerta: Temperatura excessiva!
+Digite a temperatura do reator em °C: 15
+Alerta: Temperatura muito baixa!
+Digite a temperatura do reator em °C: 50
+Temperatura dentro dos limites normais.
+```
+
+#### 3.3.2. Controle de Nível em um Tanque
+
+O nível de líquido em um tanque é outro parâmetro importante em muitos processos industriais. O código a seguir ilustra como usar condicionais para controlar o nível e acionar bombas ou válvulas:
+
+**Código Python:**
+
+```python
+nivel = float(input("Digite o nível do líquido no tanque em %: "))
+if nivel > 80:
+    print("Alerta: Nível muito alto! Acionando bomba de drenagem.")
+elif nivel < 20:
+    print("Alerta: Nível muito baixo! Acionando bomba de enchimento.")
+else:
+    print("Nível dentro dos limites normais.")
+```
+
+**Resultado:**
+```plaintext
+Digite o nível do líquido no tanque em %: 85
+Alerta: Nível muito alto! Acionando bomba de drenagem.
+Digite o nível do líquido no tanque em %: 15
+Alerta: Nível muito baixo! Acionando bomba de enchimento.
+Digite o nível do líquido no tanque em %: 50
+Nível dentro dos limites normais.
+```
+
+#### 3.3.3. Verificação de Pressão em um Sistema de Tubulação
+
+A pressão em um sistema de tubulação deve ser monitorada para evitar vazamentos ou rupturas. O código abaixo mostra como usar condicionais para verificar a pressão e emitir avisos:
+
+**Código Python:**
+
+```python
+pressao = float(input("Digite a pressão do sistema em bar: "))
+if pressao > 10:
+    print("Alerta: Pressão excessiva!")
+elif pressao < 2:
+    print("Alerta: Pressão muito baixa!")
+else:
+    print("Pressão dentro dos limites normais.")
+```
+
+**Resultado:**
+```plaintext
+Digite a pressão do sistema em bar: 12
+Alerta: Pressão excessiva!
+Digite a pressão do sistema em bar: 1
+Alerta: Pressão muito baixa!
+Digite a pressão do sistema em bar: 5
+Pressão dentro dos limites normais.
+```
+#### 3.3.4. Contagem de Ciclos de um Equipamento
+
+Em engenharia mecânica, é importante monitorar o número de ciclos de operação de um equipamento para programar a manutenção preventiva. O código a seguir usa um laço WHILE para simular a operação de um equipamento e contar os ciclos:
+
+**Código Python:**
+
+```python
+ciclos = 0
+while True:
+    resposta = input("O equipamento está em operação? (s/n): ")
+    if resposta == "s":
+        ciclos += 1
+        print(f"Ciclos de operação: {ciclos}")
+    elif resposta == "n":
+        print("Operação encerrada.")
+        break
+    else:
+        print("Resposta inválida.")
+```
+
+**Resultado:**
+```plaintext
+O equipamento está em operação? (s/n): s
+Ciclos de operação: 1
+O equipamento está em operação? (s/n): s
+Ciclos de operação: 2
+O equipamento está em operação? (s/n): n
+Operação encerrada.
+```
+#### 3.3.5. Análise de Dados de Sensores
+
+Em sistemas de automação, os dados dos sensores precisam ser analisados para tomar decisões em tempo real. O código a seguir usa um laço for para processar dados de um sensor de vibração e identificar valores anormais:
+
+**Código Python:**
+
+```python
+dados_sensor = [0.1, 0.2, 0.15, 0.3, 0.25, 0.4]
+for i, valor in enumerate(dados_sensor):
+    if valor > 0.35:
+        print(f"Alerta: Valor anormal detectado no ciclo {i + 1}: {valor}")
+    else:
+        print(f"Ciclo {i + 1} dentro dos limites normais: {valor}")
+```
+
+**Resultado:**
+```plaintext
+Ciclo 1 dentro dos limites normais: 0.1
+Ciclo 2 dentro dos limites normais: 0.2
+Ciclo 3 dentro dos limites normais: 0.15
+Ciclo 4 dentro dos limites normais: 0.3
+Alerta: Valor anormal detectado no ciclo 5: 0.25
+Alerta: Valor anormal detectado no ciclo 6: 0.4
+```
+Estes exemplos demonstram a versatilidade das estruturas de controle na verificação de condições operacionais em diversos campos da engenharia. Ao utilizar IF, ELIF, ELSE, FOR e WHILE, os engenheiros podem criar programas que monitoram sistemas, detectam anomalias, acionam alarmes e automatizam ações de controle, contribuindo para a segurança, eficiência e confiabilidade dos processos e equipamentos.
+
+---
+
+## 3.4. Conclusão
+
+Neste módulo, exploramos as estruturas de controle em Python, incluindo condicionais (IF, ELIF, ELSE) e laços de repetição (FOR, WHILE). Aprendemos como essas estruturas permitem que os programas tomem decisões lógicas e executem ações repetitivas, fundamentais para resolver problemas complexos em engenharia.
+Através de exemplos práticos, vimos como aplicar essas estruturas para monitorar condições operacionais, controlar processos e automatizar tarefas. A compreensão e aplicação correta dessas estruturas são essenciais para desenvolver programas eficientes e eficazes em diversas áreas da engenharia.
+Nos próximos módulos, continuaremos a explorar conceitos mais avançados de Python, como funções, manipulação de dados e bibliotecas específicas para engenharia, que nos permitirão criar soluções ainda mais robustas e complexas. A prática contínua com estruturas de controle fortalecerá suas habilidades de programação e sua capacidade de resolver problemas reais de engenharia.
+
+---
+
+### 4.4. Funções e Modularizações
+
+Neste módulo 4, vamos explorar dois conceitos fundamentais para a organização e reutilização de código em Python: funções e modularização.
+Primeiramente, abordaremos a definição de funções. Funções são blocos de código nomeados que realizam tarefas específicas. Aprenderemos a criar nossas próprias funções para encapsular a lógica de cálculos, processos ou outras operações que precisam ser executadas repetidamente em um programa. Isso evita a duplicação de código e torna os programas mais legíveis e fáceis de manter.
+Em seguida, discutiremos parâmetros e retorno. Veremos como as funções podem receber dados de entrada através de parâmetros, permitindo que elas operem sobre diferentes valores. Também aprenderemos como as funções podem retornar resultados, possibilitando que elas forneçam informações para outras partes do programa. O uso adequado de parâmetros e retorno é essencial para criar funções flexíveis e reutilizáveis.
+Finalmente, exploraremos a organização de código em módulos reutilizáveis. A modularização envolve a divisão de um programa em arquivos separados chamados módulos. Cada módulo pode conter funções, variáveis e outras definições relacionadas a uma funcionalidade específica. Aprenderemos a criar e importar módulos, o que nos permitirá estruturar projetos maiores de forma eficiente e reutilizar código entre diferentes programas.
+Ao concluir este módulo, você estará apto a criar funções para organizar seu código, usar parâmetros e retorno para torná-las flexíveis e estruturar projetos em módulos para promover a reutilização e a manutenção eficiente do código, habilidades cruciais para o desenvolvimento de soluções de engenharia robustas e escaláveis.
+
+---
+
+### 4.1. Definição de Funções
