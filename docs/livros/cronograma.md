@@ -20,11 +20,11 @@
 
 ## 📅 Semana 2 (10 a 14 de junho)
 
-- [ ] Capítulo 3 – Estruturas de Controle
-  - [ ] 3.1 Condicionais: IF, ELIF, ELSE
-  - [ ] 3.2 Laços de repetição: FOR, WHILE
-  - [ ] 3.3 Aplicações práticas em verificação de condições operacionais
-  - [ ] 3.4 Conclusão
+- [X] Capítulo 3 – Estruturas de Controle
+  - [X] 3.1 Condicionais: IF, ELIF, ELSE
+  - [X] 3.2 Laços de repetição: FOR, WHILE
+  - [X] 3.3 Aplicações práticas em verificação de condições operacionais
+  - [X] 3.4 Conclusão
 
 - [ ] Capítulo 4 – Funções e Modularização
   - [ ] 4.1 Definição de funções
