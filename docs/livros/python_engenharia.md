@@ -803,15 +803,16 @@ print("Nome do material:", nome_material)
 ```
 ### 2.3.2. Saída de Dados: print()
 
-A função print() exibe informações na tela do computador.
-• Sintaxe: print(argumento1, argumento2, ..., argumentoN)
-• Funcionamento:
-1. A função print() exibe os valores dos argumentos na tela.
-2. Os argumentos podem ser variáveis, valores literais (números, strings etc.) ou expressões.
-3. Múltiplos argumentos são separados por vírgula, e a função print() os exibe separados por espaço.
-4. Por padrão, a função print() adiciona uma quebra de linha ao final da saída, ou seja, o próximo print() exibirá na linha seguinte.
-• Formatação de saída: Python oferece várias maneiras de formatar a saída para torná-la mais clara e organizada. As f-strings (strings formatadas) são uma forma conveniente de formatar strings incluindo variáveis.
-• Exemplos em engenharia:
+A função `print()` exibe informações na tela do computador.
+
+- **Sintaxe:** `print(argumento1, argumento2, ..., argumentoN)`
+- **Funcionamento:**
+    1. A função `print()` exibe os valores dos argumentos na tela.
+    2. Os argumentos podem ser variáveis, valores literais (números, strings etc.) ou expressões.
+    3. Múltiplos argumentos são separados por vírgula, e a função `print()` os exibe separados por espaço.
+    4. Por padrão, a função `print()` adiciona uma quebra de linha ao final da saída, ou seja, o próximo `print()` exibirá na linha seguinte.
+- **Formatação de saída:** Python oferece várias maneiras de formatar a saída para torná-la mais clara e organizada. As f-strings (strings formatadas) são uma forma conveniente de formatar strings incluindo variáveis.
+- **Exemplos em engenharia:**
 
 Exibir o resultado de um cálculo:
 
@@ -825,6 +826,7 @@ Mostrar uma mensagem de alerta:
 ```python
 print("Atenção: Verifique os dados de entrada!")
 ```
+
 Exibir informações formatadas:
 
 ```python
@@ -836,6 +838,7 @@ print(f"Diâmetro: {diametro_tubo} m")
 ```
 
 Apresentar os dados de um experimento:
+
 ```python
 temperatura = 25.5
 pressao = 101.3
@@ -1487,26 +1490,8 @@ for i in range(num_pontos + 1):
 # Exibição dos resultados
 for i in range(len(tempos)):
     print(f"Tempo: {tempos[i]:.1f} min, [A]: {concentracoes_A[i]:.2f} mol/L, [B]: {1 - concentracoes_A[i]:.2f} mol/L")
-
-# Entrada de Dados
-CA0 = float(input("Concentração inicial de A (CA0) em mol/L: "))
-k = float(input("Constante de velocidade da reação (k) em min⁻¹: "))
-tempo_final = float(input("Tempo total de simulação (tempo_final) em minutos: "))
-num_pontos = int(input("Número de pontos no tempo para calcular a concentração (num_pontos): "))
-
-# Cálculos
-tempos = []
-concentracoes_A = []
-for i in range(num_pontos + 1):
-    t = i * (tempo_final / num_pontos)  # Tempo atual
-    CA = CA0 * math.exp(-k * t)  # Cálculo da concentração de A
-    tempos.append(t)
-    concentracoes_A.append(CA)
-
-# Exibição dos resultados
-for i in range(len(tempos)):
-    print(f"Tempo: {tempos[i]:.1f} min, [A]: {concentracoes_A[i]:.2f} mol/L, [B]: {1 - concentracoes_A[i]:.2f} mol/L")
 ```
+
 **Saída de Dados:**
 ```plaintext
 Concentração inicial de A (CA0) em mol/L: 1.0
@@ -1524,8 +1509,6 @@ Tempo: 7.0 min, [A]: 0.50 mol/L, [B]: 0.50 mol/L
 Tempo: 8.0 min, [A]: 0.45 mol/L, [B]: 0.55 mol/L
 Tempo: 9.0 min, [A]: 0.41 mol/L, [B]: 0.59 mol/L
 Tempo: 10.0 min, [A]: 0.37 mol/L, [B]: 0.63 mol/L
-Tempo: 0.0 min, [A]: 1.00 mol/L, [B]: 0.00 mol/L
-Tempo: 1.0 min, [A]: 0.90 mol/L, [B]: 0.10 mol/L
 ```
 Este exercício simula um processo fundamental em engenharia química (reação em reator) e demonstra o uso de laços for para realizar cálculos iterativos ao longo do tempo.
 
@@ -1789,19 +1772,11 @@ def exemplo_args(*args):
 def exemplo_kwargs(**kwargs):
     for chave, valor in kwargs.items():
         print(f"{chave}: {valor}")
+
 # Chamada da função com parâmetros posicionais
 exemplo_args(1, 2, 3, 4)
 # Chamada da função com parâmetros nomeados
 exemplo_kwargs(nome="João", idade=30, cidade="São Paulo")
-
-```plaintext
-1
-2
-3
-4
-nome: João
-idade: 30
-cidade: São Paulo
 ```
 
 #### 4.2.2. Retorno
