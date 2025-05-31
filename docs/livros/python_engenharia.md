@@ -838,19 +838,19 @@ A habilidade de obter dados do usuário e apresentar resultados de forma clara �
 
 **Descrição:**
 
-Um engenheiro químico precisa de um programa para calcular a conversão de um reagente em um reator.
+Um engenheiro químico precisa de um programa para calcular a conversão de um reagente em um reator.  
 O programa deve solicitar ao usuário a quantidade inicial do reagente, a quantidade final após a reação e exibir a conversão calculada. Além disso, deve pedir informações sobre o tipo de reator e o tempo de reação.
 
 **Requisitos:**
 
-1. Entrada de Dados:
-   - O programa deve solicitar ao usuário o nome do reagente (string).
-   - O programa deve solicitar ao usuário a quantidade inicial do reagente em mols (float).
-   - O programa deve solicitar ao usuário a quantidade final do reagente em mols (float).
-   - O programa deve solicitar ao usuário o tipo do reator (string).
-   - O programa deve solicitar ao usuário o tempo de reação em minutos (float).
+1. **Entrada de Dados:**
+    - O programa deve solicitar ao usuário o nome do reagente (`str`).
+    - O programa deve solicitar ao usuário a quantidade inicial do reagente em mols (`float`).
+    - O programa deve solicitar ao usuário a quantidade final do reagente em mols (`float`).
+    - O programa deve solicitar ao usuário o tipo do reator (`str`).
+    - O programa deve solicitar ao usuário o tempo de reação em minutos (`float`).
 
-2. Cálculo:
+2. **Cálculo:**
 
 Calcular a conversão do reagente usando a fórmula:
 
@@ -858,14 +858,14 @@ Calcular a conversão do reagente usando a fórmula:
 conversao = (quantidade_inicial - quantidade_final) / quantidade_inicial * 100
 ```
 
-    3. Saída de Dados:
+3. **Saída de Dados:**
+    - Exibir o nome do reagente.
+    - Exibir a quantidade inicial e final do reagente, formatadas com 2 casas decimais.
+    - Exibir a conversão calculada, formatada como porcentagem com 2 casas decimais (ex: 80.00%).
+    - Exibir o tipo do reator e o tempo de reação.
 
-- Exibir o nome do reagente.
-- Exibir a quantidade inicial e final do reagente, formatadas com 2 casas decimais.
-- Exibir a conversão calculada, formatada como porcentagem com 2 casas decimais (ex: 0.85 deve ser exibido como 85.00%).
-- Exibir o tipo do reator e o tempo de reação.
+**Exemplo de Interação:**
 
-Exemplo de Interação:
 ```plaintext
 Digite o nome do reagente: Amoníaco
 Digite a quantidade inicial do reagente (em mols): 10.0
@@ -880,6 +880,8 @@ Tipo do reator: Reator de Batelada
 Tempo de reação: 30.00 minutos
 ```
 
+**Código Python de Exemplo:**
+
 ```python
 # Solicitar entrada do usuário
 nome_reagente = input("Digite o nome do reagente: ")
@@ -887,8 +889,11 @@ quantidade_inicial = float(input("Digite a quantidade inicial do reagente (em mo
 quantidade_final = float(input("Digite a quantidade final do reagente (em mols): "))
 tipo_reator = input("Digite o tipo do reator: ")
 tempo_reacao = float(input("Digite o tempo de reação (em minutos): "))
+
 # Cálculo da conversão
 conversao = (quantidade_inicial - quantidade_final) / quantidade_inicial * 100
+
+# Exibir resultados
 print(f"\nReagente: {nome_reagente}")
 print(f"Quantidade inicial: {quantidade_inicial:.2f} mols")
 print(f"Quantidade final: {quantidade_final:.2f} mols")
@@ -898,11 +903,10 @@ print(f"Tempo de reação: {tempo_reacao:.2f} minutos")
 ```
 
 **Dicas:**
-- Use a função input() para obter os dados do usuário.
-- Use os tipos de dados FLOAT e STR para armazenar os valores.
-- Lembre-se de converter as entradas numéricas de input() para FLOAT.
-- Use o operador aritmético para calcular a conversão.
-- Use f-strings para formatar a saída, especialmente a conversão (multiplique por 100 e use:.2f%).
+- Use a função `input()` para obter os dados do usuário.
+- Use os tipos de dados `float` e `str` para armazenar os valores.
+- Lembre-se de converter as entradas numéricas de `input()` para `float`.
+- Use f-strings para formatar a saída, especialmente a conversão (:.2f%).
 
 ---
 
