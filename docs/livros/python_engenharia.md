@@ -1115,11 +1115,11 @@ Ao concluir este módulo, você estará apto a desenvolver programas Python que 
 
 ---
 
-### 3.1. Condicionais: if, elif, else
+## 3.1. Condicionais: if, elif, else
 
 As estruturas condicionais são fundamentais para controlar o fluxo de execução de um programa, permitindo que diferentes blocos de código sejam executados dependendo se uma condição é verdadeira ou falsa. Em Python, as palavras-chave if, elif (abreviação de "else if") e else são usadas para definir essas estruturas.
 
-#### 3.1.1. A estrutura if
+### 3.1.1. A estrutura if
 
 A estrutura if é a mais básica e executa um bloco de código somente se uma condição especificada for verdadeira.
 
@@ -1161,7 +1161,7 @@ Qualidade do ar: Moderada
 ---
 
 
-#### 3.1.2. A estrutura if-else
+### 3.1.2. A estrutura if-else
 
 A estrutura if-else permite executar um bloco de código se a condição for verdadeira e outro bloco de código se a condição for falsa.
 **Sintaxe:**
@@ -1203,7 +1203,7 @@ Material resistente.
 ```
 ---
 
-#### 3.1.3. A estrutura if-elif-else
+### 3.1.3. A estrutura if-elif-else
 
 A estrutura if-elif-else permite verificar múltiplas condições em sequência. O elif (else if) especifica uma nova condição a ser verificada se a condição anterior for falsa.
 
