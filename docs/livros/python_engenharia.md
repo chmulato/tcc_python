@@ -64,7 +64,13 @@
     - [3.4. Conclusão](#34-conclusão)
 4. [Funções e Modularizações](#44-funções-e-modularizações)
     - [4.1. Definição de Funções](#41-definição-de-funções)
+        - [4.1.1. Sintaxe de Definição de Função](#411-sintaxe-de-definição-de-função)
+        - [4.1.2. Exemplo de Definição de Função](#412-exemplo-de-definição-de-função)
+        - [4.1.3. Benefícios do Uso de Funções](#413-benefícios-do-uso-de-funções)
     - [4.2. Parâmetros e Retorno](#42-parâmetros-e-retorno)
+        - [4.2.1. Parâmetros](#421-parâmetros)
+        - [4.2.2. Retorno](#422-retorno)
+        - [4.2.3. Benefícios de Parâmetros e Retorno](#423-benefícios-de-parâmetros-e-retorno)
     - [4.3. Organização de Código em Módulos Reutilizáveis](#43-organização-de-código-em-módulos-reutilizáveis)
         - [4.3.1. O que são Módulos?](#431-o-que-são-módulos)
         - [4.3.2. Criando Módulos](#432-criando-módulos)
@@ -73,7 +79,6 @@
         - [4.3.5. Exemplo de Uso de Módulos](#435-exemplo-de-uso-de-módulos)
         - [4.3.5 Exercício Proposto: Gestão de Inventário Florestal](#435-exercício-proposto-gestão-de-inventário-florestal)
     - [4.4. Conclusão](#44-conclusão)
-
 
 ---
 
