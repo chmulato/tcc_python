@@ -177,15 +177,15 @@ Compreender esses tipos de dados é essencial para escrever programas que manipu
 
 ### 2.1.5. Exemplo: Cálculo da Tensão em um Resistor
 
-Imagine que você precisa calcular a tensão em um resistor usando a Lei de Ohm (V = I * R),
-onde:
-- V é a tensão (em Volts)
-- I é a corrente (em Amperes)
-- R é a resistência (em Ohms)
+Imagine que você precisa calcular a tensão em um resistor usando a Lei de Ohm (V = I * R), onde:
+- **V** é a tensão (em Volts)
+- **I** é a corrente (em Amperes)
+- **R** é a resistência (em Ohms)
 
-Além disso, vamos verificar se a potência dissipada no resistor (P = V * I) excede um valor limite. 
+Além disso, vamos verificar se a potência dissipada no resistor (P = V * I) excede um valor limite.
 
 **Código em Python:**
+
 ```python
 # Definição das variáveis
 
@@ -228,31 +228,33 @@ print("Tensão (V, inteiro):", tensao_inteira)
 
 **Como usar este código no Visual Studio Code:**
 
-**1.	Abra o Visual Studio Code.**
-**2.	Crie um arquivo** (Arquivo > Novo Arquivo) e salve-o com um nome como 01_codigo_calculo_resistor.py.
-A extensão .py é importante para que o **VS Code** reconheça que é um arquivo Python.
-
-**3.	Copie e cole o código** acima no arquivo.
-**4.	Execute o código:**
-- Você pode clicar com o botão direito na janela do editor e selecionar "Executar Python no Terminal".
-- Ou você pode usar o atalho Ctrl+Shift+B (ou Cmd+Shift+B no MacOS) se você já tiver configurado uma "Build Task" para Python.
-- Ou você pode abrir o terminal integrado do VS Code (Visualizar > Terminal) e digitar python 01_codigo_calculo_resistor.py e pressionar Enter.
-**5.	Observe a saída no terminal:** O programa irá imprimir os valores da tensão, potência e a verificação do limite.
+1. Abra o Visual Studio Code.
+2. Crie um arquivo e salve-o como `01_codigo_calculo_resistor.py`.
+3. Copie e cole o código acima no arquivo.
+4. Execute o código:
+    - Clique com o botão direito no editor e selecione "Executar Python no Terminal".
+    - Ou abra o terminal integrado e digite:  
+      `python 01_codigo_calculo_resistor.py`
+5. Observe a saída no terminal.
 
 **Explicação do Código:**
 
-- **Tipos de Dados:** O código demonstra claramente o uso de float para grandezas físicas como corrente, resistência, tensão e potência, str para o nome do resistor, e bool para o resultado da comparação da potência com o limite.
-- **Cálculos:** Realiza cálculos típicos de engenharia elétrica usando os operadores aritméticos * (multiplicação).
-- **Tomada de Decisão:** Utiliza uma expressão booleana (potencia > potencia_limite) para simular uma verificação de segurança ou especificação de projeto.
-- **Saída Formatada:** Imprime os resultados de forma clara e identificada, o que é crucial para a comunicação de resultados em engenharia.
-- **Conversão de Tipo:** A última parte (conversão para int) é um exemplo de como você pode converter um tipo de dado em outro. Note que, neste caso, a parte decimal da tensão é truncada.
+- **Tipos de Dados:**  
+  O código demonstra o uso de `float` para grandezas físicas, `str` para o nome do resistor e `bool` para o resultado da comparação.
+- **Cálculos:**  
+  Realiza cálculos típicos de engenharia elétrica usando operadores aritméticos.
+- **Tomada de Decisão:**  
+  Utiliza uma expressão booleana para simular uma verificação de segurança.
+- **Saída Formatada:**  
+  Imprime os resultados de forma clara.
+- **Conversão de Tipo:**  
+  Demonstra como converter um valor `float` para `int`.
 
-Este exemplo prático mostra como os tipos de dados fundamentais são aplicados em um problema simples de engenharia, combinando cálculo, lógica e representação de informações do mundo real.
-
-**Resultado:**
+**Resultado Esperado:**
 
 ```plaintext
 Cálculo da Tensão e Potência em um Resistor
+------------------------------------------
 Nome do Resistor: R1
 Corrente (A): 2.0
 Resistência (Ω): 10.0
@@ -261,6 +263,9 @@ Potência (W): 40.0
 Potência excede o limite? True
 Tensão (V, inteiro): 20
 ```
+
+Este exemplo prático mostra como os tipos de dados fundamentais são aplicados em um problema simples de engenharia, combinando cálculo, lógica e representação de informações do mundo real.
+
 ---
 
 ### 2.1.6. Exemplo: Simulação da Trajetória de um Projétil
@@ -1021,6 +1026,13 @@ area = base * altura
 print(f"A área da seção transversal da viga é: {area:.2f} m²")
 ```
 
+**Resultado:**
+```plaintext
+Digite a base da viga (m): 0.3
+Digite a altura da viga (m): 0.5
+A área da seção transversal da viga é: 0.15 m²
+```
+
 ### 2.4.2. Engenharia Elétrica: Lei de Ohm
 
 **Problema:** Calcular a corrente elétrica em um resistor dado a tensão e a resistência.
@@ -1038,6 +1050,11 @@ corrente = tensao / resistencia
 print(f"A corrente elétrica é: {corrente:.2f} A")
 ```
 
+**Resultado:**
+```plaintext
+A corrente elétrica é: 2.00 A
+```
+
 ### 2.4.3. Engenharia Mecânica: Energia Potencial Gravitacional
 
 **Problema:** Calcular a energia potencial gravitacional de um objeto.
@@ -1048,12 +1065,17 @@ print(f"A corrente elétrica é: {corrente:.2f} A")
 massa = float(input("Digite a massa do objeto (kg): "))
 gravidade = 9.81  # Aceleração da gravidade (m/s²)
 altura = float(input("Digite a altura (m): "))
-
 # Cálculo da energia potencial
 energia_potencial = massa * gravidade * altura
-
 # Saída de dados
 print(f"A energia potencial gravitacional é: {energia_potencial:.2f} J")
+```
+
+**Resultado:**
+```plaintext
+Digite a massa do objeto (kg): 10
+Digite a altura (m): 5
+A energia potencial gravitacional é: 490.50 J
 ```
 
 ### 2.4.4. Engenharia Química: Vazão Molar
@@ -1061,7 +1083,6 @@ print(f"A energia potencial gravitacional é: {energia_potencial:.2f} J")
 **Problema:** Converter vazão mássica para vazão molar.
 **Fórmula:** Vazão Molar = Vazão Mássica / Massa Molar
 **Código Python:**
-
 ```python
 # Entrada de dados
 vazao_massica = float(input("Digite a vazão mássica (kg/s): "))
@@ -1074,12 +1095,16 @@ vazao_molar = vazao_massica / massa_molar
 print(f"A vazão molar é: {vazao_molar:.2f} mol/s")
 ```
 
+**Resultado:**
+```plaintext
+A vazão molar é: 2.00 mol/s
+```
+
 ### 2.4.5. Engenharia Ambiental: Cálculo de Concentração
 
 **Problema:** Calcular a concentração de um poluente em uma solução.
 **Fórmula:** Concentração = Massa do Poluente / Volume da Solução
 **Código Python:**
-
 ```python
 # Entrada de dados
 massa_poluente = float(input("Digite a massa do poluente (kg): "))
@@ -1091,6 +1116,14 @@ concentracao = massa_poluente / volume_solucao
 # Saída de dados
 print(f"A concentração do poluente é: {concentracao:.2f} kg/m³")
 ```
+
+**Resultado:**
+```plaintext
+Digite a massa do poluente (kg): 0.5
+Digite o volume da solução (m³): 2
+A concentração do poluente é: 0.25 kg/m³
+```
+
 ---
 
 ### 2.5. Conclusão
