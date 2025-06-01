@@ -250,7 +250,7 @@ print("Tensão (V, inteiro):", tensao_inteira)
 - **Conversão de Tipo:**  
   Demonstra como converter um valor `float` para `int`.
 
-**Resultado Esperado:**
+**Resultado:**
 
 ```plaintext
 Cálculo da Tensão e Potência em um Resistor
@@ -323,6 +323,14 @@ print(f"Tempo total de voo: {tempo_total:.2f} s")  # Formatação de float
 print(f"Tipo da variável 'nome_projétil': {type(nome_projétil)}") # Mostrando o tipo
 print(f"A altura máxima atingida foi: {max(posicoes_y):.2f} m")
 ```
+
+**Resultado:**
+```plaintext
+Tempo total de voo: 2.04 s
+Tipo da variável 'nome_projétil': <class 'str'>
+A altura máxima atingida foi: 10.20 m
+```
+
 **Como usar este código no Visual Studio Code:**
 1. **Abra o Visual Studio Code.**
 2. **Crie um arquivo** e salve-o como 02_codigo_trajetoria_projetil.py.
@@ -378,6 +386,14 @@ print("Soma:", soma)
 print("Subtração:", subtracao)
 print("Multiplicação:", multiplicacao)
 print("Divisão:", divisao)
+```
+
+**Resultado:**
+```plaintext
+Soma: 15
+Subtração: 5
+Multiplicação: 50
+Divisão: 2.0
 ```
 
 Os operadores aritméticos são usados para realizar operações matemáticas básicas.
