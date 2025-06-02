@@ -113,8 +113,7 @@
      - [6.2.1. Conceitos Básicos](#621-conceitos-básicos)
      - [6.2.2. Exemplos Práticos](#622-exemplos-práticos)
      - [6.2.3. Exercício Proposto: Análise de Dados de Tensão e Corrente em um Sistema Elétrico](#623-exercício-proposto-análise-de-dados-de-tensão-e-corrente-em-um-sistema-elétrico)
-     - [6.2.4. Considerações Finais](#624-considerações-finais)
-     - [6.2.5. Resumo](#625-resumo)
+     - [6.2.4. Resumo](#624-resumo)
    - [6.3. Análise de Dados Experimentais e Simulações Computacionais](#63-análise-de-dados-experimentais-e-simulações-computacionais)
      - [6.3.1. Conceitos Fundamentais](#631-conceitos-fundamentais)
      - [6.3.2. Exemplo Proposto: Calibração de um Sensor de Pressão](#632-exemplo-proposto-calibração-de-um-sensor-de-pressão)
@@ -3683,14 +3682,7 @@ Este exercício mostra como utilizar o Pandas para análise de dados elétricos,
 
 ---
 
-### 6.2.4. Considerações Finais
-
-A biblioteca PANDAS é uma ferramenta poderosa e versátil para análise de dados em Python, especialmente em contextos de engenharia. Sua capacidade de manipular grandes volumes de dados de forma eficiente, combinada com funcionalidades avançadas de análise e visualização, a torna indispensável para profissionais que trabalham com dados experimentais, simulações e controle de processos.
-O domínio do PANDAS permite que engenheiros e cientistas de dados extraiam insights valiosos de conjuntos de dados complexos, automatizando tarefas repetitivas e melhorando a eficiência na análise. Ao integrar PANDAS com outras bibliotecas como NumPy e Matplotlib, é possível criar fluxos de trabalho robustos para análise e visualização de dados, facilitando a tomada de decisões informadas.
-
----
-
-### 6.2.5. Resumo
+### 6.2.4. Resumo
 
 Neste módulo, exploramos a biblioteca PANDAS, uma ferramenta essencial para análise de dados em Python. Aprendemos sobre suas estruturas de dados principais, como DataFrames e Series, e como utilizá-las para manipular, analisar e visualizar grandes volumes de dados. Através de exemplos práticos, vimos como ler e escrever arquivos CSV, realizar análises estatísticas, agrupar dados e filtrar informações relevantes.
 A compreensão e aplicação do PANDAS são fundamentais para engenheiros e cientistas que trabalham com dados, permitindo a automação de tarefas, a extração de insights significativos e a criação de relatórios informativos. Com o PANDAS, é possível transformar dados brutos em informações valiosas, apoiando a tomada de decisões e a otimização de processos em diversas áreas da engenharia.
