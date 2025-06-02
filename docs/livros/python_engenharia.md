@@ -118,8 +118,8 @@
    - [6.3. Análise de Dados Experimentais e Simulações Computacionais](#63-análise-de-dados-experimentais-e-simulações-computacionais)
      - [6.3.1. Conceitos Fundamentais](#631-conceitos-fundamentais)
      - [6.3.2. Exemplo Proposto: Calibração de um Sensor de Pressão](#632-exemplo-proposto-calibração-de-um-sensor-de-pressão)
+     - [6.3.3. Resumo](#633-resumo)
      - [6.3.4. Conclusão](#634-conclusão)
-
 ---
 
 # 1. Apresentação
@@ -3822,8 +3822,10 @@ E um gráfico mostrando os pontos experimentais e a curva ajustada.
 - **Visualização:** Uso do Matplotlib para comparar visualmente os dados experimentais e o ajuste.
 - **Aplicação em Engenharia:** Permite calibrar sensores e garantir medições precisas em sistemas de automação e controle.
 
-**Resumo:**  
-Este exemplo mostra como Python pode ser utilizado para calibrar sensores de pressão, ajustar curvas polinomiais aos dados experimentais e aplicar a correção em medições futuras, integrando análise de dados, modelagem matemática e visualização gráfica em um fluxo típico de engenharia.
+### 6.3.3 Resumo:
+
+Neste exemplo, exploramos como utilizar Python para calibrar um sensor de pressão, ajustando curvas polinomiais aos dados experimentais. Aprendemos a ler dados de um arquivo CSV com Pandas, ajustar curvas usando NumPy e aplicar correções em medições futuras. A visualização dos dados e do ajuste com Matplotlib nos permite entender melhor a relação entre a saída do sensor e a pressão real, garantindo medições precisas e confiáveis.
+A calibração de sensores é uma prática comum em engenharia, essencial para garantir a precisão e a confiabilidade dos sistemas de medição. Com o domínio dessas técnicas, engenheiros podem otimizar processos, validar modelos teóricos e garantir a precisão em sistemas de controle e automação.
 
 ---
 
