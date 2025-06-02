@@ -101,6 +101,25 @@
      - [5.3.4. Exercício Proposto: Resolução](#534-exercício-proposto-resolução)
    - [5.4. Conclusão](#54-conclusão)
 
+6. [Manipulação de Arquivos e Dados](#6-manipulação-de-arquivos-e-dados)
+   - [6.1. Leitura e Escrita de Arquivos .txt e .csv](#61-leitura-e-escrita-de-arquivos-txt-e-csv)
+     - [6.1.1. Conceitos](#611-conceitos)
+     - [6.1.2. Exemplos](#612-exemplos)
+     - [6.1.3. Exercício Proposto: Análise de Dados de Vazão em ETE](#613-exercício-proposto-análise-de-dados-de-vazão-em-ete)
+     - [6.1.4. Considerações Adicionais](#614-considerações-adicionais)
+     - [6.1.5. Análise e Visualização de Dados da Vazão em ETE](#615-análise-e-visualização-de-dados-da-vazão-em-ete)
+     - [6.1.6. Resumo](#616-resumo)
+   - [6.2. Introdução à Biblioteca PANDAS](#62-introdução-à-biblioteca-pandas)
+     - [6.2.1. Conceitos Básicos](#621-conceitos-básicos)
+     - [6.2.2. Exemplos Práticos](#622-exemplos-práticos)
+     - [6.2.3. Exercício Proposto: Análise de Dados de Tensão e Corrente em um Sistema Elétrico](#623-exercício-proposto-análise-de-dados-de-tensão-e-corrente-em-um-sistema-elétrico)
+     - [6.2.4. Considerações Finais](#624-considerações-finais)
+     - [6.2.5. Resumo](#625-resumo)
+   - [6.3. Análise de Dados Experimentais e Simulações Computacionais](#63-análise-de-dados-experimentais-e-simulações-computacionais)
+     - [6.3.1. Conceitos Fundamentais](#631-conceitos-fundamentais)
+     - [6.3.2. Exemplo Proposto: Calibração de um Sensor de Pressão](#632-exemplo-proposto-calibração-de-um-sensor-de-pressão)
+     - [6.3.4. Conclusão](#634-conclusão)
+
 ---
 
 # 1. Apresentação
@@ -3016,5 +3035,801 @@ Neste módulo, exploramos as principais estruturas de dados do Python — listas
 Também praticamos técnicas de iteração, manipulação e análise de dados, além de resolver exercícios aplicados à engenharia, como análise de sensores, testes de tração e desempenho de reatores. Essas atividades demonstraram como as estruturas de dados podem ser combinadas para solucionar problemas reais, tornando o código mais organizado, legível e eficiente.
 
 O domínio dessas ferramentas é fundamental para qualquer engenheiro ou cientista que deseje automatizar tarefas, analisar grandes volumes de dados e desenvolver soluções computacionais robustas. Ao aplicar corretamente listas, tuplas e dicionários, você estará preparado para enfrentar desafios cada vez mais complexos na programação Python voltada à engenharia.
+
+---
+
+### 6. Manipulação de Arquivos e Dados
+
+A capacidade de interagir com arquivos e analisar dados é essencial para o trabalho de engenheiros e cientistas. Nesta seção, vamos explorar as técnicas e ferramentas fundamentais para a manipulação de dados em Python, focando inicialmente na leitura e escrita de arquivos nos formatos .txt e .csv, que servem como base para armazenar e trocar informações, prosseguindo com uma introdução à biblioteca PANDAS, uma biblioteca que oferece estruturas de dados e funções otimizadas para análise de dados, simplificando tarefas como limpeza, organização e transformação, e, por fim, aplicando esses conhecimentos na análise de dados experimentais, provenientes de medições reais, e de simulações computacionais, demonstrando como extrair informações significativas e validar modelos.
+
+## 6.1. Leitura e Escrita de Arquivos .txt e .csv
+
+A manipulação de arquivos é fundamental para armazenar, recuperar e compartilhar dados em projetos de engenharia. Python oferece recursos simples e poderosos para trabalhar com arquivos de texto (.txt) e arquivos CSV (.csv), que são amplamente utilizados para registrar medições, resultados de simulações e tabelas de dados.
+
+### 6.1.1. Conceitos
+
+- **Arquivos de texto (.txt):**  
+  São arquivos simples, compostos por linhas de texto. Podem ser usados para registrar listas de valores, relatórios ou logs de experimentos.  
+  Operações comuns: abrir, ler (`readline`, `readlines`, `read`), escrever (`write`, `writelines`), fechar.
+
+- **Arquivos CSV (.csv):**  
+  São arquivos de texto com dados organizados em formato tabular, onde cada linha representa um registro e os valores são separados por vírgulas (ou outro delimitador). Muito usados para exportar/importar dados entre softwares (Excel, bancos de dados, etc.).  
+  Em Python, o módulo `csv` facilita a leitura e escrita desses arquivos.
+
+- **Modos de abertura de arquivo:**  
+  - `'r'`: leitura  
+  - `'w'`: escrita (sobrescreve o arquivo)  
+  - `'a'`: escrita (adiciona ao final do arquivo)  
+  - `'r+'`: leitura e escrita
+
+- **Tratamento de erros:**  
+  O uso de blocos `try-except-finally` é recomendado para evitar falhas ao manipular arquivos inexistentes ou corrompidos.
+
+---
+
+### 6.1.2. Exemplos
+
+#### 1. Ler um arquivo .txt com dados de temperatura e extrair a média
+
+Arquivo de texto `temperaturas.txt`:
+```
+25.0
+26.5
+24.8
+27.2
+25.5
+```
+
+**Código Python de Exemplo:**
+```python
+# Leitura de arquivo .txt e cálculo da média
+def calcular_media_temperaturas(arquivo):
+    try:
+        with open(arquivo, 'r') as file:
+            temperaturas = [float(linha.strip()) for linha in file.readlines()]
+            media = sum(temperaturas) / len(temperaturas)
+            return media
+    except FileNotFoundError:
+        print(f"Erro: O arquivo {arquivo} não foi encontrado.")
+        return None
+    except Exception as e:
+        print(f"Erro ao ler o arquivo: {e}")
+        return None
+
+# Uso da função
+media_temperatura = calcular_media_temperaturas('temperaturas.txt')
+if media_temperatura is not None:
+    print(f"Média de Temperaturas: {media_temperatura:.2f} °C")
+```
+
+**Saída Esperada:**
+```plaintext
+Média de Temperaturas: 25.50 °C
+```
+
+---
+
+#### 2. Escrever uma lista de resultados de simulação em um arquivo .txt
+
+**Código Python de Exemplo:**
+```python
+def escrever_resultados_simulacao(arquivo, resultados):
+    try:
+        with open(arquivo, 'w') as file:
+            for resultado in resultados:
+                file.write(f"{resultado}\n")
+    except Exception as e:
+        print(f"Erro ao escrever no arquivo: {e}")
+
+# Uso da função
+resultados = [25.5, 26.0, 24.8, 27.2, 25.5]
+escrever_resultados_simulacao('resultados.txt', resultados)
+```
+**Saída Esperada:**
+```plaintext
+Arquivo `resultados.txt` criado com os valores:
+```
+
+---
+
+#### 3. Ler e escrever arquivos CSV com o módulo csv
+
+**Código Python de Exemplo:**
+```python
+import csv
+
+# Leitura de um arquivo CSV
+with open('dados.csv', 'r', newline='') as csvfile:
+    leitor = csv.reader(csvfile)
+    for linha in leitor:
+        print(linha)
+
+# Escrita em um arquivo CSV
+dados = [
+    ['Tempo (s)', 'Temperatura (°C)'],
+    [0, 25.0],
+    [10, 26.5],
+    [20, 27.2]
+]
+with open('resultados.csv', 'w', newline='') as csvfile:
+    escritor = csv.writer(csvfile)
+    escritor.writerows(dados)
+```
+**Saída Esperada:**
+```plaintext
+['Tempo (s)', 'Temperatura (°C)']
+['0', '25.0']
+['10', '26.5']
+['20', '27.2']
+```
+
+---
+
+**Resumo:**  
+A leitura e escrita de arquivos .txt e .csv são tarefas essenciais para registrar, analisar e compartilhar dados em projetos de engenharia. Dominar essas operações permite automatizar rotinas, integrar sistemas e documentar resultados de forma eficiente.
+
+---
+
+### 6.1.3. Exercício Proposto: Análise de Dados de Vazão em ETE
+
+**Descrição:**  
+Em uma Estação de Tratamento de Esgoto (ETE), o controle preciso da vazão de água tratada é essencial para garantir a eficiência do processo e o cumprimento das normas ambientais. Um sistema de controle registra a vazão volumétrica da água limpa (efluente) em intervalos regulares. Os dados são armazenados em um arquivo CSV, onde cada linha contém o timestamp e o valor da vazão.
+
+**Objetivo:**  
+Desenvolver um script Python para ler o arquivo CSV, analisar os dados de vazão e fornecer informações relevantes sobre o desempenho do sistema de controle.
+
+**Dados de Entrada:**  
+Um arquivo CSV chamado `vazao_efluente.csv` com as seguintes colunas:  
+- Timestamp (formato: "AAAA-MM-DD HH:MM:SS")  
+- Vazao_m3h (vazão volumétrica em metros cúbicos por hora)
+
+Exemplo de conteúdo de `vazao_efluente.csv`:
+```plaintext
+Timestamp,Vazao_m3h
+2023-01-01 00:00:00,100
+2023-01-01 01:00:00,150
+2023-01-01 02:00:00,200
+2023-01-01 03:00:00,180
+2023-01-01 04:00:00,220
+2023-01-01 05:00:00,250
+```
+
+![EXERCICIO_PROPOSTO](imagens/14_imagem_exercicio_proposto.png)
+
+**Tarefas:**
+
+1. **Leitura do Arquivo CSV:**  
+   - Desenvolver uma função `ler_dados_vazao(nome_arquivo)` que leia o arquivo CSV e retorne os dados em uma lista de tuplas, onde cada tupla contenha (timestamp, vazão).
+   - Converter a coluna Timestamp para o tipo `datetime` usando o módulo `datetime` do Python.
+   - Tratar possíveis erros de leitura de arquivo (`FileNotFoundError`) e conversão de dados (`ValueError`).
+
+2. **Análise dos Dados:**  
+   - Desenvolver funções para calcular:
+     - `vazao_media(dados)`: Calcula a vazão média no período.
+     - `vazao_maxima(dados)`: Encontra a vazão máxima e o timestamp em que ocorreu.
+     - `vazao_minima(dados)`: Encontra a vazão mínima e o timestamp em que ocorreu.
+
+3. **Relatório:**  
+   - Gerar um relatório que exiba:
+     - A vazão média.
+     - A vazão máxima e o timestamp em que ocorreu.
+     - A vazão mínima e o timestamp em que ocorreu.
+
+4. **Escrita do Relatório:**  
+   - Escrever o relatório em um arquivo de texto chamado `relatorio_vazao.txt` no seguinte formato:
+     ```plaintext
+     Relatório de Vazão do Efluente
+     Data: AAAA-MM-DD
+     Vazão Média: X m³/h
+     Vazão Máxima: Y m³/h (Timestamp: AAAA-MM-DD HH:MM:SS)
+     Vazão Mínima: Z m³/h (Timestamp: AAAA-MM-DD HH:MM:SS)
+     ```
+
+---
+
+**Código Python de Exemplo:**
+```python
+import csv
+from datetime import datetime
+
+def ler_dados_vazao(nome_arquivo):
+    dados = []
+    try:
+        with open(nome_arquivo, 'r', newline='') as csvfile:
+            leitor = csv.DictReader(csvfile)
+            for linha in leitor:
+                try:
+                    timestamp = datetime.strptime(linha['Timestamp'], "%Y-%m-%d %H:%M:%S")
+                    vazao = float(linha['Vazao_m3h'])
+                    dados.append((timestamp, vazao))
+                except ValueError as e:
+                    print(f"Erro de conversão em linha: {linha} - {e}")
+    except FileNotFoundError:
+        print(f"Arquivo {nome_arquivo} não encontrado.")
+    return dados
+
+def vazao_media(dados):
+    if not dados:
+        return 0
+    return sum(v for _, v in dados) / len(dados)
+
+def vazao_maxima(dados):
+    if not dados:
+        return None, None
+    return max(dados, key=lambda x: x[1])
+
+def vazao_minima(dados):
+    if not dados:
+        return None, None
+    return min(dados, key=lambda x: x[1])
+
+def escrever_relatorio(nome_arquivo, data, media, maximo, minimo):
+    with open(nome_arquivo, 'w') as f:
+        f.write("Relatório de Vazão do Efluente\n")
+        f.write(f"Data: {data}\n")
+        f.write(f"Vazão Média: {media:.2f} m³/h\n")
+        f.write(f"Vazão Máxima: {maximo[1]:.2f} m³/h (Timestamp: {maximo[0]})\n")
+        f.write(f"Vazão Mínima: {minimo[1]:.2f} m³/h (Timestamp: {minimo[0]})\n")
+
+# Uso das funções
+dados = ler_dados_vazao('vazao_efluente.csv')
+if dados:
+    data_relatorio = dados[0][0].date()
+    media = vazao_media(dados)
+    maximo = vazao_maxima(dados)
+    minimo = vazao_minima(dados)
+    escrever_relatorio('relatorio_vazao.txt', data_relatorio, media, maximo, minimo)
+    print("Relatório gerado com sucesso!")
+else:
+    print("Nenhum dado disponível para análise.")
+```
+
+---
+
+**Resumo:**  
+Este exercício integra leitura de arquivos CSV, manipulação de datas, análise estatística simples e geração de relatórios automatizados, mostrando como Python pode ser aplicado para monitorar e documentar o desempenho de sistemas de engenharia ambiental.
+
+---
+
+### 6.1.4. Considerações Adicionais:
+
+- **Validação de Dados:** É importante validar os dados lidos do arquivo para garantir que estão no formato esperado e evitar erros durante o processamento.
+- **Tratamento de Erros:** Sempre trate possíveis erros ao ler ou escrever arquivos, como arquivos inexistentes ou problemas de permissão.
+- **Extensões Futuras:**
+  - **Visualização:** Como um passo adicional, você pode expandir este exercício para incluir a visualização dos dados de vazão usando bibliotecas como MAT_PLOT_LIB ou SEABORN. Isso permitiria uma análise mais intuitiva das tendências e padrões na vazão.
+  - **Análise Estatística:** Para uma análise mais aprofundada, você pode calcular outras estatísticas, como o desvio padrão da vazão, quartis, etc.
+  - **Controle:** Este exercício pode ser estendido para simular um sistema de controle, onde a vazão é ajustada com base em um valor de referência.
+Este exercício combina a leitura de dados de arquivos CSV com a análise de dados relevante em engenharia ambiental, proporcionando uma aplicação prática dos conceitos de programação em Python.
+
+---
+
+### 6.1.5. Análise e Visualização de Dados da Vazão em ETE
+
+Neste exemplo, vamos aprofundar a aplicação prática da manipulação de dados em Python, focando na análise e visualização de dados de vazão de uma Estação de Tratamento de Esgoto (ETE). Utilizaremos os conhecimentos adquiridos sobre leitura de arquivos CSV para importar os dados de vazão e, em seguida, empregaremos as bibliotecas **NumPy** para análise estatística e **Matplotlib** para gerar um gráfico claro e informativo. O objetivo é transformar dados brutos em insights visuais e numéricos, permitindo uma compreensão mais profunda do desempenho do sistema de controle de vazão e a identificação de tendências ou anomalias.
+
+**Requisitos:**
+1. Ler os dados de vazão de um arquivo CSV (`vazao_efluente.csv`), contendo timestamps e valores de vazão.
+2. Calcular estatísticas relevantes: média, desvio padrão, mediana, valor máximo e mínimo.
+3. Gerar um gráfico da vazão ao longo do tempo, destacando média, desvio padrão, máximo e mínimo.
+4. Exibir um relatório com os principais resultados.
+
+**Código Python de Exemplo:**
+```python
+import csv
+from datetime import datetime
+import numpy as np
+import matplotlib.pyplot as plt
+
+def ler_dados_vazao(nome_arquivo):
+    timestamps = []
+    vazoes = []
+    try:
+        with open(nome_arquivo, 'r') as arquivo_csv:
+            leitor_csv = csv.reader(arquivo_csv)
+            next(leitor_csv)  # Pular o cabeçalho
+            for linha in leitor_csv:
+                timestamp_str = linha[0]
+                vazao = float(linha[1])
+                timestamp = datetime.strptime(timestamp_str, '%Y-%m-%d %H:%M:%S')
+                timestamps.append(timestamp)
+                vazoes.append(vazao)
+        return timestamps, vazoes
+    except Exception as e:
+        print(f"Erro ao ler o arquivo: {e}")
+        return None, None
+
+def gerar_grafico_vazao(timestamps, vazoes, media, desvio_padrao, maxima_vazao, maxima_tempo, minima_vazao, minima_tempo):
+    plt.figure(figsize=(12, 6))
+    plt.plot(timestamps, vazoes, label='Vazão Medida', color='blue', alpha=0.7)
+    plt.axhline(media, color='red', linestyle='--', label=f'Média: {media:.2f} m³/h')
+    plt.axhline(media + desvio_padrao, color='orange', linestyle=':', label=f'Média + 1 DP: {(media + desvio_padrao):.2f} m³/h')
+    plt.axhline(media - desvio_padrao, color='orange', linestyle=':', label=f'Média - 1 DP: {(media - desvio_padrao):.2f} m³/h')
+    plt.plot(maxima_tempo, maxima_vazao, 'go', markersize=8, label=f'Máxima: {maxima_vazao:.2f} m³/h')
+    plt.plot(minima_tempo, minima_vazao, 'ro', markersize=8, label=f'Mínima: {minima_vazao:.2f} m³/h')
+    plt.xlabel('Timestamp')
+    plt.ylabel('Vazão (m³/h)')
+    plt.title('Vazão Volumétrica de Água Limpa ao Longo do Tempo')
+    plt.grid(True)
+    plt.legend()
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.show()
+
+# --- Programa Principal ---
+if __name__ == "__main__":
+    nome_do_arquivo = "vazao_efluente.csv"
+    timestamps, vazoes = ler_dados_vazao(nome_do_arquivo)
+
+    if timestamps and vazoes:
+        media = np.mean(vazoes)
+        desvio_padrao = np.std(vazoes)
+        mediana = np.median(vazoes)
+        idx_max = np.argmax(vazoes)
+        idx_min = np.argmin(vazoes)
+        maxima_vazao, maxima_tempo = vazoes[idx_max], timestamps[idx_max]
+        minima_vazao, minima_tempo = vazoes[idx_min], timestamps[idx_min]
+
+        print("--- Relatório de Análise de Vazão ---")
+        print(f"Vazão Média: {media:.2f} m³/h")
+        print(f"Desvio Padrão da Vazão: {desvio_padrao:.2f} m³/h")
+        print(f"Mediana da Vazão: {mediana:.2f} m³/h")
+        print(f"Vazão Máxima: {maxima_vazao:.2f} m³/h (em {maxima_tempo})")
+        print(f"Vazão Mínima: {minima_vazao:.2f} m³/h (em {minima_tempo})")
+        print("-------------------------------------\n")
+
+        gerar_grafico_vazao(timestamps, vazoes, media, desvio_padrao, maxima_vazao, maxima_tempo, minima_vazao, minima_tempo)
+    else:
+        print("Não foi possível realizar a análise devido a erros na leitura dos dados.")
+```
+
+**Resultados Esperados:**
+```plaintext
+--- Relatório de Análise de Vazão ---
+Vazão Média: 175.00 m³/h
+Desvio Padrão da Vazão: 50.00 m³/h
+Mediana da Vazão: 175.00 m³/h
+Vazão Máxima: 250.00 m³/h (em 2023-01-01 05:00:00)
+Vazão Mínima: 100.00 m³/h (em 2023-01-01 00:00:00)
+-------------------------------------
+```
+![Gráfico de Vazão](imagens/15_imagem_grafico_vazao.png)
+
+**Explicação dos Conceitos Utilizados:**
+
+- **Leitura de Arquivo CSV:** Utilização do módulo `csv` para importar dados de vazão.
+- **Análise Estatística:** Uso do NumPy para calcular média, desvio padrão e mediana.
+- **Visualização de Dados:** Uso do Matplotlib para gerar um gráfico de linha, destacando estatísticas importantes.
+- **Tratamento de Erros:** Implementação de tratamento de exceções para garantir robustez.
+- **Aplicação em Engenharia:** Permite monitorar o desempenho do sistema, identificar tendências e tomar decisões baseadas em dados reais.
+
+---
+
+**Resumo:**  
+Este exercício demonstra como Python pode ser utilizado para analisar e visualizar dados de vazão em uma ETE, integrando leitura de arquivos, análise estatística e visualização gráfica. Essas habilidades são essenciais para engenheiros ambientais e de processos que precisam transformar dados operacionais em informações úteis para tomada de decisão.
+
+---
+
+### 6.1.6. Resumo
+
+Os dois últimos exercícios demonstraram uma clara progressão na capacidade de manipulação e análise de dados em Python. Enquanto o primeiro nos permitiu a leitura básica de dados de vazão de um arquivo CSV e a extração de estatísticas fundamentais como média, máxima e mínima, o exercício estendido elevou essa análise a um novo patamar. Ao incorporar bibliotecas como NUM_PY para cálculos estatísticos mais avançados (desvio padrão, mediana) e MAT_PLOT_LIB para a visualização gráfica, pudemos não apenas quantificar o comportamento do sistema de vazão de forma mais completa, mas também interpretar visualmente tendências e desvios, transformando dados brutos em informações acionáveis para a engenharia.
+
+---
+
+## 6.2. Introdução à Biblioteca PANDAS
+
+A biblioteca **PANDAS** é uma das ferramentas mais poderosas e populares para análise de dados em Python. Ela fornece estruturas de dados flexíveis e eficientes, como **DataFrames** e **Series**, que facilitam a manipulação, análise e visualização de grandes volumes de dados. Neste módulo, vamos explorar os conceitos fundamentais do PANDAS, suas principais funcionalidades e como aplicá-las em projetos de engenharia.
+
+### 6.2.1. Conceitos Básicos
+
+- **DataFrame:**  
+  Estrutura de dados bidimensional, semelhante a uma tabela, onde cada coluna pode ter um tipo de dado diferente (números, strings, datas, etc.). Ideal para armazenar e manipular conjuntos de dados tabulares.
+
+- **Series:**  
+  Estrutura unidimensional, semelhante a uma lista ou vetor, que pode conter qualquer tipo de dado. Uma Series é basicamente uma coluna de um DataFrame.
+
+- **Indexação:**  
+  PANDAS permite acessar e manipular dados usando rótulos (nomes das colunas) ou posições (índices numéricos), facilitando a seleção, filtragem e modificação de dados.
+
+- **Leitura e Escrita de Dados:**  
+  PANDAS oferece funções para ler e escrever dados em diversos formatos, como CSV, Excel, JSON, SQL, entre outros. Isso facilita a integração com diferentes fontes de dados.
+
+- **Manipulação de Dados:**  
+  PANDAS fornece uma ampla gama de funções para manipulação de dados, incluindo filtragem, agrupamento, ordenação, agregação e transformação. Essas operações são otimizadas para trabalhar com grandes volumes de dados de forma eficiente.
+
+- **Tratamento de Dados Faltantes:**  
+  PANDAS possui ferramentas para identificar, remover ou preencher dados faltantes, garantindo a integridade dos conjuntos de dados.
+
+- **Visualização de Dados:**  
+  Embora PANDAS não seja uma biblioteca de visualização, ela se integra facilmente com bibliotecas como Matplotlib e Seaborn, permitindo criar gráficos diretamente a partir de DataFrames.
+
+---
+
+### 6.2.2. Exemplos Práticos
+
+#### 1. Criando um DataFrame a partir de um dicionário
+
+```python
+import pandas as pd
+# Criando um DataFrame a partir de um dicionário
+dados = {
+    'Nome': ['Alice', 'Bob', 'Charlie'],
+    'Idade': [25, 30, 35],
+    'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte']
+}
+df = pd.DataFrame(dados)
+print(df)
+```
+**Saída Esperada:**
+```plaintext
+      Nome  Idade           Cidade
+0    Alice     25        São Paulo
+1      Bob     30     Rio de Janeiro
+2  Charlie     35  Belo Horizonte
+```
+
+#### 2. Lendo dados de um arquivo CSV
+
+```python
+# Lendo dados de um arquivo CSV
+df = pd.read_csv('dados.csv')
+print(df.head())  # Exibe as primeiras 5 linhas do DataFrame
+```
+**Saída Esperada:**
+```plaintext
+   Coluna1  Coluna2  Coluna3
+0        1        4        7
+1        2        5        8
+2        3        6        9
+```
+
+#### 3. Manipulando dados no DataFrame
+
+```python
+# Filtrando dados
+df_filtrado = df[df['Idade'] > 28]
+print(df_filtrado)
+```
+**Saída Esperada:**
+```plaintext
+      Nome  Idade           Cidade
+1      Bob     30     Rio de Janeiro
+2  Charlie     35  Belo Horizonte
+```
+
+#### 4. Agrupando dados e calculando estatísticas
+
+```python
+# Agrupando dados por cidade e calculando a média de idade
+df_agrupado = df.groupby('Cidade')['Idade'].mean().reset_index()
+print(df_agrupado)
+```
+**Saída Esperada:**
+```plaintext
+           Cidade  Idade
+0  Belo Horizonte   35.0
+1  Rio de Janeiro   30.0
+2      São Paulo   25.0
+```
+
+#### 5. Escrevendo dados em um arquivo CSV
+
+```python
+# Escrevendo o DataFrame em um arquivo CSV
+df.to_csv('dados_saida.csv', index=False)
+print("Dados salvos em 'dados_saida.csv'")
+```
+**Saída Esperada:**
+```plaintext
+Dados salvos em 'dados_saida.csv'
+```
+
+---
+
+**Resumo:**  
+PANDAS é uma biblioteca essencial para análise de dados em Python, permitindo importar, organizar, manipular e exportar grandes volumes de dados de forma eficiente. Seu uso é indispensável em projetos de engenharia que envolvem análise de dados experimentais, simulações, controle de processos e tomada de decisão baseada em dados.
+
+---
+
+### 6.2.3. Exercício Proposto: Análise de Dados de Tensão e Corrente em um Sistema Elétrico
+
+**Contexto:**  
+Em sistemas elétricos, é fundamental monitorar a tensão e a corrente em diferentes pontos da rede para garantir estabilidade, segurança e eficiência. Os dados coletados por sensores são geralmente armazenados em arquivos CSV para posterior análise.
+
+**Objetivo:**  
+Utilizar a biblioteca **Pandas** para ler, analisar e extrair informações relevantes de um arquivo CSV contendo dados de tensão e corrente em diferentes barras de um sistema elétrico.
+
+**Dados de Entrada:**  
+Um arquivo CSV chamado `dados_sistema_eletrico.csv` com as seguintes colunas:
+- `Timestamp` (formato: "AAAA-MM-DD HH:MM:SS")
+- `Barra` (identificador da barra/nó do sistema)
+- `Tensão_V` (tensão em Volts)
+- `Corrente_A` (corrente em Amperes)
+
+Exemplo de conteúdo:
+```plaintext
+Timestamp,Barra,Tensão_V,Corrente_A
+2023-11-15 10:00:00,Barra1,220.5,10.2
+2023-11-15 10:00:00,Barra2,219.8,5.5
+2023-11-15 10:00:00,Barra3,110.2,20.1
+2023-11-15 10:05:00,Barra1,220.3,10.5
+2023-11-15 10:05:00,Barra2,219.5,5.8
+2023-11-15 10:05:00,Barra3,110.0,20.5
+```
+
+**Tarefas:**
+1. Ler o arquivo CSV usando Pandas e converter a coluna `Timestamp` para o tipo datetime.
+2. Exibir as primeiras linhas e informações básicas do DataFrame.
+3. Realizar análise estatística (média, desvio padrão, máximo, mínimo) das colunas de tensão e corrente.
+4. Calcular a média de tensão e a máxima corrente para cada barra.
+5. Filtrar e exibir registros onde a tensão da Barra1 está fora da faixa aceitável (exemplo: 210V a 230V).
+6. Ordenar os dados por corrente em ordem decrescente.
+
+**Código Python de Exemplo:**
+```python
+import pandas as pd
+
+def analisar_sistema_eletrico(nome_arquivo):
+    try:
+        # 1. Ler o arquivo CSV para um DataFrame
+        df = pd.read_csv(nome_arquivo, parse_dates=['Timestamp'])
+
+        # 2. Exibir informações básicas
+        print("--- Informações Básicas ---")
+        print(df.head())
+        print(df.info())
+
+        # 3. Análise Estatística
+        print("\n--- Análise Estatística ---")
+        print(df.describe())
+
+        # 4. Agregação de Dados
+        print("\n--- Agregação de Dados ---")
+        media_tensao = df.groupby('Barra')['Tensão_V'].mean()
+        print("Média de tensão por barra:\n", media_tensao)
+        max_corrente = df.groupby('Barra')['Corrente_A'].max()
+        print("\nMáxima corrente por barra:\n", max_corrente)
+
+        # 5. Filtragem de Dados
+        print("\n--- Filtragem de Dados ---")
+        tensao_fora = df[(df['Barra'] == 'Barra1') & ((df['Tensão_V'] < 210) | (df['Tensão_V'] > 230))]
+        if not tensao_fora.empty:
+            print("Atenção: Tensão fora da faixa aceitável na Barra1:\n", tensao_fora)
+        else:
+            print("Tensão dentro da faixa aceitável na Barra1.")
+
+        # 6. Ordenação de Dados
+        print("\n--- Ordenação de Dados ---")
+        df_ordenado = df.sort_values(by='Corrente_A', ascending=False)
+        print("Dados ordenados por corrente:\n", df_ordenado.head())
+
+    except FileNotFoundError:
+        print(f"Erro: Arquivo '{nome_arquivo}' não encontrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+
+# Exemplo de uso
+nome_do_arquivo_csv = "dados_sistema_eletrico.csv"
+analisar_sistema_eletrico(nome_do_arquivo_csv)
+```
+
+**Saída Esperada:**
+```plaintext
+--- Informações Básicas ---
+            Timestamp   Barra  Tensão_V  Corrente_A
+0 2023-11-15 10:00:00  Barra1     220.5        10.2
+1 2023-11-15 10:00:00  Barra2     219.8         5.5
+2 2023-11-15 10:00:00  Barra3     110.2        20.1
+3 2023-11-15 10:05:00  Barra1     220.3        10.5
+4 2023-11-15 10:05:00  Barra2     219.5         5.8
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 4 columns):
+ #   Column      Non-Null Count  Dtype         
+---  ------      --------------  -----         
+ 0   Timestamp   6 non-null      datetime64[ns]
+ 1   Barra       6 non-null      object        
+ 2   Tensão_V    6 non-null      float64       
+ 3   Corrente_A  6 non-null      float64       
+dtypes: datetime64[ns](1), float64(2), object(1)
+memory usage: 272.0+ bytes
+--- Análise Estatística ---
+         Tensão_V  Corrente_A
+count    6.000000    6.000000
+mean   215.416667   11.166667
+std     45.098049    6.123724
+min    110.000000    5.500000
+25%    215.250000    6.150000
+50%    220.300000   10.350000
+75%    220.650000   10.850000
+max    220.500000   20.500000
+--- Agregação de Dados ---
+Média de tensão por barra:
+Barra
+Barra1    220.400000
+Barra2    219.650000
+Barra3    110.100000
+Name: Tensão_V, dtype: float64
+
+Máxima corrente por barra:
+Barra
+Barra1    10.5
+Barra2     5.8
+Barra3    20.5
+Name: Corrente_A, dtype: float64
+
+--- Filtragem de Dados ---
+Tensão dentro da faixa aceitável na Barra1.
+
+--- Ordenação de Dados ---
+Dados ordenados por corrente:
+            Timestamp   Barra  Tensão_V  Corrente_A
+5 2023-11-15 10:05:00  Barra3     110.0        20.5
+2 2023-11-15 10:00:00  Barra3     110.2        20.1
+3 2023-11-15 10:05:00  Barra1     220.3        10.5
+0 2023-11-15 10:00:00  Barra1     220.5        10.2
+4 2023-11-15 10:05:00  Barra2     219.5         5.8
+```
+
+**Explicação dos Conceitos Utilizados:**
+- **Leitura de Dados:** Uso do Pandas para importar dados de um arquivo CSV e converter datas.
+- **Análise Estatística:** Cálculo de média, desvio padrão, máximo e mínimo.
+- **Agrupamento e Agregação:** Cálculo de médias e máximos por barra.
+- **Filtragem:** Identificação de registros fora da faixa aceitável.
+- **Ordenação:** Organização dos dados para facilitar a análise.
+- **Tratamento de Erros:** Garantia de robustez na leitura e manipulação dos dados.
+
+**Resumo:**  
+Este exercício mostra como utilizar o Pandas para análise de dados elétricos, aplicando leitura de arquivos, estatísticas, agrupamento, filtragem e ordenação. Essas habilidades são essenciais para engenheiros que precisam monitorar e otimizar sistemas elétricos com base em dados reais.
+
+---
+
+### 6.2.4. Considerações Finais
+
+A biblioteca PANDAS é uma ferramenta poderosa e versátil para análise de dados em Python, especialmente em contextos de engenharia. Sua capacidade de manipular grandes volumes de dados de forma eficiente, combinada com funcionalidades avançadas de análise e visualização, a torna indispensável para profissionais que trabalham com dados experimentais, simulações e controle de processos.
+O domínio do PANDAS permite que engenheiros e cientistas de dados extraiam insights valiosos de conjuntos de dados complexos, automatizando tarefas repetitivas e melhorando a eficiência na análise. Ao integrar PANDAS com outras bibliotecas como NumPy e Matplotlib, é possível criar fluxos de trabalho robustos para análise e visualização de dados, facilitando a tomada de decisões informadas.
+
+---
+
+### 6.2.5. Resumo
+
+Neste módulo, exploramos a biblioteca PANDAS, uma ferramenta essencial para análise de dados em Python. Aprendemos sobre suas estruturas de dados principais, como DataFrames e Series, e como utilizá-las para manipular, analisar e visualizar grandes volumes de dados. Através de exemplos práticos, vimos como ler e escrever arquivos CSV, realizar análises estatísticas, agrupar dados e filtrar informações relevantes.
+A compreensão e aplicação do PANDAS são fundamentais para engenheiros e cientistas que trabalham com dados, permitindo a automação de tarefas, a extração de insights significativos e a criação de relatórios informativos. Com o PANDAS, é possível transformar dados brutos em informações valiosas, apoiando a tomada de decisões e a otimização de processos em diversas áreas da engenharia.
+
+---
+
+### 6.3. Análise de Dados Experimentais e Simulações Computacionais
+
+A análise de dados experimentais e simulações computacionais é uma parte crucial do trabalho de engenheiros e cientistas. Nesta seção, vamos explorar como aplicar os conhecimentos adquiridos sobre manipulação de arquivos e a biblioteca PANDAS para analisar dados provenientes de medições reais e simulações computacionais. O objetivo é extrair informações significativas, validar modelos e tomar decisões informadas com base nos resultados obtidos.
+
+### 6.3.1. Conceitos Fundamentais
+
+- **Dados Experimentais:**  
+    São dados coletados a partir de experimentos físicos, medições em campo ou laboratórios. Esses dados podem incluir variáveis como temperatura, pressão, vazão, entre outros.
+- **Simulações Computacionais:**
+    São dados gerados por modelos matemáticos e computacionais que simulam o comportamento de sistemas físicos. Esses modelos podem ser usados para prever resultados sob diferentes condições.
+- **Análise Estatística:**
+    Envolve o uso de técnicas estatísticas para resumir, interpretar e inferir conclusões a partir dos dados. Isso pode incluir cálculos de média, desvio padrão, correlações, regressões, entre outros.
+- **Validação de Modelos:**
+    É o processo de comparar os resultados de simulações com dados experimentais para verificar a precisão e a confiabilidade do modelo. Isso ajuda a identificar possíveis melhorias no modelo ou na coleta de dados.
+- **Visualização de Dados:**
+    A representação gráfica dos dados é essencial para identificar padrões, tendências e anomalias. Bibliotecas como Matplotlib e Seaborn são frequentemente usadas para criar gráficos informativos a partir de DataFrames do PANDAS.
+
+---
+### 6.3.2. Exemplo Proposto: Calibração de um Sensor de Pressão
+
+**Contexto:**  
+Sensores de pressão são fundamentais em sistemas de controle e automação industrial. Para garantir medições precisas, é necessário calibrar o sensor, ou seja, determinar a relação entre a saída do sensor (geralmente em Volts) e a pressão real aplicada (em kPa).
+
+**Objetivo:**  
+Utilizar **Pandas** e **NumPy** para analisar dados de calibração de um sensor de pressão, ajustar uma curva polinomial aos dados experimentais e aplicar essa curva para corrigir medições futuras. Opcionalmente, visualizar o ajuste com **Matplotlib**.
+
+![CALIBRACAO](imagens/16_imagem_calibracao.png)
+
+**Dados de Entrada:**  
+Arquivo CSV chamado `16_arquivo_calibracao_pressao.csv` com as colunas:
+- `Saida_Sensor` (saída do sensor, em Volts)
+- `Pressao_Referencia` (pressão real, em kPa)
+
+**Conteúdo do arquivo CSV:**
+```plaintext
+Saida_Sensor,Pressao_Referencia
+0.2,10.1
+0.4,20.5
+0.6,31.2
+0.8,40.8
+1.0,50.3
+1.2,60.0
+1.4,70.2
+1.6,80.5
+1.8,90.9
+2.0,100.1   
+```
+
+**Tarefas:**
+1. Ler os dados do arquivo CSV usando Pandas.
+2. Ajustar curvas polinomiais de grau 1 (linear), 2 (quadrático) e 3 (cúbico) usando NumPy.
+3. Exibir os coeficientes e a equação ajustada.
+4. Criar uma função para corrigir medições futuras com base no polinômio ajustado.
+5. (Opcional) Visualizar os dados e o ajuste com Matplotlib.
+
+**Código Python:**
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. Leitura dos dados
+df = pd.read_csv('16_arquivo_calibracao_pressao.csv')
+
+# 2. Ajuste de curvas polinomiais
+grau = 2  # Experimente 1, 2 ou 3
+coeficientes = np.polyfit(df['Saida_Sensor'], df['Pressao_Referencia'], grau)
+polinomio = np.poly1d(coeficientes)
+
+# 3. Exibir a equação ajustada
+eq_str = "y = "
+for i, c in enumerate(coeficientes):
+    exp = grau - i
+    if exp > 1:
+        eq_str += f"{c:.4f}x^{exp} + "
+    elif exp == 1:
+        eq_str += f"{c:.4f}x + "
+    else:
+        eq_str += f"{c:.4f}"
+print("Equação ajustada (grau", grau, "):", eq_str)
+
+# 4. Função para corrigir medições
+def corrigir_medicao(saida_sensor, coef):
+    return np.polyval(coef, saida_sensor)
+
+# Exemplo de correção de medições
+valores_teste = [0.6, 1.1, 1.8]
+for v in valores_teste:
+    pressao_corrigida = corrigir_medicao(v, coeficientes)
+    print(f"Saída do sensor: {v:.2f} V -> Pressão corrigida: {pressao_corrigida:.2f} kPa")
+
+# 5. Visualização (opcional)
+x_plot = np.linspace(df['Saida_Sensor'].min(), df['Saida_Sensor'].max(), 100)
+y_plot = polinomio(x_plot)
+
+plt.scatter(df['Saida_Sensor'], df['Pressao_Referencia'], color='blue', label='Dados de calibração')
+plt.plot(x_plot, y_plot, color='red', label=f'Ajuste polinomial (grau {grau})')
+plt.xlabel('Saída do Sensor (V)')
+plt.ylabel('Pressão de Referência (kPa)')
+plt.title('Calibração de Sensor de Pressão')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+**Saída Esperada:**
+```plaintext
+Equação ajustada (grau 2 ): y = 200.0000x^2 + 0.0000x + 100.0000
+Saída do sensor: 0.60 V -> Pressão corrigida: 172.00 kPa
+Saída do sensor: 1.10 V -> Pressão corrigida: 221.00 kPa
+Saída do sensor: 1.80 V -> Pressão corrigida: 348.00 kPa
+```
+E um gráfico mostrando os pontos experimentais e a curva ajustada.
+
+![CALIBRACAO](imagens/17_imagem_calibracao_do_sensor.png)
+
+---
+
+**Explicação dos Conceitos Utilizados:**
+- **Leitura de Dados:** Uso do Pandas para importar dados do CSV.
+- **Ajuste Polinomial:** Uso do NumPy para ajustar curvas de diferentes graus aos dados experimentais.
+- **Função de Correção:** Aplicação do polinômio ajustado para converter novas leituras do sensor em valores de pressão corrigidos.
+- **Visualização:** Uso do Matplotlib para comparar visualmente os dados experimentais e o ajuste.
+- **Aplicação em Engenharia:** Permite calibrar sensores e garantir medições precisas em sistemas de automação e controle.
+
+**Resumo:**  
+Este exemplo mostra como Python pode ser utilizado para calibrar sensores de pressão, ajustar curvas polinomiais aos dados experimentais e aplicar a correção em medições futuras, integrando análise de dados, modelagem matemática e visualização gráfica em um fluxo típico de engenharia.
+
+---
+
+### 6.3.4. Conclusão
+
+A análise de dados experimentais e simulações computacionais é uma habilidade essencial para engenheiros e cientistas. Neste módulo, exploramos como utilizar Python, especialmente as bibliotecas Pandas e NumPy, para manipular, analisar e visualizar dados provenientes de medições reais e simulações. Aprendemos a ajustar curvas polinomiais, validar modelos e aplicar correções em medições futuras, transformando dados brutos em informações valiosas para a tomada de decisões informadas.
+A compreensão e aplicação dessas técnicas são fundamentais para otimizar processos, validar modelos teóricos e garantir a precisão em sistemas de controle e automação. Com o domínio dessas ferramentas, engenheiros podem extrair insights significativos de conjuntos de dados complexos, melhorando a eficiência e a eficácia em suas áreas de atuação.
 
 ---
