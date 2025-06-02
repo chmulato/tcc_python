@@ -36,11 +36,11 @@
 
 ## 📅 Semana 3 (17 a 21 de junho)
 
-- [ ] Capítulo 5 – Estruturas de Dados
-  - [ ] 5.1 Listas, tuplas e dicionários
-  - [ ] 5.2 Iteração e manipulação de dados
-  - [ ] 5.3 Aplicações em vetores de parâmetros de processo
-  - [ ] 5.4 Conclusão
+- [X] Capítulo 5 – Estruturas de Dados
+  - [X] 5.1 Listas, tuplas e dicionários
+  - [X] 5.2 Iteração e manipulação de dados
+  - [X] 5.3 Aplicações em vetores de parâmetros de processo
+  - [X] 5.4 Conclusão
 
 ---
 
