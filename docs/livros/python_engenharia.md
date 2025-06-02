@@ -27,7 +27,7 @@
      - [2.2.1. Operadores Aritméticos](#221-operadores-aritméticos)
      - [2.2.2. Operadores Lógicos](#222-operadores-lógicos)
      - [2.2.3. Exemplos Aplicados à Engenharia](#223-exemplos-aplicados-à-engenharia)
-     - [2.2.4. Exercício Proposto: Cálculo de Área e Perímetro de um Terreno](#224-exercício-proposto-cálculo-de-área-e-perímetro-de-um-terreno-e-verificação-de-viabilidade)
+     - [2.2.4. Exercício Proposto: Cálculo de Área e Perímetro de um Terreno e Verificação de Viabilidade](#224-exercício-proposto-cálculo-de-área-e-perímetro-de-um-terreno-e-verificação-de-viabilidade)
      - [2.2.5. Exercício Proposto: Análise da Deformação de uma Viga](#225-exercício-proposto-análise-da-deformação-de-uma-viga)
      - [2.2.6. Curiosidade – Mecânica dos Sólidos](#226-curiosidade--mecânica-dos-sólidos)
    - [2.3. Entrada e Saída de Dados em Python](#23-entrada-e-saída-de-dados-em-python)
@@ -80,7 +80,7 @@
      - [4.3.3. Importando Módulos](#433-importando-módulos)
      - [4.3.4. Benefícios da Modularização](#434-benefícios-da-modularização)
      - [4.3.5. Exemplo de Uso de Módulos](#435-exemplo-de-uso-de-módulos)
-     - [4.3.5 Exercício Proposto: Gestão de Inventário Florestal](#435-exercício-proposto-gestão-de-inventário-florestal)
+     - [4.3.5. Exercício Proposto: Gestão de Inventário Florestal](#435-exercício-proposto-gestão-de-inventário-florestal)
    - [4.4. Conclusão](#44-conclusão)
 
 5. [Estruturas de Dados](#5-estruturas-de-dados)
@@ -89,7 +89,7 @@
      - [5.1.2. Tuplas](#512-tuplas)
      - [5.1.3. Dicionários](#513-dicionários)
      - [5.1.4. Escolha da Estrutura de Dados](#514-escolha-da-estrutura-de-dados)
-     - [5.1.5. Exercício Proposto: Análise de Dados de Sensores de Tensão](#515-exercício-proposto-análise-de-dados-de-sensores-de-tensão-em-um-sistema-de-distribuição-de-energia)
+     - [5.1.5. Exercício Proposto: Análise de Dados de Sensores de Tensão em um Sistema de Distribuição de Energia](#515-exercício-proposto-análise-de-dados-de-sensores-de-tensão-em-um-sistema-de-distribuição-de-energia)
      - [5.1.6. Destaque dos Conceitos](#516-destaque-dos-conceitos)
    - [5.2. Iteração e Manipulação de Dados](#52-iteração-e-manipulação-de-dados)
      - [5.2.1. Iteração em Listas, Tuplas e Dicionários](#521-iteração-em-listas-tuplas-e-dicionários)
@@ -97,6 +97,8 @@
    - [5.3. Aplicações em Vetores de Parâmetros de Processo](#53-aplicações-em-vetores-de-parâmetros-de-processo)
      - [5.3.1. Representação de Vetores de Parâmetros](#531-representação-de-vetores-de-parâmetros)
      - [5.3.2. Exercício Proposto: Análise do Desempenho de um Reator Químico Batch](#532-exercício-proposto-análise-do-desempenho-de-um-reator-químico-batch)
+     - [5.3.3. Conceitos Aplicados no Código](#533-conceitos-aplicados-no-código)
+     - [5.3.4. Exercício Proposto: Resolução](#534-exercício-proposto-resolução)
    - [5.4. Conclusão](#54-conclusão)
 
 ---
@@ -2835,6 +2837,61 @@ Um engenheiro químico está analisando o desempenho de um reator químico batch
    - Exibir:
      - Constante de velocidade (k)
      - Representações textuais dos gráficos
+
+---
+
+### 5.3.3. Conceitos Aplicados no Código
+
+Neste exercício, diversos conceitos fundamentais de programação e engenharia foram aplicados para analisar o desempenho de um reator químico batch. Veja os principais pontos:
+
+1. **Vetores como Parâmetros de Processo**
+   - As listas `tempos`, `concentracoes` e `temperaturas` representam vetores de parâmetros de processo, comuns em engenharia para modelar a evolução de variáveis ao longo do tempo.
+   - Essa abordagem permite analisar tendências, identificar padrões e realizar cálculos sobre conjuntos de dados experimentais.
+
+2. **Reação de Primeira Ordem**
+   - A função `calcular_constante_velocidade` utiliza regressão linear sobre o logaritmo das concentrações, assumindo cinética de primeira ordem:
+     ```
+     ln(C(t)) = ln(C0) - k * t
+     ```
+   - O valor de `k` (constante de velocidade) é extraído da inclinação da reta ajustada aos dados experimentais, permitindo avaliar a eficiência e a velocidade da reação.
+
+3. **Representação Gráfica (via Texto)**
+   - A função `gerar_grafico_texto` converte os vetores de dados em gráficos ASCII, possibilitando uma visualização simples da evolução das variáveis mesmo sem bibliotecas gráficas.
+   - Essa técnica é útil para ambientes restritos ou para documentação rápida dos resultados.
+
+4. **Correlação entre Variáveis**
+   - Os dados organizados em listas permitem analisar como diferentes variáveis se relacionam, por exemplo:
+     - Como a temperatura influencia a constante de velocidade (`k`)
+     - Como a concentração varia com o tempo e a temperatura
+   - Embora o código não calcule diretamente correlações estatísticas, a estrutura facilita esse tipo de análise.
+
+5. **Modularidade e Reutilização**
+   - O uso de funções específicas para cada tarefa (cálculo de constante, geração de gráfico, etc.) torna o código modular, reutilizável e fácil de manter.
+   - Essa prática é essencial para projetos maiores e para a colaboração entre engenheiros.
+
+---
+
+**Resumo:**  
+O exercício integra conceitos de vetores de parâmetros, análise cinética, visualização de dados e modularização de código, mostrando como Python pode ser uma ferramenta poderosa para a análise e otimização de processos em engenharia química.
+
+---
+
+## 5.3.4. Exercício Proposto: Resolução
+
+Neste item, apresentamos a resolução detalhada do exercício de análise do desempenho de um reator químico batch, integrando os conceitos de vetores de parâmetros, funções e manipulação de dados em Python.
+
+O objetivo é mostrar, passo a passo, como implementar um programa que armazena dados experimentais (tempo, concentração e temperatura), calcula a constante de velocidade da reação por regressão linear, e gera representações gráficas textuais para facilitar a visualização dos resultados.
+
+A resolução inclui:
+
+- **Definição de funções** para calcular a constante de velocidade da reação (k) e para gerar gráficos em formato texto (ASCII), promovendo modularidade e reutilização do código.
+- **Organização dos dados experimentais** em listas, representando os vetores de parâmetros típicos de processos químicos.
+- **Aplicação de técnicas matemáticas** (como regressão linear) para extrair informações relevantes dos dados, como a constante de velocidade.
+- **Visualização dos resultados** por meio de gráficos textuais, permitindo interpretar rapidamente o comportamento do sistema mesmo sem bibliotecas gráficas.
+- **Saída estruturada**, exibindo a constante de velocidade calculada e os gráficos de concentração e temperatura ao longo do tempo.
+
+Este exercício reforça a importância de combinar estruturas de dados, funções e lógica de programação para resolver problemas reais de engenharia, tornando o código mais organizado, eficiente e fácil de manter. A abordagem apresentada pode ser adaptada para outros tipos de análises experimentais e processos industriais, evidenciando a versatilidade do Python na engenharia.
+
 
 **Código Python de Exemplo:**
 ```python
