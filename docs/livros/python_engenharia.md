@@ -118,7 +118,8 @@
      - [6.3.1. Conceitos Fundamentais](#631-conceitos-fundamentais)
      - [6.3.2. Exemplo Proposto: Calibração de um Sensor de Pressão](#632-exemplo-proposto-calibração-de-um-sensor-de-pressão)
      - [6.3.3. Resumo](#633-resumo)
-     - [6.4. Conclusão](#64-conclusão)
+   - [6.4. Conclusão](#64-conclusão)
+
 ---
 
 # 1. Apresentação
