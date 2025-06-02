@@ -2922,57 +2922,11 @@ print(grafico_temperatura)
 
 **Saída Esperada:**
 
-```
-Análise de Reator Químico Batch
+![RESULTADO_01](imagens/12_imagem_resultado_01.png)
 
-Constante de Velocidade (k): 0.0732 min^-1
 
-Gráfico: Concentração vs. Tempo
+![RESULTADO_02](imagens/13_imagem_resultado_02.png)
 
-|*                                                            
-|*                                                            
-| *                                                           
-|  *                                                          
-|   *                                                         
-|    *                                                        
-|     *                                                       
-|      *                                                      
-|       *                                                     
-|        *                                                    
-|         *                                                   
-|          *                                                  
-|           *                                                 
-|            *                                                
-|             *                                               
-|              *                                              
-|               *                                             
-|                *                                            
-|                 *                                           
-|-----------------T                                           
-
-Gráfico: Temperatura vs. Tempo
-
-|*                                                            
-|*                                                            
-| *                                                           
-|  *                                                          
-|   *                                                         
-|    *                                                        
-|     *                                                       
-|      *                                                      
-|       *                                                     
-|        *                                                    
-|         *                                                   
-|          *                                                  
-|           *                                                 
-|            *                                                
-|             *                                               
-|              *                                              
-|               *                                             
-|                *                                            
-|                 *                                           
-|-----------------T                                           
-```
 
 **Explicação dos Conceitos Utilizados:**
 
