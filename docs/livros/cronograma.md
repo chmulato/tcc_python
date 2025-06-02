@@ -46,11 +46,11 @@
 
 ## 📅 Semana 4 (24 a 28 de junho)
 
-- [ ] Capítulo 6 – Manipulação de Arquivos e Dados
-  - [ ] 6.1 Leitura e escrita de arquivos .txt e .csv
-  - [ ] 6.2 Introdução ao PANDAS
-  - [ ] 6.3 Análise de dados experimentais e de simulações
-  - [ ] 6.4 Conclusão
+- [X] Capítulo 6 – Manipulação de Arquivos e Dados
+  - [X] 6.1 Leitura e escrita de arquivos .txt e .csv
+  - [X] 6.2 Introdução ao PANDAS
+  - [X] 6.3 Análise de dados experimentais e de simulações
+  - [X] 6.4 Conclusão
 
 - [ ] Capítulo 7 – Visualização de Dados
   - [ ] 7.1 MAT_PLOT_LIB e SEABORN
