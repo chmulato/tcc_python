@@ -118,7 +118,7 @@
      - [6.3.1. Conceitos Fundamentais](#631-conceitos-fundamentais)
      - [6.3.2. Exemplo Proposto: Calibração de um Sensor de Pressão](#632-exemplo-proposto-calibração-de-um-sensor-de-pressão)
      - [6.3.3. Resumo](#633-resumo)
-     - [6.3.4. Conclusão](#634-conclusão)
+     - [6.4. Conclusão](#64-conclusão)
 ---
 
 # 1. Apresentação
@@ -3821,7 +3821,7 @@ A calibração de sensores é uma prática comum em engenharia, essencial para g
 
 ---
 
-### 6.3.4. Conclusão
+## 6.4. Conclusão
 
 A análise de dados experimentais e simulações computacionais é uma habilidade essencial para engenheiros e cientistas. Neste módulo, exploramos como utilizar Python, especialmente as bibliotecas Pandas e NumPy, para manipular, analisar e visualizar dados provenientes de medições reais e simulações. Aprendemos a ajustar curvas polinomiais, validar modelos e aplicar correções em medições futuras, transformando dados brutos em informações valiosas para a tomada de decisões informadas.
 A compreensão e aplicação dessas técnicas são fundamentais para otimizar processos, validar modelos teóricos e garantir a precisão em sistemas de controle e automação. Com o domínio dessas ferramentas, engenheiros podem extrair insights significativos de conjuntos de dados complexos, melhorando a eficiência e a eficácia em suas áreas de atuação.
