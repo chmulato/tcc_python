@@ -123,28 +123,11 @@
 11. [Finalização e Agradecimentos](#11-finalização-e-agradecimentos)
 
 12. [Configuração do Ambiente Python e VS Code](#12-configuração-do-ambiente-python-e-vs-code)
-    - [12.1. Preparando Seu Ambiente de Desenvolvimento](#121-preparando-seu-ambiente-de-desenvolvimento)
-    - [12.2. Verificação da Instalação Existente de Python e pip](#122-verificação-da-instalação-existente-de-python-e-pip)
-    - [12.3. Instalação Detalhada do Python 3 por Sistema Operacional](#123-instalação-detalhada-do-python-3-por-sistema-operacional)
-      - [12.3.1. Para Usuários Windows](#1231-para-usuários-windows)
-      - [12.3.2. Para Usuários MacOS](#1232-para-usuários-macos)
-      - [12.3.3. Para Usuários Linux](#1233-para-usuários-linux)
-      - [12.3.4. Verificação Final da Instalação do Python e pip](#1234-verificação-final-da-instalação-do-python-e-pip)
-    - [12.4. Instalação de Bibliotecas Python via console (pip)](#124-instalação-de-bibliotecas-python-via-console-pip)
-      - [12.4.1. Pré-requisitos](#1241-pré-requisitos)
-      - [12.4.2. Abrindo o Console/Terminal](#1242-abrindo-o-consoleterminal)
-      - [12.4.3. Instalação de uma Única Biblioteca](#1243-instalação-de-uma-única-biblioteca)
-      - [12.4.4. Instalação de Múltiplas Bibliotecas](#1244-instalação-de-múltiplas-bibliotecas-recomendado-para-a-apostila)
-      - [12.4.5. Verificação da Instalação da Biblioteca](#1245-verificação-da-instalação-da-biblioteca)
-    - [12.5. Instalação do Visual Studio Code](#125-instalação-do-visual-studio-code)
-    - [12.6. Configuração do Visual Studio Code para Python](#126-configuração-do-visual-studio-code-para-python)
-      - [12.6.1. Instalação da Extensão Python](#1261-instalação-da-extensão-python)
-      - [12.6.2. Seleção do Interpretador Python](#1262-seleção-do-interpretador-python)
-      - [12.6.3. Configuração do Ambiente Virtual](#1263-configuração-do-ambiente-virtual-opcional-mas-recomendado)
-      - [12.6.4. Instalação das Bibliotecas Necessárias](#1264-instalação-das-bibliotecas-necessárias)
-      - [12.6.5. Customização do Terminal no VS Code](#1265-customização-do-terminal-no-vs-code)
-      - [12.6.6. Criação e Execução do Primeiro Script](#1266-criação-e-execução-do-primeiro-script)
-      - [12.6.7. Configurações Adicionais Recomendadas](#1267-configurações-adicionais-recomendadas)
+    - [12.1. Configuração Rápida do Ambiente de Desenvolvimento](#121-configuração-rápida-do-ambiente-de-desenvolvimento)
+      - [12.1.1. Instalação do Python](#1211-instalação-do-python)
+      - [12.1.2. Instalação de Bibliotecas Essenciais](#1212-instalação-de-bibliotecas-essenciais)
+      - [12.1.3. Instalação e Configuração do VS Code](#1213-instalação-e-configuração-do-vs-code)
+      - [12.1.4. Testando a Configuração](#1214-testando-a-configuração)
 
 13. [Referências Bibliográficas](#13-referências-bibliográficas)
 
@@ -3857,7 +3840,6 @@ A compreensão e aplicação dessas técnicas são fundamentais para otimizar pr
 
 ---
 
-### 11. Finalização e Agradecimentos
 
 # 11. Finalização e Agradecimentos
 
@@ -3889,346 +3871,81 @@ Esperamos que esta apostila sirva como um guia valioso em sua jornada contínua 
 
 # 12. Configuração do Ambiente Python e VS Code
 
-## 12.1. Preparando Seu Ambiente de Desenvolvimento
+## 12.1. Configuração Rápida do Ambiente de Desenvolvimento
 
-A presente apostila serve como um guia prático para configurar o ambiente de programação necessário para a apostila principal. Ele visa preencher a lacuna entre a teoria e a prática, garantindo que estudantes e profissionais de engenharia possam estabelecer um espaço de trabalho robusto e consistente para programar em Python.
-O adendo abordará a instalação do interpretador Python, o gerenciamento de pacotes e a configuração do Visual Studio Code (VS Code) com as bibliotecas essenciais (NumPy, Pandas, Matplotlib, SciPy). Ao final, o leitor estará apto a aplicar Python na resolução de problemas de engenharia, modelagem, simulação e visualização de sistemas.
+Esta seção fornece instruções concisas para configurar seu ambiente Python para engenharia.
 
-## 12.2. Verificação da Instalação Existente de Python e pip
+### 12.1.1. Instalação do Python
 
-Antes de iniciar a instalação do Python, é prudente verificar se uma versão do Python ou do gerenciador de pacotes pip já está presente no sistema. Essa verificação pode evitar instalações redundantes e identificar possíveis conflitos de versão.
-Para tanto, o usuário pode abrir o terminal ou prompt de comando e executar os seguintes comandos:
+**Para Windows:**
+
+Baixe o instalador da página oficial do Python
+Execute o instalador e marque "Add Python to PATH"
+Clique em "Install Now"
+
+**Para MacOS:**
+Instale o Homebrew (se não tiver):
 
 ```bash
-python --version
-```
-ou
-```bash
-python3 --version
-```
-```bash
-pip --version
-```
-•	Para verificar a versão do Python:
-```bash
-python --version
-```
-ou
-```bash
-python3 --version
-```
-
-•	Para verificar a versão do pip:
-```bash
-pip --version
-```
-ou
-```bash
-pip3 --version
-```
-
-Em sistemas Linux e MacOS, é comum que python3 e pip3 sejam utilizados para diferenciar explicitamente do Python 2, que não é mais suportado.
-A instalação do Python 3 varia ligeiramente dependendo do sistema operacional. No entanto, o objetivo final é sempre estabelecer um ambiente Python 3 funcional e consistente. Essa uniformidade na experiência de codificação, apesar das diferentes abordagens de instalação, demonstra a natureza multiplataforma do Python, o que é uma vantagem significativa para aplicações de engenharia que podem ser desenvolvidas e executadas em diversos ambientes.
-
-## 12.3. Instalação Detalhada do Python 3 por Sistema Operacional
-
-### 12.3.1. Para Usuários Windows
-
-A forma mais recomendada para instalar o Python no Windows é através do instalador executável oficial, disponível no site python.org.
-Durante o processo de instalação, é de suma importância que o usuário marque a caixa de seleção "Add Python to PATH" (Adicionar Python ao PATH). A configuração correta da variável de ambiente PATH é fundamental, pois a sua ausência pode levar a erros comuns como "comando não encontrado" ao tentar executar python ou pip a partir de qualquer diretório no terminal. Ao adicionar o Python ao PATH, o sistema operacional consegue localizar o interpretador e o pip independentemente do diretório atual do usuário, otimizando o fluxo de trabalho e reduzindo a necessidade de depuração inicial.
-Como alternativa, para usuários de Windows 10 ou 11, o Python pode ser instalado via winget (Windows Package Manager) utilizando o comando:
-```bash
-winget install Python.Python
-```
-
-Após a instalação por qualquer um dos métodos, é recomendável verificar a versão do Python e do pip com os comandos:
-```bash
-python --version
-```
-ou
-```bash
-python3 --version
-```
-```bash
-pip --version
-```
-ou
-```bash
-pip3 --version
-```
-
-### 12.3.2. Para Usuário MacOS
-
-Para usuários de MacOS, o Homebrew é o método preferencial para a instalação e gerenciamento de pacotes, incluindo o Python, devido à sua facilidade de uso e atualização. A instalação do Homebrew pode ser realizada através do comando no terminal:
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-Uma vez o Homebrew instalado, o Python 3 pode ser instalado com:
-```bash
+# Usando Homebrew
 brew install python
 ```
-Embora menos recomendado para gerenciamento a longo prazo, o instalador direto do python.org também é uma opção para MacOS. Após a instalação, a verificação é feita com:
-```bash
-python3 --version
-```
-```bash
-pip3 --version
-```
 
-### 12.3.3. Para Usuários Linux
-
-Para usuários de Linux, a instalação do Python 3 e do pip varia conforme a distribuição utilizada. Abaixo estão os passos para as distribuições mais comuns:
-(distribuições baseadas em Debian/Ubuntu e Red Hat/Fedora)
-A instalação do Python em sistemas Linux geralmente é feita através dos gerenciadores de pacote nativos.
-•	Debian/Ubuntu (APT): Primeiramente, é crucial atualizar a lista de pacotes do sistema com sudo apt update para garantir que as versões mais recentes dos pacotes sejam acessadas. Em seguida, o Python 3 e o pip podem ser instalados com:
-```bash
-sudo apt install python3 python3-pip
-```
-Para necessidades de versões mais específicas ou recentes, o repositório deadsnakes PPA pode ser adicionado.
-•	Red Hat/Fedora (DNF/YUM): O sistema deve ser atualizado com sudo dnf update. A instalação do Python 3 é feita com sudo dnf install python3 , e o pip com sudo dnf install python3-pip. Em sistemas mais antigos, pode ser necessário habilitar o repositório epel-release.
-```bash
-pip --version
-```
-ou
-```bash
-pip3 --version
-```
-
-Em sistemas Linux e MacOS, é comum que python3 e pip3 sejam utilizados para diferenciar explicitamente do Python 2, que não é mais suportado.
-A instalação do Python 3 varia ligeiramente dependendo do sistema operacional. No entanto, o objetivo final é sempre estabelecer um ambiente Python 3 funcional e consistente. Essa uniformidade na experiência de codificação, apesar das diferentes abordagens de instalação, demonstra a natureza multiplataforma do Python, o que é uma vantagem significativa para aplicações de engenharia que podem ser desenvolvidas e executadas em diversos ambientes.
-
-## 12.3. Instalação Detalhada do Python 3 por Sistema Operacional
-
-### 12.3.1. Para Usuários Windows
-
-A forma mais recomendada para instalar o Python no Windows é através do instalador executável oficial, disponível no site python.org.
-Durante o processo de instalação, é de suma importância que o usuário marque a caixa de seleção "Add Python to PATH" (Adicionar Python ao PATH). A configuração correta da variável de ambiente PATH é fundamental, pois a sua ausência pode levar a erros comuns como "comando não encontrado" ao tentar executar python ou pip a partir de qualquer diretório no terminal. Ao adicionar o Python ao PATH, o sistema operacional consegue localizar o interpretador e o pip independentemente do diretório atual do usuário, otimizando o fluxo de trabalho e reduzindo a necessidade de depuração inicial.
-Como alternativa, para usuários de Windows 10 ou 11, o Python pode ser instalado via winget (Windows Package Manager) utilizando o comando:
-```bash
-winget install Python.Python
-```
-
-Após a instalação por qualquer um dos métodos, é recomendável verificar a versão do Python e do pip com os comandos:
-```bash
-python --version
-```
-ou
-```bash
-python3 --version
-```
-```bash
-pip --version
-```
-ou
-```bash
-pip3 --version
-```
-
-### 12.3.2. Para Usuário MacOS
-
-Para usuários de MacOS, o Homebrew é o método preferencial para a instalação e gerenciamento de pacotes, incluindo o Python, devido à sua facilidade de uso e atualização. A instalação do Homebrew pode ser realizada através do comando no terminal:
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-Uma vez o Homebrew instalado, o Python 3 pode ser instalado com:
-```bash
-brew install python
-```
-Embora menos recomendado para gerenciamento a longo prazo, o instalador direto do python.org também é uma opção para MacOS. Após a instalação, a verificação é feita com:
-```bash
-python3 --version
-```
-```bash
-pip3 --version
-```
-
-### 12.3.3. Para Usuários Linux
-
-Para usuários de Linux, a instalação do Python 3 e do pip varia conforme a distribuição utilizada. Abaixo estão os passos para as distribuições mais comuns:
-(distribuições baseadas em Debian/Ubuntu e Red Hat/Fedora)
-A instalação do Python em sistemas Linux geralmente é feita através dos gerenciadores de pacote nativos.
-•	Debian/Ubuntu (APT): Primeiramente, é crucial atualizar a lista de pacotes do sistema com sudo apt update para garantir que as versões mais recentes dos pacotes sejam acessadas. Em seguida, o Python 3 e o pip podem ser instalados com:
-```bash
-sudo apt install python3 python3-pip
-```
-Para necessidades de versões mais específicas ou recentes, o repositório deadsnakes PPA pode ser adicionado.
-•	Red Hat/Fedora (DNF/YUM): O sistema deve ser atualizado com sudo dnf update. A instalação do Python 3 é feita com sudo dnf install python3 , e o pip com sudo dnf install python3-pip. Em sistemas mais antigos, pode ser necessário habilitar o repositório epel-release.
-Em todas as distribuições Linux, a verificação da instalação é similar à do MacOS:
-```bash
-python3 --version
-```
-```bash
-pip3 --version
-```
-Em sistemas Linux e MacOS, é comum que python3 e pip3 sejam utilizados para diferenciar explicitamente do Python 2, que não é mais suportado.
-
-
-### 12.3.4. Verificação Final da Instalação do Python e pip
-
-Para confirmar que o interpretador Python está funcionando corretamente após a instalação, o usuário pode criar um arquivo simples, por exemplo, hello_engineering.py, com o conteúdo print("Hello, Engineering!") e executá-lo no terminal com python hello_engineering.py (ou python3 hello_engineering.py em sistemas Linux/MacOS). A visualização da mensagem "Hello, Engineering!" no terminal confirmará a instalação bem-sucedida.
-
-
-## 12.4. Instalação de Bibliotecas Python via console (pip)
-
-O pip é o gerenciador de pacotes padrão do Python. Ele permite que você instale, desinstale e gerencie bibliotecas (também chamadas de pacotes ou módulos) que não vêm com a instalação padrão do Python.
-
-### 12.4.1. Pré-requisitos:
-
-Antes de instalar qualquer biblioteca, é importante garantir que o pip esteja atualizado. Você pode atualizar o pip com o seguinte comando:
-```bash
-pip install --upgrade pip
-```
-Antes de instalar qualquer biblioteca, certifique-se de que você tem:
-•	Python 3 instalado: E que ele está adicionado ao PATH do seu sistema (o que permite usar python ou python3 diretamente no terminal). 
-•	pip instalado: O pip geralmente vem junto com as instalações mais recentes do Python 3. Você pode verificar a versão do Python e do pip no seu terminal com os comandos:
-```bash
-python --version
-pip --version
-```
-ou
+**Para Linux:**
 
 ```bash
-python3 --version
-pip3 --version
+# Debian/Ubuntu
+sudo apt update && sudo apt install python3 python3-pip
+
+# Fedora/RHEL
+sudo dnf install python3 python3-pip
 ```
 
-### 12.4.2. Abrindo o Console/Terminal:
+### 12.1.2. Instalação de Bibliotecas Essenciais
 
-Para instalar bibliotecas Python, você precisará abrir o terminal ou prompt de comando do seu sistema operacional. Aqui estão as instruções para os sistemas operacionais mais comuns:
-•	**Windows:** Procure por "Prompt de Comando" ou "PowerShell" no menu Iniciar. 
-•	**MacOS:** Abra o aplicativo "Terminal" (encontrado em Aplicativos > Utilitários). 
-•	**Linux:** Abra o seu terminal (geralmente Ctrl+Alt+T)
-
-
-### 12.4.3. Instalação de uma Única Biblioteca:
-
-Para instalar uma biblioteca específica, você pode usar o comando pip install seguido do nome da biblioteca. Por exemplo, para instalar a biblioteca NumPy, você executaria:
-
-```bash
-pip install numpy
+```
+# Instale todas as bibliotecas necessárias de uma vez
+pip install numpy pandas matplotlib scipy seaborn
 ```
 
-Para instalar a biblioteca Pandas, você executaria:
+### 12.1.3. Instalação e Configuração do VS Code
 
-```bash
-pip install pandas
-```
-
-Para instalar a biblioteca Matplotlib, você executaria:
-
-```bash
-pip install matplotlib
-```
-
-Para instalar a biblioteca SciPy, você executaria:
-
-```bash
-pip install scipy
-```
-
-Para instalar a biblioteca Seaborn, você executaria:
-
-```bash
-pip install seaborn
-```
-
-Você verá mensagens no terminal indicando o progresso do download e da instalação.
+1. Baixe e instale o VS Code da página oficial
+2. Abra o VS Code e instale a extensão Python:
+   - Pressione Ctrl+Shift+X
+   - Pesquise "Python"
+   - Instale a extensão oficial da Microsoft
+3. Configure o interpretador:
+   - Pressione Ctrl+Shift+P
+   - Digite "Python: Select Interpreter"
+   - Selecione o interpretador Python instalado
 
 
-### 12.4.4. Instalação de Múltiplas Bibliotecas (Recomendado para a Apostila):
+### 12.1.4. Testando a Configuração
 
-Para instalar várias bibliotecas de uma vez, você pode listar os nomes das bibliotecas separadas por espaços. Por exemplo, para instalar NumPy, Pandas, Matplotlib e SciPy simultaneamente, você pode usar o seguinte comando:
+1. Crie um novo arquivo com extensão .py
+2. Insira o código de teste:
 
-```bash
-pip install numpy pandas matplotlib scipy
-```
-
-Para instalar várias bibliotecas de uma vez, você pode listá-las no mesmo comando:
-
-```bash
-pip install seaborn
-```
-
-Você verá mensagens no terminal indicando o progresso do download e da instalação.
-
-
-### 12.4.5. Verificação da Instalação da Biblioteca:
-
-Após a instalação, você pode verificar se a biblioteca foi instalada corretamente abrindo o interpretador Python no terminal (digitando python ou python3) e tentando importá-la:
-
-```bash
-python -c "import numpy; print(numpy.__version__)"
-```
-ou
-```bashpython3 -c "import numpy; print(numpy.__version__)"
-```
-```bash
-python -c "import pandas; print(pandas.__version__)"
-```
-Se a versão for exibida sem erros, a instalação foi bem-sucedida. Digite exit() para sair do interpretador Python.
-Seguindo esses passos, você poderá instalar todas as bibliotecas necessárias para a apostila e configurar um ambiente de desenvolvimento robusto para suas aplicações em engenharia.
-
-
-## 12.5 Instalação do Visual Code
-
-Para instalar o Visual Studio Code (VS Code), a forma mais simples e recomendada é baixar o instalador diretamente do site oficial.
-Você pode encontrar as instruções detalhadas e o instalador para o seu sistema operacional (Windows, MacOS, Linux) na página oficial de download do VS Code:
-Instalação do Visual Studio Code:
-•	Acesse: https://code.visualstudio.com/download
-Basta baixar o instalador correspondente ao seu sistema e seguir os passos indicados. O VS Code oferece suporte a atualizações automáticas, garantindo que você sempre tenha a versão mais recente.
-
-
-## 12.6 Configuração do Visual Studio Code para Python
-
-Após instalar o Visual Studio Code, é necessário configurá-lo para trabalhar com Python. Aqui estão os passos detalhados:
-
-1. **Instalar a Extensão Python**:
-   - Abra o Visual Studio Code.
-   - Vá para a aba de extensões (ícone de quadrado no menu lateral ou pressione `Ctrl+Shift+X`).
-   - Pesquise por "Python" e instale a extensão oficial da Microsoft.
-
-2. **Selecionar o Interpretador Python**:
-   - Após instalar a extensão, pressione `Ctrl+Shift+P` para abrir a paleta de comandos.
-   - Digite "Python: Select Interpreter" e escolha o interpretador Python que você deseja usar (certifique-se de que o Python 3 esteja instalado).
-
-3. **Configurar o Ambiente Virtual (Opcional)**:
-   - É uma boa prática usar um ambiente virtual para gerenciar dependências do projeto.
-   - No terminal do VS Code, você pode criar um ambiente virtual com:
-     ```bash
-     python -m venv nome_do_ambiente
-     ```
-   - Ative o ambiente virtual:
-     - Windows:
-       ```bash
-       .\nome_do_ambiente\Scripts\activate
-       ```
-     - MacOS/Linux:
-       ```bash
-       source nome_do_ambiente/bin/activate
-       ```
-4. **Instalar Bibliotecas Necessárias**:
-   - Com o ambiente virtual ativado, instale as bibliotecas necessárias usando pip:
-     ```bash
-     pip install numpy pandas matplotlib scipy seaborn
-     ```
-5. **Configurar o Terminal**:
-   - No terminal do VS Code, certifique-se de que o ambiente virtual esteja ativado. Você deve ver o nome do ambiente entre parênteses no prompt do terminal.
-   - Se você estiver usando o Windows, pode ser necessário configurar o terminal para usar o PowerShell em vez do Prompt de Comando. Para fazer isso, abra o terminal integrado e clique na seta para baixo ao lado do botão "+" para selecionar "Select Default Shell" e escolha "Windows PowerShell".
-
-6. **Criar um Arquivo Python**:
-    - Crie um novo arquivo com a extensão `.py` (por exemplo, `meu_script.py`).
-    - Escreva um código simples para testar se tudo está funcionando corretamente:
 ```python
-   print("Hello, Engineering!")
-```
+import numpy as np
+import matplotlib.pyplot as plt
 
-7. **Executar o Código**:
-    - Para executar o código, você pode clicar com o botão direito no editor e selecionar "Run Python File in Terminal" ou usar o atalho `Ctrl+Shift+D` para abrir o painel de depuração e executar o arquivo.
+# Dados de exemplo
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
 
-```bash
-# Exemplo de código para testar a configuração
-print("Hello, Engineering!")
+# Criar gráfico
+plt.plot(x, y)
+plt.title("Teste de Configuração")
+plt.show()
+
+print("Ambiente configurado com sucesso!")
 ```
+3. Execute o arquivo:
+   - Pressione F5 ou clique em "Run" no menu superior
+
+Se o gráfico aparecer e a mensagem for exibida, sua configuração está pronta para os exercícios da apostila.
+
 ---
 
 # 13. Referências Bibliográficas
