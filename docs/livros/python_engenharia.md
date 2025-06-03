@@ -3884,6 +3884,7 @@ Ao concluir esta apostila, você não apenas compreende os principais conceitos 
 Gostaríamos de expressar nossa profunda gratidão a todos que contribuíram para a realização deste material. Em especial, agradecemos à Develcode, empresa de consultoria especializada em soluções de tecnologia, cujo apoio e expertise foram fundamentais para a concepção, desenvolvimento e aprimoramento desta apostila. A visão da Develcode em integrar a programação Python aos fluxos de trabalho de engenharia inspirou muitos dos exemplos práticos e mini projetos apresentados. Seu compromisso com a inovação e a educação técnica é verdadeiramente inspirador.
 
 Esperamos que esta apostila sirva como um guia valioso em sua jornada contínua de aprendizado e aplicação da programação em Python no campo da engenharia. Que você continue explorando, experimentando e desenvolvendo soluções inovadoras para os desafios que encontrar. O futuro da engenharia é digital, e você está agora equipado para liderar essa transformação!
+
 ---
 
 # 12. Configuração do Ambiente Python e VS Code
