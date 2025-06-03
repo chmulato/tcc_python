@@ -3049,7 +3049,7 @@ O domínio dessas ferramentas é fundamental para qualquer engenheiro ou cientis
 
 ---
 
-### 6. Manipulação de Arquivos e Dados
+# 6. Manipulação de Arquivos e Dados
 
 A capacidade de interagir com arquivos e analisar dados é essencial para o trabalho de engenheiros e cientistas. Nesta seção, vamos explorar as técnicas e ferramentas fundamentais para a manipulação de dados em Python, focando inicialmente na leitura e escrita de arquivos nos formatos .txt e .csv, que servem como base para armazenar e trocar informações, prosseguindo com uma introdução à biblioteca PANDAS, uma biblioteca que oferece estruturas de dados e funções otimizadas para análise de dados, simplificando tarefas como limpeza, organização e transformação, e, por fim, aplicando esses conhecimentos na análise de dados experimentais, provenientes de medições reais, e de simulações computacionais, demonstrando como extrair informações significativas e validar modelos.
 
@@ -3297,7 +3297,8 @@ else:
 
 ---
 
-**Resumo:**  
+#### Resumo:
+
 Este exercício integra leitura de arquivos CSV, manipulação de datas, análise estatística simples e geração de relatórios automatizados, mostrando como Python pode ser aplicado para monitorar e documentar o desempenho de sistemas de engenharia ambiental.
 
 ---
@@ -3534,8 +3535,6 @@ print("Dados salvos em 'dados_saida.csv'")
 Dados salvos em 'dados_saida.csv'
 ```
 
----
-
 **Resumo:**  
 PANDAS é uma biblioteca essencial para análise de dados em Python, permitindo importar, organizar, manipular e exportar grandes volumes de dados de forma eficiente. Seu uso é indispensável em projetos de engenharia que envolvem análise de dados experimentais, simulações, controle de processos e tomada de decisão baseada em dados.
 
@@ -3701,7 +3700,7 @@ A compreensão e aplicação do PANDAS são fundamentais para engenheiros e cien
 
 ---
 
-### 6.3. Análise de Dados Experimentais e Simulações Computacionais
+## 6.3. Análise de Dados Experimentais e Simulações Computacionais
 
 A análise de dados experimentais e simulações computacionais é uma parte crucial do trabalho de engenheiros e cientistas. Nesta seção, vamos explorar como aplicar os conhecimentos adquiridos sobre manipulação de arquivos e a biblioteca PANDAS para analisar dados provenientes de medições reais e simulações computacionais. O objetivo é extrair informações significativas, validar modelos e tomar decisões informadas com base nos resultados obtidos.
 
@@ -3839,7 +3838,6 @@ A análise de dados experimentais e simulações computacionais é uma habilidad
 A compreensão e aplicação dessas técnicas são fundamentais para otimizar processos, validar modelos teóricos e garantir a precisão em sistemas de controle e automação. Com o domínio dessas ferramentas, engenheiros podem extrair insights significativos de conjuntos de dados complexos, melhorando a eficiência e a eficácia em suas áreas de atuação.
 
 ---
-
 
 # 11. Finalização e Agradecimentos
 
