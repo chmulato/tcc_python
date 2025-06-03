@@ -85,14 +85,14 @@
   - [ ] 10.3 Integração de módulos anteriores em soluções prática
   - [ ] 10.4 Conclusão
 
-- [ ] Capítulo 11 – Finalização e Agradecimentos
+- [X] Capítulo 11 – Finalização e Agradecimentos
 
 ---
 
 ## 📅 Semana 7 (15 a 19 de julho)
 
-- [ ] Capítulo 12 – Adendo: Configuração do Ambiente Python e VS Code
-- [ ] Capítulo 13 – Referências Bibliográficas
+- [X] Capítulo 12 – Adendo: Configuração do Ambiente Python e VS Code
+- [X] Capítulo 13 – Referências Bibliográficas
 - [ ] Revisão geral da apostila
 - [ ] Inserção/verificação de imagens e figuras
 - [ ] Geração do PDF final
