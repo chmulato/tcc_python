@@ -4233,9 +4233,11 @@ print("Hello, Engineering!")
 
 # 13. Referências Bibliográficas
 
-BEAZLEY, D. M.; JONES, P. K. Python Cookbook. 3rd ed. Sebastopol: O'Reilly Media, 2013. 
-CHAPRA, S. C.; CANALE, R. P. Métodos numéricos para engenharia. 7. ed. Porto Alegre: AMGH, 2016. 
-LANGTANGEN, H. P. A Primer on Scientific Programming with Python. 5th ed. Berlin: Springer, 2016. 
-LOPES, G. D. D.; FORBELLONE, A. L. V. Lógica de programação: a construção de algoritmos e estruturas de dados. 3. ed. São Paulo: Pearson Prentice Hall, 2005. 
-MCKINNEY, W. Python for data analysis. Sebastopol: O'Reilly Media, 2012.
-OLIPHANT, T. E. A guide to NumPy. USA: Trelgol Publishing, 2006. 
+- BEAZLEY, D. M.; JONES, P. K. Python Cookbook. 3rd ed. Sebastopol: O'Reilly Media, 2013.
+- BELL, J. A.; DRISCOLL, J. F. Introduction to Python for Econometrics, Statistics and Data Analysis. 2nd ed. Cambridge: Cambridge University Press, 2018.
+- BROWN, D. Python for Engineers: A Beginner's Guide to Programming in Python. 1st ed. New York: Springer, 2020.
+- CHAPRA, S. C.; CANALE, R. P. Métodos numéricos para engenharia. 7. ed. Porto Alegre: AMGH, 2016.
+- LANGTANGEN, H. P. A Primer on Scientific Programming with Python. 5th ed. Berlin: Springer, 2016.
+- LOPES, G. D. D.; FORBELLONE, A. L. V. Lógica de programação: a construção de algoritmos e estruturas de dados. 3. ed. São Paulo: Pearson Prentice Hall, 2005.
+- MCKINNEY, W. Python for data analysis. Sebastopol: O'Reilly Media, 2012.
+- OLIPHANT, T. E. A guide to NumPy. USA: Trelgol Publishing, 2006.
