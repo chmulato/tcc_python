@@ -52,6 +52,12 @@
    - [7.3. Visualização de Curvas e Resultado de Processos](#73-visualização-de-curvas-e-resultado-de-processos)
    - [7.4. Conclusão](#74-conclusão)
 
+8. [Cálculo Numérico com NUM_PY](#8-cálculo-numérico-com-num_py)
+   - [8.1. Arrays e Operações Vetoriais](#81-arrays-e-operações-vetoriais)
+   - [8.2. Matrizes e Álgebra Linear](#82-matrizes-e-álgebra-linear)
+   - [8.3. Aplicações em Balanços e Sistemas Lineares](#83-aplicações-em-balanços-e-sistemas-lineares)
+   - [8.4. Conclusão](#84-conclusão)
+
 11. [Finalização e Agradecimentos](#11-finalização-e-agradecimentos)
 
 12. [Configuração do Ambiente Python e VS Code](#12-configuração-do-ambiente-python-e-vs-code)
@@ -4365,6 +4371,554 @@ Resumindo, a visualização dessas curvas permite identificar rapidamente o dese
 
 A visualização de dados é uma habilidade essencial para engenheiros e cientistas, permitindo a interpretação clara e eficaz de informações complexas. Neste módulo, exploramos os principais tipos de gráficos utilizados na visualização de dados, como gráficos de linha, barras, dispersão e histogramas, e discutimos suas aplicações práticas em engenharia.
 Através de exemplos práticos, aprendemos a utilizar as bibliotecas MAT_PLOT_LIB e SEABORN para criar gráficos informativos e visualmente atraentes. A capacidade de visualizar dados de forma eficaz é crucial para a análise de desempenho de sistemas, identificação de tendências e comunicação de resultados.
+
+---
+
+# 8.0. Cálculo Numérico com NUM_PY
+
+No universo da engenharia, a capacidade de realizar cálculos numéricos eficientes e complexos é de suma importância. Este módulo nos levará ao coração do Cálculo Numérico com NUM_PY, uma biblioteca fundamental em Python que revoluciona a forma como lidamos com dados matemáticos. Começaremos explorando os arrays e operações vetoriais, que são a base do NUM_PY, entendendo como eles permitem realizar operações matemáticas de forma rápida e otimizada em grandes conjuntos de dados. Em seguida, aprofundaremos no conceito de matrizes e álgebra linear, mostrando como o NUM_PY simplifica operações complexas como multiplicação de matrizes, inversão e resolução de sistemas. Por fim, veremos as aplicações práticas em balanços e sistemas lineares, demonstrando como essas ferramentas podem ser utilizadas para resolver problemas reais de engenharia, desde balanços de massa e energia até a análise de circuitos e estruturas. Ao final deste módulo, você estará apto a utilizar o NUM_PY para realizar cálculos numéricos robustos e eficientes, essenciais para diversas disciplinas da engenharia.
+
+## 8.1. Arrays e Operações Vetoriais
+
+No coração do NUM_PY (Numerical Python) está o objeto ndarray (N-dimensional array), uma estrutura de dados fundamental para computação numérica eficiente. Diferente das listas Python, que podem armazenar elementos de tipos variados, os arrays NUM_PY são homogêneos, ou seja, todos os seus elementos devem ser do mesmo tipo de dado (inteiro, FLOAT etc.). Essa característica, combinada com a implementação em C, torna as operações com arrays NUM_PY incrivelmente mais rápidas e eficientes em termos de memória para grandes volumes de dados numéricos.
+
+### 8.1.1. O que são Arrays NUM_PY?
+
+Um array NUM_PY é uma grade de valores, todos do mesmo tipo, e é indexado por uma tupla de inteiros não negativos. O número de dimensões é o rank do array.
+- **Vetor:** Um array 1-D (uma dimensão).
+- **Matriz:** Um array 2-D (duas dimensões).
+- **Tensor:** Um array com 3 ou mais dimensões.
+
+Vantagens sobre Listas Python:
+- **Velocidade:** Operações matemáticas em arrays NUM_PY são executadas muito mais rapidamente.
+- **Memória:** Arrays NUM_PY consomem menos memória para armazenar grandes quantidades de dados do mesmo tipo.
+- **Funcionalidade:** Oferecem uma vasta gama de funções matemáticas e de álgebra linear otimizadas.
+
+### 8.1.2. Criação de Arrays
+
+Os Arrays podem ser criados de diversas formas:
+- A partir de listas Python: Usando np.array().
+- Arrays preenchidos com valores específicos: np.zeros(), np.ones(), np.full().
+- Arrays com sequências numéricas: np.arange(), np.linspace().
+- Arrays com valores aleatórios: np.random.rand(), np.random.randn().
+
+Atributos Importantes de um Array:
+- **ndim:** O número de dimensões do array.
+- **shape:** Uma tupla indicando o tamanho de cada dimensão.
+- **size:** O número total de elementos no array.
+- **dtype:** O tipo de dado dos elementos no array.
+
+### 8.1.3. Operações Vetoriais (Vectorization)
+
+Uma das características mais poderosas do NUM_PY é a capacidade de realizar operações vetoriais. Isso significa que as operações matemáticas (adição, subtração, multiplicação, divisão etc.) são aplicadas elemento a elemento em arrays inteiros, sem a necessidade de escrever loops explícitos em Python. Isso não só torna o código mais conciso e legível, mas também significativamente mais rápido, pois as operações são executadas em código C otimizado.
+
+Por exemplo, se você tem dois arrays a e b e deseja somá-los, **a + b** fará a soma elemento a elemento, o que seria muito mais lento se feito com loops em listas Python.
+
+### 8.1.4. Exemplos: Arrays e Operações Vetoriais com NUM_PY.
+
+**Código Python:**
+```python
+import numpy as np
+# 1. Criação de Arrays
+# Criando um array a partir de uma lista Python
+array1 = np.array([1, 2, 3, 4, 5])
+# Criando um array 2D (matriz)
+array2 = np.array([[1, 2, 3], [4, 5, 6]])
+# Criando um array de zeros
+array3 = np.zeros((2, 3))  # Matriz 2x3 de zeros
+# Criando um array de uns
+array4 = np.ones((3, 2))  # Matriz 3x2 de uns
+# Criando um array com valores aleatórios
+array5 = np.random.rand(2, 2)  # Matriz 2x2 com valores aleatórios entre 0 e 1
+# 2. Atributos dos Arrays
+print("Array 1:", array1)
+print("Dimensões do Array 1:", array1.ndim)
+print("Formato do Array 1:", array1.shape)
+print("Tamanho do Array 1:", array1.size)
+print("Tipo de dado do Array 1:", array1.dtype)
+print("Array 2:", array2)
+print("Dimensões do Array 2:", array2.ndim)
+print("Formato do Array 2:", array2.shape)
+print("Tamanho do Array 2:", array2.size)
+print("Tipo de dado do Array 2:", array2.dtype)
+# 3. Operações Vetoriais
+# Soma de Arrays
+array_sum = array1 + 10  # Soma 10 a cada elemento do array1
+print("Soma de 10 a cada elemento do Array 1:", array_sum)
+# Multiplicação de Arrays
+array_product = array1 * 2  # Multiplica cada elemento do array1 por 2
+print("Multiplicação de cada elemento do Array 1 por 2:", array_product)
+# Produto Escalar de Arrays
+array_dot = np.dot(array2, array2.T)  # Produto escalar da matriz 2 com sua transposta
+print("Produto escalar da Matriz 2 com sua transposta:\n", array_dot)
+# Exemplo de operação vetorial: soma de dois arrays
+array_a = np.array([1, 2, 3])
+array_b = np.array([4, 5, 6])
+array_sum_ab = array_a + array_b  # Soma elemento a elemento
+print("Soma de Array A e B:", array_sum_ab)
+# Exemplo de operação vetorial: multiplicação de um array por um escalar
+array_scaled = array_a * 3  # Multiplica cada elemento do array_a por 3
+print("Array A multiplicado por 3:", array_scaled)
+# Exemplo de operação vetorial: exponenciação de um array
+array_exp = np.exp(array_a)  # Exponenciação de cada elemento do array_a
+print("Exponenciação do Array A:", array_exp)
+# Exemplo de operação vetorial: raiz quadrada de um array
+array_sqrt = np.sqrt(array_a)  # Raiz quadrada de cada elemento do array_a
+print("Raiz quadrada do Array A:", array_sqrt)
+# Exemplo de operação vetorial: logaritmo natural de um array
+array_log = np.log(array_a)  # Logaritmo natural de cada elemento do array_a
+print("Logaritmo natural do Array A:", array_log)
+```
+
+**Saída Esperada:**
+```plaintext
+Array 1: [1 2 3 4 5]
+Dimensões do Array 1: 1
+Formato do Array 1: (5,)
+Tamanho do Array 1: 5
+Tipo de dado do Array 1: int64
+Array 2: [[1 2 3]
+ [4 5 6]]
+Dimensões do Array 2: 2
+Formato do Array 2: (2, 3)
+Tamanho do Array 2: 6
+Tipo de dado do Array 2: int64
+Soma de 10 a cada elemento do Array 1: [11 12 13 14 15]
+Multiplicação de cada elemento do Array 1 por 2: [ 2  4  6  8 10]
+Produto escalar da Matriz 2 com sua transposta:
+ [[14 32]
+ [32 77]]
+Soma de Array A e B: [5 7 9]
+Array A multiplicado por 3: [3 6 9]
+Exponenciação do Array A: [ 2.71828183  7.3890561  20.08553692]
+Raiz quadrada do Array A: [1.         1.41421356 1.73205081]
+Logaritmo natural do Array A: [0.         0.69314718 1.09861229]
+```
+
+Este item estabelece a base para o uso do NUM_PY, mostrando como criar arrays e, mais importante, como realizar operações matemáticas de forma eficiente e concisa através da vetorização. Isso é fundamental para o cálculo numérico em engenharia.
+
+### 8.1.5. Exercício Proposto: Cálculo e Visualização de Forças Aerodinâmicas em uma Asa
+
+**Contexto:**
+Em engenharia aeronáutica, o cálculo das forças de sustentação (Lift) e arrasto (Drag) é fundamental para o projeto e análise de aeronaves. Essas forças dependem de vários fatores, como a densidade do ar, a área da asa, o coeficiente de sustentação/arrasto e a velocidade do ar. Em simulações ou testes, esses parâmetros são frequentemente medidos ou variados em conjunto.
+
+**Objetivo:**
+1. Utilizar arrays NUM_PY para representar os parâmetros aerodinâmicos.
+2. Aplicar operações vetoriais para calcular as forças de sustentação e arrasto para diferentes velocidades.
+3. Visualizar as curvas de sustentação e arrasto em função da velocidade do ar usando MAT_PLOT_LIB. 
+
+**Fórmulas Aerodinâmicas:**
+Para calcular as forças de sustentação e arrasto, utilizamos as seguintes fórmulas:
+- Força de Sustentação (Lift):
+```plaintext
+L = 0.5 * ρ * V² * S * CL
+```
+- Força de Arrasto (Drag):
+```plaintext
+D = 0.5 * ρ * V² * S * CD
+```
+Onde:
+- **L:** Força de Sustentação (Newtons)
+- **D:** Força de Arrasto (Newtons)
+- **ρ:** Densidade do ar (kg/m³)
+- **V:** Velocidade do ar (m/s)
+- **S:** Área da asa (m²)
+- **CL:** Coeficiente de Sustentação (adimensional)
+- **CD:** Coeficiente de Arrasto (adimensional)
+
+**Dados de Entrada:**
+- Densidade do ar (ρ): 1.225 kg/m³ (valor padrão ao nível do mar)
+- Área da asa (S): 20 m²
+- Coeficiente de Sustentação (CL): 1.2 (valor típico para uma asa em ângulo de ataque moderado)
+- Coeficiente de Arrasto (CD): 0.05 (valor típico para uma asa em ângulo de ataque moderado)
+- Velocidades do ar (V): Um array de velocidades variando de 0 a 100 m/s.
+
+**Código Python:**
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+# 1. Definição dos parâmetros aerodinâmicos
+rho = 1.225  # Densidade do ar em kg/m³
+S = 20.0  # Área da asa em m²
+CL = 1.2  # Coeficiente de Sustentação
+CD = 0.05  # Coeficiente de Arrasto
+# 2. Criação do array de velocidades
+V = np.linspace(0, 100, 500)  # Velocidades de 0 a 100 m/s
+# 3. Cálculo das forças de Sustentação e Arrasto
+L = 0.5 * rho * V**2 * S * CL  # Força de Sustentação
+D = 0.5 * rho * V**2 * S * CD  # Força de Arrasto
+# 4. Visualização das forças
+plt.figure(figsize=(12, 6))
+plt.plot(V, L, label='Sustentação (Lift)', color='blue')
+plt.plot(V, D, label='Arrasto (Drag)', color='red')
+plt.title('Forças Aerodinâmicas em Função da Velocidade do Ar')
+plt.xlabel('Velocidade do Ar (m/s)')
+plt.ylabel('Força (N)')
+plt.legend()
+plt.grid()
+plt.show()
+```
+**Saída Esperada:**
+```plaintext
+Gráfico mostrando as forças de sustentação e arrasto em função da velocidade do ar.
+```
+
+### Resultados do Gráfico:
+
+![Forças Aerodinâmicas](imagens/27_imagem_forcas_aerodinamicas.png)
+
+Gráfico mostrando as forças de sustentação e arrasto em função da velocidade do ar.
+
+### Análise do Gráfico:
+
+**O gráfico gerado apresenta duas curvas principais:**
+
+- **Força de Sustentação (Lift):** Representada pela linha azul, mostra como a força de sustentação aumenta quadraticamente com a velocidade do ar. Isso é esperado, pois a sustentação é proporcional ao quadrado da velocidade.   
+- **Força de Arrasto (Drag):** Representada pela linha vermelha, também aumenta quadraticamente com a velocidade do ar, mas com um coeficiente menor, refletindo o menor impacto do arrasto em comparação com a sustentação.
+
+### Interpretação dos Resultados:
+
+A análise das forças aerodinâmicas é crucial para o projeto de aeronaves, pois permite entender como a sustentação e o arrasto variam com a velocidade do ar. A curva de sustentação indica que, à medida que a velocidade aumenta, a capacidade da asa de gerar sustentação também aumenta significativamente, o que é desejável para o voo. Por outro lado, a curva de arrasto mostra que, embora o arrasto também aumente com a velocidade, ele é relativamente baixo em comparação com a sustentação, indicando uma eficiência aerodinâmica favorável.
+
+### Conceitos de NUM_PY Aplicados:
+
+- **Arrays NUM_PY:** Utilizados para representar os parâmetros aerodinâmicos e as velocidades do ar, permitindo operações vetorizadas eficientes.
+- **Operações Vetoriais:** Cálculos das forças de sustentação e arrasto foram realizados de forma vetorizada, evitando loops explícitos e melhorando a performance.
+
+---
+
+## 8.2. Matrizes e Álgebra Linear
+
+No contexto do **NUM_PY**, as matrizes são arrays bidimensionais (2-D) que desempenham um papel central em diversas áreas da engenharia, da física, da economia e da computação. A álgebra linear, por sua vez, é o ramo da matemática que estuda vetores, espaços vetoriais (ou lineares), transformações lineares e sistemas de equações lineares. O **NUM_PY** oferece um conjunto robusto e otimizado de ferramentas para trabalhar com matrizes e realizar operações de álgebra linear de forma eficiente.
+
+### 8.2.1. Representação de Matrizes no NUM_PY
+
+Uma matriz no NUM_PY é simplesmente um ndarray com duas dimensões. É possível criar matrizes a partir de listas aninhadas ou usando funções específicas do **NUM_PY**.
+
+### 8.2.2. Operações Fundamentais com Matrizes
+
+Assim como nos arrays unidimensionais, o **NUM_PY** permite operações elemento a elemento em matrizes. No entanto, o poder real surge nas operações de álgebra linear:
+- **Multiplicação de Matrizes (@ ou np.dot()):** Esta é uma das operações mais importantes. Diferente da multiplicação elemento a elemento (*), a multiplicação de matrizes segue as regras da álgebra linear, onde o número de colunas da primeira matriz deve ser igual ao número de linhas da segunda.
+- **Transposição (. T):** Inverte as linhas e colunas de uma matriz.
+- **Inversão (np.linalg.inv()):** Calcula a matriz inversa de uma matriz quadrada, se ela existir. A matriz inversa é fundamental para resolver sistemas de equações lineares.
+- **Determinante (np.linalg.det()):** Calcula o determinante de uma matriz quadrada, um valor escalar que fornece informações sobre as propriedades da matriz (por exemplo, se é invertível).
+- **Resolução de Sistemas de Equações Lineares (np.linalg.solve()):** Uma das aplicações mais poderosas. Permite encontrar a solução para um sistema de equações lineares do tipo Ax=B, onde A é a matriz de coeficientes, x é o vetor de variáveis desconhecidas e B é o vetor de termos independentes.
+
+O uso dessas operações otimizadas do **NUM_PY** é crucial para lidar com problemas complexos que envolvem grandes sistemas de equações, transformações geométricas, análise de redes, e muito mais, com alta performance.
+
+### 8.2.3. Exemplos: Matrizes e Álgebra Linear com NUM_PY
+
+Neste exemplo, vamos demonstrar a criação de matrizes, operações fundamentais como multiplicação, transposição, inversão e cálculo de determinante, além da resolução de sistemas de equações lineares. Essas operações são essenciais para resolver problemas complexos em engenharia e outras disciplinas científicas.
+
+**Código Python:**
+```python
+import numpy as np
+# 1. Criação de Matrizes
+# Criando uma matriz 2x3
+matriz1 = np.array([[1, 2, 3], [4, 5, 6]])
+# Criando uma matriz 3x2
+matriz2 = np.array([[7, 8], [9, 10], [11, 12]])
+# 2. Operações com Matrizes
+# Multiplicação de Matrizes
+matriz_produto = np.dot(matriz1, matriz2)  # Multiplicação de matriz1 por matriz2
+print("Produto de Matriz 1 e Matriz 2:\n", matriz_produto)
+# Transposição de uma Matriz
+matriz1_transposta = matriz1.T
+print("Transposição de Matriz 1:\n", matriz1_transposta)
+# Inversão de uma Matriz (apenas se for quadrada)
+try:
+    matriz_inversa = np.linalg.inv(matriz1)  # Tentativa de inversão de matriz1
+    print("Inversa de Matriz 1:\n", matriz_inversa)
+except np.linalg.LinAlgError as e:
+    print("Erro ao calcular a inversa de Matriz 1:", e)
+# Determinante de uma Matriz
+det_matriz1 = np.linalg.det(matriz1)  # Determinante de matriz1
+print("Determinante de Matriz 1:", det_matriz1)
+# Resolução de um Sistema de Equações Lineares
+A = np.array([[3, 2], [1, 4]])  # Matriz de coeficientes
+B = np.array([5, 6])  # Vetor de termos independentes
+x = np.linalg.solve(A, B)  # Resolvendo Ax = B
+print("Solução do sistema de equações Ax = B:", x)
+# Exemplo de multiplicação de matrizes
+matriz_a = np.array([[1, 2], [3, 4]])
+matriz_b = np.array([[5, 6], [7, 8]])
+matriz_multiplicacao = np.dot(matriz_a, matriz_b)  # Multiplicação de matriz_a por matriz_b
+print("Multiplicação de Matriz A e Matriz B:\n", matriz_multiplicacao)
+# Exemplo de transposição de uma matriz
+matriz_c = np.array([[1, 2, 3], [4, 5, 6]])
+matriz_c_transposta = matriz_c.T
+print("Transposição de Matriz C:\n", matriz_c_transposta)
+# Exemplo de inversão de uma matriz
+matriz_d = np.array([[1, 2], [3, 4]])
+try:
+    matriz_d_inversa = np.linalg.inv(matriz_d)  # Inversão de matriz_d
+    print("Inversa de Matriz D:\n", matriz_d_inversa)
+except np.linalg.LinAlgError as e:
+    print("Erro ao calcular a inversa de Matriz D:", e)
+# Determinante de uma matriz
+det_matriz_d = np.linalg.det(matriz_d)  # Determinante de matriz_d
+print("Determinante de Matriz D:", det_matriz_d)
+```
+
+**Saída Esperada:**
+```plaintext
+Produto de Matriz 1 e Matriz 2:
+ [[ 58  64]
+ [139 154]]
+Transposição de Matriz 1:
+ [[1 4]
+ [2 5]
+ [3 6]]
+Erro ao calcular a inversa de Matriz 1: Singular matrix
+Determinante de Matriz 1: 0.0
+Solução do sistema de equações Ax = B: [ 2.  1.]
+Multiplicação de Matriz A e Matriz B:
+ [[19 22]
+ [43 50]]
+Transposição de Matriz C:
+ [[1 4]
+ [2 5]
+ [3 6]]
+Inversa de Matriz D:
+ [[-2.   1. ]
+ [ 1.5 -0.5]]
+Determinante de Matriz D: -2.0
+```
+Este exemplo demonstra a criação de matrizes, operações fundamentais como multiplicação, transposição, inversão e cálculo de determinante, além da resolução de sistemas de equações lineares. Essas operações são essenciais para resolver problemas complexos em engenharia e outras disciplinas científicas.
+
+### 8.2.4. Exercício Proposto: Otimização do Tempo de Verde em um Semáforo
+
+**Contexto:**
+Em sistemas de controle de tráfego urbano, a otimização dos tempos de verde dos semáforos é um problema clássico da engenharia de controle e automação. O objetivo é minimizar congestionamentos e atrasos, garantindo um fluxo de veículos eficiente. Uma abordagem simplificada para isso envolve balancear a capacidade efetiva das vias com a demanda de tráfego, utilizando um sistema de equações lineares.
+
+**Objetivo:**
+1.	Modelar um cenário de interseção com dois fluxos de tráfego conflitantes.
+2.	Formular um sistema de equações lineares para determinar as proporções ideais de tempo de verde para cada fluxo.
+3.	Utilizar NUM_PY para resolver o sistema de equações.
+4.	Interpretar as proporções resultantes como tempos de verde para um ciclo semafórico.
+
+### 8.2.5. Formulação do Problema
+
+**Cenário:**
+Considere uma interseção simples com duas fases principais de semáforo:
+- Fase 1: Tráfego Norte-Sul (NS).
+- Fase 2: Tráfego Leste-Oeste (EW).
+Queremos determinar a proporção do tempo de verde total do ciclo semafórico que deve ser alocada para cada fase (x1 para NS e x2 para EW).
+
+**Formulação do Sistema de Equações Lineares:**
+
+Assumimos duas condições para otimização:
+
+- **Soma das Proporções:** A soma das proporções de tempo de verde para as duas fases deve ser igual a 1 (representando 100% do tempo de verde disponível no ciclo, desconsiderando o tempo perdido para simplificação).
+```plaintext
+x1 + x2 = 1  (Soma das proporções)
+```
+- **Balanceamento da Demanda vs. Capacidade:** A proporção entre a capacidade efetiva de uma via e sua demanda de tráfego deve ser a mesma para ambos os fluxos, garantindo que nenhum fluxo seja desproporcionalmente favorecido ou prejudicado.
+```plaintext
+CNS * x1 / DNS = CEW * x2 / DEW  (Balanceamento da demanda vs. capacidade)
+```
+Onde:
+- **CNS:** Capacidade da via Norte-Sul (veículos/hora).
+- **CEW:** Capacidade da via Leste-Oeste (veículos/hora).
+- **DNS:** Demanda de tráfego Norte-Sul (veículos/hora).
+- **DEW:** Demanda de tráfego Leste-Oeste (veículos/hora).
+
+Reorganizando a segunda equação para a forma Ax=B:
+```plaintext
+CNS * x1 - CEW * x2 * (DNS / DEW) = 0
+```
+Dados de Entrada (Valores de Exemplo):
+• Capacidade da via Norte-Sul (CNS): 1800 veículos/hora
+• Capacidade da via Leste-Oeste (CEW): 1200 veículos/hora
+• Demanda de tráfego Norte-Sul (DNS): 900 veículos/hora
+• Demanda de tráfego Leste-Oeste (DEW): 800 veículos/hora
+
+Sistema de Equações Resultante:
+• Substituindo os valores:
+```plaintext
+1800 * x1 - 1200 * x2 * (900 / 800) = 0
+```
+• Então o sistema se torna:
+```plaintext
+1800 * x1 - 1350 * x2 = 0
+```
+• Este sistema pode ser representado na forma matricial A.x=B:
+
+**Tarefas:**
+1. Definir a matriz A e o vetor B usando arrays NUM_PY.
+2. Resolver o sistema de equações lineares para encontrar x1 e x2 utilizando np.linalg.solve().
+3. Imprimir as proporções de tempo de verde calculadas.
+4. Se o ciclo semafórico total for de 60 segundos, calcular o tempo de verde em segundos para cada fase
+
+### Figura 8.2 - Otimização do Tempo Verde no Semáforo
+
+![SEMAFORO](imagens/28_imagem_semaforo.png)
+
+**Código Python:**
+```python
+import numpy as np
+# 1. Definição dos parâmetros do semáforo
+CNS = 1800  # Capacidade da via Norte-Sul (veículos/hora)
+CEW = 1200  # Capacidade da via Leste-Oeste (veículos/hora)
+DNS = 900   # Demanda de tráfego Norte-Sul (veículos/hora)
+DEW = 800   # Demanda de tráfego Leste-Oeste (veículos/hora)
+# 2. Definição do sistema de equações
+A = np.array([[1, 1], [CNS, -CEW * (DNS / DEW)]])  # Matriz de coeficientes
+B = np.array([1, 0])  # Vetor de termos independentes
+# 3. Resolução do sistema de equações
+x = np.linalg.solve(A, B)  # Resolvendo Ax = B
+# 4. Proporções de tempo de verde
+x1, x2 = x  # Proporções para NS e EW
+# 5. Cálculo do tempo de verde em segundos (ciclo total de 60 segundos)
+ciclo_total = 60  # Ciclo total do semáforo em segundos
+tempo_verde_NS = x1 * ciclo_total  # Tempo de verde para NS
+tempo_verde_EW = x2 * ciclo_total  # Tempo de verde para EW
+print("Proporção de tempo de verde para Norte-Sul (NS):", x1)
+print("Proporção de tempo de verde para Leste-Oeste (EW):", x2)
+print("Tempo de verde para Norte-Sul (NS):", tempo_verde_NS, "segundos")
+print("Tempo de verde para Leste-Oeste (EW):", tempo_verde_EW, "segundos")
+```
+
+**Saída Esperada:**
+```plaintext
+Proporção de tempo de verde para Norte-Sul (NS): 0.5714285714285714
+Proporção de tempo de verde para Leste-Oeste (EW): 0.42857142857142855
+Tempo de verde para Norte-Sul (NS): 34.285714285714285 segundos
+Tempo de verde para Leste-Oeste (EW): 25.714285714285715 segundos
+```
+### Análise dos Resultados:
+
+As proporções de tempo de verde calculadas indicam que, para o ciclo semafórico total de 60 segundos, aproximadamente 34.29 segundos devem ser alocados para o tráfego Norte-Sul (NS) e 25.71 segundos para o tráfego Leste-Oeste (EW). Essas proporções refletem a capacidade e a demanda de tráfego de cada direção, garantindo um fluxo equilibrado e eficiente.
+
+### Conceitos de NUM_PY Aplicados:
+
+- **Arrays NUM_PY:** Utilizados para representar a matriz de coeficientes e o vetor de termos independentes, permitindo operações matemáticas eficientes.
+- **Álgebra Linear:** A resolução do sistema de equações lineares foi realizada utilizando a função np.linalg.solve(), que é otimizada para resolver sistemas de equações de forma rápida e eficiente.
+
+Este exercício demonstra como um problema prático de engenharia de tráfego pode ser modelado e resolvido de forma elegante e eficiente usando os recursos de álgebra linear do NUM_PY. 
+
+---
+
+## 8.3. Aplicações em Balanços e Sistemas Lineares
+
+A capacidade de resolver sistemas de equações lineares é uma das aplicações mais fundamentais e ubíquas da álgebra linear na engenharia. Muitos problemas do mundo real, que inicialmente podem parecer complexos, podem ser modelados e simplificados para um conjunto de equações lineares. Isso é particularmente verdadeiro em:
+•	**Balanços de Massa e Energia:** Em engenharia química, ambiental e de alimentos, a conservação de massa e energia em processos industriais (reatores, misturadores, separadores) frequentemente resulta em sistemas de equações lineares que precisam ser resolvidos para determinar vazões, concentrações ou temperaturas desconhecidas.
+•	**Análise Estrutural:** Em engenharia civil e mecânica, o método dos elementos finitos (MEF) para analisar tensões e deformações em estruturas complexas, ou a análise de treliças, leva a grandes sistemas de equações lineares.
+•	**Circuitos Elétricos:** A aplicação das Leis de Kirchhoff (Lei das Correntes e Lei das Tensões) em circuitos elétricos com múltiplos nós e malhas resulta em sistemas de equações lineares para encontrar correntes e tensões desconhecidas.
+•	**Otimização e Pesquisa Operacional:** Muitos problemas de otimização linear são resolvidos usando técnicas que dependem da álgebra linear.
+
+A grande vantagem de usar o NUM_PY para essas aplicações é a sua capacidade de resolver esses sistemas de forma rápida e precisa, mesmo para muitos equações e variáveis, algo que seria inviável manualmente ou com métodos iterativos menos eficientes.
+
+### 8.3.1. Exercício Proposto: Balanço de Massa em um Misturador Químico
+
+**Contexto:**
+Em uma indústria química, é comum misturar diferentes correntes para obter um produto com uma composição desejada. Considere um misturador onde duas correntes de entrada (Corrente 1 e Corrente 2) são combinadas para formar uma Corrente 3 de saída. Cada corrente contém diferentes componentes (por exemplo, Componente A e Componente B).
+
+**Objetivo:**
+Determinar as vazões mássicas das Correntes 1 e 2 (F1 e F2) necessárias para produzir uma Corrente 3 com uma vazão e composição específicas, dado que conhecemos as composições das correntes de entrada. 
+
+**Formulação do Problema:**
+- Variáveis Desconhecidas:
+  F1: Vazão mássica da Corrente 1 (kg/h)
+  F2: Vazão mássica da Corrente 2 (kg/h)
+
+**Parâmetros Conhecidos:**
+- Vazão da Corrente 3 (F3): 1000 kg/h
+- Fração mássica do Componente A na Corrente 1 (xA1): 0.8 (80%)
+- Fração mássica do Componente B na Corrente 1 (xB1): 0.2 (20%)
+- Fração mássica do Componente A na Corrente 2 (xA2): 0.3 (30%)
+- Fração mássica do Componente B na Corrente 2 (xB2): 0.7 (70%)
+- Fração mássica desejada do Componente A na Corrente 3 (xA3): 0.6 (60%)
+- Fração mássica desejada do Componente B na Corrente 3 (xB3): 0.4 (40%)
+
+**Equações de Balanço de Massa:**
+
+- Balanço de Massa Total: A soma das vazões de entrada é igual à vazão de saída.
+
+```plaintext
+F1 + F2 = F3
+```
+- Balanço de Massa para o Componente A: A massa de A que entra é igual à massa de A que sai.
+
+```plaintext
+F1 * xA1 + F2 * xA2 = F3 * xA3
+```
+- Balanço de Massa para o Componente B: A massa de B que entra é igual à massa de B que sai.
+
+```plaintext
+F1 * xB1 + F2 * xB2 = F3 * xB3
+```
+
+**Sistema de Equações Resultante:**
+Podemos representar o sistema de equações na forma matricial Ax = B, onde:
+- A é a matriz dos coeficientes,
+- x é o vetor das variáveis desconhecidas (F1 e F2),
+- B é o vetor dos termos independentes.
+
+**Matriz A:**
+```plaintext
+A = [[1, 1], [xA1, xA2], [xB1, xB2]]
+```
+**Vetor B:**
+```plaintext
+B = [F3, F3 * xA3, F3 * xB3]
+```
+
+**Dados de Entrada:**
+- F3 = 1000 kg/h
+- xA1 = 0.8
+- xB1 = 0.2
+- xA2 = 0.3
+- xB2 = 0.7
+
+**Código Python:**
+```python
+import numpy as np
+# 1. Definição dos parâmetros do misturador
+F3 = 1000  # Vazão da Corrente 3 (kg/h)
+xA1 = 0.8  # Fração mássica do Componente A na Corrente 1
+xB1 = 0.2  # Fração mássica do Componente B na Corrente 1
+xA2 = 0.3  # Fração mássica do Componente A na Corrente 2
+xB2 = 0.7  # Fração mássica do Componente B na Corrente 2
+# 2. Definição do sistema de equações
+A = np.array([[1, 1], [xA1, xA2], [xB1, xB2]])  # Matriz de coeficientes
+B = np.array([F3, F3 * 0.6, F3 * 0.4])  # Vetor de termos independentes
+# 3. Resolução do sistema de equações
+x = np.linalg.solve(A, B)  # Resolvendo Ax = B
+# 4. Vazões mássicas das Correntes 1 e 2
+F1, F2 = x  # Vazões para Corrente 1 e Corrente 2
+# 5. Impressão dos resultados
+print("Vazão mássica da Corrente 1 (F1):", F1, "kg/h")
+print("Vazão mássica da Corrente 2 (F2):", F2, "kg/h")
+```
+
+**Saída Esperada:**
+```plaintext
+Vazão mássica da Corrente 1 (F1): 800.0 kg/h
+Vazão mássica da Corrente 2 (F2): 200.0 kg/h
+```
+
+### Figura 8.3 - Balanço de Massa em Misturador Químico
+
+![MISTURADOR](imagens/29_imagem_balanco_massa.png)
+
+
+### Análise dos Resultados:
+
+As vazões mássicas calculadas indicam que, para produzir uma Corrente 3 com uma vazão de 1000 kg/h e a composição desejada, é necessário ter 800 kg/h da Corrente 1 e 200 kg/h da Corrente 2. Isso garante que a composição final atenda às especificações de fração mássica do Componente A e Componente B.
+
+### Conceitos de NUM_PY Aplicados:
+
+- **Arrays NUM_PY:** Utilizados para representar a matriz de coeficientes e o vetor de termos independentes, permitindo operações matemáticas eficientes.
+- **Álgebra Linear:** A resolução do sistema de equações lineares foi realizada utilizando a função np.linalg.solve(), que é otimizada para resolver sistemas de equações de forma rápida e eficiente.
+
+---
+
+## 8.4 Conclusão
+
+Neste capítulo, exploramos o conceito de balanço de massa em um misturador químico, utilizando um sistema de equações lineares para determinar as vazões mássicas necessárias das correntes de entrada. Através da modelagem matemática e da aplicação de técnicas de álgebra linear com a biblioteca NumPy, conseguimos resolver o problema de forma eficiente e obter resultados significativos.
+
+Os conceitos abordados aqui são fundamentais para a compreensão de processos químicos e de engenharia, e a habilidade de aplicar programação e ferramentas computacionais para resolver problemas práticos é uma competência valiosa no campo da engenharia.
 
 ---
 
