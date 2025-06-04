@@ -4374,7 +4374,7 @@ Através de exemplos práticos, aprendemos a utilizar as bibliotecas MAT_PLOT_LI
 
 ---
 
-# 8.0. Cálculo Numérico com NUM_PY
+# 8. Cálculo Numérico com NUM_PY
 
 No universo da engenharia, a capacidade de realizar cálculos numéricos eficientes e complexos é de suma importância. Este módulo nos levará ao coração do Cálculo Numérico com NUM_PY, uma biblioteca fundamental em Python que revoluciona a forma como lidamos com dados matemáticos. Começaremos explorando os arrays e operações vetoriais, que são a base do NUM_PY, entendendo como eles permitem realizar operações matemáticas de forma rápida e otimizada em grandes conjuntos de dados. Em seguida, aprofundaremos no conceito de matrizes e álgebra linear, mostrando como o NUM_PY simplifica operações complexas como multiplicação de matrizes, inversão e resolução de sistemas. Por fim, veremos as aplicações práticas em balanços e sistemas lineares, demonstrando como essas ferramentas podem ser utilizadas para resolver problemas reais de engenharia, desde balanços de massa e energia até a análise de circuitos e estruturas. Ao final deste módulo, você estará apto a utilizar o NUM_PY para realizar cálculos numéricos robustos e eficientes, essenciais para diversas disciplinas da engenharia.
 
