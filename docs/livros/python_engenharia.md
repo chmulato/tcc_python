@@ -4703,6 +4703,7 @@ Em sistemas de controle de tráfego urbano, a otimização dos tempos de verde d
 Considere uma interseção simples com duas fases principais de semáforo:
 - Fase 1: Tráfego Norte-Sul (NS).
 - Fase 2: Tráfego Leste-Oeste (EW).
+
 Queremos determinar a proporção do tempo de verde total do ciclo semafórico que deve ser alocada para cada fase (x1 para NS e x2 para EW).
 
 **Formulação do Sistema de Equações Lineares:**
@@ -4727,22 +4728,26 @@ Reorganizando a segunda equação para a forma Ax=B:
 ```plaintext
 CNS * x1 - CEW * x2 * (DNS / DEW) = 0
 ```
-Dados de Entrada (Valores de Exemplo):
-• Capacidade da via Norte-Sul (CNS): 1800 veículos/hora
-• Capacidade da via Leste-Oeste (CEW): 1200 veículos/hora
-• Demanda de tráfego Norte-Sul (DNS): 900 veículos/hora
-• Demanda de tráfego Leste-Oeste (DEW): 800 veículos/hora
+**Dados de Entrada (Valores de Exemplo):**
+- Capacidade da via Norte-Sul (CNS): 1800 veículos/hora
+- Capacidade da via Leste-Oeste (CEW): 1200 veículos/hora
+- Demanda de tráfego Norte-Sul (DNS): 900 veículos/hora
+- Demanda de tráfego Leste-Oeste (DEW): 800 veículos/hora
 
-Sistema de Equações Resultante:
-• Substituindo os valores:
+**Sistema de Equações Resultante:**
+- A partir da equação de balanceamento, substituímos os valores:
+
 ```plaintext
+CNS * x1 - CEW * x2 * (DNS / DEW) = 0
+
 1800 * x1 - 1200 * x2 * (900 / 800) = 0
 ```
 • Então o sistema se torna:
+
 ```plaintext
 1800 * x1 - 1350 * x2 = 0
 ```
-• Este sistema pode ser representado na forma matricial A.x=B:
+• Este sistema pode ser representado na forma matricial **A . x = B**:
 
 **Tarefas:**
 1. Definir a matriz A e o vetor B usando arrays NUM_PY.
@@ -4795,19 +4800,20 @@ As proporções de tempo de verde calculadas indicam que, para o ciclo semafóri
 - **Arrays NUM_PY:** Utilizados para representar a matriz de coeficientes e o vetor de termos independentes, permitindo operações matemáticas eficientes.
 - **Álgebra Linear:** A resolução do sistema de equações lineares foi realizada utilizando a função np.linalg.solve(), que é otimizada para resolver sistemas de equações de forma rápida e eficiente.
 
-Este exercício demonstra como um problema prático de engenharia de tráfego pode ser modelado e resolvido de forma elegante e eficiente usando os recursos de álgebra linear do NUM_PY. 
+Este exercício demonstra como um problema prático de engenharia de tráfego pode ser modelado e resolvido de forma elegante e eficiente usando os recursos de álgebra linear do **NUM_PY**.
 
 ---
 
 ## 8.3. Aplicações em Balanços e Sistemas Lineares
 
 A capacidade de resolver sistemas de equações lineares é uma das aplicações mais fundamentais e ubíquas da álgebra linear na engenharia. Muitos problemas do mundo real, que inicialmente podem parecer complexos, podem ser modelados e simplificados para um conjunto de equações lineares. Isso é particularmente verdadeiro em:
-•	**Balanços de Massa e Energia:** Em engenharia química, ambiental e de alimentos, a conservação de massa e energia em processos industriais (reatores, misturadores, separadores) frequentemente resulta em sistemas de equações lineares que precisam ser resolvidos para determinar vazões, concentrações ou temperaturas desconhecidas.
-•	**Análise Estrutural:** Em engenharia civil e mecânica, o método dos elementos finitos (MEF) para analisar tensões e deformações em estruturas complexas, ou a análise de treliças, leva a grandes sistemas de equações lineares.
-•	**Circuitos Elétricos:** A aplicação das Leis de Kirchhoff (Lei das Correntes e Lei das Tensões) em circuitos elétricos com múltiplos nós e malhas resulta em sistemas de equações lineares para encontrar correntes e tensões desconhecidas.
-•	**Otimização e Pesquisa Operacional:** Muitos problemas de otimização linear são resolvidos usando técnicas que dependem da álgebra linear.
 
-A grande vantagem de usar o NUM_PY para essas aplicações é a sua capacidade de resolver esses sistemas de forma rápida e precisa, mesmo para muitos equações e variáveis, algo que seria inviável manualmente ou com métodos iterativos menos eficientes.
+**Balanços de Massa e Energia:** Em engenharia química, ambiental e de alimentos, a conservação de massa e energia em processos industriais (reatores, misturadores, separadores) frequentemente resulta em sistemas de equações lineares que precisam ser resolvidos para determinar vazões, concentrações ou temperaturas desconhecidas.
+**Análise Estrutural:** Em engenharia civil e mecânica, o método dos elementos finitos (MEF) para analisar tensões e deformações em estruturas complexas, ou a análise de treliças, leva a grandes sistemas de equações lineares.
+**Circuitos Elétricos:** A aplicação das Leis de Kirchhoff (Lei das Correntes e Lei das Tensões) em circuitos elétricos com múltiplos nós e malhas resulta em sistemas de equações lineares para encontrar correntes e tensões desconhecidas.
+**Otimização e Pesquisa Operacional:** Muitos problemas de otimização linear são resolvidos usando técnicas que dependem da álgebra linear.
+
+A grande vantagem de usar o **NUM_PY** para essas aplicações é a sua capacidade de resolver esses sistemas de forma rápida e precisa, mesmo para muitos equações e variáveis, algo que seria inviável manualmente ou com métodos iterativos menos eficientes.
 
 ### 8.3.1. Exercício Proposto: Balanço de Massa em um Misturador Químico
 
@@ -4818,11 +4824,13 @@ Em uma indústria química, é comum misturar diferentes correntes para obter um
 Determinar as vazões mássicas das Correntes 1 e 2 (F1 e F2) necessárias para produzir uma Corrente 3 com uma vazão e composição específicas, dado que conhecemos as composições das correntes de entrada. 
 
 **Formulação do Problema:**
+
 - Variáveis Desconhecidas:
-  F1: Vazão mássica da Corrente 1 (kg/h)
-  F2: Vazão mássica da Corrente 2 (kg/h)
+  - F1: Vazão mássica da Corrente 1 (kg/h)
+  - F2: Vazão mássica da Corrente 2 (kg/h)
 
 **Parâmetros Conhecidos:**
+
 - Vazão da Corrente 3 (F3): 1000 kg/h
 - Fração mássica do Componente A na Corrente 1 (xA1): 0.8 (80%)
 - Fração mássica do Componente B na Corrente 1 (xB1): 0.2 (20%)
@@ -4833,24 +4841,24 @@ Determinar as vazões mássicas das Correntes 1 e 2 (F1 e F2) necessárias para 
 
 **Equações de Balanço de Massa:**
 
-- Balanço de Massa Total: A soma das vazões de entrada é igual à vazão de saída.
+- **Balanço de Massa Total:** A soma das vazões de entrada é igual à vazão de saída.
 
 ```plaintext
 F1 + F2 = F3
 ```
-- Balanço de Massa para o Componente A: A massa de A que entra é igual à massa de A que sai.
+- **Balanço de Massa para o Componente A:** A massa de A que entra é igual à massa de A que sai.
 
 ```plaintext
 F1 * xA1 + F2 * xA2 = F3 * xA3
 ```
-- Balanço de Massa para o Componente B: A massa de B que entra é igual à massa de B que sai.
+- **Balanço de Massa para o Componente B:** A massa de B que entra é igual à massa de B que sai.
 
 ```plaintext
 F1 * xB1 + F2 * xB2 = F3 * xB3
 ```
 
 **Sistema de Equações Resultante:**
-Podemos representar o sistema de equações na forma matricial Ax = B, onde:
+Podemos representar o sistema de equações na forma matricial **A . x = B**, onde:
 - A é a matriz dos coeficientes,
 - x é o vetor das variáveis desconhecidas (F1 e F2),
 - B é o vetor dos termos independentes.
