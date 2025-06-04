@@ -13,6 +13,8 @@
 
 ### Sumário
 
+### Sumário
+
 1. [Apresentação](#1-apresentação)
 
 2. [Fundamentos da Programação em Python](#2-fundamentos-da-programação-em-python)
@@ -56,9 +58,9 @@
 
 12. [Configuração do Ambiente Python e VS Code](#12-configuração-do-ambiente-python-e-vs-code)
    - [12.1. Configuração Rápida do Ambiente de Desenvolvimento](#121-configuração-rápida-do-ambiente-de-desenvolvimento)
-   - [12.2. Instalação de Bibliotecas Essenciais](#1212-instalação-de-bibliotecas-essenciais)
-   - [12.3. Instalação e Configuração do VS Code](#1213-instalação-e-configuração-do-vs-code)
-   - [12.4. Testando a Configuração](#1214-testando-a-configuração)
+   - [12.2. Instalação de Bibliotecas Essenciais](#122-instalação-de-bibliotecas-essenciais)
+   - [12.3. Instalação e Configuração do VS Code](#123-instalação-e-configuração-do-vs-code)
+   - [12.4. Testando a Configuração](#124-testando-a-configuração)
 
 13. [Referências Bibliográficas](#13-referências-bibliográficas)
 
@@ -3881,7 +3883,7 @@ Este item fornece uma base sólida para entender as ferramentas essenciais de vi
 
 ---
 
-### 7.1.5. Exercício Proposto: Análise de Trajetória de um Míssil Balístico
+## 7.1.5 Exercício Proposto: Análise de Trajetória de um Míssil Balístico
 
 Em engenharia aeronáutica, a análise da trajetória de um míssil balístico é crucial para determinar seu alcance, tempo de voo e outros parâmetros de desempenho. Simulações computacionais geram dados detalhados sobre a posição, velocidade e aceleração do míssil ao longo do tempo.
 
@@ -3963,7 +3965,7 @@ Gráfico de linha mostrando a variação da velocidade do míssil ao longo do te
 Gráfico de dispersão mostrando a velocidade do míssil em função do tempo.
 ```
 
-### Figura 7.1.2 - Trajetória do Míssil Balístico
+### Figura 7.1.1 - Trajetória do Míssil Balístico
 
 ![Trajetória do Míssil](imagens/20_imagem_trajetoria_missel.png)
 
@@ -3974,7 +3976,7 @@ Gráfico de dispersão mostrando a velocidade do míssil em função do tempo.
 
 Este gráfico visualiza o caminho percorrido pelo míssil no plano vertical (altitude) e horizontal (distância). Ele ajuda a entender o alcance e a forma geral da trajetória.
 
-### Figura 7.1.3 - Variação da Velocidade ao Longo do Tempo
+### Figura 7.1.2 - Variação da Velocidade ao Longo do Tempo
 
 ![Variação da Velocidade](imagens/20_imagem_variacao_velocidade.png)
 
@@ -3985,7 +3987,7 @@ Este gráfico visualiza o caminho percorrido pelo míssil no plano vertical (alt
 
 Este gráfico mostra como a velocidade do míssil muda com o tempo, desde o lançamento até o impacto (ou o fim da simulação). Ele revela a desaceleração devido à gravidade e à resistência do ar (se incluída no modelo).
 
-### Figura 7.1.4 - Variação da Altitude ao Longo do Tempo
+### Figura 7.1.3 - Variação da Altitude ao Longo do Tempo
 
 ![Velocidade em Função do Tempo](imagens/20_imagem_velocidade_funcao_tempo.png)
 
@@ -4134,7 +4136,7 @@ plt.show()
 
 ---
 
-### 7.2.5 Exercício Proposto: Análise de Dados de Qualidade da Água em Campo Largo
+### 7.2.5. Exercício Proposto: Análise de Dados de Qualidade da Água em Campo Largo
 
 **Contexto:**
 Engenheiros ambientais monitoram regularmente a qualidade da água em rios e corpos d'água para avaliar a saúde do ecossistema, identificar fontes de poluição e garantir a conformidade com padrões ambientais. Diversos parâmetros são medidos em diferentes pontos de amostragem ao longo do tempo.
@@ -4268,7 +4270,7 @@ A visualização de curvas e resultados de processos é uma parte essencial da a
 
 ### 7.3.1. Importância da Visualização de Curvas
 
-A visualização de curvas é crucial para engenheiros e cientistas, pois permite a análise de tendências, a identificação de padrões e a detecção de anomalias em dados experimentais ou simulações. Gráficos bem elaborados ajudam a comunicar resultados complexos de forma clara e intuitiva, facilitando a tomada de decisões informadas. 
+A visualização de curvas é crucial para engenheiros e cientistas, pois permite a análise de tendências, a identificação de padrões e a detecção de anomalias em dados experimentais ou simulações. Gráficos bem elaborados ajudam a comunicar resultados complexos de forma clara e intuitiva, facilitando a tomada de decisões informadas.
 
 ### 7.3.2. Tipos de Gráficos para Visualização de Curvas
 
@@ -4293,7 +4295,7 @@ Para a visualização de curvas em Python, as bibliotecas MAT_PLOT_LIB e SEABORN
 
 ---
 
-### 7.3.5 Exercício Proposto: Análise do Desempenho de um Sistema de Controle de Temperatura
+### 7.3.5. Exercício Proposto: Análise do Desempenho de um Sistema de Controle de Temperatura
 
 **Contexto:**
 Em engenharia de controle, é fundamental monitorar e analisar como um sistema responde a mudanças no setpoint (valor desejado) e a distúrbios. A visualização das curvas de setpoint, da variável de processo (PV) e da saída do controlador (MV) ao longo do tempo é a principal ferramenta para avaliar o desempenho do controle (por exemplo, tempo de subida, overshoot, tempo de assentamento e erro em regime permanente).
