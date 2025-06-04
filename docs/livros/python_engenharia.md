@@ -120,6 +120,12 @@
      - [6.3.3. Resumo](#633-resumo)
    - [6.4. Conclusão](#64-conclusão)
 
+7. [Visualização de Dados](#7-visualização-de-dados)
+   - [7.1. MAT_PLOT_LIB e SEABORN: Ferramentas Essenciais para Visualização de Dados em Python](#71-mat_plot_lib-e-seaborn-ferramentas-essenciais-para-visualização-de-dados-em-python)
+   - [7.2. Tipos de Gráficos: Escolhendo a Representação Visual Adequada](#72-tipos-de-gráficos-escolhendo-a-representação-visual-adequada)
+   - [7.3. Visualização de Curvas e Resultado de Processos](#73-visualização-de-curvas-e-resultado-de-processos)
+   - [7.4. Conclusão](#74-conclusão)
+
 11. [Finalização e Agradecimentos](#11-finalização-e-agradecimentos)
 
 12. [Configuração do Ambiente Python e VS Code](#12-configuração-do-ambiente-python-e-vs-code)
@@ -3836,6 +3842,606 @@ A calibração de sensores é uma prática comum em engenharia, essencial para g
 
 A análise de dados experimentais e simulações computacionais é uma habilidade essencial para engenheiros e cientistas. Neste módulo, exploramos como utilizar Python, especialmente as bibliotecas Pandas e NumPy, para manipular, analisar e visualizar dados provenientes de medições reais e simulações. Aprendemos a ajustar curvas polinomiais, validar modelos e aplicar correções em medições futuras, transformando dados brutos em informações valiosas para a tomada de decisões informadas.
 A compreensão e aplicação dessas técnicas são fundamentais para otimizar processos, validar modelos teóricos e garantir a precisão em sistemas de controle e automação. Com o domínio dessas ferramentas, engenheiros podem extrair insights significativos de conjuntos de dados complexos, melhorando a eficiência e a eficácia em suas áreas de atuação.
+
+
+---
+
+# 7. Visualização de Dados
+
+A visualização de dados é uma etapa crucial no processo de análise, permitindo que os engenheiros interpretem informações complexas de forma intuitiva e identifiquem padrões, tendências e outliers que seriam difíceis de discernir em tabelas de números. Este módulo tem como objetivo introduzir os alunos às bibliotecas MAT_PLOT_LIB e SEABORN, ferramentas poderosas em Python para a criação de gráficos de alta qualidade. Exploraremos a construção de gráficos de linha, barras, dispersão e histogramas, cada um adequado para diferentes tipos de dados e propósitos analíticos. Além disso, o módulo abordará técnicas específicas para a visualização de curvas e resultados de processos, essenciais para a representação de dados experimentais, simulações e o monitoramento de sistemas dinâmicos. Ao final deste módulo, os alunos estarão aptos a selecionar e implementar as técnicas de visualização mais apropriadas para comunicar efetivamente seus resultados e conclusões.
+
+
+## 7.1. MAT_PLOT_LIB e SEABORN: Ferramentas Essenciais para Visualização de Dados em Python
+
+A visualização de dados é uma etapa fundamental na análise de dados em engenharia, permitindo a interpretação intuitiva de informações complexas e a identificação de padrões cruciais. Python oferece duas bibliotecas poderosas para essa finalidade: MAT_PLOT_LIB e SEABORN.
+
+### 7.1.1. MAT_PLOT_LIB: A Base da Visualização em Python
+
+MAT_PLOT_LIB é a biblioteca fundamental para a criação de gráficos em Python. Ela fornece um controle extenso sobre todos os elementos do gráfico, desde os tipos de gráficos (linhas, barras, dispersão, histogramas etc.) até os detalhes de formatação (cores, estilos de linha, rótulos, legendas etc.
+
+**Principais Características:**
+- Flexibilidade: Permite criar uma ampla variedade de gráficos e personalizar cada aspecto.
+- Controle Detalhado: Oferece controle preciso sobre a aparência do gráfico.
+- Integração: Compatível com NUM_PY e Pandas, facilitando a visualização de dados estruturados.
+- Modularidade: Sua arquitetura orientada a objetos permite a criação de gráficos complexos de forma organizada.
+
+**Exemplo Básico (MAT_PLOT_LIB):**
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Dados de exemplo
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# Criação do gráfico
+plt.plot(x, y, label='Seno')
+plt.title('Gráfico de Seno')
+plt.xlabel('Eixo X')
+plt.ylabel('Eixo Y')
+plt.legend()
+plt.grid()
+plt.show()
+```
+
+**Resultado:**
+
+![Gráfico de Seno](imagens/18_imagem_grafico_seno.png)
+
+### 7.1.2. SEABORN: Visualização Estatística Avançada
+
+SEABORN é uma biblioteca construída sobre MAT_PLOT_LIB, projetada para facilitar a criação de gráficos estatísticos complexos. Ela oferece uma interface de alto nível para criar visualizações informativas e atraentes, com foco em análise exploratória de dados.
+
+**Principais Características:**
+
+- Estética Melhorada: Gráficos com aparência profissional por padrão.
+- Integração com Pandas: Trabalha diretamente com DataFrames, simplificando a visualização de dados tabulares.
+- Gráficos Estatísticos: Facilita a criação de gráficos como boxplots, violin plots, pair plots e heatmaps.
+- Análise de Dados: Permite explorar relações entre variáveis e identificar padrões complexos.
+
+**Exemplo Básico (SEABORN):**
+
+```python
+import seaborn as sns
+import pandas as pd
+import numpy as np  # Adicione esta linha
+import matplotlib.pyplot as plt  # Adicione esta linha
+
+# Dados de exemplo
+dados = pd.DataFrame({
+    'x': np.linspace(0, 10, 100),
+    'y': np.sin(np.linspace(0, 10, 100))
+})
+
+# Criação do gráfico
+sns.lineplot(data=dados, x='x', y='y')
+plt.title('Gráfico de Seno com Seaborn')
+plt.xlabel('Eixo X')
+plt.ylabel('Eixo Y')
+plt.grid()
+plt.show()
+```
+**Resultado:**
+![Gráfico de Seno com Seaborn](imagens/19_imagem_grafico_seno_seaborn.png)
+
+### 7.1.3. Escolhendo entre MAT_PLOT_LIB e SEABORN
+
+Em muitos casos, MAT_PLOT_LIB e SEABORN são usados em conjunto. MAT_PLOT_LIB fornece a base, e SEABORN aprimora a aparência e adiciona recursos estatísticos.
+
+```markdown
+|------------------------|--------------------------------------------|---------------------------------------------|
+|  Característica        | MAT_PLOT_LIB                               | SEABORN                                     |
+|------------------------|--------------------------------------------|---------------------------------------------|
+| Flexibilidade          | Alta, controle detalhado                   | Alta, mas com foco em gráficos estatísticos |
+| Estética               | Básica, requer personalização              | Melhorada, gráficos prontos para publicação |
+| Integração             | Funciona bem com NUM_PY e Pandas           | Integração direta com Pandas                |
+| Tipos de Gráficos      | Todos os tipos básicos e avançados         | Foco em gráficos estatísticos complexos     |
+| Facilidade de Uso      | Requer mais código para gráficos complexos | Mais fácil para gráficos estatísticos       |
+|------------------------|--------------------------------------------|---------------------------------------------|
+```
+### 7.1.4. Quando Usar Cada Biblioteca
+
+**Use MAT_PLOT_LIB quando:**
+- Você precisa de controle total sobre a aparência do gráfico.
+- Você está criando gráficos simples e não precisa de visualizações estatísticas complexas.
+- Você está trabalhando com dados que não estão em um DataFrame do PANDAS.
+
+**Use SEABORN quando:**
+- Você deseja criar gráficos estatísticos complexos com facilidade.
+- Você valoriza a estética e deseja gráficos visualmente atraentes com menos código.
+- Você está trabalhando com DataFrames do PANDAS.
+
+Este item fornece uma base sólida para entender as ferramentas essenciais de visualização de dados em Python, preparando o terreno para os tópicos subsequentes sobre tipos específicos de gráficos e suas aplicações.
+
+---
+
+### 7.1.5. Exercício Proposto: Análise de Trajetória de um Míssil Balístico
+
+Em engenharia aeronáutica, a análise da trajetória de um míssil balístico é crucial para determinar seu alcance, tempo de voo e outros parâmetros de desempenho. Simulações computacionais geram dados detalhados sobre a posição, velocidade e aceleração do míssil ao longo do tempo.
+
+**Objetivo:**
+1. Ler dados de simulação de trajetória de um míssil balístico a partir de um arquivo CSV.
+2. Visualizar a trajetória do míssil em um gráfico 2D.
+3. Analisar a variação da velocidade e altitude ao longo do tempo.
+4. Utilizar MAT_PLOT_LIB e SEABORN para gerar gráficos informativos.
+
+**Dados de Entrada:**
+Um arquivo CSV chamado `20_arquivo_trajetoria_missel.csv` com as seguintes colunas:
+- `Tempo` (em segundos)
+- `Posicao_X` (posição horizontal em metros)
+- `Posicao_Y` (posição vertical em metros)
+- `Velocidade` (em m/s)
+**Conteúdo do arquivo CSV:**
+```plaintext
+Tempo,Posicao_X,Posicao_Y,Velocidade
+0,0,0,0
+1,100,50,150
+2,200,100,200
+3,300,150,250
+4,400,200,300
+5,500,250,350
+6,600,300,400
+7,700,350,450
+8,800,400,500
+9,900,450,550
+10,1000,500,600
+```
+**Tarefas:**
+1. Ler o arquivo CSV usando Pandas.
+2. Criar um gráfico 2D da trajetória do míssil (Posição X vs. Posição Y).
+3. Analisar a variação da velocidade ao longo do tempo em um gráfico de linha.
+4. Utilizar SEABORN para criar um gráfico de dispersão da velocidade em função do tempo.
+**Código Python:**
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# 1. Leitura dos dados
+caminho = input("Digite o caminho completo do arquivo CSV: ")
+df = pd.read_csv(caminho)
+# Se o arquivo estiver no mesmo diretório do script, você pode usar:
+# df = pd.read_csv('20_arquivo_trajetoria_missel.csv')
+df = pd.read_csv('20_arquivo_trajetoria_missel.csv')
+# 2. Gráfico 2D da trajetória do míssil
+plt.figure(figsize=(10, 6))
+plt.plot(df['Posicao_X'], df['Posicao_Y'], marker='o', label='Trajetória do Míssil')
+plt.title('Trajetória do Míssil Balístico')
+plt.xlabel('Posição X (m)')
+plt.ylabel('Posição Y (m)')
+plt.grid()
+plt.legend()
+plt.show()
+# 3. Análise da variação da velocidade ao longo do tempo
+plt.figure(figsize=(10, 6))
+plt.plot(df['Tempo'], df['Velocidade'], marker='o', color='orange', label='Velocidade')
+plt.title('Variação da Velocidade ao Longo do Tempo')
+plt.xlabel('Tempo (s)')
+plt.ylabel('Velocidade (m/s)')
+plt.grid()
+plt.legend()
+plt.show()
+# 4. Gráfico de dispersão da velocidade em função do tempo
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=df, x='Tempo', y='Velocidade', color='green', s=100)
+plt.title('Velocidade do Míssil em Função do Tempo')
+plt.xlabel('Tempo (s)')
+plt.ylabel('Velocidade (m/s)')
+plt.grid()
+plt.show()
+```
+
+**Saída Esperada:**
+```plaintext
+Gráfico 2D da trajetória do míssil, mostrando a posição X e Y ao longo do tempo.
+Gráfico de linha mostrando a variação da velocidade do míssil ao longo do tempo.
+Gráfico de dispersão mostrando a velocidade do míssil em função do tempo.
+```
+
+### Figura 7.1.2 - Trajetória do Míssil Balístico
+
+![Trajetória do Míssil](imagens/20_imagem_trajetoria_missel.png)
+
+1. Gráfico de Trajetória (Altitude vs. Distância):
+- Eixo X: Distância (km)
+- Eixo Y: Altitude (km)
+- Título do Gráfico: Trajetória do Míssil Balístico
+
+Este gráfico visualiza o caminho percorrido pelo míssil no plano vertical (altitude) e horizontal (distância). Ele ajuda a entender o alcance e a forma geral da trajetória.
+
+### Figura 7.1.3 - Variação da Velocidade ao Longo do Tempo
+
+![Variação da Velocidade](imagens/20_imagem_variacao_velocidade.png)
+
+2. Gráfico de Variação da Velocidade:
+- Eixo X: Tempo (s)
+- Eixo Y: Velocidade (m/s)
+- Título do Gráfico: Variação da Velocidade ao Longo do Tempo
+
+Este gráfico mostra como a velocidade do míssil muda com o tempo, desde o lançamento até o impacto (ou o fim da simulação). Ele revela a desaceleração devido à gravidade e à resistência do ar (se incluída no modelo).
+
+### Figura 7.1.4 - Variação da Altitude ao Longo do Tempo
+
+![Velocidade em Função do Tempo](imagens/20_imagem_velocidade_funcao_tempo.png)
+
+3. Gráfico de Variação da Altitude:
+- Eixo X: Tempo (s)
+- Eixo Y: Altitude (m)
+- Título do Gráfico: Variação da Altitude ao Longo do Tempo
+
+Este gráfico exibe a altitude do míssil em função do tempo, mostrando a subida inicial e a subsequente queda durante o voo balístico. Ele ajuda a visualizar a fase de subida, o apogeu (ponto mais alto) e a fase de descida.
+
+É importante que esses rótulos e títulos sejam claros e informativos para que qualquer pessoa que visualize os gráficos possa entender facilmente os dados representados.
+
+**Resumindo:**
+
+**Gráfico 1: Trajetória Espacial (Altitude vs. Distância)**
+
+- Esse gráfico é o mais intuitivo para visualizar o caminho físico percorrido pelo míssil. Ele mostra a forma da trajetória no espaço 2D, com a altitude no eixo vertical e a distância horizontal no eixo horizontal.
+- Por que é importante: Permite determinar o alcance máximo do míssil, a altura máxima atingida (apogeu) e a curvatura geral da trajetória.
+
+**Gráfico 2: Variação da Velocidade com o Tempo**
+
+- Esse gráfico foca na dinâmica do movimento, mostrando como a velocidade do míssil muda ao longo do tempo.
+- Por que é importante: Ajuda a entender a influência da gravidade e da resistência do ar (se considerada na simulação) na velocidade do míssil. A velocidade diminui à medida que o míssil sobe (devido à gravidade) e pode aumentar novamente durante a descida (também devido à gravidade). Esse gráfico é crucial para analisar a eficiência do voo e as forças atuantes.
+
+**Gráfico 3: Variação da Altitude com o Tempo**
+
+- Esse gráfico também foca na dinâmica, mas especificamente na componente vertical do movimento. Ele mostra como a altitude do míssil varia com o tempo.
+- Por que é importante: Permite determinar o tempo de voo total, o tempo para atingir o apogeu e a taxa de subida e descida do míssil. É útil para analisar a eficiência da fase de propulsão e o tempo de reentrada na atmosfera.
+
+Portanto:
+- O primeiro gráfico dá a forma da trajetória.
+- Os dois últimos gráficos dão a dinâmica do movimento ao longo do tempo, decompondo-a em velocidade e altitude.
+Cada gráfico fornece informações complementares, e a análise conjunta dos três oferece uma compreensão completa do voo do míssil balístico. 
+
+## 7.2. Tipos de Gráficos: Escolhendo a Representação Visual Adequada
+
+A escolha do tipo de gráfico certo é crucial para comunicar efetivamente os dados e as conclusões da análise. Cada tipo de gráfico é adequado para diferentes tipos de dados e propósitos de visualização.
+
+### 7.2.1. Gráficos de Linha
+
+**Propósito:** Mostrar a relação entre duas variáveis quantitativas, especialmente como uma variável muda em função da outra (frequentemente tempo). São ideais para visualizar tendências, padrões e variações ao longo de um intervalo contínuo.
+**Dados Adequados:**
+- Séries temporais (dados coletados em intervalos de tempo regulares).
+- Relações funcionais (y = f(x)).
+- Dados ordenados com um componente contínuo.
+
+**Exemplo (MAT_PLOT_LIB):**
+```python
+import matplotlib.pyplot as plt
+
+# Dados de exemplo
+tempo = [0, 1, 2, 3, 4, 5]
+velocidade = [0, 10, 20, 30, 40, 50]
+
+# Criando o gráfico
+plt.plot(tempo, velocidade)
+plt.title("Variação da Velocidade ao Longo do Tempo")
+plt.xlabel("Tempo (s)")
+plt.ylabel("Velocidade (m/s)")
+plt.grid()
+plt.show()
+```
+**Resultado:**
+
+![Gráfico de Linha](imagens/21_imagem_grafico_linha.png)
+
+### 7.2.2. Gráficos de Barras
+
+**Propósito:** Comparar valores entre diferentes categorias ou grupos. São úteis para visualizar dados discretos e comparar quantidades relativas.
+**Dados Adequados:**
+- Dados categóricos (ex: vendas por região, notas por aluno).
+- Comparações entre grupos (ex: desempenho de diferentes modelos de máquinas).
+
+**Exemplo (MAT_PLOT_LIB):**
+```python
+import matplotlib.pyplot as plt
+
+# Dados de exemplo
+categorias = ['A', 'B', 'C', 'D']
+valores = [10, 20, 15, 25]
+
+# Criando o gráfico
+plt.bar(categorias, valores)
+plt.title("Comparação de Valores entre Categorias")
+plt.xlabel("Categorias")
+plt.ylabel("Valores")
+plt.grid()
+plt.show()
+```
+
+**Resultado:**
+
+![Gráfico de Barras](imagens/22_imagem_grafico_barras.png)
+
+### 7.2.3. Gráficos de Dispersão
+
+**Propósito:** Mostrar a relação entre duas variáveis quantitativas, permitindo identificar correlações, tendências e agrupamentos. São úteis para visualizar a distribuição de dados e detectar outliers.
+**Dados Adequados:**
+- Relações entre duas variáveis contínuas (ex: altura vs. peso).
+- Análise de correlação (ex: temperatura vs. consumo de energia).
+
+**Exemplo (MAT_PLOT_LIB):**
+```python
+import matplotlib.pyplot as plt
+# Dados de exemplo
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 5, 7, 11]
+# Criando o gráfico
+plt.scatter(x, y)
+plt.title("Gráfico de Dispersão")
+plt.xlabel("Variável X")
+plt.ylabel("Variável Y")
+plt.grid()
+plt.show()
+```
+**Resultado:**
+
+![Gráfico de Dispersão](imagens/23_imagem_grafico_dispersao.png)
+
+### 7.2.4. Histogramas
+
+**Propósito:** Mostrar a distribuição de uma variável quantitativa, permitindo identificar a frequência de diferentes intervalos de valores. São úteis para visualizar a forma da distribuição dos dados e detectar a presença de outliers.
+
+**Dados Adequados:**
+- Dados contínuos (ex: alturas, pesos, temperaturas).
+- Análise de frequência (ex: distribuição de notas em uma prova).
+
+**Exemplo (MAT_PLOT_LIB):**
+```python
+import matplotlib.pyplot as plt
+
+# Dados de exemplo
+dados = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5]
+
+# Criando o gráfico
+plt.hist(dados, bins=5, edgecolor='black')
+plt.title("Histograma de Frequência")
+plt.xlabel("Valores")
+plt.ylabel("Frequência")
+plt.grid()
+plt.show()
+```
+**Resultado:**
+
+![Histograma](imagens/24_imagem_grafico_histograma.png)
+
+---
+
+### 7.2.5 Exercício Proposto: Análise de Dados de Qualidade da Água em Campo Largo
+
+**Contexto:**
+Engenheiros ambientais monitoram regularmente a qualidade da água em rios e corpos d'água para avaliar a saúde do ecossistema, identificar fontes de poluição e garantir a conformidade com padrões ambientais. Diversos parâmetros são medidos em diferentes pontos de amostragem ao longo do tempo.
+
+**Objetivo:**
+1. Carregar dados de monitoramento de qualidade da água de um arquivo CSV.
+2. Visualizar tendências de parâmetros ao longo do tempo.
+3. Comparar parâmetros entre diferentes pontos de amostragem.
+4. Analisar a distribuição de um parâmetro específico.
+5. Utilizar MAT_PLOT_LIB e SEABORN para gerar gráficos informativos.
+
+**Dados de Entrada:**
+- Um arquivo CSV chamado "25_arquivo_qualidade_agua.csv" com as seguintes colunas: 
+  - Timestamp (data e hora da medição)
+  - Ponto_Amostragem (identificador do local de coleta: Ex: "Ponto A", "Ponto B")
+  - pH (nível de pH da água)
+  - Oxigenio_Dissolvido_mgL (oxigênio dissolvido em mg/L)
+  - Turbidez_NTU (turbidez em unidades nefelométricas de turbidez)
+  - Temperatura_C (temperatura da água em Celsius)
+
+**Conteúdo do arquivo CSV:**
+```plaintext
+Timestamp,Ponto_Amostragem,pH,Oxigenio_Dissolvido_mgL,Turbidez_NTU,Temperatura_C
+2023-01-01 08:00,Ponto A,7.2,8.5,1.2,20.5
+2023-01-01 08:00,Ponto B,7.4,7.8,1.5,21.0
+2023-01-01 12:00,Ponto A,7.1,8.0,1.3,20.8
+2023-01-01 12:00,Ponto B,7.3,7.5,1.6,21.2
+2023-01-01 16:00,Ponto A,7.0,8.2,1.1,20.6
+2023-01-01 16:00,Ponto B,7.2,7.6,1.4,21.1
+2023-01-02 08:00,Ponto A,7.3,8.4,1.0,20.7
+2023-01-02 08:00,Ponto B,7.5,7.9,1.2,21.3
+2023-01-02 12:00,Ponto A,7.4,8.1,1.3,20.9
+2023-01-02 12:00,Ponto B,7.6,7.7,1.5,21.4
+2023-01-02 16:00,Ponto A,7.5,8.3,1.2,20.8
+2023-01-02 16:00,Ponto B,7.7,7.8,1.4,21.5
+```
+**Tarefas:**
+1. Ler o arquivo CSV usando Pandas.
+2. Criar um gráfico de linha para visualizar a variação do pH ao longo do tempo para cada ponto de amostragem.
+3. Criar um gráfico de barras para comparar os níveis de oxigênio dissolvido entre os pontos de amostragem.
+4. Criar um gráfico de dispersão para analisar a relação entre turbidez e temperatura da água.
+
+**Código Python:**
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# 1. Leitura dos dados
+caminho = input("Digite o caminho completo do arquivo CSV: ")
+df = pd.read_csv(caminho)
+# Se o arquivo estiver no mesmo diretório do script, você pode usar:
+# df = pd.read_csv('25_arquivo_qualidade_agua.csv')
+df = pd.read_csv('25_arquivo_qualidade_agua.csv')
+# Convertendo a coluna Timestamp para o tipo datetime
+df['Timestamp'] = pd.to_datetime(df['Timestamp'])
+# 2. Gráfico de linha para variação do pH ao longo do tempo
+plt.figure(figsize=(12, 6))
+sns.lineplot(data=df, x='Timestamp', y='pH', hue='Ponto_Amostragem', marker='o')
+plt.title('Variação do pH ao Longo do Tempo')
+plt.xlabel('Data e Hora')
+plt.ylabel('pH')
+plt.xticks(rotation=45)
+plt.grid()
+plt.legend(title='Ponto de Amostragem')
+plt.tight_layout()
+plt.show()
+# 3. Gráfico de barras para comparar os níveis de oxigênio dissolvido
+plt.figure(figsize=(8, 6))
+sns.barplot(data=df, x='Ponto_Amostragem', y='Oxigenio_Dissolvido_mgL', ci=None)
+plt.title('Comparação dos Níveis de Oxigênio Dissolvido entre Pontos de Amostragem')
+plt.xlabel('Ponto de Amostragem')
+plt.ylabel('Oxigênio Dissolvido (mg/L)')
+plt.grid()
+plt.tight_layout()
+plt.show()
+# 4. Gráfico de dispersão para relação entre turbidez e temperatura
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=df, x='Turbidez_NTU', y='Temperatura_C', hue='Ponto_Amostragem', s=100)
+plt.title('Relação entre Turbidez e Temperatura da Água')
+plt.xlabel('Turbidez (NTU)')
+plt.ylabel('Temperatura (°C)')
+plt.grid()
+plt.legend(title='Ponto de Amostragem')
+plt.tight_layout()
+plt.show()
+```
+**Saída Esperada:**
+```plaintext
+Gráfico de linha mostrando a variação do pH ao longo do tempo para cada ponto de amostragem.
+Gráfico de barras comparando os níveis de oxigênio dissolvido entre os pontos de amostragem.
+Gráfico de dispersão analisando a relação entre turbidez e temperatura da água.
+```
+### Resultados dos Gráficos
+
+#### Figura 7.2.1 - Gráfico de linha mostrando a variação do pH ao longo do tempo para cada ponto de amostragem.
+
+![Variação do pH](imagens/25_imagem_variacao_ph.png)
+
+1. Gráfico de Linha: Tendência do Oxigênio Dissolvido no Ponto A
+- Eixo X: Data e Hora (Timestamp)
+- Eixo Y: Oxigênio Dissolvido (mg/L)
+- Título do Gráfico: Tendência do Oxigênio Dissolvido no Ponto A.
+
+#### Figura 7.2.2 - Gráfico de barras comparando os níveis de oxigênio dissolvido entre os pontos de amostragem.
+
+![Comparação dos Níveis de Oxigênio Dissolvido](imagens/25_imagem_comparacao_oxigenio.png)
+
+2. Gráfico de Barras: Comparação dos Níveis de Oxigênio Dissolvido
+- Eixo X: Ponto de Amostragem
+- Eixo Y: Oxigênio Dissolvido (mg/L)
+- Título do Gráfico: Comparação dos Níveis de Oxigênio Dissolvido entre Pontos de Amostragem.
+
+#### Figura 7.2.3 - Gráfico de dispersão analisando a relação entre turbidez e temperatura da água.
+
+![Relação entre Turbidez e Temperatura](imagens/25_imagem_relacao_turbidez_temperatura.png)
+
+3. Gráfico de Dispersão: Relação entre Turbidez e Temperatura
+- Eixo X: Turbidez (NTU)
+- Eixo Y: Temperatura (°C)
+- Título do Gráfico: Relação entre Turbidez e Temperatura da Água.
+
+**Resumo dos Gráficos**
+
+Os gráficos gerados fornecem uma visão abrangente da qualidade da água em diferentes pontos de amostragem ao longo do tempo. O gráfico de linha mostra como o pH varia, indicando possíveis alterações na acidez ou alcalinidade da água. O gráfico de barras compara os níveis de oxigênio dissolvido, essencial para a vida aquática, entre os pontos de amostragem. Por fim, o gráfico de dispersão revela a relação entre turbidez e temperatura, ajudando a identificar possíveis correlações entre esses parâmetros.
+
+---
+
+## 7.3. Visualização de Curvas e Resultado de Processos
+
+A visualização de curvas e resultados de processos é uma parte essencial da análise de dados em engenharia, permitindo a representação gráfica de fenômenos contínuos e dinâmicos. Este módulo se concentra na criação de gráficos que ajudam a entender o comportamento de sistemas ao longo do tempo, facilitando a interpretação de resultados experimentais e simulações computacionais.
+
+### 7.3.1. Importância da Visualização de Curvas
+
+A visualização de curvas é crucial para engenheiros e cientistas, pois permite a análise de tendências, a identificação de padrões e a detecção de anomalias em dados experimentais ou simulações. Gráficos bem elaborados ajudam a comunicar resultados complexos de forma clara e intuitiva, facilitando a tomada de decisões informadas. 
+
+### 7.3.2. Tipos de Gráficos para Visualização de Curvas
+
+Os gráficos mais comuns utilizados para a visualização de curvas incluem:
+- **Gráficos de Linha:** Ideais para mostrar a evolução de uma variável ao longo do tempo, como a temperatura de um sistema ou a pressão em um processo.
+- **Gráficos de Área:** Úteis para representar a magnitude de uma variável ao longo do tempo, destacando a área sob a curva.
+- **Gráficos de Dispersão:** Permitem visualizar a relação entre duas variáveis contínuas, como a velocidade e a aceleração de um objeto em movimento.
+- **Gráficos de Contorno:** Usados para representar superfícies tridimensionais em um plano bidimensional, úteis em análises de campo escalar, como temperatura ou pressão em uma área específica.
+
+### 7.3.3. Aplicações Práticas
+
+A visualização de curvas é amplamente aplicada em diversas áreas da engenharia, incluindo:
+
+- **Engenharia Mecânica:** Análise de desempenho de máquinas, como curvas de torque e potência em motores.
+- **Engenharia Elétrica:** Representação de curvas de resposta de circuitos, como a relação entre tensão e corrente em componentes eletrônicos.
+- **Engenharia Química:** Monitoramento de reações químicas, como a variação da concentração de reagentes ao longo do tempo.
+- **Engenharia Civil:** Análise de estruturas, como curvas de carga e deformação em materiais submetidos a esforços.
+
+### 7.3.4. Ferramentas e Bibliotecas
+
+Para a visualização de curvas em Python, as bibliotecas MAT_PLOT_LIB e SEABORN são amplamente utilizadas. Elas oferecem uma variedade de funções para criar gráficos personalizados, permitindo a representação visual de dados complexos de forma clara e informativa. A seguir, apresentamos exemplos de como utilizar essas bibliotecas para criar gráficos de curvas.
+
+---
+
+### 7.3.5 Exercício Proposto: Análise do Desempenho de um Sistema de Controle de Temperatura
+
+**Contexto:**
+Em engenharia de controle, é fundamental monitorar e analisar como um sistema responde a mudanças no setpoint (valor desejado) e a distúrbios. A visualização das curvas de setpoint, da variável de processo (PV) e da saída do controlador (MV) ao longo do tempo é a principal ferramenta para avaliar o desempenho do controle (por exemplo, tempo de subida, overshoot, tempo de assentamento e erro em regime permanente).
+
+**Objetivo:**
+1. Simular dados de um sistema de controle de temperatura de um reator.
+2. Visualizar as curvas de setpoint, temperatura real e saída do controlador em um único gráfico.
+3. Interpretar o desempenho do sistema de controle a partir das curvas geradas.
+
+**Dados de Entrada (Simulados):**
+
+Não usaremos um arquivo CSV neste exemplo para focar na geração e visualização das curvas. Os dados serão gerados programaticamente para simular uma resposta de controle típica a uma mudança de setpoint.
+- Tempo (segundos)
+- Setpoint (Temperatura desejada, °C)
+- Temperatura_Real (Temperatura medida pelo sensor, °C)
+- Saida_Controlador (Sinal de controle enviado ao aquecedor, %)
+
+**Código Python:**
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+# 1. Simulação de dados
+np.random.seed(42)  # Para reprodutibilidade
+tempo = np.arange(0, 100, 1)  # Tempo de 0 a 99 segundos
+setpoint = np.where(tempo < 50, 50, 70)  # Setpoint muda de 50°C para 70°C em t=50s
+temperatura_real = 50 + 0.5 * (tempo - 50) + np.random.normal(0, 1, len(tempo))  # Resposta do sistema com ruído
+saida_controlador = np.clip(0.5 * (setpoint - temperatura_real), 0, 100)  # Saída do controlador proporcional
+# 2. Criação do gráfico
+plt.figure(figsize=(12, 6))
+plt.plot(tempo, setpoint, label='Setpoint (Temperatura Desejada)', color='blue', linestyle='--')
+plt.plot(tempo, temperatura_real, label='Temperatura Real', color='red')
+plt.plot(tempo, saida_controlador, label='Saída do Controlador', color='green')
+plt.title('Análise do Desempenho de um Sistema de Controle de Temperatura')
+plt.xlabel('Tempo (s)')
+plt.ylabel('Temperatura (°C) / Saída do Controlador (%)')
+plt.legend()
+plt.grid()
+plt.tight_layout()
+plt.show()
+```
+**Saída Esperada:**
+```plaintext
+Gráfico mostrando as curvas de setpoint, temperatura real e saída do controlador ao longo do tempo.
+```
+### Resultados do Gráfico
+
+![Análise do Desempenho de um Sistema de Controle de Temperatura](imagens/26_imagem_analise_desempenho_controle_temperatura.png)
+
+Gráfico mostrando as curvas de setpoint, temperatura real e saída do controlador ao longo do tempo.
+
+### Análise do Gráfico
+
+O gráfico gerado apresenta três curvas principais:
+- **Setpoint (Temperatura Desejada):** Representada pela linha azul tracejada, mostra a temperatura alvo que o sistema deve atingir. Neste exemplo, o setpoint muda de 50°C para 70°C no tempo t=50 segundos.
+- **Temperatura Real:** Representada pela linha vermelha, mostra a temperatura medida pelo sensor ao longo do tempo. A resposta do sistema apresenta um comportamento típico de controle, com uma tendência a seguir o setpoint, mas com algum atraso e flutuação devido a ruídos.
+- **Saída do Controlador:** Representada pela linha verde, indica o sinal de controle enviado ao aquecedor. Este sinal é proporcional à diferença entre o setpoint e a temperatura real, ajustando-se para minimizar o erro.
+
+### Interpretação do Desempenho do Sistema
+
+A partir do gráfico, podemos analisar o desempenho do sistema de controle:
+- **Tempo de Subida:** O tempo que leva para a temperatura real atingir o novo setpoint após a mudança. Neste caso, é visível que a temperatura leva algum tempo para se ajustar ao novo setpoint de 70°C.
+- **Overshoot:** A temperatura real ultrapassa temporariamente o setpoint antes de estabilizar. Isso pode ser observado logo após a mudança do setpoint, onde a temperatura real sobe acima de 70°C antes de se estabilizar.
+- **Tempo de Assentamento:** O tempo que leva para a temperatura real se estabilizar dentro de uma faixa aceitável em torno do setpoint. Neste exemplo, a temperatura parece se estabilizar em torno de 70°C após alguns segundos.
+- **Erro em Regime Permanente:** A diferença entre o setpoint e a temperatura real após o sistema se estabilizar. Idealmente, esse erro deve ser minimizado, e neste exemplo, a temperatura real parece se aproximar do setpoint de 70°C.
+
+Resumindo, a visualização dessas curvas permite identificar rapidamente o desempenho do sistema de controle, facilitando ajustes e otimizações necessárias para melhorar a resposta do sistema.
+
+---
+
+## 7.4. Conclusão
+
+A visualização de dados é uma habilidade essencial para engenheiros e cientistas, permitindo a interpretação clara e eficaz de informações complexas. Neste módulo, exploramos os principais tipos de gráficos utilizados na visualização de dados, como gráficos de linha, barras, dispersão e histogramas, e discutimos suas aplicações práticas em engenharia.
+Através de exemplos práticos, aprendemos a utilizar as bibliotecas MAT_PLOT_LIB e SEABORN para criar gráficos informativos e visualmente atraentes. A capacidade de visualizar dados de forma eficaz é crucial para a análise de desempenho de sistemas, identificação de tendências e comunicação de resultados.
 
 ---
 

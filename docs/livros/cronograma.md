@@ -52,17 +52,17 @@
   - [X] 6.3 Análise de dados experimentais e de simulações
   - [X] 6.4 Conclusão
 
-- [ ] Capítulo 7 – Visualização de Dados
-  - [ ] 7.1 MAT_PLOT_LIB e SEABORN
-  - [ ] 7.2 Gráficos de linha, barras, dispersão e histogramas
-  - [ ] 7.3 Visualização de curvas e resultados de processos
-  - [ ] 7.4 Conclusão
+- [X] Capítulo 7 – Visualização de Dados
+  - [X] 7.1 MAT_PLOT_LIB e SEABORN
+  - [X] 7.2 Gráficos de linha, barras, dispersão e histogramas
+  - [X] 7.3 Visualização de curvas e resultados de processos
+  - [X] 7.4 Conclusão
 
 ---
 
 ## 📅 Semana 5 (01 a 05 de julho)
 
-- [ ] Capítulo 8 – Cálculo Numérico com NUM_PY
+- [ ] Capítulo 8 – Cálculo Numérico com NUMPY
   - [ ] 8.1 Arrays e operações vetoriais
   - [ ] 8.2 Matrizes e álgebra linear
   - [ ] 8.3 Aplicações em balanços e sistemas lineares
@@ -82,7 +82,7 @@
 - [ ] Capítulo 10 – Mini Projetos Aplicados à Engenharia
   - [ ] 10.1 Estudo de caso: tanque com entrada e saída
   - [ ] 10.2 Balanço de massa e energia com dados reais ou simulados
-  - [ ] 10.3 Integração de módulos anteriores em soluções prática
+  - [ ] 10.3 Integração de módulos anteriores em soluções práticas
   - [ ] 10.4 Conclusão
 
 - [X] Capítulo 11 – Finalização e Agradecimentos
@@ -91,7 +91,12 @@
 
 ## 📅 Semana 7 (15 a 19 de julho)
 
-- [X] Capítulo 12 – Adendo: Configuração do Ambiente Python e VS Code
+- [X] Capítulo 12 – Configuração do Ambiente Python e VS Code
+  - [X] 12.1 Configuração rápida do ambiente de desenvolvimento
+    - [X] 12.1.1 Instalação do Python
+    - [X] 12.1.2 Instalação de bibliotecas essenciais
+    - [X] 12.1.3 Instalação e configuração do VS Code
+    - [X] 12.1.4 Testando a configuração
 - [X] Capítulo 13 – Referências Bibliográficas
 - [ ] Revisão geral da apostila
 - [ ] Inserção/verificação de imagens e figuras
