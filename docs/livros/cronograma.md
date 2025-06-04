@@ -92,12 +92,9 @@
 ## 📅 Semana 7 (15 a 19 de julho)
 
 - [X] Capítulo 12 – Configuração do Ambiente Python e VS Code
-  - [X] 12.1 Configuração rápida do ambiente de desenvolvimento
-    - [X] 12.1.1 Instalação do Python
-    - [X] 12.1.2 Instalação de bibliotecas essenciais
-    - [X] 12.1.3 Instalação e configuração do VS Code
-    - [X] 12.1.4 Testando a configuração
-- [X] Capítulo 13 – Referências Bibliográficas
+  - [X] 12.1 Python
+  - [X] 12.2 Visual Studio Code (VS Code)
+[X] Capítulo 13 – Referências Bibliográficas
 - [ ] Revisão geral da apostila
 - [ ] Inserção/verificação de imagens e figuras
 - [ ] Geração do PDF final
