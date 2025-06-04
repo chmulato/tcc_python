@@ -62,11 +62,11 @@
 
 ## 📅 Semana 5 (01 a 05 de julho)
 
-- [ ] Capítulo 8 – Cálculo Numérico com NUMPY
-  - [ ] 8.1 Arrays e operações vetoriais
-  - [ ] 8.2 Matrizes e álgebra linear
-  - [ ] 8.3 Aplicações em balanços e sistemas lineares
-  - [ ] 8.4 Conclusão
+- [X] Capítulo 8 – Cálculo Numérico com NUMPY
+  - [X] 8.1 Arrays e operações vetoriais
+  - [X] 8.2 Matrizes e álgebra linear
+  - [X] 8.3 Aplicações em balanços e sistemas lineares
+  - [X] 8.4 Conclusão
 
 - [ ] Capítulo 9 – Modelagem Matemática Simples
   - [ ] 9.1 Equações algébricas e sistemas lineares
