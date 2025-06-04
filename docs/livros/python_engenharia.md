@@ -13,8 +13,6 @@
 
 ### Sumário
 
-### Sumário
-
 1. [Apresentação](#1-apresentação)
 
 2. [Fundamentos da Programação em Python](#2-fundamentos-da-programação-em-python)
@@ -57,11 +55,9 @@
 11. [Finalização e Agradecimentos](#11-finalização-e-agradecimentos)
 
 12. [Configuração do Ambiente Python e VS Code](#12-configuração-do-ambiente-python-e-vs-code)
-   - [12.1. Configuração Rápida do Ambiente de Desenvolvimento](#121-configuração-rápida-do-ambiente-de-desenvolvimento)
-   - [12.2. Instalação de Bibliotecas Essenciais](#122-instalação-de-bibliotecas-essenciais)
-   - [12.3. Instalação e Configuração do VS Code](#123-instalação-e-configuração-do-vs-code)
-   - [12.4. Testando a Configuração](#124-testando-a-configuração)
-
+   - [12.1. Python](#121-python)
+   - [12.2. Visual Studio Code (VS Code)](#122-visual-studio-code-vs-code)
+   
 13. [Referências Bibliográficas](#13-referências-bibliográficas)
 
 ---
@@ -4406,7 +4402,10 @@ Esperamos que esta apostila sirva como um guia valioso em sua jornada contínua 
 
 Esta seção fornece instruções concisas para configurar seu ambiente Python para engenharia.
 
-### 12.1.1. Instalação do Python
+### 12.1.1. Instalação do Python (Windows, MacOS, Linux)
+
+Para começar a programar em Python, é necessário instalar o interpretador Python e as bibliotecas essenciais.
+A seguir, apresentamos instruções para instalação em diferentes sistemas operacionais.
 
 **Para Windows:**
 
@@ -4432,27 +4431,14 @@ sudo apt update && sudo apt install python3 python3-pip
 sudo dnf install python3 python3-pip
 ```
 
-### 12.1.2. Instalação de Bibliotecas Essenciais
+### 12.1.2. Instalação de bibliotecas essenciais: numpy, pandas, matplotlib, scipy, seaborn
 
 ```
 # Instale todas as bibliotecas necessárias de uma vez
 pip install numpy pandas matplotlib scipy seaborn
 ```
 
-### 12.1.3. Instalação e Configuração do VS Code
-
-1. Baixe e instale o VS Code da página oficial
-2. Abra o VS Code e instale a extensão Python:
-   - Pressione Ctrl+Shift+X
-   - Pesquise "Python"
-   - Instale a extensão oficial da Microsoft
-3. Configure o interpretador:
-   - Pressione Ctrl+Shift+P
-   - Digite "Python: Select Interpreter"
-   - Selecione o interpretador Python instalado
-
-
-### 12.1.4. Testando a Configuração
+### 12.1.3. - Testando a instalação do Python e das bibliotecas
 
 1. Crie um novo arquivo com extensão .py
 2. Insira o código de teste:
@@ -4476,6 +4462,18 @@ print("Ambiente configurado com sucesso!")
    - Pressione F5 ou clique em "Run" no menu superior
 
 Se o gráfico aparecer e a mensagem for exibida, sua configuração está pronta para os exercícios da apostila.
+
+## 12.2. Visual Studio Code (VS Code)
+
+1. Baixe e instale o VS Code da página oficial
+2. Abra o VS Code e instale a extensão Python:
+   - Pressione Ctrl+Shift+X
+   - Pesquise "Python"
+   - Instale a extensão oficial da Microsoft
+3. Configure o interpretador:
+   - Pressione Ctrl+Shift+P
+   - Digite "Python: Select Interpreter"
+   - Selecione o interpretador Python instalado
 
 ---
 
