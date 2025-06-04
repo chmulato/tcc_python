@@ -3879,7 +3879,7 @@ Este item fornece uma base sólida para entender as ferramentas essenciais de vi
 
 ---
 
-## 7.1.5 Exercício Proposto: Análise de Trajetória de um Míssil Balístico
+### 7.1.5 Exercício Proposto: Análise de Trajetória de um Míssil Balístico
 
 Em engenharia aeronáutica, a análise da trajetória de um míssil balístico é crucial para determinar seu alcance, tempo de voo e outros parâmetros de desempenho. Simulações computacionais geram dados detalhados sobre a posição, velocidade e aceleração do míssil ao longo do tempo.
 
