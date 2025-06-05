@@ -4865,12 +4865,25 @@ Podemos representar o sistema de equações na forma matricial **A . x = B**, on
 
 **Matriz A:**
 ```plaintext
-A = [[1, 1], [xA1, xA2], [xB1, xB2]]
+A = [[1,    1 ],
+     [xA1, xA2]]
+
+B = [F3, F3 * xA3]
 ```
-**Vetor B:**
+Multiplicando os valores conhecidos, temos:
+
 ```plaintext
-B = [F3, F3 * xA3, F3 * xB3]
+
+A = [[1, 1], [0.8, 0.3]]
+B = [1000, 600]
+
+| 1    1  |   | F1 |   =   | F3         |
+|0.8  0.3 | x | F2 |       | F3 * xA3   |
 ```
+
+**Resolução do Sistema:**
+
+Utilizando a biblioteca **NUM_PY**, podemos resolver esse sistema de equações lineares para encontrar as vazões F1 e F2.
 
 **Dados de Entrada:**
 - F3 = 1000 kg/h
