@@ -94,7 +94,7 @@
 - [X] Capítulo 12 – Configuração do Ambiente Python e VS Code
   - [X] 12.1 Python
   - [X] 12.2 Visual Studio Code (VS Code)
-[X] Capítulo 13 – Referências Bibliográficas
+- [X] Capítulo 13 – Referências Bibliográficas
 - [ ] Revisão geral da apostila
 - [ ] Inserção/verificação de imagens e figuras
 - [ ] Geração do PDF final
