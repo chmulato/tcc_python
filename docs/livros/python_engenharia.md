@@ -5166,7 +5166,7 @@ Este gráfico mostra a relação direta entre a concentração do reagente e o t
   - **Dados Experimentais:** Representa os pontos de concentração medidos em laboratório, com o ruído inerente.
   - **Curva Ajustada:** Representa a curva exponencial teórica que foi calculada usando a constante de velocidade e a concentração inicial determinadas pelo método dos mínimos quadrados.
 
-### 2. Gráfico Inferior (ou à Direita):
+### 2. Gráfico Superior (ou à Direita):
 
 **Linearização e Ajuste por Mínimos Quadrados**
 
