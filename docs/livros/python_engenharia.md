@@ -4985,25 +4985,24 @@ Em Engenharia Química, a cinética de reações é fundamental para o projeto e
 5. Visualizar os dados originais, os dados linearizados e a reta ajustada.
 
 **Fundamentos Teóricos (Reação de Primeira Ordem):**
-Para uma reação de primeira ordem A→Produtos, a equação de velocidade integrada é:
+Para uma reação de primeira ordem **A → Produtos**, a equação de velocidade integrada é:
 
 ```plaintext
 CA(t) = CA0 * exp(-kt)
 ```
-onde:
-
-**CA(t):** Concentração do reagente A no tempo t
-**CA0:** Concentração inicial do reagente A
-**k:** Constante de velocidade da reação
+Onde:
+- **CA(t):** Concentração do reagente A no tempo t
+- **CA0:** Concentração inicial do reagente A
+- **k:** Constante de velocidade da reação
 
 Para linearizar essa equação, aplicamos o logaritmo natural (ln) em ambos os lados:
 ```plaintext
 ln(CA(t)) = ln(CA0) - kt
 ```
-onde:
-**ln(CA(t)):** Logaritmo natural da concentração do reagente A no tempo t
-**ln(CA0):** Logaritmo natural da concentração inicial do reagente A
-**k:** Constante de velocidade da reação
+Onde:
+- **ln(CA(t)):** Logaritmo natural da concentração do reagente A no tempo t
+- **ln(CA0):** Logaritmo natural da concentração inicial do reagente A
+- **k:** Constante de velocidade da reação
 
 ### Dados de Entrada (Simulação):
 
@@ -5237,7 +5236,7 @@ Assumindo que não há entrada de líquido, a taxa de acúmulo é zero, e a taxa
 ```plaintext
 0 = -Ao * sqrt(2 * g * h)
 ```
-onde:
+Onde:
 - **g:** Aceleração da gravidade (aproximadamente 9.81 m/s²)
 - **h:** Altura do líquido no tanque (m)
 
@@ -5352,7 +5351,6 @@ Tempo aproximado para esvaziamento: 200 s
 Sobre as **Equações Diferenciais Ordinárias (EDOs)**, mergulhamos na linguagem fundamental para descrever sistemas dinâmicos, ou seja, aqueles cujas variáveis mudam continuamente ao longo do tempo. Compreendemos que as EDOs são cruciais em todas as engenharias para modelar fenômenos como a variação de concentração em reatores químicos, o movimento de corpos em mecânica, a dinâmica de circuitos elétricos, e a resposta de sistemas de controle.
 Destacamos que, embora algumas EDOs tenham soluções analíticas, a maioria dos problemas de engenharia exige **soluções numéricas**. Para isso, aprendemos a utilizar a poderosa biblioteca SCI_PY em Python, especificamente a função **scipy.integrate.odeint**. Vimos que, para aplicar essa ferramenta, é necessário definir a EDO como uma função Python (que retorna a derivada da variável de estado), especificar as condições iniciais e o intervalo de tempo da simulação.
 Como exemplo prático, simulamos a **descarga de um tanque cilíndrico**, modelando a variação da altura do líquido ao longo do tempo através de uma EDO de primeira ordem. O exercício demonstrou como definir essa EDO, resolvê-la numericamente com **odeint** e, em seguida, visualizar a curva da altura versus tempo usando **MAT_PLOT_LIB**, ilustrando a capacidade de Python para analisar o comportamento dinâmico de sistemas de engenharia.
-
 
 ---
 
