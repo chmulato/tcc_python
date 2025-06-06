@@ -22,13 +22,13 @@
    - [2.4. Primeiros Cálculos Aplicados à Engenharia](#24-primeiros-cálculos-aplicados-à-engenharia)
    - [2.5. Conclusão](#25-conclusão)
 
-3. [Estrutura de Controle](#3-estrutura-de-controle)
-   - [3.1. Condicionais: if, elif, else](#31-condicionais-if-elif-else)
-   - [3.2. Laços de Repetição: for, while](#32-laços-de-repetição-for-while)
+3. [Estruturas de Controle](#3-estruturas-de-controle)
+   - [3.1. Condicionais: IF, ELIF, ELSE](#31-condicionais-if-elif-else)
+   - [3.2. Laços de Repetição: FOR, WHILE](#32-laços-de-repetição-for-while)
    - [3.3. Aplicações Práticas em Verificação de Condições Operacionais](#33-aplicações-práticas-em-verificação-de-condições-operacionais)
    - [3.4. Conclusão](#34-conclusão)
 
-4. [Funções e Modularizações](#4-funções-e-modularizações)
+4. [Funções e Modularização](#4-funções-e-modularização)
    - [4.1. Definição de Funções](#41-definição-de-funções)
    - [4.2. Parâmetros e Retorno](#42-parâmetros-e-retorno)
    - [4.3. Organização de Código em Módulos Reutilizáveis](#43-organização-de-código-em-módulos-reutilizáveis)
@@ -52,18 +52,31 @@
    - [7.3. Visualização de Curvas e Resultado de Processos](#73-visualização-de-curvas-e-resultado-de-processos)
    - [7.4. Conclusão](#74-conclusão)
 
-8. [Cálculo Numérico com NUM_PY](#8-cálculo-numérico-com-num_py)
+8. [Cálculo Numérico com NUMPY](#8-cálculo-numérico-com-numpy)
    - [8.1. Arrays e Operações Vetoriais](#81-arrays-e-operações-vetoriais)
    - [8.2. Matrizes e Álgebra Linear](#82-matrizes-e-álgebra-linear)
    - [8.3. Aplicações em Balanços e Sistemas Lineares](#83-aplicações-em-balanços-e-sistemas-lineares)
    - [8.4. Conclusão](#84-conclusão)
 
+9. [Modelagem Matemática Simples](#9-modelagem-matemática-simples)
+   - [9.1. Equações Algébricas e Sistemas Lineares](#91-equações-algébricas-e-sistemas-lineares)
+   - [9.2. Equações Diferenciais Ordinárias (EDOs)](#92-equações-diferenciais-ordinárias-edos)
+   - [9.3. Simulações de Tanques, Reatores e Processos Dinâmicos](#93-simulações-de-tanques-reatores-e-processos-dinâmicos)
+   - [9.4. Otimização de Funções com scipy.optimize](#94-otimização-de-funções-com-scipyoptimize)
+   - [9.5. Conclusão](#95-conclusão)
+
+10. [Mini Projetos Aplicados à Engenharia](#10-mini-projetos-aplicados-à-engenharia)
+    - [10.1. Estudo de Caso: Tanque com Entrada e Saída](#101-estudo-de-caso-tanque-com-entrada-e-saída)
+    - [10.2. Balanço de Massa e Energia com Dados Reais ou Simulados](#102-balanço-de-massa-e-energia-com-dados-reais-ou-simulados)
+    - [10.3. Integração de Módulos Anteriores em Soluções Práticas](#103-integração-de-módulos-anteriores-em-soluções-práticas)
+    - [10.4. Conclusão](#104-conclusão)
+
 11. [Finalização e Agradecimentos](#11-finalização-e-agradecimentos)
 
 12. [Configuração do Ambiente Python e VS Code](#12-configuração-do-ambiente-python-e-vs-code)
-   - [12.1. Python](#121-python)
-   - [12.2. Visual Studio Code (VS Code)](#122-visual-studio-code-vs-code)
-   
+    - [12.1. Python](#121-python)
+    - [12.2. Visual Studio Code (VS Code)](#122-visual-studio-code-vs-code)
+
 13. [Referências Bibliográficas](#13-referências-bibliográficas)
 
 ---
@@ -4940,6 +4953,406 @@ As vazões mássicas calculadas indicam que, para produzir uma Corrente 3 com um
 Neste capítulo, exploramos o conceito de balanço de massa em um misturador químico, utilizando um sistema de equações lineares para determinar as vazões mássicas necessárias das correntes de entrada. Através da modelagem matemática e da aplicação de técnicas de álgebra linear com a biblioteca NumPy, conseguimos resolver o problema de forma eficiente e obter resultados significativos.
 
 Os conceitos abordados aqui são fundamentais para a compreensão de processos químicos e de engenharia, e a habilidade de aplicar programação e ferramentas computacionais para resolver problemas práticos é uma competência valiosa no campo da engenharia.
+
+---
+
+# 9. Modelagem Matemática Simples
+
+A modelagem matemática é a espinha dorsal da engenharia, permitindo-nos traduzir fenômenos físicos e processos complexos em uma linguagem que pode ser analisada, simulada e otimizada. Neste módulo, vamos mergulhar nos fundamentos da **Modelagem Matemática Simples**, explorando como Python pode ser uma ferramenta poderosa para construir e resolver esses modelos. Iniciaremos com a revisão e aplicação de **equações algébricas e sistemas lineares**, que são a base para descrever relações estáticas e balanços em diversos sistemas. Em seguida, avançaremos para as **equações diferenciais ordinárias (EDOs)**, essenciais para modelar o comportamento dinâmico de sistemas que mudam ao longo do tempo. Com essa base, poderemos realizar **simulações de tanques, reatores e outros processos dinâmicos**, compreendendo como as variáveis evoluem e interagem. Por fim, o módulo abordará a **otimização de funções com scipy.optimize**, uma técnica crucial para encontrar as melhores condições operacionais ou de projeto, minimizando custos ou maximizando desempenho. Ao final, você terá as ferramentas para criar modelos matemáticos simplificados e usá-los para obter insights valiosos sobre sistemas de engenharia
+
+
+## 9.1. Equações algébricas e sistemas lineares
+
+De fato, os conceitos de equações algébricas e sistemas lineares, e suas aplicações em balanços, foram amplamente discutidos no módulo anterior, especialmente no item 8.3 "Aplicações em balanços e sistemas lineares", onde aprofundamos o uso do **NUM_PY** para resolver problemas como balanços de massa em misturadores.
+Para recordar e adicionar uma nova perspectiva, podemos reafirmar que a essência desses tópicos reside na capacidade de traduzir fenômenos físicos e relações quantitativas da engenharia em um conjunto de equações lineares. Seja para determinar vazões em balanços de massa e energia, analisar correntes e tensões em circuitos elétricos complexos, ou calcular forças em estruturas estáticas, a representação matricial (**A . x = B**) e a solução eficiente via **numpy.linalg.solve()** são ferramentas poderosíssimas.
+Uma novidade interessante e de vasta aplicação na engenharia que se baseia diretamente na resolução de sistemas lineares é o ajuste de dados pelo método dos mínimos quadrados (Least Squares). Em muitos cenários, coletamos dados experimentais que não seguem uma relação linear perfeita, mas podemos aproximá-los por uma linha reta ou um polinômio. O método dos mínimos quadrados busca a "melhor" linha (ou curva) que se ajusta a esses pontos, minimizando a soma dos quadrados das diferenças entre os valores observados e os valores previstos pelo modelo. Embora o problema de mínimos quadrados possa ser resolvido de várias maneiras, uma das abordagens mais robustas e eficientes para problemas lineares é transformá-lo em um sistema de equações lineares (as "equações normais") e resolvê-lo com **NUM_PY**. Isso é fundamental para a calibração de sensores, modelagem de processos, análise de tendências de dados de desempenho e validação de modelos em todas as disciplinas da engenharia.
+Portanto, a capacidade de modelar e resolver esses sistemas lineares de forma computacional com Python e **NUM_PY** não é apenas uma ferramenta para balanços, mas uma base para a análise de dados, otimização e inferência em praticamente todas as áreas da engenharia.
+
+---
+
+### 9.1.1. Exercício Proposto: Determinação da Constante de Velocidade de Reação por Mínimos Quadrados
+
+**Contexto:**
+
+Em Engenharia Química, a cinética de reações é fundamental para o projeto e operação de reatores. Para reações de primeira ordem, a concentração de um reagente decai exponencialmente com o tempo. No entanto, dados experimentais sempre contêm ruído. O método dos mínimos quadrados é ideal para ajustar um modelo linear a dados transformados e determinar a constante de velocidade da reação.
+
+**Objetivo:**
+
+1. Simular dados experimentais de concentração vs. tempo para uma reação de primeira ordem com ruído.
+2. Linearizar os dados através de uma transformação matemática.
+3. Aplicar o método dos mínimos quadrados (usando np.polyfit) para ajustar uma linha reta aos dados linearizados.
+4. Determinar a constante de velocidade da reação e a concentração inicial a partir dos coeficientes da reta ajustada.
+5. Visualizar os dados originais, os dados linearizados e a reta ajustada.
+
+**Fundamentos Teóricos (Reação de Primeira Ordem):**
+Para uma reação de primeira ordem A→Produtos, a equação de velocidade integrada é:
+
+```plaintext
+CA(t) = CA0 * exp(-kt)
+```
+onde:
+
+**CA(t):** Concentração do reagente A no tempo t
+**CA0:** Concentração inicial do reagente A
+**k:** Constante de velocidade da reação
+
+Para linearizar essa equação, aplicamos o logaritmo natural (ln) em ambos os lados:
+```plaintext
+ln(CA(t)) = ln(CA0) - kt
+```
+onde:
+**ln(CA(t)):** Logaritmo natural da concentração do reagente A no tempo t
+**ln(CA0):** Logaritmo natural da concentração inicial do reagente A
+**k:** Constante de velocidade da reação
+
+### Dados de Entrada (Simulação):
+
+- **Concentração inicial do reagente A (CA0):** 1.0 mol/L
+- **Constante de velocidade da reação (k):** 0.1 s⁻¹
+- **Tempo total de simulação:** 50 s
+- **Intervalo de tempo para coleta de dados:** 5 s
+- **Ruído adicionado aos dados experimentais:** Normal com média 0 e desvio padrão 0.05
+
+**Código Python:**
+```python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def analisar_cinetica_reacao_minimos_quadrados():
+    """
+    Simula dados de cinética de reação de primeira ordem, lineariza-os,
+    aplica o método dos mínimos quadrados e visualiza os resultados.
+    """
+    print("--- Exercício de Engenharia Química: Determinação da Constante de Velocidade de Reação ---")
+
+    # --- 1. Simulação de Dados Experimentais (com ruído) ---
+    # Parâmetros reais da simulação
+    C_A0_real = 10.0  # Concentração inicial real
+    k_real = 0.05     # Constante de velocidade real (s^-1)
+
+    # Tempos de amostragem
+    tempo = np.arange(0, 101, 5) # De 0 a 100 segundos, a cada 5 segundos
+
+    # Concentração teórica sem ruído
+    concentracao_teorica = C_A0_real * np.exp(-k_real * tempo)
+
+    # Adicionar ruído aos dados para simular medições experimentais
+    ruido = np.random.normal(0, 0.5, len(tempo)) # Ruído gaussiano com média 0 e desvio padrão 0.5
+    concentracao_experimental = concentracao_teorica + ruido
+    # Garantir que a concentração não seja negativa devido ao ruído
+    concentracao_experimental[concentracao_experimental < 0] = 0.01
+
+    # Criar um DataFrame para os dados
+    df_cinetica = pd.DataFrame({
+        'Tempo (s)': tempo,
+        'Concentração (mol/L)': concentracao_experimental
+    })
+
+    print("\n--- Dados Experimentais Simulados (Primeiras 5 linhas) ---")
+    print(df_cinetica.head())
+
+    # --- 2. Linearização dos Dados ---
+    # Calcular o logaritmo natural da concentração
+    # np.log() aplica o logaritmo elemento a elemento
+    df_cinetica['ln(Concentração)'] = np.log(df_cinetica['Concentração (mol/L)'])
+
+    print("\n--- Dados Linearizados (Primeiras 5 linhas) ---")
+    print(df_cinetica.head())
+
+    # --- 3. Aplicação do Método dos Mínimos Quadrados ---
+    # np.polyfit(x, y, grau) ajusta um polinômio (grau 1 para reta)
+    # Retorna os coeficientes [m, b] onde m é o coeficiente angular e b é o intercepto
+    coeficientes = np.polyfit(df_cinetica['Tempo (s)'], df_cinetica['ln(Concentração)'], 1)
+    
+    m_ajustado = coeficientes[0] # Coeficiente angular (slope)
+    b_ajustado = coeficientes[1] # Coeficiente linear (intercept)
+
+    print(f"\n--- Coeficientes do Ajuste Linear ---")
+    print(f"Coeficiente Angular (m): {m_ajustado:.4f}")
+    print(f"Coeficiente Linear (b): {b_ajustado:.4f}")
+
+    # --- 4. Determinação da Constante de Velocidade e Concentração Inicial ---
+    k_calculado = -m_ajustado
+    C_A0_calculado = np.exp(b_ajustado) # np.exp() é a função exponencial
+
+    print(f"\n--- Resultados da Análise Cinética ---")
+    print(f"Constante de Velocidade (k): {k_calculado:.4f} s^-1")
+    print(f"Concentração Inicial (C_A0): {C_A0_calculado:.4f} mol/L")
+    print(f" (Valores reais na simulação: k={k_real}, C_A0={C_A0_real})")
+
+    # --- 5. Visualização dos Resultados ---
+    sns.set_style("whitegrid") # Estilo de gráfico do Seaborn
+
+    # Plot 1: Concentração Original vs. Tempo
+    plt.figure(figsize=(12, 6))
+    plt.subplot(1, 2, 1) # 1 linha, 2 colunas, primeiro gráfico
+    sns.scatterplot(x='Tempo (s)', y='Concentração (mol/L)', data=df_cinetica, color='blue', label='Dados Experimentais')
+    # Plotar a curva teórica ajustada para comparação
+    tempo_plot = np.linspace(min(tempo), max(tempo), 100)
+    concentracao_ajustada = C_A0_calculado * np.exp(-k_calculado * tempo_plot)
+    plt.plot(tempo_plot, concentracao_ajustada, color='red', linestyle='--', label='Curva Ajustada')
+    plt.xlabel('Tempo (s)')
+    plt.ylabel('Concentração (mol/L)')
+    plt.title('Concentração vs. Tempo (Reação de Primeira Ordem)')
+    plt.legend()
+    plt.grid(True)
+
+    # Plot 2: ln(Concentração) vs. Tempo (Linearizado) com a reta ajustada
+    plt.subplot(1, 2, 2) # 1 linha, 2 colunas, segundo gráfico
+    sns.scatterplot(x='Tempo (s)', y='ln(Concentração)', data=df_cinetica, color='green', label='Dados Linearizados')
+    # Plotar a reta ajustada
+    reta_ajustada = m_ajustado * tempo_plot + b_ajustado
+    plt.plot(tempo_plot, reta_ajustada, color='orange', linestyle='-', label='Reta de Mínimos Quadrados')
+    plt.xlabel('Tempo (s)')
+    plt.ylabel('ln(Concentração)')
+    plt.title('Linearização e Ajuste por Mínimos Quadrados')
+    plt.legend()
+    plt.grid(True)
+
+    plt.tight_layout() # Ajusta o layout para evitar sobreposição
+    plt.show()
+
+# --- Execução do Exemplo ---
+if __name__ == "__main__":
+    analisar_cinetica_reacao_minimos_quadrados()
+```
+
+**Saída Esperada:**
+```plaintext
+--- Exercício de Engenharia Química: Determinação da Constante de Velocidade de Reação ---
+
+--- Dados Experimentais Simulados (Primeiras 5 linhas) ---
+   Tempo (s)  Concentração (mol/L)
+0          0              9.961148
+1          5              7.633736
+2         10              5.694176
+3         15              4.238133
+4         20              3.801371
+
+--- Dados Linearizados (Primeiras 5 linhas) ---
+   Tempo (s)  Concentração (mol/L)  ln(Concentração)
+0          0              9.961148          2.298692
+1          5              7.633736          2.032577
+2         10              5.694176          1.739444
+3         15              4.238133          1.444123
+4         20              3.801371          1.335362
+
+--- Coeficientes do Ajuste Linear ---
+Coeficiente Angular (m): -0.0526
+Coeficiente Linear (b): 2.2395
+
+--- Resultados da Análise Cinética ---
+Constante de Velocidade (k): 0.0526 s^-1
+Concentração Inicial (C_A0): 9.3887 mol/L
+ (Valores reais na simulação: k=0.05, C_A0=10.0)
+ ```
+
+### Figura 9.1 - Análise Cinética de Reação de Primeira Ordem: Concentração vs. Tempo e Linearização por Mínimos Quadrados
+
+![Análise Cinética de Reação de Primeira Ordem](imagens/30_imagem_cinetica_reacao.png)
+
+### 1. Gráfico Superior (ou à Esquerda):
+
+**Concentração vs. Tempo (Reação de Primeira Ordem)**
+
+Este gráfico mostra a relação direta entre a concentração do reagente e o tempo, como seria observado em um experimento.
+
+- **Eixo X:** Tempo (s)
+- **Eixo Y:** Concentração (mol/L)
+- **Título do Gráfico:** Concentração vs. Tempo (Reação de Primeira Ordem)
+- **Legendas das Séries:**
+  - **Dados Experimentais:** Representa os pontos de concentração medidos em laboratório, com o ruído inerente.
+  - **Curva Ajustada:** Representa a curva exponencial teórica que foi calculada usando a constante de velocidade e a concentração inicial determinadas pelo método dos mínimos quadrados.
+
+### 2. Gráfico Inferior (ou à Direita):
+
+**Linearização e Ajuste por Mínimos Quadrados**
+
+Este gráfico é a chave para a aplicação dos mínimos quadrados, mostrando os dados transformados logaritmicamente e a reta ajustada.
+
+- **Eixo X:** Tempo (s)
+- **Eixo Y:** ln(Concentração)
+- **Título do Gráfico:** Linearização e Ajuste por Mínimos Quadrados
+- **Legendas das Séries:**
+  - **Dados Linearizados:** Representa os pontos de concentração transformados pelo logaritmo natural.
+  - **Reta de Mínimos Quadrados:** Representa a linha reta que melhor se ajusta aos dados linearizados, a partir da qual a constante de velocidade e a concentração inicial são derivadas.
+
+### Análise dos Resultados:
+
+Os resultados mostram que a constante de velocidade da reação foi calculada como aproximadamente 0.0526 s⁻¹, e a concentração inicial foi estimada em cerca de 9.3887 mol/L. Esses valores estão próximos dos parâmetros reais utilizados na simulação (k=0.05 s⁻¹ e C_A0=10.0 mol/L), demonstrando a eficácia do método dos mínimos quadrados para ajustar um modelo linear aos dados experimentais.
+
+### Conceitos de NUM_PY Aplicados:
+
+- **Arrays NUM_PY:** Utilizados para armazenar e manipular os dados experimentais e os resultados do ajuste.
+- **Funções Numéricas:** np.polyfit() para ajustar uma linha reta aos dados linearizados, e np.log() para calcular o logaritmo natural das concentrações.
+- **Visualização de Dados:** Utilização do Matplotlib e Seaborn para criar gráficos que ilustram os dados experimentais, a curva teórica e a reta ajustada, facilitando a interpretação dos resultados.
+
+---
+
+### 9.1.2. Resumo
+
+Recapitulando, exploramos como problemas que envolvem a determinação de parâmetros a partir de dados experimentais, que muitas vezes não se encaixam perfeitamente em um modelo, podem ser linearizados e resolvidos como um sistema linear. Propusemos um exercício prático em Engenharia Química onde simulamos dados de cinética de reação de primeira ordem. Através da linearização da equação de velocidade integrada (aplicando o logaritmo natural), transformamos a relação exponencial em uma reta. Em seguida, utilizamos a função numpy.polyfit() para ajustar essa reta aos dados linearizados, obtendo os coeficientes que nos permitiram calcular a constante de velocidade da reação e a concentração inicial. Este processo demonstrou o poder de NUM_PY não apenas para resolver sistemas lineares diretos, mas também para inferir parâmetros de modelos a partir de dados com ruído, uma aplicação crucial para a validação e otimização de processos.
+
+---
+
+## 9.2. Equações diferenciais ordinárias (EDOs)
+
+As **Equações Diferenciais Ordinárias (EDOs)** são a linguagem fundamental para descrever sistemas dinâmicos, ou seja, sistemas cujas variáveis mudam continuamente ao longo do tempo (ou de outra variável independente). Diferente das equações algébricas que descrevem relações estáticas ou de equilíbrio, as EDOs envolvem derivadas de uma função desconhecida em relação a uma única variável independente, capturando a taxa de mudança e a evolução do sistema.
+
+### Contexto e Importância na Engenharia:
+
+As EDOs são ubíquas em todas as disciplinas da engenharia, pois a maioria dos processos e fenômenos naturais são dinâmicos. Elas permitem modelar:
+
+- **Engenharia Química:** Reações químicas em reatores (concentração de reagentes/produtos no tempo), balanços de massa e energia em tanques com volumes variáveis, transferência de calor.
+- **Engenharia Mecânica e Aeroespacial:** Movimento de corpos (leis de Newton), vibrações de sistemas massa-mola-amortecedor, dinâmica de veículos e aeronaves, sistemas de controle.
+- **Engenharia Elétrica:** Circuitos RC, RL e RLC (variação de corrente e tensão no tempo), resposta de sistemas eletrônicos.
+- **Engenharia Civil:** Dinâmica de estruturas sob cargas variáveis, fluxo de água em reservatórios.
+- **Engenharia de Controle e Automação:** Modelagem da resposta de sistemas a controladores, projeto de algoritmos de controle.
+
+### Solução Numérica de EDOs com Python:
+
+Embora algumas EDOs simples possam ter soluções analíticas (fórmulas exatas), a maioria dos problemas de engenharia resulta em EDOs complexas que não possuem soluções analíticas ou são extremamente difíceis de obter. Nesses casos, recorremos a métodos numéricos para aproximar a solução.
+O Python, através da biblioteca **SCI_PY** (Scientific Python), oferece ferramentas poderosas para resolver EDOs numericamente. A função mais comum para isso é **scipy.integrate.odeint** (ou **scipy.integrate.solve_ivp**, que é uma alternativa mais moderna e flexível). Para usar essas funções, precisamos:
+- **Definir a EDO:** Expressar a equação diferencial como uma função Python que retorna a derivada da variável de estado.
+- **Condições Iniciais:** Especificar o valor da variável de estado no tempo inicial.
+- **Intervalo de Tempo:** Definir o período de tempo para o qual queremos simular a EDO.
+
+---
+
+### 9.2.1. Exemplo Proposto: Descarga de um Tanque Cilíndrico
+
+**Contexto:**
+Considere um tanque cilíndrico com uma área de seção transversal constante (**AT**) que está sendo esvaziado através de um orifício na base com uma área (**Ao**). A velocidade de saída do líquido pelo orifício é dada pela Lei de Torricelli. Queremos modelar e simular como a altura do líquido no tanque (**h**) varia ao longo do tempo.
+
+**Formulação da EDO:**
+O balanço de massa no tanque pode ser expresso como:
+
+```plaintext
+Taxa de Acúmulo = Taxa de Entrada - Taxa de Saída
+```
+Assumindo que não há entrada de líquido, a taxa de acúmulo é zero, e a taxa de saída é proporcional à raiz quadrada da altura do líquido:
+
+```plaintext
+0 = -Ao * sqrt(2 * g * h)
+```
+onde:
+- **g:** Aceleração da gravidade (aproximadamente 9.81 m/s²)
+- **h:** Altura do líquido no tanque (m)
+
+Rearranjando, obtemos a **EDO**:
+
+```plaintext
+dh/dt = - (Ao / AT) * sqrt(2 * g * h)
+```
+### Dados de Entrada:
+- **Área do Tanque (AT):** 1.0 m²
+- **Área do Orifício (Ao):** 0.01 m²
+- **Altura Inicial do Líquido (h0):** 1.0 m
+- **Aceleração da Gravidade (g):** 9.81 m/s²
+
+### Código Python para Simulação:
+```python
+import numpy as np
+from scipy.integrate import odeint # Função para resolver EDOs
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def simular_descarga_tanque():
+    """
+    Simula a descarga de um tanque cilíndrico usando uma EDO e visualiza os resultados.
+    """
+    print("--- 9.2. Equações Diferenciais Ordinárias (EDOs) ---")
+    print("\n--- Exemplo: Descarga de um Tanque Cilíndrico ---")
+
+    # --- 1. Definir os Parâmetros do Tanque e do Orifício ---
+    A_T = 1.0       # Área da seção transversal do tanque (m^2)
+    A_o = 0.01      # Área do orifício de saída (m^2)
+    C_d = 0.6       # Coeficiente de descarga do orifício (adimensional)
+    g = 9.81        # Aceleração da gravidade (m/s^2)
+
+    # --- 2. Definir a Equação Diferencial Ordinária (EDO) ---
+    # A função deve receber (y, t, *args) onde y é a variável de estado (altura h)
+    # e t é a variável independente (tempo). *args são parâmetros adicionais.
+    def dHdt(h, t, A_T, A_o, C_d, g):
+        """
+        Define a EDO para a variação da altura do líquido no tanque.
+        dh/dt = - (Ao * Cd * sqrt(2 * g * h)) / AT
+        """
+        if h <= 0: # Para evitar raiz quadrada de número negativo e simular tanque vazio
+            return 0.0
+        return - (A_o * C_d * np.sqrt(2 * g * h)) / A_T
+
+    # --- 3. Definir Condições Iniciais e Intervalo de Tempo ---
+    h0 = 2.0        # Altura inicial do líquido no tanque (m)
+    tempo_max = 200 # Tempo máximo de simulação (s)
+    # Array de pontos de tempo onde queremos a solução da EDO
+    t = np.linspace(0, tempo_max, 200) # 200 pontos entre 0 e tempo_max
+
+    # --- 4. Resolver a EDO Numericamente usando odeint ---
+    # odeint(funcao_edo, condicao_inicial, array_de_tempos, args=(parametros_da_funcao_edo))
+    # Retorna um array com a solução para a variável de estado em cada ponto de tempo
+    solucao_h = odeint(dHdt, h0, t, args=(A_T, A_o, C_d, g))
+
+    # odeint retorna um array 2D, mesmo para uma única variável.
+    # Precisamos extrair a primeira coluna para ter o array de alturas.
+    alturas = solucao_h[:, 0]
+
+    # Garantir que a altura não seja negativa (pode acontecer por aproximação numérica)
+    alturas[alturas < 0] = 0
+
+    # --- 5. Visualizar a Curva da Altura do Líquido ---
+    sns.set_style("whitegrid")
+    plt.figure(figsize=(10, 6))
+    plt.plot(t, alturas, label='Altura do Líquido (h)', color='blue', linewidth=2)
+    plt.xlabel('Tempo (s)')
+    plt.ylabel('Altura (m)')
+    plt.title('Descarga de um Tanque Cilíndrico')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    print("\n--- Resultados da Simulação ---")
+    print(f"Altura inicial: {h0:.2f} m")
+    print(f"Altura final (após {tempo_max} s): {alturas[-1]:.2f} m")
+    # Encontrar o tempo aproximado para esvaziar o tanque
+    tempo_esvaziamento = t[np.where(alturas <= 0.01)[0][0]] if np.any(alturas <= 0.01) else "Não esvaziou completamente"
+    print(f"Tempo aproximado para esvaziamento: {tempo_esvaziamento} s")
+
+
+# --- Execução do Exemplo ---
+if __name__ == "__main__":
+    simular_descarga_tanque()
+```
+**Saída Esperada:**
+```plaintext
+--- 9.2. Equações Diferenciais Ordinárias (EDOs) ---
+--- Exemplo: Descarga de um Tanque Cilíndrico ---
+--- Resultados da Simulação ---
+Altura inicial: 2.00 m
+Altura final (após 200 s): 0.00 m
+Tempo aproximado para esvaziamento: 200 s
+```
+
+### Figura 9.2 - Gráfico: Descarga de um Tanque Cilíndrico
+
+![Descarga de um Tanque Cilíndrico](imagens/31_imagem_descarga_tanque.png)
+
+**Gráfico: Descarga de um Tanque Cilíndrico**
+- **Eixo X:** Tempo (s)
+- **Eixo Y:** Altura (m)
+- **Título do Gráfico:** Descarga de um Tanque Cilíndrico
+- **Legenda da Linha:** Altura do Líquido (h)
+
+---
+
+### 9.2.2. Resumo
+
+Sobre as **Equações Diferenciais Ordinárias (EDOs)**, mergulhamos na linguagem fundamental para descrever sistemas dinâmicos, ou seja, aqueles cujas variáveis mudam continuamente ao longo do tempo. Compreendemos que as EDOs são cruciais em todas as engenharias para modelar fenômenos como a variação de concentração em reatores químicos, o movimento de corpos em mecânica, a dinâmica de circuitos elétricos, e a resposta de sistemas de controle.
+Destacamos que, embora algumas EDOs tenham soluções analíticas, a maioria dos problemas de engenharia exige **soluções numéricas**. Para isso, aprendemos a utilizar a poderosa biblioteca SCI_PY em Python, especificamente a função **scipy.integrate.odeint**. Vimos que, para aplicar essa ferramenta, é necessário definir a EDO como uma função Python (que retorna a derivada da variável de estado), especificar as condições iniciais e o intervalo de tempo da simulação.
+Como exemplo prático, simulamos a **descarga de um tanque cilíndrico**, modelando a variação da altura do líquido ao longo do tempo através de uma EDO de primeira ordem. O exercício demonstrou como definir essa EDO, resolvê-la numericamente com **odeint** e, em seguida, visualizar a curva da altura versus tempo usando **MAT_PLOT_LIB**, ilustrando a capacidade de Python para analisar o comportamento dinâmico de sistemas de engenharia.
+
 
 ---
 

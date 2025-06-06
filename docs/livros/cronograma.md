@@ -68,9 +68,9 @@
   - [X] 8.3 Aplicações em balanços e sistemas lineares
   - [X] 8.4 Conclusão
 
-- [ ] Capítulo 9 – Modelagem Matemática Simples
-  - [ ] 9.1 Equações algébricas e sistemas lineares
-  - [ ] 9.2 Equações diferenciais ordinárias (EDOs)
+- [X] Capítulo 9 – Modelagem Matemática Simples
+  - [X] 9.1 Equações algébricas e sistemas lineares
+  - [X] 9.2 Equações diferenciais ordinárias (EDOs)
   - [ ] 9.3 Simulações de tanques, reatores e processos dinâmicos
   - [ ] 9.4 Otimização de funções com scipy.optimize
   - [ ] 9.5 Conclusão
