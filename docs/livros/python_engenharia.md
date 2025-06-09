@@ -5354,6 +5354,183 @@ Como exemplo prático, simulamos a **descarga de um tanque cilíndrico**, modela
 
 ---
 
+## 9.3. Simulações de Tanques, Reatores e Processos Dinâmicos
+
+A capacidade de modelar e simular o comportamento dinâmico de tanques, reatores e outros processos industriais é um pilar fundamental da engenharia de processos e controle. Essas simulações permitem aos engenheiros:
+
+- **Prever o Comportamento:** Entender como as variáveis de processo (concentração, temperatura, volume, pressão) evoluem ao longo do tempo em resposta a mudanças nas condições de entrada ou distúrbios.
+- **Otimizar Operações:** Identificar as melhores condições operacionais para maximizar a produção, minimizar o consumo de energia ou garantir a segurança.
+- **Projetar Sistemas de Controle:** Testar e ajustar estratégias de controle antes da implementação física, economizando tempo e recursos.
+- **Analisar Falhas:** Investigar cenários de falha e desenvolver planos de contingência.
+
+A base matemática para essas simulações são frequentemente os **sistemas de Equações Diferenciais Ordinárias (EDOs)**. Em vez de uma única EDO descrevendo uma variável, temos um conjunto de EDOs acopladas, onde a taxa de mudança de uma variável pode depender de outras variáveis do sistema.
+
+### 9.3.1. Exercício Proposto: Reator Tanque Agitado Contínuo (CSTR) com Reação de Primeira Ordem
+
+**Contexto:**
+Um Reator Tanque Agitado Contínuo (CSTR) é um tipo de reator idealizado onde a mistura é perfeita e a concentração no reator é uniforme e igual à concentração na corrente de saída. Considere um CSTR onde ocorre uma reação de primeira ordem irreversível: **A → Produtos**. Queremos simular como a concentração do reagente A no reator varia ao longo do tempo após uma mudança na concentração de entrada ou na vazão.
+
+**Formulação do Balanço de Massa para o Reagente A no CSTR:**
+
+O balanço de massa para o componente A em um CSTR com volume constante é:
+
+```plaintext
+Taxa de Acúmulo de A = Taxa de Entrada de A - Taxa de Saída de A - Taxa de Consumo de A por Reação
+```
+Assumindo que a concentração de entrada de A é constante (**CA_in**) e que a reação segue a cinética de primeira ordem com constante de velocidade **k**, temos:
+```plaintext
+V * dCA/dt = Q * (CA_in - CA) - k * V * CA
+```
+Dividindo por V:
+```plaintext
+dCA/dt = (Q/V) * (CA_in - CA) - k * CA
+```
+Onde:
+- **CA:** Concentração do reagente A no reator e na saída (mol/L)
+- **V:** Volume do reator (L)
+- **Q:** Vazão volumétrica de entrada/saída (L/min)
+- **CA_in:** Concentração do reagente A na corrente de entrada (mol/L)
+- **k:** Constante de velocidade da reação (min⁻¹)
+
+Esta é uma EDO de primeira ordem que descreve a dinâmica da concentração de A no reator.
+
+**Objetivo do Exercício:**
+
+1.	Definir a função Python que representa a EDO dCA/dt.
+2.	Simular a resposta do CSTR a uma mudança na concentração de entrada.
+3.	Visualizar a curva da concentração do reagente A no reator ao longo do tempo.
+
+**Simulação de CSTR com Reação:**
+
+![REATOR_CSTR](imagens/32_imagem_reator_cstr.png)
+
+```python
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def simular_cstr():
+    """
+    Simula a dinâmica de um Reator Tanque Agitado Contínuo (CSTR)
+    com uma reação de primeira ordem e visualiza a concentração ao longo do tempo.
+    """
+    print("--- 9.3. Simulações de Tanques, Reatores e Processos Dinâmicos ---")
+    print("\n--- Exemplo: CSTR com Reação de Primeira Ordem ---")
+
+    # --- 1. Definir os Parâmetros do CSTR e da Reação ---
+    V = 100.0     # Volume do reator (L)
+    Q = 10.0      # Vazão volumétrica (L/min)
+    k = 0.05      # Constante de velocidade da reação (min^-1)
+
+    # --- 2. Definir a Equação Diferencial Ordinária (EDO) para o CSTR ---
+    # A função deve receber (y, t, *args)
+    # y é a variável de estado (concentração CA)
+    # t é a variável independente (tempo)
+    # *args são os parâmetros do sistema (V, Q, k, CA_entrada)
+    def dCAdt(CA, t, V, Q, k, CA_entrada_func):
+        """
+        Define a EDO para a variação da concentração de A no CSTR.
+        dCA/dt = (Q/V) * (CA_entrada - CA) - k * CA
+        CA_entrada_func é uma função que retorna CA_entrada no tempo t.
+        """
+        CA_entrada = CA_entrada_func(t) # Obter CA_entrada no tempo atual
+        return (Q/V) * (CA_entrada - CA) - k * CA
+
+    # --- 3. Definir a Condição Inicial e o Intervalo de Tempo ---
+    CA0 = 0.0       # Concentração inicial de A no reator (mol/L)
+    tempo_max = 100 # Tempo máximo de simulação (min)
+    t = np.linspace(0, tempo_max, 200) # 200 pontos de tempo para a solução
+
+    # Definir a função para a concentração de entrada (CA_entrada)
+    # Vamos simular uma mudança de CA_entrada de 1.0 para 5.0 mol/L em t=20 min
+    def CA_entrada_funcao(tempo_atual):
+        if tempo_atual < 20:
+            return 1.0 # Concentração inicial de entrada
+        else:
+            return 5.0 # Nova concentração de entrada após 20 min
+
+    # --- 4. Resolver a EDO Numericamente usando odeint ---
+    # Passamos a função CA_entrada_funcao como um dos argumentos da EDO
+    solucao_CA = odeint(dCAdt, CA0, t, args=(V, Q, k, CA_entrada_funcao))
+
+    # odeint retorna um array 2D, extraímos a primeira coluna para a concentração
+    concentracoes = solucao_CA[:, 0]
+
+    # --- 5. Visualizar a Curva da Concentração ---
+    sns.set_style("whitegrid")
+    plt.figure(figsize=(10, 6))
+
+    # Plotar a concentração no reator
+    plt.plot(t, concentracoes, label='Concentração de A no Reator', color='blue', linewidth=2)
+
+    # Plotar a concentração de entrada para contextualizar a mudança
+    # Criamos um array de CA_entrada correspondente aos tempos de simulação
+    CA_entrada_plot = np.array([CA_entrada_funcao(ti) for ti in t])
+    plt.plot(t, CA_entrada_plot, label='Concentração de A na Entrada', color='red', linestyle='--', linewidth=1.5)
+
+    plt.xlabel('Tempo (min)')
+    plt.ylabel('Concentração de A (mol/L)')
+    plt.title('Dinâmica da Concentração de A em um CSTR')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    print("\n--- Resultados da Simulação ---")
+    print(f"Concentração inicial no reator: {CA0:.2f} mol/L")
+    print(f"Concentração final no reator (após {tempo_max} min): {concentracoes[-1]:.2f} mol/L")
+    # Encontrar o tempo para atingir 95% da nova concentração de regime
+    # (assumindo que o regime final é CA_entrada_final / (1 + k*V/Q))
+    CA_entrada_final = CA_entrada_funcao(tempo_max)
+    CA_regime_final = CA_entrada_final / (1 + k * V / Q)
+    print(f"Concentração de regime permanente esperada (após mudança): {CA_regime_final:.2f} mol/L")
+
+# Para rodar a simulação, basta chamar a função:
+if __name__ == "__main__":
+    simular_cstr()
+```
+### Conceitos Chave Aplicados:
+
+1. **Modelagem de Processos Dinâmicos:** A EDO para o CSTR é um modelo simplificado que descreve como a concentração de um reagente muda no tempo dentro de um reator.
+2. **Sistemas de EDOs (Implícito):** Embora este exemplo seja uma única EDO, a estrutura de odeint e a forma como a função dCA/dt é definida (recebendo a variável de estado e o tempo) são as mesmas para sistemas de EDOs, onde y seria um vetor de variáveis de estado.
+3. **Função de Entrada Variável:** A inclusão de CA_entrada_funcao(t) como um argumento passado para a EDO demonstra como lidar com entradas que mudam ao longo do tempo, um cenário comum em controle de processos.
+4. **scipy.integrate.odeint:** Novamente, a ferramenta central para a solução numérica da EDO, permitindo simular o comportamento do reator.
+5. **Visualização de Curvas de Processo:** O **MATPLOTLIB** e **SEABORN** são utilizados para plotar a evolução da concentração no reator e a concentração de entrada, permitindo analisar a resposta transitória e o novo estado de regime.
+
+Este exercício é um exemplo clássico de como a simulação baseada em EDOs é utilizada em engenharia química para entender e prever o comportamento de reatores e outros processos dinâmicos.
+
+**Saída Esperada:**
+```plaintext
+--- 9.3. Simulações de Tanques, Reatores e Processos Dinâmicos ---
+--- Exemplo: CSTR com Reação de Primeira Ordem ---
+--- Resultados da Simulação ---
+Concentração inicial no reator: 0.00 mol/L
+Concentração final no reator (após 100 min): 4.99 mol/L
+Concentração de regime permanente esperada (após mudança): 4.76 mol/L
+```
+
+### Figura 9.3 - Gráfico: Dinâmica da Concentração de A em um CSTR
+
+![Dinâmica da Concentração de A em um CSTR](imagens/33_imagem_dinamica_cstr.png)
+
+**Gráfico: Dinâmica da Concentração de A em um Reator CSTR**
+- **Eixo X:** Tempo (min)
+- **Eixo Y:** Concentração de A (mol/L)
+- **Título do Gráfico:** Dinâmica da Concentração de A em um CSTR
+- **Legendas das Linhas:**
+  - **Concentração de A no Reator:** Representada pela linha azul contínua. Mostra como a concentração do reagente A, dentro do reator varia ao longo do tempo.
+  - **Concentração de A na Entrada:** Representada pela linha vermelha tracejada. Exibe a concentração do reagente A na corrente que entra no reator ao longo do tempo, ilustrando a mudança que ocorre em t=20 minutos.
+
+---
+
+### 9.3.2. Resumo
+
+Neste assunto. Simulações de Tanques, Reatores e Processos Dinâmicos, exploramos a importância da modelagem e simulação do comportamento dinâmico de equipamentos e processos industriais, como tanques e reatores. Discutimos como essas simulações são cruciais para prever o comportamento de sistemas ao longo do tempo, otimizar operações, projetar sistemas de controle e analisar cenários de falha.
+A base para essas simulações reside frequentemente em **sistemas de Equações Diferenciais Ordinárias (EDOs)** acopladas. Para ilustrar isso, desenvolvemos um exemplo prático de um Reator Tanque Agitado Contínuo (CSTR) com uma reação de primeira ordem.
+No exercício, formulamos a EDO que descreve a variação da concentração de um reagente A, dentro de um reator CSTR. Em seguida, utilizamos a função **scipy.integrate.odeint** para simular numericamente a resposta do reator a uma mudança na concentração do reagente na corrente de entrada ao longo do tempo. Finalmente, visualizamos a evolução da concentração dentro do reator e a concentração de entrada utilizando **MATPLOTLIB**, demonstrando como Python pode ser usado para entender a dinâmica de processos químicos e outros sistemas de engenharia. A capacidade de definir funções de entrada variáveis no tempo também foi destacada como um aspecto importante para simulações mais realistas. 
+
+---
+
 # 11. Finalização e Agradecimentos
 
 Chegamos ao final da nossa jornada pela apostila "Introdução à Programação Python Aplicada à Engenharia". Este percurso foi cuidadosamente desenhado para equipar você, engenheiro ou estudante de engenharia, com as ferramentas computacionais essenciais para enfrentar os desafios técnicos do mundo moderno.
