@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/imagens/capa.png" alt="Capa do Livro" width="210"/>
+  <img src="assets/imagens/capa.png" alt="Capa do Livro" width="510"/>
 </p>
 
 # 🍽️ Simulador de Tempo de Permanência em Restaurantes
