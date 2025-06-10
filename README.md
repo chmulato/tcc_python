@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/imagens/capa.png" alt="Capa do Livro" width="210"/>
+</p>
+
 # 🍽️ Simulador de Tempo de Permanência em Restaurantes
 
 Este sistema permite simular, de forma visual e estatística, o tempo de permanência dos clientes em um restaurante. O simulador considera o fluxo de clientes desde a chegada, passando por filas, ocupação de mesas, uso de buffets e caixas, até a saída. Com base em parâmetros configuráveis e no layout físico do restaurante, o sistema calcula tempos médios, gargalos e estatísticas de atendimento, gerando relatórios completos em PDF e animações do funcionamento do restaurante.
