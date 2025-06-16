@@ -1540,7 +1540,7 @@ layout_ascii: "layout_exemplo.txt"
 ###########
 
 Onde:
-B: Balção
+B: Balcão
 C: Caixa
 M: Mesa com cadeiras
 
