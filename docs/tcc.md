@@ -103,7 +103,7 @@ This Final Paper presents the development of a computational simulator for the a
 
 1. Fluxograma do fluxo do cliente em um restaurante
 2. Linha do tempo do cliente em um restaurante
-3. Exemplo de layout ASCII do restaurante
+3. Figura A5 - Exemplo de layout ASCII do restaurante
 4. Diagrama: Variação do fluxo de chegada de clientes ao longo do tempo
 5. Esquema do fluxo de filas em um restaurante
 6. Exemplo de histograma de clientes atendidos e não atendidos
@@ -117,8 +117,8 @@ This Final Paper presents the development of a computational simulator for the a
 1. Tabela 1 – Parâmetros utilizados na simulação (layout 5.1.1)
 2. Tabela 2 – Efeitos da variação dos principais parâmetros sobre o desempenho do restaurante
 3. Tabela 3 – Exemplos de valores para pacotes de entrega e monetização
-4. Ficha 01 - Ficha de coleta de dados para simulação
-5. Ficha 02 - Ficha comparativa para análise de variação de parâmetros
+4. Ficha 01 - B.1 - Ficha de Coleta de Dados em Campo
+5. Ficha 02 - B.2 - Ficha Comparativa para Análise de Variação de Parâmetros
 
 ---
 
@@ -137,81 +137,84 @@ This Final Paper presents the development of a computational simulator for the a
 ---
 # Sumário
 
+- [Sumário](#sumário)
 - [Capítulo 1 – Introdução](#capítulo-1--introdução)
   - [1.1 Contextualização do problema enfrentado por restaurantes](#11-contextualização-do-problema-enfrentado-por-restaurantes)
+    - [Fluxograma do fluxo do cliente em um restaurante](#fluxograma-do-fluxo-do-cliente-em-um-restaurante)
   - [1.2 Justificativa da escolha pelo desenvolvimento de um simulador](#12-justificativa-da-escolha-pelo-desenvolvimento-de-um-simulador)
   - [1.3 Objetivos](#13-objetivos)
+    - [Objetivo Geral](#objetivo-geral)
+    - [Objetivos Específicos](#objetivos-específicos)
   - [1.4 Metodologia aplicada](#14-metodologia-aplicada)
+    - [Diagrama de componentes do simulador](#diagrama-de-componentes-do-simulador)
   - [1.5 Estrutura do trabalho](#15-estrutura-do-trabalho)
   - [1.6 Considerações finais](#16-considerações-finais)
-
 - [Capítulo 2 – Referencial Teórico](#capítulo-2--referencial-teórico)
   - [2.1 Breve revisão sobre gestão de tempo em restaurantes](#21-breve-revisão-sobre-gestão-de-tempo-em-restaurantes)
+    - [Linha do tempo do cliente em um restaurante](#linha-do-tempo-do-cliente-em-um-restaurante)
   - [2.2 Aplicações de simulação em ambientes de serviços](#22-aplicações-de-simulação-em-ambientes-de-serviços)
   - [2.3 Sistemas computacionais em apoio à tomada de decisão em pequenas empresas](#23-sistemas-computacionais-em-apoio-à-tomada-de-decisão-em-pequenas-empresas)
   - [2.4 Abordagens práticas no uso de Python em Engenharia de Processos](#24-abordagens-práticas-no-uso-de-python-em-engenharia-de-processos)
   - [2.5 Considerações finais](#25-considerações-finais)
-
-- [Capítulo 3 – Especificação do Sistema de Simulação](#capítulo-3--especificação-do-sistema-de-simulação)
+  - [Capítulo 3 – Especificação do Sistema de Simulação](#capítulo-3--especificação-do-sistema-de-simulação)
   - [3.1 Descrição geral da aplicação](#31-descrição-geral-da-aplicação)
   - [3.2 Funcionalidades principais](#32-funcionalidades-principais)
   - [3.3 Considerações finais](#33-considerações-finais)
-
-- [Capítulo 4 – Fundamentos matemáticos e conceituais da simulação](#capítulo-4--fundamentos-matemáticos-e-conceituais-da-simulação)
+  - [Capítulo 4 – Fundamentos matemáticos e conceituais da simulação](#capítulo-4--fundamentos-matemáticos-e-conceituais-da-simulação)
   - [4.1 Teoria das Filas aplicadas ao fluxo de clientes](#41-teoria-das-filas-aplicadas-ao-fluxo-de-clientes)
-    - [4.1.1 Esquema do fluxo de filas em um restaurante](#411-esquema-do-fluxo-de-filas-em-um-restaurante)
+  - [4.1.1 Esquema do fluxo de filas em um restaurante](#411-esquema-do-fluxo-de-filas-em-um-restaurante)
   - [4.2 Análise do layout e cálculo do deslocamento interno](#42-análise-do-layout-e-cálculo-do-deslocamento-interno)
     - [4.2.1 Exemplo prático de representação do layout](#421-exemplo-prático-de-representação-do-layout)
-  - [4.3 Simulação Discreta de Eventos (DES): lógica e implementação](#43-simulação-discreta-de-eventos-des-lógica-e-implementação)
-    - [4.3.1 Exemplo de eventos e transições](#431-exemplo-de-eventos-e-transições)
+  - [4.3 Simulação Discreta de Eventos (Discrete Event Simulation – DES): lógica e implementação](#43-simulação-discreta-de-eventos-discrete-event-simulation--des-lógica-e-implementação)
+  - [4.3.1 Exemplo de eventos e transições](#431-exemplo-de-eventos-e-transições)
   - [4.4 Estatística aplicada aos tempos de atendimento e consumo](#44-estatística-aplicada-aos-tempos-de-atendimento-e-consumo)
-    - [4.4.1 Distribuições estatísticas aplicadas aos tempos de atendimento e consumo](#441-distribuições-estatísticas-aplicadas-aos-tempos-de-atendimento-e-consumo)
+  - [4.4.1 Distribuições estatísticas aplicadas aos tempos de atendimento e consumo](#441-distribuições-estatísticas-aplicadas-aos-tempos-de-atendimento-e-consumo)
   - [4.5 Equação geral do tempo de residência dos clientes no sistema (restaurante)](#45-equação-geral-do-tempo-de-residência-dos-clientes-no-sistema-restaurante)
-    - [4.5.1 Fluxo implementado no código simulador.py](#451-fluxo-implementado-no-código-simuladorpy)
+  - [4.5.1 Fluxo implementado no código simulador.py](#451-fluxo-implementado-no-código-simuladorpy)
   - [4.6 Justificativa da abordagem prática e realista adotada](#46-justificativa-da-abordagem-prática-e-realista-adotada)
-  - [4.7 Conclusão](#47-conclusão)
-
-- [Capítulo 5 – Estudo de Caso e Simulações](#capítulo-5--estudo-de-caso-e-simulações)
-  - [5.1 Parâmetros utilizados na simulação (layout, número de mesas, tempo médio)](#51-parâmetros-utilizados-na-simulação-layout-número-de-mesas-tempo-médio)
-    - [5.1.1 Layout de exemplo utilizado na simulação](#511-layout-de-exemplo-utilizado-na-simulação)
-    - [5.1.2 Extrapolação: análise da variação do fluxo de chegada de clientes](#512-extrapolação-análise-da-variação-do-fluxo-de-chegada-de-clientes)
-  - [5.2 Teste com dados reais/simulados](#52-teste-com-dados-reais-simulados)
-  - [5.3 Análise dos resultados: gargalos, otimizações sugeridas](#53-análise-dos-resultados-gargalos-otimizações-sugeridas)
-  - [5.4 Discussão sobre os efeitos da variação de parâmetros](#54-discussão-sobre-os-efeitos-da-variação-de-parâmetros)
-    - [5.4.1 Exemplo de ficha para análise dos efeitos da variação de parâmetros ao longo dos dias simulados](#541-exemplo-de-ficha-para-análise-dos-efeitos-da-variação-de-parâmetros-ao-longo-dos-dias-simulados)
-  - [5.5 Modelos de documentação entregue ao cliente](#55-modelos-de-documentação-entregue-ao-cliente)
-  - [5.6 Considerações finais](#56-considerações-finais)
-
-- [Capítulo 6 – Estratégia de Negócio e Aplicabilidade Comercial](#capítulo-6--estratégia-de-negócio-e-aplicabilidade-comercial)
+    - [4.7 Conclusão](#47-conclusão)
+  - [Capítulo 5 – Estudo de Caso e Simulações](#capítulo-5--estudo-de-caso-e-simulações)
+    - [5.1 Parâmetros utilizados na simulação (layout, número de mesas, tempo médio)](#51-parâmetros-utilizados-na-simulação-layout-número-de-mesas-tempo-médio)
+      - [5.1.1 Layout de exemplo utilizado na simulação](#511-layout-de-exemplo-utilizado-na-simulação)
+      - [Tabela 1 – Parâmetros utilizados na simulação (layout 5.1.1)](#tabela-1--parâmetros-utilizados-na-simulação-layout-511)
+      - [5.1.2 Extrapolação: análise da variação do fluxo de chegada de clientes](#512-extrapolação-análise-da-variação-do-fluxo-de-chegada-de-clientes)
+        - [Exemplo de diagrama: Variação do fluxo de chegada de clientes ao longo do tempo](#exemplo-de-diagrama-variação-do-fluxo-de-chegada-de-clientes-ao-longo-do-tempo)
+    - [5.2 Teste com dados reais/simulados](#52-teste-com-dados-reaissimulados)
+      - [Ficha 01 - Exemplo de ficha de coleta de dados para simulação](#ficha-01---exemplo-de-ficha-de-coleta-de-dados-para-simulação)
+    - [5.3 Análise dos resultados: gargalos, otimizações sugeridas](#53-análise-dos-resultados-gargalos-otimizações-sugeridas)
+    - [5.4 Discussão sobre os efeitos da variação de parâmetros](#54-discussão-sobre-os-efeitos-da-variação-de-parâmetros)
+      - [Tabela 2 – Efeitos da variação dos principais parâmetros sobre o desempenho do restaurante](#tabela-2--efeitos-da-variação-dos-principais-parâmetros-sobre-o-desempenho-do-restaurante)
+      - [5.4.1 Exemplo de ficha para análise dos efeitos da variação de parâmetros ao longo dos dias simulados](#541-exemplo-de-ficha-para-análise-dos-efeitos-da-variação-de-parâmetros-ao-longo-dos-dias-simulados)
+    - [5.5 Modelos de documentação entregue ao cliente](#55-modelos-de-documentação-entregue-ao-cliente)
+      - [Exemplo de estrutura de relatório entregue ao cliente](#exemplo-de-estrutura-de-relatório-entregue-ao-cliente)
+    - [5.6 Considerações finais](#56-considerações-finais)
+  - [Capítulo 6 – Estratégia de Negócio e Aplicabilidade Comercial](#capítulo-6--estratégia-de-negócio-e-aplicabilidade-comercial)
   - [6.1 Público-alvo: donos de restaurantes e arrendatários](#61-público-alvo-donos-de-restaurantes-e-arrendatários)
   - [6.2 Proposta de valor do sistema](#62-proposta-de-valor-do-sistema)
   - [6.3 Modelos de entrega e monetização do produto](#63-modelos-de-entrega-e-monetização-do-produto)
+      - [Tabela 3 – Exemplos de valores para pacotes de entrega e monetização](#tabela-3--exemplos-de-valores-para-pacotes-de-entrega-e-monetização)
   - [6.4 Limitações e formas de fidelização sem aprisionamento explícito](#64-limitações-e-formas-de-fidelização-sem-aprisionamento-explícito)
   - [6.5 Possibilidades de expansão futura do produto](#65-possibilidades-de-expansão-futura-do-produto)
   - [6.6 Considerações finais](#66-considerações-finais)
-
-- [Capítulo 7 – Conclusão e Considerações Finais](#capítulo-7--conclusão-e-considerações-finais)
+  - [Capítulo 7 – Conclusão e Considerações Finais](#capítulo-7--conclusão-e-considerações-finais)
   - [7.1 Síntese dos principais resultados e contribuições do trabalho](#71-síntese-dos-principais-resultados-e-contribuições-do-trabalho)
   - [7.2 Contribuições técnicas e práticas do projeto](#72-contribuições-técnicas-e-práticas-do-projeto)
   - [7.3 Recomendações para adoção e desenvolvimento contínuo](#73-recomendações-para-adoção-e-desenvolvimento-contínuo)
   - [7.4 Trabalhos futuros](#74-trabalhos-futuros)
   - [7.5 Considerações finais do trabalho](#75-considerações-finais-do-trabalho)
-
 - [Referências Bibliográficas](#referências-bibliográficas)
-
-- [Anexo A – Documentação de Uso do Simulador](#anexo-a--documentação-de-uso-do-simulador)
-  - [A.1 Interface Gráfica do Simulador](#a1-interface-gráfica-do-simulador)
-  - [A.2 Importação de Arquivos](#a2-importação-de-arquivos)
-  - [A.3 Exportação de Relatórios PDF](#a3-exportação-de-relatórios-pdf)
-  - [A.4 Exportação do GIF Animado](#a4-exportação-do-gif-animado)
-  - [A.5 Exemplos de Arquivos](#a5-exemplos-de-arquivos)
-  - [A.6 Exemplo de Histograma de Clientes Atendidos e Não Atendidos](#a6-exemplo-de-histograma-de-clientes-atendidos-e-não-atendidos)
-
-- [Anexo B – Fichas e Relatórios Auxiliares](#anexo-b--fichas-e-relatórios-auxiliares)
-  - [B.1 Ficha 01 - Ficha de Coleta de Dados em Campo](#b1-ficha-de-coleta-de-dados-em-campo)
-  - [B.2 Ficha 02 - Ficha Comparativa para Análise de Variação de Parâmetros](#b2-ficha-comparativa-para-análise-de-variação-de-parâmetros)
-  - [B.3 Modelo de Relatório Executivo para o Cliente](#b3-modelo-de-relatório-executivo-para-o-cliente)
-  - [B.4 Fluxograma da Simulação](#b4-fluxograma-da-simulação)
+  - [Anexo A – Documentação de Uso do Simulador](#anexo-a--documentação-de-uso-do-simulador)
+    - [A.1 Interface Gráfica do Simulador](#a1-interface-gráfica-do-simulador)
+    - [A.2 Importação de Arquivos](#a2-importação-de-arquivos)
+    - [A.3 Exportação de Relatórios PDF](#a3-exportação-de-relatórios-pdf)
+    - [A.4 Exportação do GIF Animado](#a4-exportação-do-gif-animado)
+    - [A.5 Exemplos de Arquivos](#a5-exemplos-de-arquivos)
+    - [A.6 Exemplo de Histograma de Clientes Atendidos e Não Atendidos](#a6-exemplo-de-histograma-de-clientes-atendidos-e-não-atendidos)
+  - [Anexo B – Fichas e Relatórios Auxiliares](#anexo-b--fichas-e-relatórios-auxiliares)
+    - [B.1 Ficha 01 - Ficha de Coleta de Dados em Campo](#b1-ficha-01---ficha-de-coleta-de-dados-em-campo)
+    - [B.2 Ficha 02 - Ficha Comparativa para Análise de Variação de Parâmetros](#b2-ficha-02---ficha-comparativa-para-análise-de-variação-de-parâmetros)
+    - [B.3 Modelo de Relatório Executivo para o Cliente](#b3-modelo-de-relatório-executivo-para-o-cliente)
+    - [B.4 Fluxograma da Simulação](#b4-fluxograma-da-simulação)
 
 ---
 
@@ -1528,13 +1531,19 @@ taxa_chegada_clientes: 2
 layout_ascii: "layout_exemplo.txt"
 ```
 
-**Exemplo de layout ASCII:**
+**Figura A5 - Exemplo de layout ASCII do restaurante**
 ```plaintext
 ###########
 # B   M M #
 #     M M #
 # C       #
 ###########
+
+Onde:
+B: Balção
+C: Caixa
+M: Mesa com cadeiras
+
 ```
 
 ---
