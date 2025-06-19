@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="./imagens/capa_tcc.png" alt="Capa do TCC" width="510"/>
+</p>
+
+# Trabalho de Conclusão de Curso - Engenharia de Processos
+
 ```plaintext
 +---------------------------------------------------------------+
 |           SIMULADOR DE TEMPO DE PERMANÊNCIA EM                |
@@ -17,7 +23,9 @@
 | Ano: Junho de 2025                                            |
 +---------------------------------------------------------------+
 ```
----
+
+***
+
 ```plaintext
 UNIVERSIDADE MICROSOFT COPILOT
 FACULDADE DE ENGENHARIA
@@ -137,6 +145,14 @@ This Final Paper presents the development of a computational simulator for the a
 ---
 # Sumário
 
+- [Trabalho de Conclusão de Curso - Engenharia de Processos](#trabalho-de-conclusão-de-curso---engenharia-de-processos)
+  - [Dedicatória](#dedicatória)
+  - [Agradecimentos](#agradecimentos)
+  - [Resumo](#resumo)
+  - [Abstract](#abstract)
+  - [Lista de Figuras](#lista-de-figuras)
+  - [Lista de Tabelas](#lista-de-tabelas)
+  - [Lista de Abreviaturas e Siglas](#lista-de-abreviaturas-e-siglas)
 - [Sumário](#sumário)
 - [Capítulo 1 – Introdução](#capítulo-1--introdução)
   - [1.1 Contextualização do problema enfrentado por restaurantes](#11-contextualização-do-problema-enfrentado-por-restaurantes)
