@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="../imagens/capa_tcc.png" alt="Capa do TCC" width="510"/>
-</p>
 
 # Trabalho de Conclusão de Curso - Engenharia de Processos
 
