@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/chmulato/tcc_python/blob/main/docs/imagens/capa_tcc.png?raw=true" alt="Capa do TCC" width="510"/>
+  <img src="../imagens/capa_tcc.png" alt="Capa do TCC" width="510"/>
 </p>
 
 # Trabalho de Conclusão de Curso - Engenharia de Processos
