@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>README — Simulação Estocástica de Processos de Fluxo (DES)</title>
+    <meta
+      name="description"
+      content="Documentação do projeto chmulato/tcc_python: motor DES, metodologia, instalação, execução e estrutura do repositório."
+    />
+    <link rel="icon" href="assets/imagens/folder.png" />
+    <style>
+      :root {
+        --bg: #fbfbfc;
+        --surface: #ffffff;
+        --ink: #111827;
+        --muted: rgba(17, 24, 39, 0.72);
+        --line: rgba(17, 24, 39, 0.14);
+        --accent: #0f3d6e;
+        --radius: 14px;
+        --max: 980px;
+        --serif: ui-serif, "Georgia", "Cambria", "Times New Roman", Times, serif;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans",
+          "Liberation Sans", sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+
+      html {
+        color-scheme: light;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.85;
+        padding: clamp(18px, 3.2vw, 34px) clamp(16px, 3.4vw, 28px);
+      }
+
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+
+      header.top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.10);
+        margin-bottom: 16px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand strong {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+      }
+
+      .brand span {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+
+      .toplinks {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: rgba(255, 255, 255, 0.70);
+        text-decoration: none;
+        font-family: var(--sans);
+        font-size: 13px;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .pill:hover {
+        background: rgba(15, 61, 110, 0.06);
+        border-color: rgba(15, 61, 110, 0.22);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+      a:hover {
+        color: #0b2f55;
+      }
+
+      main {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: calc(var(--radius) + 2px);
+        padding: clamp(16px, 2.8vw, 22px);
+        box-shadow: 0 14px 44px rgba(17, 24, 39, 0.08);
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        scroll-margin-top: 18px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(26px, 3.0vw, 40px);
+      }
+      h2 {
+        margin: 22px 0 10px;
+        font-size: clamp(20px, 2.2vw, 28px);
+        padding-top: 8px;
+        border-top: 1px solid rgba(17, 24, 39, 0.08);
+      }
+      h3 {
+        margin: 18px 0 8px;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 12px 0 0;
+        color: rgba(17, 24, 39, 0.88);
+      }
+
+      ul,
+      ol {
+        margin: 12px 0 0;
+        padding-left: 1.25em;
+      }
+      li {
+        margin: 6px 0;
+        color: rgba(17, 24, 39, 0.86);
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: rgba(17, 24, 39, 0.10);
+        margin: 18px 0;
+      }
+
+      pre {
+        margin: 14px 0 0;
+        padding: 14px 14px;
+        background: rgba(17, 24, 39, 0.04);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: var(--radius);
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: var(--mono);
+        font-size: 0.95em;
+        background: rgba(17, 24, 39, 0.05);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: 8px;
+        padding: 0.12em 0.32em;
+      }
+      pre code {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        font-size: 0.92em;
+        line-height: 1.55;
+        display: block;
+        white-space: pre;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 0;
+        font-size: 0.96em;
+        background: var(--surface);
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        border-radius: 12px;
+        overflow: hidden;
+        display: block;
+        overflow-x: auto;
+      }
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.10);
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        font-family: var(--sans);
+        font-size: 0.92em;
+        color: rgba(17, 24, 39, 0.86);
+        background: rgba(17, 24, 39, 0.03);
+      }
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .cover {
+        margin: 10px 0 0;
+        border-radius: 16px;
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.60);
+      }
+      .cover img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+          padding: 0;
+        }
+        main {
+          box-shadow: none;
+          border: 0;
+          padding: 0;
+        }
+        a {
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="top" aria-label="Topo do README">
+        <a class="brand" href="index.html" aria-label="Voltar ao index">
+          <strong>README · chmulato/tcc_python</strong>
+          <span>DES · filas · throughput · holdup</span>
+        </a>
+        <nav class="toplinks" aria-label="Atalhos">
+          <a class="pill" href="index.html">Voltar ao projeto</a>
+          <a class="pill" href="docs/tcc.html">TCC (HTML)</a>
+          <a class="pill" href="SIMULATING.md">SIMULATING.md</a>
+          <a class="pill" href="portal.html">Sala Digital</a>
+        </nav>
+      </header>
+
+      <main>
+        <div class="cover" aria-label="Capa">
+          <img src="assets/imagens/capa.png" alt="Capa do projeto" />
+        </div>
+
+        <h1>Simulação Estocástica de Processos de Fluxo (DES) — Case de Engenharia de Processos Aplicada</h1>
+        <p>
+          Este repositório apresenta um <strong>motor de Simulação por Eventos Discretos (Discrete-Event Simulation — DES)</strong> para
+          sistemas de fluxo com capacidade finita, filas e ocupação. O “restaurante” é usado como <strong>ambiente análogo</strong> para um
+          problema de Engenharia de Processos: maximizar <strong>throughput</strong> (vazão de saída) sob restrições de recursos, minimizando
+          <strong>holdup</strong> (acúmulo/inventário em processo) e tempos de ciclo.
+        </p>
+
+        <h2>Introdução — Simulação Estocástica de Processos de Fluxo</h2>
+        <p>
+          O objeto aqui não é o comércio, e sim o <strong>processo</strong>: um conjunto de operações conectadas por transferências, com
+          alimentação variável e capacidades limitantes. A simulação DES permite observar comportamento transiente, saturação, formação de filas
+          e regimes de pico — fenômenos que, em plantas industriais, determinam estabilidade operacional e eficiência.
+        </p>
+
+        <h3>Reenquadramento do objeto (The Process Thinking)</h3>
+        <ul>
+          <li><strong>Fluxo de Clientes = Vazão de Alimentação (Feed Rate)</strong>: taxa de chegada \( \lambda \) e sua variabilidade representam a alimentação do sistema.</li>
+          <li><strong>Buffets e Caixas = Operações Unitárias / Reatores (Unit Operations)</strong>: recursos com tempos de serviço e capacidades finitas, análogos a etapas de processamento.</li>
+          <li><strong>Tempo de Refeição = Tempo de Residência (Residence Time)</strong>: permanência no “volume de processo” (mesas) análoga à residência em equipamentos contínuos.</li>
+          <li><strong>Gargalos de Fila = Limitações de Transferência de Massa/Momento</strong>: filas emergem quando a “capacidade de transferência” entre etapas é inferior à alimentação; o gargalo passa a governar o throughput global.</li>
+        </ul>
+
+        <h3>Destaque do fundo de Engenharia Química</h3>
+        <p>O software explora a mesma lógica aplicada em <strong>dimensionamento e melhoria de plantas</strong>:</p>
+        <ul>
+          <li><strong>Maximização de throughput</strong> via avaliação de cenários de capacidade e restrições.</li>
+          <li><strong>Minimização de holdup/WIP</strong> (acúmulo de pessoas/material) reduzindo filas e tempos totais de ciclo.</li>
+          <li><strong>Distribuições estocásticas</strong> para prever dispersão e risco (caudas), pilar do controle estatístico e da análise de variabilidade em processos.</li>
+        </ul>
+
+        <h2>Metodologia — filas e ocupação como balanços de inventário</h2>
+        <p>
+          Em Python, o sistema é modelado por eventos (chegada, entrada/saída de fila, início/fim de serviço, alocação/liberação de recurso). As
+          filas funcionam como <strong>inventários intermediários</strong> (buffers), e o layout ASCII funciona como uma “planta” espacial que
+          influencia roteamento e restrições.
+        </p>
+        <p>Para uma comparação direta entre <strong>simulação determinística</strong> e <strong>DES estocástico</strong>, veja <code>SIMULATING.md</code>.</p>
+
+        <h2>Resultados — identificação de gargalos e otimização de layout industrial</h2>
+        <p>As saídas (tempo em fila, ocupação, utilização de recursos, gargalos) permitem:</p>
+        <ul>
+          <li>identificar a operação limitante do throughput;</li>
+          <li>quantificar holdup máximo e médio;</li>
+          <li>comparar rearranjos de layout e paralelização de recursos;</li>
+          <li>justificar mudanças de capacidade com evidência (relatórios e gráficos).</li>
+        </ul>
+
+        <h2>Evolução Tecnológica</h2>
+        <p>
+          Este TCC foi utilizado como <strong>Prova de Conceito (PoC)</strong> para simuladores mais complexos (ex.: <strong>Hidrometalurgia
+          Seletiva — Projeto ETE / Terras Raras</strong>), demonstrando que a lógica de <strong>Balanço de Massa e Tempo</strong> é universal:
+          entidades atravessam operações unitárias, acumulam em buffers e são governadas por gargalos e variabilidade.
+        </p>
+
+        <hr />
+
+        <h2>Capacidades do motor (funcionalidades)</h2>
+        <ul>
+          <li>Simulação completa do <strong>fluxo de entidades</strong> (clientes) em DES: chegada, filas (buffers), ocupação (residência), operações unitárias (buffet/caixa) e saída</li>
+          <li>Entrada de parâmetros via planilha Excel (.xlsx), arquivo YAML (.yaml/.yml), arquivo texto (.txt) ou manualmente pela interface</li>
+          <li>Leitura e interpretação de <strong>layout em ASCII</strong> (.txt) como “planta”/arranjo físico do processo</li>
+          <li>Configuração de variáveis como feed rate (clientes/min), tempos médios e variabilidade, capacidades e layout físico</li>
+          <li>Geração automática de relatórios finais em PDF com estatísticas, gráficos e visualização do layout</li>
+          <li>Criação de animações (GIF) do comportamento do sistema ao longo do tempo</li>
+          <li>Interface gráfica intuitiva e fácil de usar (Tkinter)</li>
+          <li>Exportação de logs detalhados de execução e erros para acompanhamento e auditoria</li>
+        </ul>
+
+        <hr />
+
+        <h2>Requisitos do sistema</h2>
+        <ul>
+          <li>Python 3.8 ou superior instalado</li>
+          <li>Sistema operacional Windows (recomendado), mas compatível com Linux e MacOS</li>
+          <li>Bibliotecas Python necessárias:</li>
+        </ul>
+        <ul>
+          <li><code>reportlab</code> (geração de PDFs)</li>
+          <li><code>matplotlib</code> (gráficos)</li>
+          <li><code>pillow</code> (imagens/GIF)</li>
+          <li><code>openpyxl</code> (planilhas Excel)</li>
+          <li><code>pyyaml</code> (YAML)</li>
+          <li><code>graphviz</code> (opcional, para diagramas)</li>
+        </ul>
+        <ul>
+          <li>Tkinter (interface gráfica): já incluso no Python para Windows/Mac; no Linux, instale com: <code>sudo apt-get install python3-tk</code></li>
+          <li>Recomendado: ambiente virtual Python para isolar dependências</li>
+        </ul>
+
+        <hr />
+
+        <h2>Instalação</h2>
+        <ol>
+          <li>Instale o Python: <a href="https://www.python.org/downloads/">python.org/downloads</a></li>
+          <li>Instale as dependências no terminal:</li>
+        </ol>
+        <pre><code>pip install -r requirements.txt</code></pre>
+
+        <hr />
+
+        <h2>Configuração inicial</h2>
+        <p>Você pode definir os parâmetros da simulação utilizando um dos formatos abaixo:</p>
+        <ul>
+          <li><strong>Arquivo YAML</strong> (exemplo: <code>config/parametros.yaml</code>)</li>
+          <li><strong>Planilha Excel (.xlsx)</strong> com colunas <code>parametro</code> e <code>valor</code></li>
+          <li><strong>Arquivo texto (.txt)</strong> no formato <code>parametro: valor</code> por linha</li>
+          <li><strong>Entrada manual</strong> pela interface gráfica</li>
+        </ul>
+
+        <p><strong>Exemplo de planilha Excel:</strong></p>
+        <table aria-label="Exemplo de planilha Excel">
+          <thead>
+            <tr>
+              <th>parametro</th>
+              <th>valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>clientes_por_minuto</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>tempo_medio_almoco</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td>cadeiras_por_mesa</td>
+              <td>4</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>Exemplo de arquivo TXT:</strong></p>
+        <pre><code>clientes_por_minuto: 12
+tempo_medio_almoco: 30
+cadeiras_por_mesa: 4</code></pre>
+        <p>
+          Edite ou escolha um layout ASCII em <code>layouts/layout_padrao.txt</code> para definir a disposição física do sistema (operações
+          unitárias, áreas de residência e caminhos).
+        </p>
+
+        <hr />
+
+        <h2>Layout (planta ASCII) e variáveis de processo</h2>
+        <p>
+          O layout é definido por um arquivo ASCII (texto simples), onde cada caractere representa um elemento físico do ambiente (operações
+          unitárias, áreas de residência, barreiras e corredores). Esse layout é determinante para a simulação, pois condiciona o roteamento e a
+          disponibilidade de recursos.
+        </p>
+        <h3>Exemplo de layout ASCII (<code>layouts/layout_padrao.txt</code>)</h3>
+        <pre><code>###########
+# M M B C #
+# M M B C #
+#         #
+###########</code></pre>
+        <p><strong>Legenda dos símbolos:</strong></p>
+        <ul>
+          <li><code>#</code>: Parede</li>
+          <li><code>M</code>: Mesa</li>
+          <li><code>B</code>: Buffet</li>
+          <li><code>C</code>: Caixa</li>
+          <li>Espaço em branco: Corredor/caminho livre</li>
+        </ul>
+
+        <h3>Variáveis (parâmetros de processo)</h3>
+        <p>As principais variáveis relacionadas ao layout e à simulação são:</p>
+        <ul>
+          <li><strong>clientes_por_minuto</strong>: vazão de alimentação (feed rate) do sistema.</li>
+          <li><strong>tempo_medio_almoco</strong>: tempo de residência médio.</li>
+          <li><strong>variabilidade_chegada / variabilidade_almoco</strong>: dispersão estocástica associada aos tempos.</li>
+          <li><strong>cadeiras_por_mesa / numero_de_mesas</strong>: capacidade da área de residência (holdup “físico”).</li>
+          <li><strong>numero_caixas / tempo_medio_atendimento</strong>: capacidade e tempo de serviço de uma operação unitária crítica (quando configurado).</li>
+          <li><strong>capacidade_maxima_fila</strong>: limite de buffer/inventário intermediário.</li>
+          <li><strong>layout_fisico</strong>: arquivo ASCII que representa a disposição de operações e caminhos.</li>
+        </ul>
+        <p>
+          Essas variáveis podem ser ajustadas nos arquivos de configuração (YAML, Excel, TXT) ou diretamente pela interface gráfica, permitindo
+          simular diferentes cenários e layouts para análise de desempenho e identificação de gargalos.
+        </p>
+
+        <hr />
+
+        <h2>Como executar</h2>
+        <ol>
+          <li>Abra o terminal na pasta do projeto.</li>
+          <li>Execute o comando abaixo para iniciar o simulador:</li>
+        </ol>
+        <pre><code>python main.py</code></pre>
+        <p>Na interface gráfica, você poderá:</p>
+        <ul>
+          <li>Importar os parâmetros de simulação (YAML, Excel, TXT ou manual)</li>
+          <li>Importar ou editar o layout do sistema</li>
+          <li>Executar a simulação</li>
+          <li>Visualizar os resultados e estatísticas</li>
+          <li>Exportar o relatório PDF e o GIF animado</li>
+        </ul>
+        <p>
+          Os arquivos gerados (relatórios e animações) serão salvos automaticamente em <code>resultados/relatorios/</code>.
+        </p>
+
+        <hr />
+
+        <h2>Estrutura de pastas</h2>
+        <pre><code>tcc_python/
+│
+├── main.py                # Ponto de entrada da aplicação
+├── config/                # Parâmetros de simulação
+│   └── parametros.yaml
+├── layouts/               # Layouts ASCII do sistema
+│   └── layout_padrao.txt
+├── monitoramento/         # Logs de execução e erros
+│   └── log_execucao.log
+├── resultados/            # Relatórios e animações gerados
+│   └── relatorios/
+│       ├── YYYY_MM_DD_HH_MM_SS_resultado_simulacao.pdf    # Relatório PDF gerado pela simulação
+│       ├── YYYY_MM_DD_HH_MM_SS_layout_da_simulacao.pdf    # PDF do layout ASCII do sistema
+│       └── YYYY_MM_DD_HH_MM_SS_layout_animacao.gif        # GIF animado do layout do sistema
+├── src/
+│   ├── interface.py               # Interface gráfica principal (Tkinter)
+│   ├── simulador.py               # Lógica central da simulação
+│   ├── visualizador_layout.py     # Geração dos frames e GIF animado do layout
+│   ├── yaml_loader.py             # Leitura de parâmetros YAML
+│   ├── excel_loader.py            # Leitura de parâmetros Excel
+│   ├── layout_parser.py           # Leitura/análise do layout ASCII
+│   ├── pdf_exporter.py            # Geração de relatórios PDF
+│   ├── layout_pdf_exporter.py     # Exportação do layout ASCII em PDF separado
+│   ├── logger_config.py           # Configuração do sistema de logging
+│   └── logo.png                   # Imagem da logo exibida na interface gráfica
+├── requirements.txt               # Lista de dependências Python
+└── README.md                      # Este arquivo de documentação</code></pre>
+
+        <hr />
+
+        <h2>Descrição dos arquivos principais</h2>
+        <ul>
+          <li><strong>main.py</strong>: Ponto de entrada da aplicação. Integra interface gráfica, simulação, importação de dados e exportação de relatórios.</li>
+          <li><strong>src/interface.py</strong>: Interface gráfica (Tkinter) para entrada de dados e interação do usuário.</li>
+          <li><strong>src/simulador.py</strong>: Lógica central da simulação por eventos discretos. Calcula estatísticas e resultados.</li>
+          <li><strong>src/visualizador_layout.py</strong>: Geração das imagens (frames) e do GIF do layout do sistema durante a simulação.</li>
+          <li><strong>src/yaml_loader.py</strong>: Importação dos parâmetros de simulação a partir de arquivos YAML.</li>
+          <li><strong>src/excel_loader.py</strong>: Importação dos parâmetros de simulação a partir de planilhas Excel.</li>
+          <li><strong>src/layout_parser.py</strong>: Leitura e análise do layout ASCII (operações unitárias, áreas de residência e caminhos).</li>
+          <li><strong>src/pdf_exporter.py</strong>: Geração do relatório PDF com gráficos, layout, parâmetros, resultados e recomendações.</li>
+          <li><strong>src/layout_pdf_exporter.py</strong>: Exportação do layout ASCII em PDF separado.</li>
+          <li><strong>src/logger_config.py</strong>: Configuração do sistema de logging (logs de execução e erros).</li>
+          <li><strong>src/logo.png</strong>: Imagem da logo exibida na interface gráfica.</li>
+          <li><strong>monitoramento/log_execucao.log</strong>: Arquivo de log das execuções.</li>
+          <li><strong>resultados/relatorios/resultado_simulacao.pdf</strong>: Relatório PDF gerado pela simulação.</li>
+          <li><strong>resultados/relatorios/layout_animacao.gif</strong>: GIF gerado durante a simulação, mostrando o comportamento do sistema ao longo do tempo.</li>
+          <li><strong>layouts/layout_padrao.txt</strong>: Exemplo de layout ASCII do sistema.</li>
+        </ul>
+
+        <hr />
+
+        <h2>Estatística e análise (métricas de processo)</h2>
+        <p>
+          O simulador gera estatísticas operacionais para identificar gargalos, dimensionar recursos e comparar cenários de layout/capacidade. Entre
+          as principais análises estão:
+        </p>
+        <ul>
+          <li><strong>Tempo de residência</strong>: tempo médio no sistema (do feed à saída).</li>
+          <li><strong>Utilização de recursos</strong>: ocupação de operações unitárias e áreas de residência.</li>
+          <li><strong>Tempo em filas (buffers)</strong>: espera por capacidade em etapas críticas.</li>
+          <li><strong>Perfil temporal de alimentação/saída</strong>: regimes de pico, transientes e saturação.</li>
+          <li><strong>Identificação de gargalos</strong>: etapas onde ocorrem maiores atrasos/holdup e que dominam o throughput global.</li>
+        </ul>
+        <p>
+          Os resultados são apresentados em relatórios PDF com gráficos, tabelas e visualizações do layout, facilitando a tomada de decisão e o
+          planejamento de melhorias no processo.
+        </p>
+
+        <hr />
+
+        <h2>Gráficos e visualizações</h2>
+        <p>
+          Durante e após a simulação, o sistema gera gráficos e visualizações para facilitar a leitura do comportamento do processo. Entre os
+          principais recursos estão:
+        </p>
+        <ul>
+          <li><strong>Gráficos de throughput</strong>: saída ao longo do tempo, evidenciando regimes de pico e saturação.</li>
+          <li><strong>Gráficos de ocupação/utilização</strong>: taxa de ocupação de recursos ao longo da simulação.</li>
+          <li><strong>Gráficos de tempos de fila</strong>: espera média por etapa (buffers).</li>
+          <li><strong>Visualização do layout</strong>: o layout ASCII é exportado em PDF e animado em GIF, ilustrando movimentação e utilização ao longo do tempo.</li>
+        </ul>
+        <p>
+          Essas visualizações são incluídas automaticamente nos relatórios PDF e nos arquivos GIF gerados, tornando a análise mais intuitiva e
+          completa.
+        </p>
+
+        <hr />
+
+        <h2>Resultados e relatórios</h2>
+        <ul>
+          <li>O relatório PDF será salvo em <code>resultados/relatorios/</code>.</li>
+          <li>O relatório inclui:</li>
+        </ul>
+        <ul>
+          <li>Resumo dos parâmetros e resultados</li>
+          <li>Gráficos de throughput/ocupação/filas (conforme cenário)</li>
+          <li>Visualização do layout do sistema</li>
+          <li>Legenda dos símbolos do layout</li>
+        </ul>
+
+        <hr />
+
+        <h2>Diagrama de sequência (resumo)</h2>
+        <pre><code>Usuário
+  |
+  v
+[main.py]                # Inicia a aplicação
+  |
+  v
+[interface.py]           # Interface gráfica (Tkinter)
+  |        (importa parâmetros)
+  |-----> [yaml_loader.py] / [excel_loader.py] / importar_dados_txt
+  |<----- parâmetros
+  |
+  |        (importa layout ASCII)
+  |-----> [layout_parser.py]
+  |<----- layout
+  |
+  |        (executa simulação)
+  |-----> [simulador.py]
+  |           |
+  |           |---> [logger_config.py]           # Logging de execução/erros
+  |           |---> [pdf_exporter.py]            # Geração do relatório PDF
+  |           |         |
+  |           |         |---> [layout_pdf_exporter.py]   # Exporta layout em PDF
+  |           |         |---> [logger_config.py]         # Logging do PDF
+  |           |<--------|
+  |           |
+  |<---------- resultado
+  |
+  v
+Relatórios e animações gerados em resultados/relatorios/</code></pre>
+
+        <hr />
+
+        <h2>Licença</h2>
+        <p>
+          Este software é distribuído sob a Licença MIT. Você pode usar, modificar, integrar, distribuir e comercializar este sistema
+          livremente, desde que mantenha os créditos originais ao(s) autor(es) conforme especificado na licença.
+        </p>
+
+        <hr />
+
+        <h2>Referências bibliográficas</h2>
+        <ul>
+          <li>BALLOU, Ronald H. <em>Logística empresarial</em>: transportes, administração de materiais e distribuição física. 1. ed. São Paulo: Atlas, 2006.</li>
+          <li>BANKS, Jerry et al. <em>Discrete-event system simulation</em>. 5. ed. Upper Saddle River: Pearson, 2010.</li>
+          <li>LAURINDO, Fernando José Barbin; CARVALHO, Marly Monteiro de. <em>Sistemas de informação</em>: planejamento e alinhamento estratégico nas organizações. São Paulo: Atlas, 2012.</li>
+          <li>LAW, Averill M.; KELTON, W. David. <em>Simulation modeling and analysis</em>. 5. ed. New York: McGraw-Hill, 2015.</li>
+          <li>PIDD, Michael. <em>Computer simulation in management science</em>. 5. ed. Chichester: Wiley, 2004.</li>
+          <li>SILVA, José Carlos de Souza; OLIVEIRA, Flávio Soares Corrêa da. <em>Teoria das filas</em>: fundamentos e aplicações. 2. ed. Rio de Janeiro: Elsevier, 2006.</li>
+          <li>SOUZA, César Alexandre de; CUNHA, Cláudio Barbosa da. <em>Gestão de operações em serviços</em>. São Paulo: Atlas, 2012.</li>
+          <li>SOUZA, Ricardo de. <em>Python para desenvolvedores</em>. 3. ed. Rio de Janeiro: Novatec, 2019.</li>
+        </ul>
+
+        <hr />
+
+        <h2>Dicas e suporte</h2>
+        <ul>
+          <li>Para alterar roteamento e restrições espaciais, edite o layout ASCII.</li>
+          <li>Para dúvidas ou problemas, consulte o log em <code>monitoramento/log_execucao.log</code>.</li>
+          <li>Para suporte, contate o autor ou consulte a documentação interna.</li>
+        </ul>
+
+        <hr />
+
+        <h2>Contato</h2>
+        <p>
+          <strong>Autor:</strong> Christian Vladimir Uhdre Mulato<br />
+          <strong>E-mail:</strong> chmulato(at)hotmail(dot)com<br />
+          <span class="muted"><strong>Última atualização:</strong> 28/05/2025</span>
+        </p>
+      </main>
+    </div>
+  </body>
+</html>

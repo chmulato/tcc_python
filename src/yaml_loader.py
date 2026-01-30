@@ -47,26 +47,44 @@ def importar_dados_yaml(caminho_arquivo):
         with open(caminho_arquivo, 'r', encoding='utf-8') as f:
             dados = yaml.safe_load(f)
 
-        # Validação mínima para simulação DES ideal
-        campos_esperados = [
-            'clientes_por_minuto',
-            'tempo_medio_almoco',
-            'cadeiras_por_mesa',
-            'numero_de_mesas',
-            'tempo_medio_atendimento',
-            'tempo_medio_espera',
-            'tempo_total_simulacao',
-            'variabilidade_almoco',
-            'variabilidade_chegada',
-            'capacidade_maxima_fila',
-            'modo_ocupacao',
-            'numero_caixas',
-            'tempo_entre_clientes'
+        if not isinstance(dados, dict):
+            raise ValueError("Arquivo YAML inválido: esperado um dicionário de parâmetros no topo do arquivo.")
+
+        # Validação mínima (robusta): apenas o necessário para rodar com defaults seguros.
+        # Demais campos são opcionais e podem ser calibrados conforme o contexto.
+        campos_obrigatorios = [
+            "clientes_por_minuto",
+            "tempo_medio_almoco",
+            "cadeiras_por_mesa",
+            "numero_de_mesas",
+            "tempo_total_simulacao",
         ]
-        for campo in campos_esperados:
+        ausentes = [c for c in campos_obrigatorios if c not in dados]
+        if ausentes:
+            msg = f"Campos obrigatórios ausentes no YAML: {', '.join(ausentes)}"
+            logger.error(msg)
+            raise ValueError(msg)
+
+        # Campos esperados (opcionais). Se ausentes, apenas registra (o núcleo aplica defaults).
+        campos_opcionais = [
+            "tempo_medio_atendimento",
+            "tempo_medio_espera",
+            "variabilidade_almoco",
+            "variabilidade_chegada",
+            "capacidade_maxima_fila",
+            "tempo_max_espera_fila",
+            "modo_ocupacao",
+            "numero_caixas",
+            "numero_buffets",
+            "tempo_entre_clientes",
+            "processar_pos_fechamento",
+            "tempo_buffet",
+            "tempo_balcao",
+            "coletar_series",
+        ]
+        for campo in campos_opcionais:
             if campo not in dados:
-                logger.error(f"Campo obrigatório '{campo}' ausente no arquivo YAML.")
-                raise ValueError(f"Campo obrigatório '{campo}' ausente no arquivo YAML.")
+                logger.debug(f"Campo opcional '{campo}' ausente no YAML (default será aplicado pelo simulador).")
 
         logger.info(f"Parâmetros importados do YAML: {dados}")
         return dados

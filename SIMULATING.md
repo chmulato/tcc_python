@@ -1,145 +1,176 @@
-# Tipos de Simulação e Utilização das Variáveis
+# Simulação (Determinística vs DES) no contexto de Engenharia de Processos
 
-## 1. Introdução
+## 1. Introdução (process thinking)
 
-O simulador de tempo de permanência em restaurantes oferece dois tipos principais de simulação: **Determinística** e **Eventos Discretos (DES)**. Cada abordagem possui características, vantagens e limitações próprias. Este documento explica cada tipo, apresenta uma comparação e detalha como as variáveis de entrada são utilizadas.
+Este projeto é um **motor de Simulação por Eventos Discretos (DES)** aplicado a um sistema de fluxo com recursos finitos. O “restaurante” é um **ambiente análogo** para Engenharia de Processos: entidades entram com uma taxa (alimentação), atravessam operações unitárias, acumulam em buffers (filas) e deixam o sistema como vazão de saída.
 
----
+Este documento explica:
 
-## 2. Simulação Determinística
-
-Utiliza médias e valores fixos para calcular o comportamento do sistema. Não há variabilidade ou aleatoriedade: todos os clientes são tratados de forma igual, e os resultados são sempre os mesmos para os mesmos parâmetros.
-
-**Características:**
-- Utiliza médias para tempo de chegada, atendimento e permanência.
-- Não considera filas, atrasos ou variações individuais.
-- Resultados rápidos e previsíveis.
-- Útil para cenários simples ou para obter uma estimativa inicial.
+- como interpretar o sistema como **processo dinâmico**;
+- a diferença entre **simulação determinística** e **DES estocástico**;
+- como os **parâmetros de entrada** se conectam a métricas industriais (throughput, holdup, tempo de residência);
+- como reproduzir as **figuras do estudo de caso** usadas na apresentação (`index.html`).
 
 ---
 
-## 3. Simulação por Eventos Discretos (DES)
+## 2. Mapeamento de conceitos (serviços ↔ processos)
 
-Modela o sistema como uma sequência de eventos (chegada, atendimento, saída, etc.), permitindo a inclusão de variabilidade, filas e recursos limitados. Cada cliente é tratado individualmente, e o tempo de cada evento pode ser sorteado de uma distribuição estatística.
-
-**Características:**
-- Considera a dinâmica real do sistema (filas, recursos, atrasos).
-- Permite variabilidade nos tempos (aleatoriedade).
-- Resultados podem variar a cada execução (simulação estocástica).
-- Útil para cenários complexos, análise de gargalos e dimensionamento realista.
+- **clientes_por_minuto** → **Feed Rate** (\(\lambda\)): taxa média de alimentação.
+- **tempo_medio_atendimento**, **tempo_buffet**, **tempo_balcao** → **Taxas de serviço** (\(\mu\)) e tempos de processamento em operações unitárias.
+- **tempo_medio_almoco** → **Tempo de residência** (\(\tau\)) na área de holdup (mesas).
+- **filas** (buffet/caixa/mesa) → **Buffers / Inventário em processo (WIP/Holdup)**.
+- **uso_medio_mesas** e picos de fila → **assinaturas de gargalo**.
 
 ---
 
-## 4. Tabela Comparativa
+## 3. Simulação determinística (estimativa de regime médio)
+
+A simulação determinística usa **médias fixas** para obter uma estimativa rápida. Ela é útil para:
+
+- triagem de cenários (ordem de grandeza),
+- checagens iniciais de capacidade (capacidade instalada vs demanda média),
+- comunicação executiva (quando variabilidade não é o foco).
+
+**Limitação central:** não captura formação de filas por variabilidade nem regimes de saturação transiente.
+
+---
+
+## 4. Simulação por Eventos Discretos (DES) — dinâmica e variabilidade
+
+No DES, o sistema é uma sequência de eventos (chegada, início/fim de serviço, alocação/liberação de recurso, saída). Cada entidade é tratada individualmente e o tempo evolui conforme a agenda de eventos.
+
+**O que o DES permite observar:**
+
+- formação de filas (buffers) por restrição de capacidade;
+- saturação quando o sistema opera perto de \(\rho \approx \lambda/\mu \to 1\);
+- impacto de variabilidade nas caudas (riscos), não só na média.
+
+### Como a variabilidade é aplicada aqui
+
+Os parâmetros:
+
+- **variabilidade_chegada**
+- **variabilidade_almoco**
+
+são tratados como **frações (adimensionais)** que modulam a dispersão dos tempos em torno da média. Ex.: `0.10` significa aproximadamente **10% de desvio-padrão relativo**. Internamente, os tempos são amostrados de forma a permanecerem positivos.
+
+---
+
+## 5. Comparativo (resumo)
 
 ```plaintext
-| Característica                | Determinística                        | Eventos Discretos (DES)           |
-|-------------------------------|---------------------------------------|-----------------------------------|
-| Tempo de execução             | Muito rápido                          | Mais lento (simula cada evento)   |
-| Considera filas               | Não                                   | Sim                               |
-| Considera variabilidade       | Não                                   | Sim                               |
-| Resultados sempre iguais      | Sim                                   | Não (pode variar)                 |
-| Complexidade do modelo        | Baixa                                 | Alta                              |
-| Uso recomendado               | Estimativas rápidas, cenários simples | Análise detalhada, cenários reais |
-| Exemplos de uso               | Capacidade máxima, uso médio          | Tempos de espera, gargalos        |
+| Aspecto                         | Determinística                         | DES (eventos discretos)                 |
+|---------------------------------|----------------------------------------|-----------------------------------------|
+| Variabilidade (aleatoriedade)   | Não                                    | Sim                                     |
+| Filas (buffers/WIP)             | Não modela                              | Modela explicitamente                   |
+| Gargalos e saturação            | Apenas por média                         | Emergem por dinâmica + variabilidade    |
+| Saída típica                    | “média do regime”                        | distribuição de resultados              |
+| Uso recomendado                 | estimativa rápida / sanity check         | dimensionamento, gargalos, risco        |
 ```
 
 ---
 
-## 5. Utilização das Variáveis de Entrada
+## 6. Variáveis de entrada (interpretação “de planta”)
 
-### Determinística
+### Alimentação (feed)
 
-As variáveis de entrada são usadas como valores médios e fixos para o cálculo dos resultados, sem variabilidade ou sorteio de valores.
+- **clientes_por_minuto**: taxa média de entrada (\(\lambda\)).
+- **tempo_entre_clientes**: intervalo médio entre chegadas (min). Idealmente, deve ser coerente com `clientes_por_minuto`:
+  - referência: \(tempo\_entre\_clientes \approx 1 / clientes\_por\_minuto\)
 
-- **clientes_por_minuto**: Define quantos clientes chegam a cada minuto.
-- **tempo_medio_almoco**: Tempo fixo de permanência de cada cliente.
-- **cadeiras_por_mesa** e **numero_de_mesas**: Capacidade total do restaurante.
-- **tempo_total_simulacao**: Período total simulado.
-- **numero_caixas**, **tempo_medio_atendimento**, etc.: Usados apenas como referência, sem filas ou restrições dinâmicas.
+#### Configuração recomendada (para evitar “cenário desligado”)
 
-### Eventos Discretos (DES)
+Para manter a alimentação consistente, recomenda-se **definir `clientes_por_minuto`** e ajustar `tempo_entre_clientes` para a relação:
 
-As variáveis de entrada são usadas para gerar eventos individuais e controlar o fluxo dinâmico do sistema.
+\[
+tempo\_entre\_clientes \approx \frac{1}{clientes\_por\_minuto}
+\]
 
-- **clientes_por_minuto** e/ou **tempo_entre_clientes**: Agendam a chegada de cada cliente, podendo incluir variabilidade.
-- **tempo_medio_almoco**: Base para o tempo de permanência, podendo ser sorteado de uma distribuição.
-- **cadeiras_por_mesa**, **numero_de_mesas**: Limitam a quantidade de clientes sentados simultaneamente.
-- **numero_caixas**, **tempo_medio_atendimento**: Limitam o atendimento simultâneo e determinam o tempo de cada cliente no caixa.
-- **variabilidade_almoco**, **variabilidade_chegada**: Adicionam aleatoriedade nos tempos.
-- **capacidade_maxima_fila**: Limita o tamanho das filas.
-- **tempo_total_simulacao**: Tempo máximo da simulação ou número máximo de clientes.
+Exemplo de `config/parametros.yaml` coerente:
 
----
+```yaml
+# Alimentação (feed)
+clientes_por_minuto: 12
+tempo_entre_clientes: 0.0833  # ≈ 1/12 min (≈ 5 s)
 
-## 6. Exemplos Práticos
+# Residência (holdup)
+tempo_medio_almoco: 30
+numero_de_mesas: 25
+cadeiras_por_mesa: 4
 
-### Fluxo típico do cliente no restaurante
+# Operações unitárias (serviço)
+numero_caixas: 2
+tempo_medio_atendimento: 2
 
-```plaintext
-[Fila] → [Buffet/Serve] → [Balança/Pesa] → [Caixa/Paga] → [Mesa/Come] → [Saída]
+# Horizonte de simulação
+tempo_total_simulacao: 120
+
+# Variabilidade (fração relativa; ex.: 0.10 ≈ 10%)
+variabilidade_chegada: 0.10
+variabilidade_almoco: 0.15
 ```
 
-### Simulação Determinística
+Se `tempo_entre_clientes` estiver muito maior do que \(1/clientes\_por\_minuto\), o sistema pode parecer “sem alimentação” (poucas chegadas) e mascarar gargalos.
 
-**Cenário:**  
-- Clientes por minuto: 10  
-- Tempo médio de refeição: 30 minutos  
-- Número de mesas: 20  
-- Cadeiras por mesa: 4  
-- Tempo total da simulação: 60 minutos  
+### Capacidade / recursos (unit operations)
 
-**Como funciona:**  
-- Total de clientes: `10 * 60 = 600`
-- Capacidade total: `20 * 4 = 80 lugares`
-- Mesas ocupadas: `min(20, 600 // 4) = 20`
-- Uso médio das mesas: `20 / 20 = 100%`
-- Tempo total gasto: `600 * 30 = 18.000 minutos`
+- **numero_caixas**, **tempo_medio_atendimento**: capacidade e tempo de serviço em operação crítica.
+- (se configurados) **tempo_buffet**, **tempo_balcao**: tempos de processamento intermediários.
 
-**Resultado:**  
-Sempre igual para os mesmos parâmetros, sem variabilidade ou filas.
+### Holdup (residência)
+
+- **numero_de_mesas**, **cadeiras_por_mesa**: capacidade física de residência (limite de holdup).
+- **tempo_medio_almoco**: tempo médio de residência.
+
+### Variabilidade e buffers
+
+- **variabilidade_chegada**, **variabilidade_almoco**: dispersão estocástica relativa.
+- **capacidade_maxima_fila** (quando aplicável): limite de buffer.
 
 ---
 
-### Simulação por Eventos Discretos (DES)
+## 7. Saídas e métricas (como ler “industrialmente”)
 
-**Cenário:**  
-- Clientes por minuto: 10  
-- Tempo médio de refeição: 30 minutos  
-- Número de mesas: 20  
-- Cadeiras por mesa: 4  
-- Tempo total da simulação: 60 minutos  
-- Variabilidade de chegada: 2 minutos  
-- Variabilidade de refeição: 5 minutos  
-- Número de caixas: 2  
-- Tempo médio de atendimento no caixa: 2 minutos  
+Resultados típicos do DES:
 
-**Como funciona:**  
-- O tempo de chegada e de refeição de cada cliente pode variar.
-- Se todas as mesas estiverem ocupadas, o cliente espera em uma fila.
-- Atendimento no caixa pode gerar filas.
-- Resultados variam a cada execução, refletindo situações reais.
+- **clientes_processados**: saída total (produção/throughput acumulado).
+- **tempo_medio_permanencia_cliente**: tempo de residência observado.
+- **tempo_medio_espera_fila_mesa** e **tamanho_max_fila_mesa**: holdup em buffer e severidade do gargalo.
+- **uso_medio_mesas (%)**: utilização média do “volume de processo”.
 
-**Exemplo de resultado:**  
-- Total de clientes atendidos: 590  
-- Tempo médio de espera na fila: 3,2 minutos  
-- Uso médio das mesas: 97%  
-- Tempo total gasto: 17.800 minutos  
-- Número máximo de clientes na fila: 8
+Essas métricas alimentam as figuras do case: throughput no tempo, holdup/filas, distribuição de residência e comparação antes/depois.
 
 ---
 
-## 7. Quando usar cada abordagem?
+## 8. Como reproduzir as figuras do estudo de caso
 
-- **Determinística:**  
-  Para estimativas rápidas, planejamento inicial ou quando não há interesse em analisar filas e variabilidade.
+As figuras usadas no `index.html` são geradas automaticamente em `docs/figuras/`.
 
-- **DES:**  
-  Para análises detalhadas, identificação de gargalos, avaliação do impacto de filas, recursos limitados e variabilidade nos processos.
+1) Instale dependências:
+
+```sh
+pip install -r requirements.txt
+```
+
+2) Gere as figuras:
+
+```sh
+python scripts/gerar_figuras.py
+```
+
+Saídas (exemplos):
+
+- `fig_02a_fluxo_servico.png`, `fig_02b_fluxo_processo.png`
+- `fig_04_throughput.png`
+- `fig_05_ocupacao_e_filas.png`
+- `fig_06_distribuicao_residencia.png`
+- `fig_07_antes_depois.png`
 
 ---
 
-**Dica:**  
-Para obter uma visão completa do sistema, recomenda-se rodar ambos os tipos de simulação e comparar os resultados.
+## 9. Quando usar cada abordagem?
+
+- **Determinística**: quando você precisa de uma estimativa rápida do “regime médio” e não pretende discutir risco/variabilidade.
+- **DES**: quando o objetivo é **identificar gargalos**, dimensionar capacidade, avaliar impacto de variabilidade e justificar intervenções com evidência.
 
 ---

@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sala Digital — Dual Reality (RU ↔ Industrial)</title>
+    <meta
+      name="description"
+      content="Portal educacional: duas salas em universos paralelos (serviços e processos químicos) conectadas pelo mesmo motor matemático."
+    />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" href="assets/imagens/folder.png" />
+
+    <!-- Bootstrap 5 (CSS) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      :root {
+        --bg: #0b1220;
+        --surface: rgba(255, 255, 255, 0.06);
+        --surface-2: rgba(255, 255, 255, 0.09);
+        --line: rgba(255, 255, 255, 0.14);
+        --text: #eef2ff;
+        --muted: rgba(238, 242, 255, 0.72);
+
+        --ru-ink: #0b1b35;
+        --ru-a: #e9f3ff;
+        --ru-b: #cfe7ff;
+        --ru-accent: #1d4ed8; /* blue-700 */
+        --ru-accent-2: #0ea5e9; /* sky-500 */
+
+        --ind-ink: #f2f5f7;
+        --ind-a: #0f172a; /* slate-900 */
+        --ind-b: #111827; /* gray-900 */
+        --ind-accent: #94a3b8; /* slate-400 */
+        --ind-accent-2: #22c55e; /* green-500 (apenas detalhe) */
+
+        --radius: 18px;
+        --shadow: 0 26px 80px rgba(0, 0, 0, 0.45);
+        --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.28);
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        background:
+          radial-gradient(1200px 700px at 12% 5%, rgba(29, 78, 216, 0.20), transparent 56%),
+          radial-gradient(900px 560px at 90% 12%, rgba(148, 163, 184, 0.16), transparent 52%),
+          radial-gradient(900px 560px at 62% 92%, rgba(14, 165, 233, 0.14), transparent 52%),
+          linear-gradient(180deg, #08101d, var(--bg));
+        color: var(--text);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        transform: translateY(-140%);
+        background: #ffffff;
+        color: #0b1220;
+        padding: 10px 12px;
+        border-radius: 10px;
+        z-index: 1000;
+        text-decoration: none;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+      }
+      .skip-link:focus {
+        transform: translateY(0);
+        outline: 3px solid rgba(29, 78, 216, 0.65);
+        outline-offset: 2px;
+      }
+
+      /* Navbar / brand */
+      .navglass {
+        position: sticky;
+        top: 0;
+        z-index: 1040;
+        backdrop-filter: blur(12px);
+        background: rgba(9, 15, 29, 0.62);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      }
+
+      .brandmark {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(29, 78, 216, 0.35), rgba(148, 163, 184, 0.22));
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+      .brandmark svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .nav-link {
+        color: rgba(238, 242, 255, 0.78) !important;
+      }
+      .nav-link:hover {
+        color: rgba(238, 242, 255, 0.98) !important;
+      }
+
+      .hero {
+        padding-top: 22px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(238, 242, 255, 0.86);
+        font-size: 0.9rem;
+      }
+
+      .kicker svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .title {
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+        font-size: clamp(28px, 3.2vw, 46px);
+        margin: 14px 0 10px;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        max-width: 80ch;
+        font-size: clamp(1rem, 1.1vw, 1.06rem);
+        line-height: 1.6;
+      }
+
+      /* Unified progress */
+      .progress-wrap {
+        margin-top: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        padding: 14px;
+      }
+
+      .progress-label {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .progress-label strong {
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .progress-label span {
+        color: rgba(238, 242, 255, 0.74);
+        font-size: 0.95rem;
+      }
+
+      .progress {
+        height: 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .progress-bar {
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(29, 78, 216, 0.95), rgba(14, 165, 233, 0.95));
+      }
+
+      .progress-actions .btn {
+        border-radius: 12px;
+      }
+
+      /* Dual cards + bridge */
+      .deck {
+        position: relative;
+        margin-top: 22px;
+      }
+
+      .room {
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        min-height: 100%;
+      }
+
+      .room .head {
+        padding: 18px 18px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .room .body {
+        padding: 16px 18px 18px;
+      }
+
+      .tagline {
+        margin: 0;
+        opacity: 0.92;
+        font-size: 0.92rem;
+      }
+
+      .room h2 {
+        margin: 0;
+        font-size: 1.15rem;
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+      }
+
+      .module {
+        margin-top: 8px;
+        font-size: 0.96rem;
+        color: rgba(255, 255, 255, 0.82);
+        line-height: 1.5;
+      }
+
+      .micro {
+        margin-top: 12px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .micro .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 0.95rem;
+      }
+      .micro svg {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+      }
+
+      .cta {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .cta .btn {
+        border-radius: 14px;
+        padding: 10px 14px;
+        font-weight: 650;
+      }
+      .btn-wide {
+        min-height: 44px; /* touch target */
+      }
+
+      .room.ru {
+        background:
+          radial-gradient(900px 520px at 15% 5%, rgba(29, 78, 216, 0.22), transparent 58%),
+          linear-gradient(180deg, rgba(233, 243, 255, 0.94), rgba(207, 231, 255, 0.90));
+        color: var(--ru-ink);
+        border-color: rgba(29, 78, 216, 0.22);
+      }
+      .room.ru .head {
+        border-bottom-color: rgba(11, 27, 53, 0.14);
+      }
+      .room.ru .tagline {
+        color: rgba(11, 27, 53, 0.78);
+      }
+      .room.ru .module {
+        color: rgba(11, 27, 53, 0.80);
+      }
+      .room.ru .micro .pill {
+        border-color: rgba(11, 27, 53, 0.14);
+        background: rgba(255, 255, 255, 0.70);
+        color: rgba(11, 27, 53, 0.92);
+      }
+
+      .room.ind {
+        background:
+          radial-gradient(900px 520px at 80% 10%, rgba(148, 163, 184, 0.18), transparent 58%),
+          linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(17, 24, 39, 0.98));
+        color: var(--ind-ink);
+        border-color: rgba(148, 163, 184, 0.22);
+      }
+      .room.ind .tagline {
+        color: rgba(242, 245, 247, 0.78);
+      }
+      .room.ind .module {
+        color: rgba(242, 245, 247, 0.86);
+      }
+      .room.ind .micro .pill {
+        border-color: rgba(242, 245, 247, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .room .badge-soft {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 7px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 0.88rem;
+        white-space: nowrap;
+      }
+      .room.ru .badge-soft {
+        border-color: rgba(11, 27, 53, 0.14);
+        background: rgba(255, 255, 255, 0.62);
+      }
+      .room.ind .badge-soft {
+        border-color: rgba(242, 245, 247, 0.14);
+      }
+
+      /* Bridge */
+      .bridge {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: min(560px, calc(100% - 28px));
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(9, 15, 29, 0.78);
+        box-shadow: var(--shadow);
+        padding: 14px 14px;
+        backdrop-filter: blur(14px);
+      }
+
+      .bridge-btn {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        border: 0;
+        background: transparent;
+        color: var(--text);
+        padding: 8px 6px;
+      }
+
+      .bridge-left {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .bridge-ico {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: linear-gradient(135deg, rgba(29, 78, 216, 0.22), rgba(148, 163, 184, 0.18));
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+      .bridge-ico svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .bridge-title {
+        margin: 0;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        font-size: 1.02rem;
+      }
+      .bridge-sub {
+        margin: 3px 0 0;
+        color: rgba(238, 242, 255, 0.76);
+        font-size: 0.95rem;
+        line-height: 1.35;
+      }
+      .bridge-kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(238, 242, 255, 0.86);
+        white-space: nowrap;
+      }
+
+      .bridge-panel {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        margin-top: 10px;
+        padding-top: 10px;
+        color: rgba(238, 242, 255, 0.78);
+        line-height: 1.55;
+        font-size: 0.98rem;
+      }
+
+      .bridge-panel code {
+        color: rgba(238, 242, 255, 0.92);
+      }
+
+      /* On mobile, place bridge as a normal block between cards */
+      @media (max-width: 991.98px) {
+        .bridge {
+          position: static;
+          transform: none;
+          margin: 14px auto 0;
+        }
+      }
+
+      /* Focus visibility */
+      :focus-visible {
+        outline: 3px solid rgba(14, 165, 233, 0.62);
+        outline-offset: 3px;
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(9, 15, 29, 0.56);
+      }
+      .foot-note {
+        color: rgba(238, 242, 255, 0.68);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .footlink {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        text-decoration: none;
+      }
+      .footlink:hover {
+        background: rgba(255, 255, 255, 0.09);
+        text-decoration: none;
+      }
+      .footlink svg {
+        width: 18px;
+        height: 18px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="navglass" role="banner">
+      <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Navegação principal">
+        <div class="container py-2">
+          <a class="navbar-brand d-flex align-items-center gap-2" href="portal.html" aria-label="Sala Digital (início)">
+            <span class="brandmark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4.5 17.5V6.5C4.5 5.67 5.17 5 6 5h12c.83 0 1.5.67 1.5 1.5v11c0 .83-.67 1.5-1.5 1.5H6c-.83 0-1.5-.67-1.5-1.5Z"
+                  stroke="rgba(238,242,255,0.90)"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M7 9h10M7 12h6M7 15h8"
+                  stroke="rgba(14,165,233,0.95)"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            <span class="d-flex flex-column lh-sm">
+              <strong class="fs-6">Sala Digital</strong>
+              <span class="opacity-75" style="font-size: 0.86rem">Dual Reality · Um motor matemático, dois mundos</span>
+            </span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navLinks"
+            aria-controls="navLinks"
+            aria-expanded="false"
+            aria-label="Abrir menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navLinks">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
+              <li class="nav-item"><a class="nav-link" href="#salas">Salas</a></li>
+              <li class="nav-item"><a class="nav-link" href="#ponte">O Motor Matemático</a></li>
+              <li class="nav-item"><a class="nav-link" href="docs/apostila_guia.html">Apostila Guia</a></li>
+              <li class="nav-item"><a class="nav-link" href="docs/tcc.html">Documentação</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.html">Simulador Principal</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero">
+        <div class="container">
+          <span class="kicker" aria-label="Contexto">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M4 16c3-2 5-2 8 0s5 2 8 0"
+                stroke="rgba(14,165,233,0.95)"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4 10c3-2 5-2 8 0s5 2 8 0"
+                stroke="rgba(29,78,216,0.95)"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+            </svg>
+            Portal educacional — aprendizagem transferível
+          </span>
+
+          <h1 class="title">Do RU à Planta: dois universos paralelos, a mesma matemática por trás.</h1>
+          <p class="subtitle mb-0">
+            Escolha uma sala para estudar simulação. À esquerda, o <strong>Fluxo de Pessoas</strong> (serviços).
+            À direita, o <strong>Fluxo de Íons</strong> (processos químicos). No centro, a “ponte”:
+            <strong>Balanço de Massa e Tempo de Residência</strong>.
+          </p>
+
+          <div class="progress-wrap" aria-label="Nível de progresso unificado">
+            <div class="progress-label">
+              <div>
+                <strong>Nível de Progresso (unificado)</strong>
+                <div class="mt-1">
+                  <span id="progressText">Você está no nível 0/4 — Fundamentos</span>
+                </div>
+              </div>
+              <div class="progress-actions d-flex gap-2">
+                <button class="btn btn-sm btn-outline-light" type="button" id="btnReset" aria-label="Zerar progresso">
+                  Zerar
+                </button>
+                <a class="btn btn-sm btn-light text-dark" href="#salas" aria-label="Ir para as salas">Começar</a>
+              </div>
+            </div>
+            <div class="progress mt-3" role="progressbar" aria-label="Progresso" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" id="progressBar" style="width: 0%" aria-valuenow="0"></div>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3" aria-label="Etapas do aprendizado">
+              <span class="badge text-bg-dark border" style="border-color: rgba(255,255,255,0.14) !important"
+                >1) Fundamentos</span
+              >
+              <span class="badge text-bg-dark border" style="border-color: rgba(255,255,255,0.14) !important"
+                >2) Modelagem</span
+              >
+              <span class="badge text-bg-dark border" style="border-color: rgba(255,255,255,0.14) !important"
+                >3) Simulação</span
+              >
+              <span class="badge text-bg-dark border" style="border-color: rgba(255,255,255,0.14) !important"
+                >4) Otimização</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="deck" id="salas" aria-label="Salas de estudo">
+        <div class="container">
+          <div class="row g-4 align-items-stretch">
+            <div class="col-12 col-lg-6">
+              <article class="room ru h-100" aria-label="Sala de Aula RU: Simulação de Fluxos de Serviço">
+                <div class="head">
+                  <div>
+                    <p class="tagline mb-2">LADO A · Sala de Aula RU</p>
+                    <h2>Simulação de Fluxos de Serviço</h2>
+                    <p class="module mb-0">
+                      <strong>Módulo 01: O Fluxo de Pessoas</strong><br />
+                      Entenda filas, gargalos e vazão como “processo”. A mesma base de engenharia aplicada a um sistema real.
+                    </p>
+                  </div>
+                  <span class="badge-soft" aria-label="Tema visual">
+                    <span aria-hidden="true">⬤</span>
+                    Azul · leve
+                  </span>
+                </div>
+                <div class="body">
+                  <div class="micro" aria-label="Pistas visuais e conceitos">
+                    <span class="pill">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M7 7h10M7 12h6M7 17h8"
+                          stroke="rgba(29,78,216,0.95)"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M5 4h14v16H5z"
+                          stroke="rgba(11,27,53,0.75)"
+                          stroke-width="1.5"
+                        />
+                      </svg>
+                      Filas como buffers · ocupação como holdup
+                    </span>
+                    <span class="pill">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M4 16c3-2 5-2 8 0s5 2 8 0"
+                          stroke="rgba(14,165,233,0.95)"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M4 10c3-2 5-2 8 0s5 2 8 0"
+                          stroke="rgba(29,78,216,0.95)"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      Throughput e transientes (DES estocástico)
+                    </span>
+                  </div>
+
+                  <div class="cta" role="group" aria-label="Ações da sala RU">
+                    <a class="btn btn-primary btn-wide" href="index.html" data-progress="1">
+                      Entrar na Sala de Estudo
+                    </a>
+                    <a class="btn btn-outline-primary btn-wide" href="SIMULATING.md" data-progress="1">
+                      Guia: Determinística vs DES
+                    </a>
+                  </div>
+
+                  <p class="mt-3 mb-0" style="color: rgba(11, 27, 53, 0.78); line-height: 1.55">
+                    Ideal para visualizar conceitos com um “caso concreto” e transferir a leitura para fluxogramas industriais.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <article class="room ind h-100" aria-label="Sala de Aula Industrial: Simulação de Processos Químicos">
+                <div class="head">
+                  <div>
+                    <p class="tagline mb-2">LADO B · Sala de Aula Industrial</p>
+                    <h2>Simulação de Processos Químicos</h2>
+                    <p class="module mb-0">
+                      <strong>Módulo 01: O Fluxo de Íons</strong><br />
+                      Interprete o mesmo motor como balanço e residência: alimentação → operações → acúmulo → saída.
+                    </p>
+                  </div>
+                  <span class="badge-soft" aria-label="Tema visual">
+                    <span aria-hidden="true">⬤</span>
+                    Grafite · aço
+                  </span>
+                </div>
+                <div class="body">
+                  <div class="micro" aria-label="Pistas visuais e conceitos">
+                    <span class="pill">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M7 3h10v18H7z"
+                          stroke="rgba(242,245,247,0.78)"
+                          stroke-width="1.6"
+                        />
+                        <path
+                          d="M9 7h6M9 10h6M9 13h4"
+                          stroke="rgba(148,163,184,0.95)"
+                          stroke-width="1.7"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      Balanços: Entrada − Saída = Acúmulo (com geração/consumo)
+                    </span>
+                    <span class="pill">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M12 6v6l4 2"
+                          stroke="rgba(34,197,94,0.92)"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z"
+                          stroke="rgba(242,245,247,0.74)"
+                          stroke-width="1.7"
+                        />
+                      </svg>
+                      Tempo de residência: \( \tau \approx Holdup / Vazão \)
+                    </span>
+                  </div>
+
+                  <div class="cta" role="group" aria-label="Ações da sala Industrial">
+                    <a class="btn btn-light text-dark btn-wide" href="docs/tcc.html" data-progress="2">
+                      Entrar na Sala de Estudo
+                    </a>
+                    <a class="btn btn-outline-light btn-wide" href="docs/diagramas/logica_e_fluxo.md" data-progress="2">
+                      Ver diagrama lógico
+                    </a>
+                  </div>
+
+                  <p class="mt-3 mb-0" style="color: rgba(242, 245, 247, 0.78); line-height: 1.55">
+                    Ideal para conectar a intuição do caso (RU) à leitura industrial: reatores, separações, buffers e gargalos.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="bridge" id="ponte" aria-label="Ponte entre as duas salas">
+            <button
+              class="bridge-btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#bridgePanel"
+              aria-expanded="false"
+              aria-controls="bridgePanel"
+            >
+              <div class="bridge-left">
+                <span class="bridge-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 2l2.2 5.6L20 10l-5.8 2.4L12 18l-2.2-5.6L4 10l5.8-2.4L12 2Z"
+                      stroke="rgba(238,242,255,0.90)"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7 20h10"
+                      stroke="rgba(14,165,233,0.95)"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </span>
+                <div style="min-width: 0">
+                  <p class="bridge-title mb-0">O Motor Matemático: Balanço de Massa e Tempo de Residência</p>
+                  <p class="bridge-sub mb-0">Clique para abrir a ponte (o “porquê” é o mesmo nos dois mundos).</p>
+                </div>
+              </div>
+              <span class="bridge-kbd" aria-hidden="true">expandir ▾</span>
+            </button>
+
+            <div class="collapse" id="bridgePanel">
+              <div class="bridge-panel">
+                <p class="mb-2">
+                  Quando você troca <strong>clientes</strong> por <strong>moléculas/íons</strong>, você não troca a matemática:
+                  apenas muda o “rótulo” da entidade. Em ambos, vale:
+                </p>
+                <ul class="mb-2">
+                  <li>
+                    <strong>Balanço</strong>: <code>Entrada − Saída + Geração − Consumo = Acúmulo</code>
+                  </li>
+                  <li>
+                    <strong>Residência</strong>: <code>\( \tau \approx Holdup / Vazão \)</code> (tempo médio no sistema)
+                  </li>
+                  <li>
+                    <strong>Gargalo</strong>: a etapa limitante governa o throughput e “empilha” buffers (filas/inventário).
+                  </li>
+                </ul>
+                <p class="mb-0">
+                  Resultado: estudar em uma sala melhora a leitura na outra — o aprendizado é <strong>transferível</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container py-4">
+        <div class="row g-3 align-items-start">
+          <div class="col-12 col-lg-7">
+            <h2 class="h6 mb-2">Acessibilidade e clareza</h2>
+            <p class="foot-note mb-0">
+              O portal foi pensado para leitura confortável (alto contraste), navegação por teclado e layout mobile-first.
+              Se você publicar via GitHub Pages, os links funcionam diretamente.
+            </p>
+          </div>
+          <div class="col-12 col-lg-5">
+            <div class="d-flex flex-wrap gap-2 justify-content-lg-end" aria-label="Links do projeto">
+              <a class="footlink" href="https://github.com/chmulato/tcc_python" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M9 19c-4 1.2-4-2-5-2m10 4v-3.2c0-.9.3-1.6.8-2-2.7-.3-5.6-1.3-5.6-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C18.3 3.9 19.3 4.2 19.3 4.2c.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.5-2.9 5.5-5.6 5.8.5.4.9 1.2.9 2.4V21"
+                    stroke="rgba(238,242,255,0.88)"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Repositório
+              </a>
+              <a class="footlink" href="docs/tcc.html">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7 3h10v18H7z" stroke="rgba(238,242,255,0.80)" stroke-width="1.6" />
+                  <path
+                    d="M9 7h6M9 10h6M9 13h4"
+                    stroke="rgba(14,165,233,0.95)"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Documentação técnica
+              </a>
+              <a class="footlink" href="docs/apostila_guia.html">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6.5 4.5h11v15h-11z" stroke="rgba(238,242,255,0.80)" stroke-width="1.6" />
+                  <path
+                    d="M8.8 8.5h6.4M8.8 11.5h6.4M8.8 14.5h4.2"
+                    stroke="rgba(148,163,184,0.95)"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Apostila Guia (HTML)
+              </a>
+              <a class="footlink" href="docs/apostila_guia.md">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M7 3h7l3 3v15H7V3Z"
+                    stroke="rgba(238,242,255,0.80)"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M14 3v3h3"
+                    stroke="rgba(14,165,233,0.95)"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9 10h6M9 13h6M9 16h4"
+                    stroke="rgba(14,165,233,0.65)"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Apostila Guia (MD)
+              </a>
+              <a class="footlink" href="index.html#simulador">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M8 5h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
+                    stroke="rgba(238,242,255,0.80)"
+                    stroke-width="1.6"
+                  />
+                  <path d="M10 9l5 3-5 3V9Z" fill="rgba(34,197,94,0.92)" />
+                </svg>
+                Simulador Principal
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 (JS bundle) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      (function () {
+        const STORAGE_KEY = "tcc_sala_digital_progress_v1";
+        const steps = [
+          { name: "Fundamentos", pct: 0 },
+          { name: "Modelagem", pct: 33 },
+          { name: "Simulação", pct: 66 },
+          { name: "Otimização", pct: 100 },
+        ];
+
+        const progressBar = document.getElementById("progressBar");
+        const progressText = document.getElementById("progressText");
+        const btnReset = document.getElementById("btnReset");
+
+        function clamp(n, min, max) {
+          return Math.max(min, Math.min(max, n));
+        }
+
+        function getProgress() {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          const n = raw ? parseInt(raw, 10) : 0;
+          return Number.isFinite(n) ? clamp(n, 0, 3) : 0;
+        }
+
+        function setProgress(n) {
+          const v = clamp(n, 0, 3);
+          localStorage.setItem(STORAGE_KEY, String(v));
+          render(v);
+        }
+
+        function render(levelIdx) {
+          const step = steps[levelIdx];
+          const pct = step.pct;
+          progressBar.style.width = pct + "%";
+          progressBar.setAttribute("aria-valuenow", String(pct));
+          progressText.textContent = `Você está no nível ${levelIdx}/4 — ${step.name}`;
+        }
+
+        // Increment progress when entering either room (soft-gamification)
+        document.querySelectorAll("[data-progress]").forEach((el) => {
+          el.addEventListener("click", () => {
+            try {
+              const current = getProgress();
+              const bump = parseInt(el.getAttribute("data-progress") || "0", 10);
+              const next = clamp(Math.max(current, bump), 0, 3);
+              setProgress(next);
+            } catch (_) {
+              // ignore (privacy mode)
+            }
+          });
+        });
+
+        btnReset.addEventListener("click", () => {
+          try {
+            localStorage.removeItem(STORAGE_KEY);
+          } catch (_) {}
+          render(0);
+        });
+
+        // initial
+        render(getProgress());
+      })();
+    </script>
+  </body>
+</html>

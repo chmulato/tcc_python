@@ -37,6 +37,23 @@ import os
 
 logger = get_logger()
 
+def _as_number(v, default=0.0):
+    try:
+        if v is None:
+            return default
+        return float(v)
+    except Exception:
+        return default
+
+
+def _as_int(v, default=0):
+    try:
+        if v is None:
+            return default
+        return int(v)
+    except Exception:
+        return default
+
 def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
     """
     Gera um relatório executivo em PDF no formato solicitado.
@@ -74,59 +91,85 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
         c.drawCentredString(largura / 2, y, "==================================================")
         y -= 30
 
-        # Período simulado
+        # Periodo simulado
         c.setFont("Helvetica-Bold", 12)
-        c.drawCentredString(largura / 2, y, f"🗓️ Período simulado: {resultado.get('tempo_total_simulacao_min', 'N/A')} minutos")
+        c.drawCentredString(largura / 2, y, f"Periodo simulado: {resultado.get('tempo_total_simulacao_min', 'N/A')} minutos")
         y -= 25
 
-        # Clientes no período
+        # Clientes no periodo
         c.setFont("Helvetica-Bold", 12)
-        c.drawCentredString(largura / 2, y, "👥 Clientes no período:")
+        c.drawCentredString(largura / 2, y, "Clientes no periodo:")
         y -= 18
         c.setFont("Helvetica", 11)
-        c.drawCentredString(largura / 2, y, f"- Gerados: {resultado.get('clientes_simulados', resultado.get('total_clientes', 'N/A'))}")
+        clientes_gerados = _as_int(resultado.get('clientes_simulados', resultado.get('total_clientes', 0)), 0)
+        clientes_atendidos = _as_int(resultado.get('clientes_processados', 0), 0)
+        clientes_nao_atendidos = _as_int(resultado.get('clientes_nao_atendidos', 0), 0)
+        clientes_em_sistema = _as_int(resultado.get('clientes_em_sistema', 0), 0)
+        c.drawCentredString(largura / 2, y, f"- Gerados (entradas): {clientes_gerados}")
         y -= 16
-        c.drawCentredString(largura / 2, y, f"- Atendidos: {resultado.get('clientes_processados', 'N/A')}")
+        c.drawCentredString(largura / 2, y, f"- Saidas atendidas: {clientes_atendidos}")
         y -= 16
-        c.drawCentredString(largura / 2, y, f"- Rejeitados: {resultado.get('clientes_nao_atendidos', 'N/A')}")
+        c.drawCentredString(largura / 2, y, f"- Saidas por rejeicao/abandono: {clientes_nao_atendidos}")
+        y -= 16
+        c.drawCentredString(largura / 2, y, f"- No sistema ao final da janela: {clientes_em_sistema}")
         y -= 22
 
-        # Desempenho
+        # Desempenho (KPIs de engenharia)
         c.setFont("Helvetica-Bold", 12)
-        c.drawCentredString(largura / 2, y, "⏱️ Desempenho operacional:")
+        c.drawCentredString(largura / 2, y, "Desempenho operacional (KPIs):")
         y -= 18
         c.setFont("Helvetica", 11)
-        c.drawCentredString(largura / 2, y, f"- Tempo médio de espera: {resultado.get('tempo_medio_espera_fila_mesa', resultado.get('tempo_medio_espera', 'N/A'))} minutos")
+        tempo_medio_espera_mesa = _as_number(resultado.get('tempo_medio_espera_fila_mesa', resultado.get('tempo_medio_espera', 0.0)), 0.0)
+        kpis = resultado.get("kpis") or {}
+        tempo_medio_ciclo = _as_number(kpis.get("tempo_medio_ciclo_min", resultado.get("tempo_medio_permanencia_cliente", 0.0)), 0.0)
+        ocup_cadeiras = _as_number(kpis.get("ocupacao_cadeiras_percent", resultado.get("uso_medio_cadeiras_percent", resultado.get("uso_medio_mesas", 0.0))), 0.0)
+        ocup_mesas = _as_number(kpis.get("ocupacao_mesas_percent", resultado.get("uso_medio_mesas_percent", 0.0)), 0.0)
+
+        c.drawCentredString(largura / 2, y, f"- Tempo medio de espera (mesa): {tempo_medio_espera_mesa:.2f} min")
         y -= 16
-        c.drawCentredString(largura / 2, y, f"- Tempo médio de refeição (real): {resultado.get('tempo_medio_permanencia_cliente', resultado.get('tempo_medio_almoco_min', 'N/A'))} minutos")
+        c.drawCentredString(largura / 2, y, f"- Tempo medio de ciclo (entrada->saida): {tempo_medio_ciclo:.2f} min")
         y -= 16
-        uso_mesas = resultado.get('uso_medio_mesas', 0)
-        c.drawCentredString(largura / 2, y, f"- Ocupação média das mesas: {round(uso_mesas, 2)}%")
+        c.drawCentredString(largura / 2, y, f"- Ocupacao media (cadeiras): {ocup_cadeiras:.2f}%")
+        y -= 16
+        c.drawCentredString(largura / 2, y, f"- Ocupacao media (mesas): {ocup_mesas:.2f}%")
         y -= 22
 
         # Log resumo
-        clientes_gerados = resultado.get('clientes_simulados', resultado.get('total_clientes', 1))
-        clientes_atendidos = resultado.get('clientes_processados', 'N/A')
-        clientes_nao_atendidos = resultado.get('clientes_nao_atendidos', 0)
-        tempo_medio_espera = resultado.get('tempo_medio_espera_fila_mesa', resultado.get('tempo_medio_espera', 'N/A'))
-        tempo_medio_refeicao = resultado.get('tempo_medio_permanencia_cliente', resultado.get('tempo_medio_almoco_min', 'N/A'))
+        tempo_medio_espera = tempo_medio_espera_mesa
+        tempo_medio_refeicao = _as_number(resultado.get('tempo_medio_permanencia_cliente', resultado.get('tempo_medio_almoco_min', 0.0)), 0.0)
         logger.info(
             f"Resumo do relatório PDF: Gerados={clientes_gerados}, "
             f"Atendidos={clientes_atendidos}, Rejeitados={clientes_nao_atendidos}, "
             f"Tempo médio de espera={tempo_medio_espera}, "
             f"Tempo médio de refeição={tempo_medio_refeicao}, "
-            f"Ocupação média das mesas={uso_mesas}%"
+            f"Ocupacao media (cadeiras)={ocup_cadeiras}%"
         )
 
-        # Interpretação
+        # Bottleneck (gargalo) e Mass Balance
+        bott = (kpis.get("bottleneck") or {}).get("principal")
+        estacoes = resultado.get("estacoes") or {}
+        util_bott = _as_number((estacoes.get(bott) or {}).get("utilizacao_percent", 0.0), 0.0) if bott else 0.0
+        mb = resultado.get("mass_balance") or {}
+        mb_ok = bool(mb.get("ok", False))
+
         c.setFont("Helvetica-Bold", 12)
-        c.drawCentredString(largura / 2, y, "📌 Interpretação (gerada por IA):")
+        c.drawCentredString(largura / 2, y, "Bottleneck (gargalo) e conservacao:")
+        y -= 18
+        c.setFont("Helvetica", 11)
+        c.drawCentredString(largura / 2, y, f"- Gargalo principal: {bott or 'N/A'} (utilizacao ~ {util_bott:.1f}%)")
+        y -= 16
+        c.drawCentredString(largura / 2, y, f"- Mass Balance (entradas = saidas + no sistema): {'OK' if mb_ok else 'FALHOU'}")
+        y -= 22
+
+        # Interpretacao
+        c.setFont("Helvetica-Bold", 12)
+        c.drawCentredString(largura / 2, y, "Interpretacao tecnica:")
         y -= 18
         c.setFont("Helvetica", 11)
         interpretacao = (
-            f"Durante o período analisado, observou-se que {clientes_nao_atendidos} clientes não conseguiram ser atendidos devido à lotação máxima.\n"
-            f"A taxa de ocupação média foi de {round(uso_mesas, 2)}%, sugerindo que as mesas foram utilizadas de forma eficiente,\n"
-            f"mas podem estar próximas do limite operacional."
+            f"Durante a janela operacional, {clientes_nao_atendidos} clientes foram rejeitados/abandonaram o sistema.\n"
+            f"A ocupacao media de cadeiras foi {ocup_cadeiras:.2f}%, e o tempo medio de ciclo observado foi {tempo_medio_ciclo:.2f} min.\n"
+            f"O gargalo estimado foi '{bott or 'N/A'}', que tende a governar o throughput em regime de saturacao."
         )
         for linha in interpretacao.split('\n'):
             c.drawCentredString(largura / 2, y, linha)
@@ -135,7 +178,7 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
 
         # Recomendação
         c.setFont("Helvetica-Bold", 12)
-        c.drawCentredString(largura / 2, y, "📈 Recomendação:")
+        c.drawCentredString(largura / 2, y, "Recomendacao:")
         y -= 18
         c.setFont("Helvetica", 11)
         taxa_rejeicao = (clientes_nao_atendidos / clientes_gerados) if clientes_gerados else 0
@@ -155,7 +198,7 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
 
         # Parâmetros técnicos
         c.setFont("Helvetica-Bold", 12)
-        c.drawCentredString(largura / 2, y, "⚙️ Parâmetros técnicos utilizados:")
+        c.drawCentredString(largura / 2, y, "Parametros tecnicos utilizados:")
         y -= 18
         c.setFont("Helvetica", 11)
         c.drawCentredString(largura / 2, y, f"- Clientes por minuto: {parametros.get('clientes_por_minuto', 'N/A')}")
@@ -175,7 +218,7 @@ def exportar_pdf(resultado, caminho_pdf, parametros=None, layout_ascii=None):
         )
 
         c.setFont("Helvetica-Oblique", 10)
-        c.drawCentredString(largura / 2, y, "📍 Observação: layout físico do restaurante disponível ao final deste relatório (visual ASCII).")
+        c.drawCentredString(largura / 2, y, "Observacao: layout fisico do restaurante disponivel ao final deste relatorio (visual ASCII).")
         y -= 30
 
         # Gráfico de barras

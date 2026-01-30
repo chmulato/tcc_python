@@ -1,0 +1,1755 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulação de Processos Dinâmicos: Do Restaurante Universitário à Engenharia Química</title>
+    <meta
+      name="description"
+      content="Estudo de caso interativo: aplicação de Simulação por Eventos Discretos (DES) e princípios de Engenharia de Processos para análise de fluxos, gargalos e otimização de sistemas complexos."
+    />
+
+    <meta name="theme-color" content="#0b3d2e" />
+    <link rel="icon" href="assets/imagens/folder.png" />
+
+    <style>
+      :root {
+        --bg: #f7faf9;
+        --surface: #ffffff;
+        --surface-2: #f2f7f6;
+        --text: #0c1b17;
+        --muted: #3c5a53;
+        --line: rgba(12, 27, 23, 0.12);
+        --shadow: 0 18px 50px rgba(12, 27, 23, 0.12);
+        --shadow-soft: 0 12px 28px rgba(12, 27, 23, 0.10);
+
+        --blue: #0f5ea8;
+        --green: #0b6b4d;
+        --teal: #0a7a72;
+        --accent: #0b6b4d;
+        --accent-2: #0f5ea8;
+
+        --radius: 16px;
+        --radius-sm: 12px;
+        --max: 1120px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background: radial-gradient(1200px 600px at 20% -10%, rgba(15, 94, 168, 0.12), transparent 55%),
+          radial-gradient(900px 480px at 80% 0%, rgba(11, 107, 77, 0.12), transparent 55%),
+          linear-gradient(180deg, #f7faf9, #f5fbf8 35%, #f7faf9);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        background: rgba(247, 250, 249, 0.72);
+        border-bottom: 1px solid rgba(12, 27, 23, 0.10);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(11, 107, 77, 0.14), rgba(15, 94, 168, 0.14));
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+
+      .brand-mark svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .brand-title {
+        line-height: 1.1;
+        min-width: 0;
+      }
+
+      .brand-title strong {
+        display: block;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .brand-title span {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .navlink {
+        font-size: 13px;
+        color: rgba(12, 27, 23, 0.76);
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+      }
+      .navlink:hover {
+        background: rgba(255, 255, 255, 0.7);
+        border-color: rgba(12, 27, 23, 0.10);
+        text-decoration: none;
+      }
+
+      .hero {
+        padding: 44px 0 10px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 0.65fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .hero-card {
+        border-radius: calc(var(--radius) + 6px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.70));
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(12, 27, 23, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(12, 27, 23, 0.05) 1px, transparent 1px);
+        background-size: 22px 22px;
+        opacity: 0.45;
+        pointer-events: none;
+        mask-image: radial-gradient(420px 260px at 35% 20%, black, transparent 70%);
+      }
+
+      .hero-content {
+        padding: 28px 26px 24px;
+        position: relative;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.78);
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.74);
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
+
+      .badge svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      h1 {
+        margin: 14px 0 10px;
+        font-size: clamp(28px, 3.4vw, 44px);
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: rgba(12, 27, 23, 0.76);
+        font-size: 16px;
+        line-height: 1.55;
+        max-width: 76ch;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(12, 27, 23, 0.14);
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: 0 12px 22px rgba(12, 27, 23, 0.08);
+        font-weight: 650;
+        font-size: 13px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .btn:hover {
+        text-decoration: none;
+        filter: brightness(0.99);
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .btn-primary {
+        border-color: rgba(11, 107, 77, 0.34);
+        background: linear-gradient(180deg, rgba(11, 107, 77, 0.13), rgba(11, 107, 77, 0.06));
+      }
+      .btn-secondary {
+        border-color: rgba(15, 94, 168, 0.34);
+        background: linear-gradient(180deg, rgba(15, 94, 168, 0.12), rgba(15, 94, 168, 0.05));
+      }
+
+      .metrics {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .chip strong {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.01em;
+      }
+
+      .chip span {
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.74);
+      }
+
+      .hero-aside {
+        border-radius: calc(var(--radius) + 6px);
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.66));
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .hero-aside header {
+        padding: 16px 16px 10px;
+        border-bottom: 1px solid rgba(12, 27, 23, 0.10);
+      }
+
+      .hero-aside header strong {
+        display: block;
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .hero-aside header span {
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.70);
+        line-height: 1.35;
+      }
+
+      .cover {
+        position: relative;
+        padding: 14px;
+        display: grid;
+        place-items: center;
+      }
+
+      .cover img {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        box-shadow: 0 12px 28px rgba(12, 27, 23, 0.12);
+      }
+
+      .section {
+        padding: 34px 0;
+      }
+
+      .section h2 {
+        margin: 0 0 8px;
+        font-size: 20px;
+        letter-spacing: -0.01em;
+      }
+
+      .section p {
+        margin: 10px 0 0;
+        color: rgba(12, 27, 23, 0.76);
+        line-height: 1.65;
+        max-width: 92ch;
+      }
+
+      /* Long Read (Artigo Executivo) */
+      .longread-wrap {
+        padding: 10px 0 34px;
+      }
+
+      .longread {
+        max-width: 82ch;
+        margin: 0 auto;
+        padding: 22px 22px;
+        border-radius: calc(var(--radius) + 6px);
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.74));
+        box-shadow: var(--shadow-soft);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .longread::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(700px 360px at 16% 0%, rgba(15, 94, 168, 0.10), transparent 58%),
+          radial-gradient(700px 360px at 88% 10%, rgba(11, 107, 77, 0.10), transparent 58%);
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      .longread > * {
+        position: relative;
+      }
+
+      .longread-header {
+        display: grid;
+        gap: 10px;
+        border-bottom: 1px solid rgba(12, 27, 23, 0.10);
+        padding-bottom: 14px;
+        margin-bottom: 14px;
+      }
+
+      .longread-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.70);
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.70);
+        padding: 6px 10px;
+        border-radius: 999px;
+        width: fit-content;
+      }
+
+      .longread-title {
+        margin: 0;
+        font-size: clamp(22px, 2.25vw, 34px);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+
+      .longread-meta {
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.66);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .longread-body {
+        font-size: 16.5px;
+        line-height: 1.8;
+        color: rgba(12, 27, 23, 0.78);
+      }
+
+      .longread-body p {
+        margin: 12px 0 0;
+        max-width: none;
+        color: rgba(12, 27, 23, 0.78);
+      }
+
+      .longread-body p.lead {
+        font-size: 17px;
+        line-height: 1.75;
+        color: rgba(12, 27, 23, 0.80);
+        margin-top: 0;
+      }
+
+      .longread-body p.lead::first-letter {
+        float: left;
+        font-size: 44px;
+        line-height: 0.9;
+        padding: 6px 10px 0 0;
+        font-weight: 750;
+        color: rgba(11, 107, 77, 0.92);
+        letter-spacing: -0.02em;
+      }
+
+      .longread-body h3 {
+        margin: 18px 0 0;
+        font-size: 14px;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        color: rgba(12, 27, 23, 0.76);
+      }
+
+      figure.longread-figure {
+        margin: 14px 0 0;
+        border-radius: 16px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: linear-gradient(180deg, rgba(242, 247, 246, 0.88), rgba(255, 255, 255, 0.74));
+        padding: 12px;
+      }
+
+      figure.longread-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 14px;
+        border: 1px solid rgba(12, 27, 23, 0.10);
+      }
+
+      figure.longread-figure figcaption {
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(12, 27, 23, 0.68);
+      }
+
+      .pullquote {
+        margin: 16px 0 0;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: linear-gradient(180deg, rgba(15, 94, 168, 0.08), rgba(11, 107, 77, 0.06));
+        display: grid;
+        gap: 6px;
+      }
+
+      .pullquote p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.65;
+        color: rgba(12, 27, 23, 0.86);
+        font-weight: 650;
+        letter-spacing: -0.01em;
+      }
+
+      .pullquote span {
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.70);
+        font-family: var(--mono);
+      }
+
+      .longread-actions {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .grid-2 {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .panel {
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.80);
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        box-shadow: 0 14px 36px rgba(12, 27, 23, 0.08);
+        overflow: hidden;
+      }
+
+      .panel header {
+        padding: 14px 16px 10px;
+        border-bottom: 1px solid rgba(12, 27, 23, 0.10);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .panel header strong {
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .panel header span {
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.64);
+        font-family: var(--mono);
+      }
+
+      .panel .body {
+        padding: 14px 16px 16px;
+      }
+
+      .figure {
+        border-radius: 14px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: linear-gradient(180deg, rgba(242, 247, 246, 0.85), rgba(255, 255, 255, 0.72));
+        padding: 12px;
+      }
+
+      .figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+      }
+
+      .caption {
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        color: rgba(12, 27, 23, 0.70);
+      }
+
+      .callout {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(11, 107, 77, 0.08), rgba(15, 94, 168, 0.06));
+        border: 1px solid rgba(12, 27, 23, 0.12);
+      }
+
+      .callout strong {
+        display: block;
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .callout p {
+        margin: 8px 0 0;
+        font-size: 13px;
+      }
+
+      /* CTA: Portal / Sala Digital */
+      .portal-cta {
+        margin-top: 16px;
+        padding: 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.68));
+        box-shadow: 0 14px 30px rgba(12, 27, 23, 0.08);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .portal-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(520px 260px at 18% 12%, rgba(15, 94, 168, 0.16), transparent 60%),
+          radial-gradient(520px 260px at 82% 0%, rgba(148, 163, 184, 0.16), transparent 60%);
+        opacity: 0.85;
+        pointer-events: none;
+      }
+
+      .portal-cta > * {
+        position: relative;
+      }
+
+      .portal-cta-head {
+        display: grid;
+        grid-template-columns: 46px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .portal-cta-ico {
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.76);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 12px 24px rgba(12, 27, 23, 0.10);
+      }
+      .portal-cta-ico svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      .portal-cta h2 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: -0.01em;
+        line-height: 1.28;
+      }
+
+      .portal-cta .sub {
+        margin: 8px 0 0;
+        color: rgba(12, 27, 23, 0.76);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .portal-cta .value {
+        margin: 10px 0 0;
+        color: rgba(12, 27, 23, 0.76);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .portal-cta .actions {
+        margin-top: 12px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .btn-portal {
+        border-color: rgba(12, 27, 23, 0.18);
+        background: linear-gradient(
+          90deg,
+          rgba(15, 94, 168, 0.20),
+          rgba(10, 122, 114, 0.12) 48%,
+          rgba(148, 163, 184, 0.20)
+        );
+        background-size: 220% 220%;
+        background-position: 0% 50%;
+        box-shadow: 0 16px 28px rgba(12, 27, 23, 0.12);
+      }
+      .btn-portal:hover {
+        background-position: 100% 50%;
+      }
+
+      .portal-micro {
+        margin-top: 8px;
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.70);
+      }
+
+      .cards {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .card {
+        border-radius: var(--radius);
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 14px 32px rgba(12, 27, 23, 0.07);
+        padding: 14px 14px 14px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(360px 220px at 20% 10%, rgba(15, 94, 168, 0.12), transparent 60%),
+          radial-gradient(360px 220px at 80% 0%, rgba(11, 107, 77, 0.12), transparent 60%);
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      .card > * {
+        position: relative;
+      }
+
+      .card h3 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .ico {
+        width: 26px;
+        height: 26px;
+        border-radius: 10px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.78);
+        flex: 0 0 auto;
+      }
+
+      .ico svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .card p {
+        margin: 0;
+        color: rgba(12, 27, 23, 0.74);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .equation {
+        margin-top: 10px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.78);
+        border: 1px dashed rgba(12, 27, 23, 0.18);
+        background: rgba(255, 255, 255, 0.70);
+        padding: 10px 12px;
+        border-radius: 12px;
+        overflow-x: auto;
+      }
+
+      .roadmap {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .step {
+        border-radius: var(--radius);
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 14px 30px rgba(12, 27, 23, 0.07);
+        padding: 14px;
+        display: grid;
+        grid-template-columns: 38px 1fr;
+        gap: 12px;
+        position: relative;
+      }
+
+      .step::after {
+        content: "";
+        position: absolute;
+        left: 24px;
+        top: 54px;
+        bottom: -18px;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(15, 94, 168, 0.34), rgba(11, 107, 77, 0.34));
+        opacity: 0.7;
+      }
+
+      .step:last-child::after {
+        display: none;
+      }
+
+      .dot {
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(15, 94, 168, 0.12), rgba(11, 107, 77, 0.10));
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        display: grid;
+        place-items: center;
+        font-family: var(--mono);
+        font-weight: 700;
+        color: rgba(12, 27, 23, 0.80);
+      }
+
+      .step h3 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: -0.01em;
+      }
+
+      .step p {
+        margin: 6px 0 0;
+        font-size: 13px;
+        color: rgba(12, 27, 23, 0.74);
+        line-height: 1.55;
+      }
+
+      .exec {
+        margin-top: 16px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 14px 30px rgba(12, 27, 23, 0.07);
+        overflow: hidden;
+      }
+
+      .exec header {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(12, 27, 23, 0.10);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .exec header strong {
+        font-size: 13px;
+      }
+
+      .exec header .right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .exec header .hint {
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.66);
+        font-family: var(--mono);
+      }
+
+      .exec pre {
+        margin: 0;
+        padding: 14px;
+        font-family: var(--mono);
+        font-size: 12.5px;
+        line-height: 1.6;
+        background: linear-gradient(180deg, rgba(242, 247, 246, 0.9), rgba(255, 255, 255, 0.70));
+        overflow-x: auto;
+      }
+
+      .copy {
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1px solid rgba(12, 27, 23, 0.14);
+        background: rgba(255, 255, 255, 0.82);
+        font-weight: 650;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      .copy:hover {
+        filter: brightness(0.99);
+      }
+
+      footer {
+        padding: 32px 0 42px;
+        color: rgba(12, 27, 23, 0.66);
+        font-size: 12px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .footlinks {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.72);
+        font-size: 12px;
+      }
+
+      .pill svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* Responsivo */
+      @media (max-width: 980px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 920px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .footlinks {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="topbar">
+      <div class="container">
+        <div class="topbar-inner">
+          <a class="brand" href="#top" aria-label="Início">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 17.5V6.5C4 5.67 4.67 5 5.5 5h13c.83 0 1.5.67 1.5 1.5v11c0 .83-.67 1.5-1.5 1.5h-13C4.67 19 4 18.33 4 17.5Z"
+                  stroke="rgba(12,27,23,0.78)"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M7 9h10M7 12h6M7 15h8"
+                  stroke="rgba(11,107,77,0.90)"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            <span class="brand-title">
+              <strong>Simulação de Processos Dinâmicos</strong>
+              <span>DES · gargalos · throughput · holdup</span>
+            </span>
+          </a>
+
+          <nav aria-label="Navegação">
+            <a class="navlink" href="#analogia">Analogia visual</a>
+            <a class="navlink" href="#fundamentos">Fundamentos</a>
+            <a class="navlink" href="#resultados">Resultados</a>
+            <a class="navlink" href="#roadmap">Do TCC à inovação</a>
+            <a class="navlink" href="portal.html">Sala Digital</a>
+            <a class="navlink" href="#simulador">Acessar simulador</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-card">
+              <div class="hero-content">
+                <span class="badge">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 2l2.2 5.6L20 10l-5.8 2.4L12 18l-2.2-5.6L4 10l5.8-2.4L12 2Z"
+                      stroke="rgba(15,94,168,0.90)"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Estudo de caso · Engenharia de Processos aplicada a serviços
+                </span>
+
+                <h1>Simulação de Processos Dinâmicos: Do Restaurante Universitário à Engenharia Química.</h1>
+                <p class="subtitle">
+                  Uma Prova de Conceito para Análise de Fluxos, Gargalos e Otimização de Sistemas Complexos.
+                </p>
+
+                <div class="cta-row" role="group" aria-label="Chamadas para ação">
+                  <a class="btn btn-primary" href="#simulador" id="cta-simulador">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M8 5h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
+                        stroke="rgba(11,107,77,0.92)"
+                        stroke-width="1.6"
+                      />
+                      <path
+                        d="M10 9l5 3-5 3V9Z"
+                        fill="rgba(11,107,77,0.92)"
+                      />
+                    </svg>
+                    Acessar o Simulador (Restaurante)
+                  </a>
+                  <a class="btn" href="#resultados" id="cta-figuras">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M4 19V5a1 1 0 0 1 1-1h14"
+                        stroke="rgba(12,27,23,0.84)"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M7 17l3-4 3 2 4-6 1 2"
+                        stroke="rgba(15,94,168,0.92)"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M7 20h13a1 1 0 0 0 1-1V7"
+                        stroke="rgba(11,107,77,0.92)"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                    Ver Figuras
+                  </a>
+                  <a class="btn btn-secondary" href="#" id="cta-github" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M9 19c-4 1.2-4-2-5-2m10 4v-3.2c0-.9.3-1.6.8-2-2.7-.3-5.6-1.3-5.6-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C18.3 3.9 19.3 4.2 19.3 4.2c.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.5-2.9 5.5-5.6 5.8.5.4.9 1.2.9 2.4V21"
+                        stroke="rgba(15,94,168,0.92)"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    Ver Código no GitHub
+                  </a>
+                  <a class="btn" href="#roadmap" id="cta-ete">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M4 20V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"
+                        stroke="rgba(12,27,23,0.84)"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M7 16h10M7 12h6M7 8h8"
+                        stroke="rgba(12,27,23,0.84)"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                    Conheça Nossos Projetos de Engenharia
+                  </a>
+                </div>
+
+                <div class="portal-cta" aria-label="Convite para virar aprendiz (Sala Digital)">
+                  <div class="portal-cta-head">
+                    <div class="portal-cta-ico" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <!-- bandeja (serviços) -->
+                        <path
+                          d="M3.8 10.2h6.6c.6 0 1 .4 1 1v3.3c0 .6-.4 1-1 1H4.8c-.6 0-1-.4-1-1v-2.3c0-.8.4-1.5 1-2Z"
+                          stroke="rgba(15,94,168,0.90)"
+                          stroke-width="1.4"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M5.2 15.5h4.9"
+                          stroke="rgba(15,94,168,0.90)"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                        />
+
+                        <!-- seta (ponte) -->
+                        <path
+                          d="M11.5 12h4.4"
+                          stroke="rgba(12,27,23,0.70)"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M14.7 10.7 16 12l-1.3 1.3"
+                          stroke="rgba(12,27,23,0.70)"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+
+                        <!-- reator (industrial) -->
+                        <path
+                          d="M18.2 7.5h2"
+                          stroke="rgba(148,163,184,0.95)"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M17 7.5v-1c0-.6.4-1 1-1h1.2c.6 0 1 .4 1 1v1"
+                          stroke="rgba(148,163,184,0.95)"
+                          stroke-width="1.4"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M17 7.8v7.1c0 1.6 1.3 2.9 2.9 2.9S22.8 16.5 22.8 15V7.8"
+                          stroke="rgba(148,163,184,0.95)"
+                          stroke-width="1.4"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M18.2 13.1h3.4"
+                          stroke="rgba(11,107,77,0.70)"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </div>
+
+                    <div>
+                      <h2>Vire aprendiz: da fila do RU ao raciocínio de planta (Engenharia Química).</h2>
+                      <p class="sub">
+                        Entre na Sala Digital e siga uma trilha guiada: fundamentos → modelagem → simulação → otimização (com evidência).
+                      </p>
+                    </div>
+                  </div>
+
+                  <p class="value">
+                    Este projeto é um “paper interativo” com um objetivo prático: transformar curiosidade em competência.
+                    <strong>Você aprende a ler fluxo como engenheiro — do cotidiano ao industrial — e passa a tomar decisões com simulação.</strong>
+                  </p>
+
+                  <div class="actions" role="group" aria-label="Ação principal">
+                    <a class="btn btn-portal" href="portal.html" id="cta-portal">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M12 2l2.2 5.6L20 10l-5.8 2.4L12 18l-2.2-5.6L4 10l5.8-2.4L12 2Z"
+                          stroke="rgba(12,27,23,0.82)"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M6 20h12"
+                          stroke="rgba(15,94,168,0.92)"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      Virar aprendiz na Sala Digital
+                    </a>
+                  </div>
+
+                  <div class="portal-micro">Trilha guiada e progressiva: do “entender” ao “simular” (sem gerenciar por intuição).</div>
+                </div>
+
+                <div class="metrics" aria-label="Métricas de engenharia usadas no case">
+                  <span class="chip"><strong>Throughput</strong><span>vazão de saída</span></span>
+                  <span class="chip"><strong>Holdup</strong><span>acúmulo / WIP</span></span>
+                  <span class="chip"><strong>Residence Time</strong><span>tempo de residência</span></span>
+                  <span class="chip"><strong>DES</strong><span>eventos discretos</span></span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="hero-aside" aria-label="Capa e contexto">
+              <header>
+                <strong>Artefatos gerados</strong>
+                <span>Relatórios PDF, gráficos de ocupação/filas e visualização do layout (GIF).</span>
+              </header>
+              <div class="cover">
+                <img src="assets/imagens/capa.png" alt="Capa do projeto (relatório técnico)" />
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="longread-wrap" aria-label="Artigo Executivo (autoridade do projeto)">
+        <div class="container">
+          <article class="longread" aria-label="The Executive Brief">
+            <header class="longread-header">
+              <span class="longread-kicker">Artigo Executivo · Autoridade técnica</span>
+              <h2 class="longread-title">
+                A Ciência da Eficiência: Transpondo Modelos de Fluxo do Varejo para a Indústria Estratégica.
+              </h2>
+              <div class="longread-meta" aria-label="Metadados do artigo">
+                <span><strong>Projeto:</strong> chmulato/tcc_python</span>
+                <span><strong>Âncora técnica:</strong> DES · Balanço de Massa · Filas</span>
+                <span><strong>Forma:</strong> Gêmeo Digital (simplificado)</span>
+              </div>
+            </header>
+
+            <div class="longread-body">
+              <p class="lead">
+                Ineficiência não é um “detalhe operacional”: é um custo invisível que se acumula minuto a minuto. Em um
+                sistema de fluxo — seja uma fila de pessoas, seja uma corrente de reagentes — gargalos convertem tempo em
+                desperdício, variabilidade em risco e capacidade ociosa em decisões mal informadas.
+              </p>
+
+              <figure class="longread-figure" aria-label="Imagem contextual do RU (e analogia industrial)">
+                <img
+                  src="img/imagem_ru_chi.png"
+                  alt="Imagem do Restaurante Universitário como laboratório vivo de fluxo: filas, buffers e gargalos em um layout físico."
+                  loading="lazy"
+                  onerror="this.onerror=null;this.src='assets/imagens/capa.png';"
+                />
+                <figcaption>
+                  Um sistema real, com layout e restrições: a melhor forma de testar modelos que depois migram para
+                  fluxos industriais (feed → operações → buffers → saída).
+                </figcaption>
+              </figure>
+
+              <h3>O problema</h3>
+              <p>
+                A maior parte das organizações “vê” a operação pelos sintomas: reclamações, atrasos, lotes parados,
+                picos de demanda e retrabalho. O que raramente se enxerga é a causa estrutural:
+                <strong>o gargalo governa o throughput</strong>, e o acúmulo aparece como fila (serviços) ou inventário em processo (indústria).
+                Quando a saturação se aproxima, a operação passa a oscilar — e o custo aparece em forma de horas perdidas,
+                capacidade desperdiçada e decisões feitas no escuro.
+              </p>
+
+              <div class="pullquote" role="note" aria-label="Frase em destaque">
+                <p>O Balanço de Massa é a lei universal que rege tanto o serviço quanto a síntese química.</p>
+                <span>Pull quote · princípio de conservação</span>
+              </div>
+
+              <h3>A tese</h3>
+              <p>
+                O Restaurante Universitário (RU) é o <strong>sandbox perfeito</strong> porque concentra, em escala humana,
+                os mesmos fenômenos que dominam processos químicos: alimentação (entrada), etapas com capacidade finita,
+                buffers (filas), transferência, tempo de residência e saída. Ao modelar o RU como
+                <strong>Sistema de Eventos Discretos (DES)</strong>, validamos com clareza visual os algoritmos que sustentam
+                a engenharia de processos: <strong>Balanço de Massa (contabilidade de entidades)</strong> e
+                <strong>Teoria das Filas</strong> (variabilidade, utilização e risco de saturação).
+              </p>
+
+              <h3>Destaque tecnológico: o motor central</h3>
+              <p>
+                No núcleo deste repositório, um <strong>Simulador em Python</strong> opera como um motor proprietário de
+                análise <strong>estocástica</strong> (variabilidade real) e <strong>preditiva</strong> (cenários comparáveis),
+                transformando layout e regras operacionais em evidência. Em termos simples: o software constrói um
+                <strong>Gêmeo Digital</strong> do sistema — replicando a planta do RU (ou uma planta industrial) para medir,
+                minuto a minuto, o que acontece quando a realidade encontra limites de capacidade.
+              </p>
+
+              <div class="pullquote" role="note" aria-label="Frase-chave em destaque">
+                <p>Não gerencie por intuição; simule por precisão.</p>
+                <span>Pull quote · convite à decisão baseada em dados</span>
+              </div>
+
+              <h3>Convite ao entendimento</h3>
+              <p>
+                A simulação aqui não é “demonstração”: é um instrumento de decisão. Ao acessar o simulador, você não está
+                apenas observando um caso — está exercitando a mesma disciplina usada para dimensionar capacidade, reduzir
+                tempos de residência, prever acúmulos e escolher intervenções com melhor relação custo-benefício.
+              </p>
+
+              <div class="longread-actions" role="group" aria-label="Ações do artigo">
+                <a class="btn btn-primary" href="#simulador">Abrir o simulador e testar cenários</a>
+                <a class="btn btn-portal" href="portal.html">Virar aprendiz na Sala Digital</a>
+                <a class="btn btn-secondary" href="docs/tcc.html">Ler a documentação técnica</a>
+              </div>
+
+              <h3>Conexão com o futuro: soberania e Terras Raras</h3>
+              <p>
+                A ambição deste trabalho não termina no RU. O mesmo arcabouço de fluxo (balanço + residência + gargalos)
+                é a base de sistemas de maior criticidade — como <strong>Mineração Seletiva</strong> e
+                <strong>ETE</strong>, onde a eficiência deixa de ser “otimização” e passa a ser estratégia.
+                Quem domina o fluxo do RU domina a gramática para projetar e refinar o fluxo de materiais em cadeias de valor
+                de <strong>metais críticos</strong>, acelerando aprendizado, reduzindo risco e fortalecendo soberania tecnológica.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="analogia">
+        <div class="container">
+          <h2>Analogia visual: serviços como fluxogramas de processo</h2>
+          <p>
+            O “pulo do gato” é tratar o restaurante como um <strong>Sistema de Eventos Discretos</strong> com
+            alimentação, operações unitárias, buffers e saída. A mesma estrutura aparece em fluxogramas de plantas:
+            <strong>entrada → transformação → separação → produto</strong>.
+          </p>
+
+          <div class="panel" style="margin-top: 16px">
+            <header>
+              <strong>Figura 1 — Esquema de analogia (serviços ↔ processos)</strong>
+              <span>PoC · Balanço de tempo · Gargalos</span>
+            </header>
+            <div class="body">
+              <div class="figure" aria-label="Figura 1: esquema de analogia entre restaurante e processo">
+                <img
+                  src="docs/figuras/fig_01_esquema_analogia.png"
+                  alt="Figura 1: esquema da analogia entre sistema de serviços (restaurante) e sistema de processo, arquitetura do simulador e evolução do TCC para simuladores industriais."
+                  loading="lazy"
+                />
+              </div>
+              <div class="caption">
+                <strong>Leitura recomendada:</strong> a figura consolida o reenquadramento de Engenharia de Processos:
+                <em>feed rate</em>, operações unitárias, holdup (ocupação) e buffers (filas), além da evolução do
+                framework para aplicações industriais.
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="panel">
+              <header>
+                <strong>Figura 2A — Diagrama de fluxo (restaurante universitário)</strong>
+                <span>Feed → filas → serviço → saída</span>
+              </header>
+              <div class="body">
+                <div class="figure" aria-label="Figura 2A: fluxo em sistema de serviços (PNG)">
+                  <img
+                    src="docs/figuras/fig_02a_fluxo_servico.png"
+                    alt="Figura 2A: diagrama de fluxo em sistema de serviços (DES): entrada (feed λ), buffer (filas), serviço (buffet/caixa) e mesa (residência τ)."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="caption">
+                  Interpretação de engenharia: <strong>clientes</strong> são “entidades” em fluxo; filas são
+                  <strong>inventários (buffers)</strong>; mesa representa <strong>residência/holdup</strong>.
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <header>
+                <strong>Figura 2B — Diagrama de fluxo (operação unitária química)</strong>
+                <span>Reagentes → reator → separador → produto</span>
+              </header>
+              <div class="body">
+                <div class="figure" aria-label="Figura 2B: fluxo em sistema de processo (PNG)">
+                  <img
+                    src="docs/figuras/fig_02b_fluxo_processo.png"
+                    alt="Figura 2B: diagrama de fluxo em sistema de processo: reagentes (F), reator (τ), separador e produto (P)."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="caption">
+                  Paralelo direto: <strong>entidades</strong> (clientes/moléculas) atravessam operações;
+                  <strong>acúmulos</strong> degradam desempenho e revelam gargalos.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout">
+            <strong>Como a “lei da conservação” se aplica?</strong>
+            <p>
+              Em serviços, a conservação aparece como <strong>contabilidade de entidades</strong>: o que entra deve
+              sair ou ficar acumulado (filas/mesas). Em processos químicos, o mesmo raciocínio é expresso por
+              balanços: <strong>Entrada − Saída + Geração − Consumo = Acúmulo</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="fundamentos">
+        <div class="container">
+          <h2>Fundamentos teóricos (princípios de engenharia)</h2>
+          <p>
+            A modelagem transforma um sistema de atendimento em um <strong>processo dinâmico</strong> com restrições,
+            incerteza e métricas operacionais. Os conceitos abaixo estruturam tanto plantas industriais quanto
+            sistemas de serviços.
+          </p>
+
+          <div class="cards">
+            <div class="card">
+              <h3>
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M4 16c3-2 5-2 8 0s5 2 8 0"
+                      stroke="rgba(15,94,168,0.92)"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M4 10c3-2 5-2 8 0s5 2 8 0"
+                      stroke="rgba(11,107,77,0.92)"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </span>
+                Balanço de Massa e Energia
+              </h3>
+              <p>
+                Contagem de clientes e vazão de pratos/atendimentos replicam a lógica de balanços:
+                entradas/saídas e acúmulos determinam o estado do sistema (fila, ocupação, perdas por saturação).
+              </p>
+              <div class="equation" aria-label="Equação de balanço geral">
+                Entrada − Saída + Geração − Consumo = Acúmulo
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 6v6l4 2"
+                      stroke="rgba(11,107,77,0.92)"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z"
+                      stroke="rgba(12,27,23,0.82)"
+                      stroke-width="1.7"
+                    />
+                  </svg>
+                </span>
+                Tempo de Residência (Residence Time)
+              </h3>
+              <p>
+                O tempo na fila e na mesa é análogo ao tempo de permanência de um reagente em um reator:
+                controla holdup, estabilidade e capacidade efetiva.
+              </p>
+              <div class="equation" aria-label="Relação clássica de tempo de residência">
+                τ ≈ Holdup / Vazão
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M6 7h12M6 12h12M6 17h12"
+                      stroke="rgba(12,27,23,0.82)"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M8 7v10M16 7v10"
+                      stroke="rgba(15,94,168,0.92)"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </span>
+                Teoria das Filas (Queuing Theory)
+              </h3>
+              <p>
+                Ferramenta para dimensionar capacidade, buffers e estoques em processos com variabilidade.
+                Na prática: reduzir tempo de espera e evitar gargalos por saturação.
+              </p>
+              <div class="equation" aria-label="Relação de saturação">
+                ρ = λ / μ  &nbsp;&nbsp; (saturação quando ρ → 1)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="resultados">
+        <div class="container">
+          <h2>Resultados do estudo de caso (evidências visuais)</h2>
+          <p>
+            As figuras a seguir foram geradas automaticamente a partir do motor de simulação, usando um cenário padrão
+            e comparações simples de intervenção. Você pode regenerar todas elas com <code>python scripts/gerar_figuras.py</code>.
+          </p>
+
+          <div class="grid-2">
+            <div class="panel">
+              <header>
+                <strong>Figura 3 — Layout base (planta ASCII renderizada)</strong>
+                <span>Restrições espaciais · Roteamento</span>
+              </header>
+              <div class="body">
+                <div class="figure" aria-label="Figura 3: layout base do sistema">
+                  <img
+                    src="docs/figuras/fig_03_layout_base.png"
+                    alt="Figura 3: renderização do layout ASCII com mesas, buffets, caixas, paredes e áreas livres."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="caption">
+                  O layout funciona como um <strong>flowsheet espacial</strong>: ele impõe restrições de capacidade e
+                  influencia a formação de gargalos por transferência.
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <header>
+                <strong>Figura 4 — Throughput ao longo do tempo</strong>
+                <span>Saídas/min · Saída acumulada</span>
+              </header>
+              <div class="body">
+                <div class="figure" aria-label="Figura 4: throughput (saída) ao longo do tempo">
+                  <img
+                    src="docs/figuras/fig_04_throughput.png"
+                    alt="Figura 4: gráfico de throughput com saídas por minuto e saída acumulada ao longo do tempo."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="caption">
+                  Visualiza a dinâmica de produção/atendimento: picos, transientes e períodos de estagnação indicam
+                  <strong>saturação</strong> e restrições de capacidade.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="panel">
+              <header>
+                <strong>Figura 5 — Holdup e buffers (filas) por minuto</strong>
+                <span>Ocupação · Inventário em processo</span>
+              </header>
+              <div class="body">
+                <div class="figure" aria-label="Figura 5: holdup e filas por minuto">
+                  <img
+                    src="docs/figuras/fig_05_ocupacao_e_filas.png"
+                    alt="Figura 5: séries temporais de mesas ocupadas (holdup) e filas (buffers) ao longo da simulação."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="caption">
+                  Em Engenharia de Processos, filas equivalem a <strong>buffers/inventários</strong>. Crescimento de fila
+                  é assinatura de gargalo (capacidade efetiva menor que o feed).
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <header>
+                <strong>Figura 6 — Distribuição do tempo de residência</strong>
+                <span>Variabilidade · Caudas</span>
+              </header>
+              <div class="body">
+                <div class="figure" aria-label="Figura 6: distribuição do tempo de residência">
+                  <img
+                    src="docs/figuras/fig_06_distribuicao_residencia.png"
+                    alt="Figura 6: histograma da distribuição do tempo de residência (tempo total no sistema)."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="caption">
+                  Evidência do caráter <strong>estocástico</strong>: a dispersão e as caudas determinam risco de atraso,
+                  não apenas a média.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" style="margin-top: 16px">
+            <header>
+              <strong>Figura 7 — Antes vs Depois (intervenção de capacidade)</strong>
+              <span>Decisão orientada a evidência</span>
+            </header>
+            <div class="body">
+              <div class="figure" aria-label="Figura 7: comparação antes e depois">
+                <img
+                  src="docs/figuras/fig_07_antes_depois.png"
+                  alt="Figura 7: comparação entre cenário baseline e intervenção de capacidade (ex.: aumento de mesas) em métricas de espera, ocupação e clientes processados."
+                  loading="lazy"
+                />
+              </div>
+              <div class="caption">
+                Exemplo de “engenharia aplicada”: uma mudança simples (capacidade) é quantificada em métricas de
+                <strong>espera</strong>, <strong>utilização</strong> e <strong>saída</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="roadmap">
+        <div class="container">
+          <h2>Do TCC à inovação: roadmap de evolução conceitual</h2>
+          <p>
+            O case valida o núcleo do framework: <strong>balanço de tempo + capacidade + variabilidade</strong>.
+            A mesma base sustenta a migração de um sistema de serviços para simuladores industriais (ex.: ETE / Terras Raras).
+          </p>
+
+          <div class="roadmap" aria-label="Roadmap visual">
+            <div class="step">
+              <div class="dot" aria-hidden="true">A</div>
+              <div>
+                <h3>Ponto A — Restaurante Universitário</h3>
+                <p>
+                  Desenvolvimento do motor DES: entidades, eventos, filas, recursos finitos e métricas (throughput, holdup,
+                  tempos de residência). Validação visual via layout e relatórios.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="dot" aria-hidden="true">B</div>
+              <div>
+                <h3>Ponto B — Simuladores Industriais</h3>
+                <p>
+                  Reuso do arcabouço em cenários de maior complexidade (operações unitárias, separações, recirculações,
+                  restrições múltiplas), como o simulador de Terras Raras no contexto do Projeto ETE.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="simulador">
+        <div class="container">
+          <h2>Acessar o simulador (execução local)</h2>
+          <p>
+            A apresentação aqui é “paper-like”, mas o motor é executável: basta instalar dependências e rodar o ponto de entrada.
+          </p>
+
+          <div class="exec" aria-label="Como executar o simulador">
+            <header>
+              <strong>Comandos</strong>
+              <div class="right">
+                <span class="hint">Windows / Linux / macOS</span>
+                <button class="copy" type="button" id="copyCmd">Copiar</button>
+              </div>
+            </header>
+            <pre id="cmdBlock">pip install -r requirements.txt
+python main.py</pre>
+          </div>
+
+          <div class="callout" style="margin-top: 14px">
+            <strong>Leitura recomendada</strong>
+            <p>
+              Para entender a diferença entre simulação determinística e DES estocástico, veja <a href="SIMULATING.md">SIMULATING.md</a>.
+              Para o enquadramento completo do case de Engenharia de Processos, veja <a href="README.html">README (HTML)</a>.
+              Para (re)gerar as figuras do estudo de caso, use <code>python scripts/gerar_figuras.py</code> (saída em <code>docs/figuras/</code>).
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="pill" aria-label="Contexto do projeto">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 21s7-4.4 7-11a7 7 0 0 0-14 0c0 6.6 7 11 7 11Z"
+                  stroke="rgba(12,27,23,0.82)"
+                  stroke-width="1.6"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
+                  stroke="rgba(11,107,77,0.92)"
+                  stroke-width="1.6"
+                />
+              </svg>
+              Case: DES aplicado a serviços ↔ Engenharia de Processos
+            </div>
+            <p style="margin-top: 10px; max-width: 92ch">
+              Este site é um “paper interativo”: uma camada de comunicação e visualização sobre um motor de simulação.
+              Se você publicar via GitHub Pages, o botão “Ver Código no GitHub” se autoajusta.
+            </p>
+          </div>
+
+          <div class="footlinks" aria-label="Links">
+            <a class="pill" href="README.html">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 4h12v16H6z" stroke="rgba(12,27,23,0.82)" stroke-width="1.6" />
+                <path d="M8.5 8h7M8.5 11h7M8.5 14h5" stroke="rgba(15,94,168,0.92)" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+              README (HTML)
+            </a>
+            <a class="pill" href="docs/tcc.html">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 3h10v18H7z" stroke="rgba(12,27,23,0.82)" stroke-width="1.6" />
+                <path d="M9 7h6M9 10h6M9 13h4" stroke="rgba(11,107,77,0.92)" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+              TCC (HTML)
+            </a>
+            <a class="pill" href="#top">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14" stroke="rgba(12,27,23,0.82)" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M7 10l5-5 5 5" stroke="rgba(15,94,168,0.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Voltar ao topo
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        // CTA: GitHub link (deriva automaticamente em GitHub Pages: https://{owner}.github.io/{repo}/)
+        const githubBtn = document.getElementById("cta-github");
+        try {
+          const host = window.location.hostname || "";
+          const path = window.location.pathname || "/";
+          const isGithubPages = host.endsWith(".github.io");
+          if (isGithubPages) {
+            const owner = host.replace(".github.io", "");
+            const parts = path.split("/").filter(Boolean);
+            const repo = parts.length ? parts[0] : "";
+            if (owner && repo) {
+              githubBtn.href = `https://github.com/${owner}/${repo}`;
+              githubBtn.target = "_blank";
+            }
+          }
+        } catch (_) {
+          // se não der para inferir, mantém como '#'
+        }
+
+        // Copiar comandos
+        const copyBtn = document.getElementById("copyCmd");
+        const cmdBlock = document.getElementById("cmdBlock");
+        copyBtn.addEventListener("click", async () => {
+          const text = cmdBlock.textContent.trim();
+          try {
+            await navigator.clipboard.writeText(text);
+            copyBtn.textContent = "Copiado";
+            setTimeout(() => (copyBtn.textContent = "Copiar"), 1400);
+          } catch (e) {
+            // fallback simples
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+            copyBtn.textContent = "Copiado";
+            setTimeout(() => (copyBtn.textContent = "Copiar"), 1400);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

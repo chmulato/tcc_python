@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apostila Guia — Dual Reality (RU ↔ Engenharia Química)</title>
+    <meta
+      name="description"
+      content="Apostila guia do projeto: método Feynman + rigor de Engenharia Química (balanços, holdup, gargalo, tempo de residência) com links diretos para o código."
+    />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" href="../assets/imagens/folder.png" />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- KaTeX (LaTeX rendering) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+    />
+
+    <style>
+      :root {
+        --bg: #0b1220;
+        --surface: rgba(255, 255, 255, 0.06);
+        --line: rgba(255, 255, 255, 0.14);
+        --text: #eef2ff;
+        --muted: rgba(238, 242, 255, 0.72);
+
+        --ru: rgba(29, 78, 216, 0.16);
+        --ind: rgba(148, 163, 184, 0.14);
+        --accent: #0ea5e9;
+        --radius: 18px;
+      }
+
+      body {
+        background:
+          radial-gradient(1200px 700px at 12% 5%, rgba(29, 78, 216, 0.20), transparent 56%),
+          radial-gradient(900px 560px at 90% 12%, rgba(148, 163, 184, 0.16), transparent 52%),
+          linear-gradient(180deg, #08101d, var(--bg));
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+
+      a {
+        color: rgba(238, 242, 255, 0.92);
+      }
+
+      .navglass {
+        position: sticky;
+        top: 0;
+        z-index: 1030;
+        backdrop-filter: blur(12px);
+        background: rgba(9, 15, 29, 0.62);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      }
+
+      .brandmark {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(29, 78, 216, 0.35), rgba(148, 163, 184, 0.22));
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+
+      .brandmark svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        transform: translateY(-140%);
+        background: #ffffff;
+        color: #0b1220;
+        padding: 10px 12px;
+        border-radius: 10px;
+        z-index: 1000;
+        text-decoration: none;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+      }
+      .skip-link:focus {
+        transform: translateY(0);
+        outline: 3px solid rgba(14, 165, 233, 0.65);
+        outline-offset: 2px;
+      }
+
+      .hero {
+        padding: 26px 0 10px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(238, 242, 255, 0.86);
+        font-size: 0.95rem;
+      }
+
+      .kicker svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .title {
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+        font-size: clamp(28px, 3.0vw, 44px);
+        margin: 14px 0 10px;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        max-width: 90ch;
+        font-size: 1.04rem;
+        line-height: 1.65;
+      }
+
+      .cardx {
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 18px 70px rgba(0, 0, 0, 0.28);
+      }
+
+      .toc a {
+        text-decoration: none;
+      }
+      .toc a:hover {
+        text-decoration: underline;
+      }
+
+      .section {
+        padding: 18px 0;
+      }
+
+      .h2 {
+        margin: 0 0 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .analogy {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .analogy .head {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .analogy .head strong {
+        letter-spacing: -0.01em;
+      }
+      .analogy .body {
+        padding: 12px 14px 14px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(238, 242, 255, 0.84);
+        font-size: 0.92rem;
+        white-space: nowrap;
+      }
+
+      .imgwrap {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 12px;
+      }
+      .imgwrap img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .caption {
+        margin-top: 10px;
+        color: rgba(238, 242, 255, 0.72);
+        font-size: 0.95rem;
+        line-height: 1.55;
+      }
+
+      .placeholder {
+        border-radius: 14px;
+        border: 1px dashed rgba(255, 255, 255, 0.26);
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      pre,
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+
+      pre {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(0, 0, 0, 0.26);
+        padding: 14px;
+        overflow-x: auto;
+      }
+
+      .accordion-button {
+        background: rgba(255, 255, 255, 0.06) !important;
+        color: rgba(238, 242, 255, 0.90) !important;
+        border-radius: 14px !important;
+      }
+
+      .accordion-item {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+
+      .accordion-body {
+        color: rgba(238, 242, 255, 0.78);
+        line-height: 1.65;
+      }
+
+      footer {
+        margin-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(9, 15, 29, 0.56);
+      }
+      .footlink {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        text-decoration: none;
+      }
+      .footlink:hover {
+        background: rgba(255, 255, 255, 0.09);
+        text-decoration: none;
+      }
+      .footlink svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      :focus-visible {
+        outline: 3px solid rgba(14, 165, 233, 0.62);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="navglass" role="banner">
+      <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Navegação">
+        <div class="container py-2">
+          <a class="navbar-brand d-flex align-items-center gap-2" href="../portal.html" aria-label="Voltar à Sala Digital">
+            <span class="brandmark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4.5 17.5V6.5C4.5 5.67 5.17 5 6 5h12c.83 0 1.5.67 1.5 1.5v11c0 .83-.67 1.5-1.5 1.5H6c-.83 0-1.5-.67-1.5-1.5Z"
+                  stroke="rgba(238,242,255,0.90)"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M7 9h10M7 12h6M7 15h8"
+                  stroke="rgba(14,165,233,0.95)"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            <span class="d-flex flex-column lh-sm">
+              <strong class="fs-6">Apostila Guia</strong>
+              <span class="opacity-75" style="font-size: 0.86rem">Dual Reality (RU ↔ Industrial)</span>
+            </span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navLinks"
+            aria-controls="navLinks"
+            aria-expanded="false"
+            aria-label="Abrir menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navLinks">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
+              <li class="nav-item"><a class="nav-link" href="../portal.html">Sala Digital</a></li>
+              <li class="nav-item"><a class="nav-link" href="../index.html">Case (paper)</a></li>
+              <li class="nav-item"><a class="nav-link" href="tcc.html">TCC (HTML)</a></li>
+              <li class="nav-item">
+                <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python">GitHub</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero">
+        <div class="container">
+          <span class="kicker">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M4 16c3-2 5-2 8 0s5 2 8 0"
+                stroke="rgba(14,165,233,0.95)"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4 10c3-2 5-2 8 0s5 2 8 0"
+                stroke="rgba(29,78,216,0.95)"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+            </svg>
+            Método Feynman → Rigor de Engenharia Química
+          </span>
+
+          <h1 class="title">Apostila Guia — Do RU à Engenharia Química</h1>
+          <p class="subtitle mb-0">
+            Dois universos paralelos (serviços e processos químicos). Um motor matemático:
+            <strong>balanço</strong>, <strong>holdup</strong>, <strong>gargalo</strong> e <strong>tempo de residência</strong>.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="row g-3">
+            <div class="col-12 col-lg-7">
+              <div class="cardx p-3">
+                <h2 class="h5 mb-2">Como usar</h2>
+                <ul class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+                  <li>Comece sempre pelo <strong>Box de Analogia</strong> (RU ↔ Industrial).</li>
+                  <li>Entenda com linguagem simples; depois suba para termos de engenharia (balanços, cinética, etc.).</li>
+                  <li>Use os links “🔗 Código” para ver onde o simulador implementa a teoria.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-5">
+              <div class="cardx p-3 toc" aria-label="Sumário">
+                <h2 class="h5 mb-2">Sumário</h2>
+                <div class="d-grid gap-2">
+                  <a href="#mapa-imagens">Mapa de imagens estratégicas</a>
+                  <a href="#cap1">Cap. 1 — O Fluxograma</a>
+                  <a href="#cap2">Cap. 2 — O Acúmulo (Holdup)</a>
+                  <a href="#cap3">Cap. 3 — O Gargalo</a>
+                  <a href="#cap4">Cap. 4 — Tempo de Residência (\(\tau = V/Q\))</a>
+                  <a href="#cap5">Cap. 5 — Termodinâmica e Cinética</a>
+                  <a href="#apA">Apêndice A — Reprodutibilidade</a>
+                  <a href="#apB">Apêndice B — Onde está no código</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="mapa-imagens">
+        <div class="container">
+          <h2 class="h2 h4">Mapa de imagens estratégicas (e placeholders)</h2>
+          <div class="cardx p-3">
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80)">
+              Você pode substituir os placeholders por infográficos próprios. Abaixo, já usamos as figuras existentes do repositório quando possível.
+            </p>
+            <ul class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              <li>
+                <strong>IMAGEM 1 — O Fluxograma</strong>: paralelo visual entre linha de servir (bandejas/min) e fluxograma de processo (P&ID simplificado).
+              </li>
+              <li><strong>IMAGEM 2 — O Acúmulo</strong>: holdup comparando fila de espera e volume de controle (tanque).</li>
+              <li>
+                <strong>IMAGEM 3 — O Gargalo</strong>: pressão/vazão (capacidade vs demanda) comparado com taxa de processamento do caixa.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cap 1 -->
+      <section class="section" id="cap1">
+        <div class="container">
+          <h2 class="h2 h4">Capítulo 1 — O Fluxograma (a mesma história em dois rótulos)</h2>
+
+          <div class="analogy">
+            <div class="head">
+              <strong>Box de Analogia (RU ↔ Industrial)</strong>
+              <span class="pill">entrada → buffers → operação → residência → saída</span>
+            </div>
+            <div class="body">
+              <div class="row g-2">
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ru)">
+                    <strong>RU</strong>: pessoas entram, esperam, são atendidas, ocupam mesas e saem.
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ind)">
+                    <strong>Industrial</strong>: material entra, estoca/espera, reage/se transforma, acumula em volumes e sai como produto.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Feynman (explicação simples)</h3>
+            <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              Pense no sistema como “caixas” conectadas por setas. Cada caixa tem capacidade. Se entra mais do que sai, o sistema
+              acumula (fila/estoque).
+            </p>
+          </div>
+
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-lg-6">
+              <div class="imgwrap">
+                <img src="figuras/fig_02a_fluxo_servico.png" alt="IMAGEM 1A: Fluxo em sistema de serviços (DES)" loading="lazy" />
+                <div class="caption"><strong>IMAGEM 1A</strong>: Fluxo em sistema de serviços (linha de servir → filas → serviço → mesa).</div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="imgwrap">
+                <img
+                  src="figuras/fig_02b_fluxo_processo.png"
+                  alt="IMAGEM 1B: Fluxo em sistema de processo (engenharia química)"
+                  loading="lazy"
+                />
+                <div class="caption"><strong>IMAGEM 1B</strong>: Fluxo em sistema de processo (reagentes → reator (τ) → separação → produto).</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion mt-3" id="acc1">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="acc1h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc1c" aria-expanded="false" aria-controls="acc1c">
+                  Curiosidade técnica: por que “fluxograma” já é um balanço implícito?
+                </button>
+              </h2>
+              <div id="acc1c" class="accordion-collapse collapse" aria-labelledby="acc1h" data-bs-parent="#acc1">
+                <div class="accordion-body">
+                  Qualquer seta sugere contabilidade: “o que passa por aqui por unidade de tempo”. Isso é o início de um balanço
+                  de massa (ou de entidades).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cap 2 -->
+      <section class="section" id="cap2">
+        <div class="container">
+          <h2 class="h2 h4">Capítulo 2 — O Acúmulo (Holdup): quando “some” gente (ou material)</h2>
+
+          <div class="analogy">
+            <div class="head">
+              <strong>Box de Analogia (RU ↔ Industrial)</strong>
+              <span class="pill">Acúmulo = estado do sistema</span>
+            </div>
+            <div class="body">
+              <div class="row g-2">
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ru)">
+                    <strong>RU</strong>: se a saída é limitada, pessoas acumulam em filas/mesas (holdup).
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ind)">
+                    <strong>Industrial</strong>: se a etapa limitante restringe a vazão, o material acumula em volumes/buffers.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Balanço (forma geral)</h3>
+            <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              \[
+              \text{Entrada} - \text{Saída} + \text{Geração} - \text{Consumo} = \text{Acúmulo}
+              \]
+            </p>
+          </div>
+
+          <div class="row g-3 mt-1">
+            <div class="col-12">
+              <div class="imgwrap">
+                <img src="figuras/fig_05_ocupacao_e_filas.png" alt="IMAGEM 2: Holdup e buffers por minuto" loading="lazy" />
+                <div class="caption"><strong>IMAGEM 2</strong>: holdup (mesas ocupadas) e buffers (filas) ao longo do tempo.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion mt-3" id="acc2">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="acc2h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc2c" aria-expanded="false" aria-controls="acc2c">
+                  Curiosidade técnica: holdup vs WIP vs inventário
+                </button>
+              </h2>
+              <div id="acc2c" class="accordion-collapse collapse" aria-labelledby="acc2h" data-bs-parent="#acc2">
+                <div class="accordion-body">
+                  <ul class="mb-0">
+                    <li><strong>Holdup</strong>: quantidade retida dentro do volume/equipamento.</li>
+                    <li><strong>WIP</strong>: inventário em processo entre etapas.</li>
+                    <li><strong>Fila</strong>: WIP em forma operacional (entidades aguardando capacidade).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cap 3 -->
+      <section class="section" id="cap3">
+        <div class="container">
+          <h2 class="h2 h4">Capítulo 3 — O Gargalo: a etapa que governa o sistema</h2>
+
+          <div class="analogy">
+            <div class="head">
+              <strong>Box de Analogia (RU ↔ Industrial)</strong>
+              <span class="pill">gargalo governa o throughput</span>
+            </div>
+            <div class="body">
+              <div class="row g-2">
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ru)">
+                    <strong>RU</strong>: um caixa lento domina → fila cresce a montante.
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ind)">
+                    <strong>Industrial</strong>: uma restrição ativa (reator, válvula, bomba, troca térmica) domina → o resto “espera”.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Saturação (intuição de filas)</h3>
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              \(\rho = \lambda/\mu\). Quando \(\rho \to 1\), pequenas variações fazem a fila crescer muito.
+            </p>
+            <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              🔗 Código (KPIs e gargalo): <a target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/src/simulador.py#L647-L683"
+                >`src/simulador.py` (bottleneck)</a
+              >
+            </p>
+          </div>
+
+          <div class="mt-3 placeholder" aria-label="Placeholder de infografia do gargalo">
+            <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
+              <div>
+                <strong>IMAGEM 3 (placeholder)</strong>
+                <div style="color: rgba(238, 242, 255, 0.78); line-height: 1.55; margin-top: 6px">
+                  Gráfico “capacidade vs demanda” (curva). Rotule:
+                  <strong>capacidade do caixa (\(\mu\))</strong> e <strong>taxa de chegada (\(\lambda\))</strong>.
+                  Quando \(\lambda > \mu\), a região de “fila explode” vira a analogia da limitação industrial (pressão/vazão).
+                </div>
+              </div>
+              <span class="pill">substituir por infográfico final</span>
+            </div>
+          </div>
+
+          <div class="accordion mt-3" id="acc3">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="acc3h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc3c" aria-expanded="false" aria-controls="acc3c">
+                  Curiosidade técnica: gargalo não é “o que está cheio”, é “o que limita”
+                </button>
+              </h2>
+              <div id="acc3c" class="accordion-collapse collapse" aria-labelledby="acc3h" data-bs-parent="#acc3">
+                <div class="accordion-body">
+                  Um buffer cheio pode ser sintoma. O gargalo é a causa: a etapa cuja capacidade efetiva governa o throughput.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cap 4 -->
+      <section class="section" id="cap4">
+        <div class="container">
+          <h2 class="h2 h4">Capítulo 4 — Tempo de Residência: \(\tau = V/Q\)</h2>
+
+          <div class="analogy">
+            <div class="head">
+              <strong>Box de Analogia (RU ↔ Industrial)</strong>
+              <span class="pill">tempo médio no sistema</span>
+            </div>
+            <div class="body">
+              <div class="row g-2">
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ru)">
+                    <strong>RU</strong>: “volume” (pessoas no sistema) ↑ ou vazão de saída ↓ ⇒ \(\tau\) ↑.
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ind)">
+                    <strong>Industrial</strong>: \(V\) do reator/tanque e \(Q\) governam residência ⇒ conversão, estabilidade e controle.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">A matemática (clara e unitária)</h3>
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              \[
+              \tau = \frac{V}{Q}
+              \]
+            </p>
+            <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              No RU: \(V \approx\) número médio de pessoas no sistema (holdup). \(Q \approx\) throughput (pessoas/min).
+              Em regime, isso é a Lei de Little: \(L=\lambda W\Rightarrow W=L/\lambda\).
+            </p>
+          </div>
+
+          <div class="mt-3">
+            <h3 class="h6 mb-2">Trecho de “código pedagógico” (didático)</h3>
+            <pre><code># τ = V / Q
+# V: "volume" médio no sistema (ex.: pessoas médias no RU / holdup)
+# Q: vazão de saída (ex.: pessoas por minuto)
+
+def tempo_de_residencia(V: float, Q: float) -&gt; float:
+    if Q &lt;= 0:
+        return 0.0
+    return V / Q</code></pre>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Como o simulador mede \(\tau\) no DES</h3>
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              O simulador mede residência por entidade: \(dt = t_{out} - t_{in}\), agrega e calcula a média.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="pill" target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/src/simulador.py#L617-L703"
+                >🔗 Código: residence time (DES)</a
+              >
+              <a class="pill" target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/scripts/gerar_figuras.py#L261-L270"
+                >🔗 Código: histograma (Fig 06)</a
+              >
+            </div>
+          </div>
+
+          <div class="accordion mt-3" id="acc4">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="acc4h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc4c" aria-expanded="false" aria-controls="acc4c">
+                  Curiosidade técnica: por que \(\tau = V/Q\) continua válido em DES?
+                </button>
+              </h2>
+              <div id="acc4c" class="accordion-collapse collapse" aria-labelledby="acc4h" data-bs-parent="#acc4">
+                <div class="accordion-body">
+                  Mesmo com variabilidade, a relação aparece como média em regime: o sistema oscila, mas o “orçamento” de fluxo ainda existe.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cap 5 -->
+      <section class="section" id="cap5">
+        <div class="container">
+          <h2 class="h2 h4">Capítulo 5 — Termodinâmica e Cinética (ponte conceitual)</h2>
+
+          <div class="analogy">
+            <div class="head">
+              <strong>Box de Analogia (RU ↔ Industrial)</strong>
+              <span class="pill">taxas efetivas mudam o sistema</span>
+            </div>
+            <div class="body">
+              <div class="row g-2">
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ru)">
+                    <strong>RU</strong>: tempo de serviço muda filas e throughput.
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="p-2 rounded-3" style="background: var(--ind)">
+                    <strong>Industrial</strong>: cinética/termodinâmica mudam taxas e limites ⇒ mudam acúmulos e vazões.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              Em engenharia: <strong>cinética</strong> ↔ taxa de processamento (\(\mu\)); <strong>termodinâmica</strong> ↔ limites de equilíbrio;
+              <strong>transferência</strong> ↔ limitações que viram gargalos (massa/energia/momento).
+            </p>
+          </div>
+
+          <div class="accordion mt-3" id="acc5">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="acc5h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc5c" aria-expanded="false" aria-controls="acc5c">
+                  Curiosidade técnica: “pessoa” e “molécula” são a mesma entidade matemática
+                </button>
+              </h2>
+              <div id="acc5c" class="accordion-collapse collapse" aria-labelledby="acc5h" data-bs-parent="#acc5">
+                <div class="accordion-body">
+                  O que muda é a interpretação do estado e das taxas. O motor observa entidades, eventos e restrições.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Appendices -->
+      <section class="section" id="apA">
+        <div class="container">
+          <h2 class="h2 h4">Apêndice A — Figuras e reprodutibilidade</h2>
+          <div class="cardx p-3">
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              Para regenerar as figuras do case usadas no <code>index.html</code>:
+            </p>
+            <pre><code>python scripts/gerar_figuras.py</code></pre>
+            <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              🔗 Código: <a target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/scripts/gerar_figuras.py">`scripts/gerar_figuras.py`</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="apB">
+        <div class="container">
+          <h2 class="h2 h4">Apêndice B — Onde estudar a teoria “dentro do código”</h2>
+          <div class="cardx p-3">
+            <ul class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              <li>
+                <strong>Tempo de residência / média do ciclo</strong>:
+                <a target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/src/simulador.py#L617-L703"
+                  >`src/simulador.py` (DES)</a
+                >
+              </li>
+              <li>
+                <strong>Throughput / holdup / filas (figuras 04–06)</strong>:
+                <a target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/scripts/gerar_figuras.py#L230-L270"
+                  >`scripts/gerar_figuras.py`</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container py-4">
+        <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
+          <div style="color: rgba(238, 242, 255, 0.68)">
+            Apostila Guia · Leitura responsiva · Fórmulas renderizadas (KaTeX)
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="footlink" href="../portal.html">Sala Digital</a>
+            <a class="footlink" href="../index.html">Case</a>
+            <a class="footlink" href="apostila_guia.md">Versão Markdown</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- KaTeX auto-render -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+    ></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        try {
+          if (window.renderMathInElement) {
+            window.renderMathInElement(document.body, {
+              delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "\\[", right: "\\]", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+              ],
+              throwOnError: false,
+            });
+          }
+        } catch (_) {
+          // best effort
+        }
+      });
+    </script>
+  </body>
+</html>
+

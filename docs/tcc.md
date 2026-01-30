@@ -3,8 +3,8 @@
 
 ```plaintext
 +---------------------------------------------------------------+
-|           SIMULADOR DE TEMPO DE PERMANÊNCIA EM                |
-|                    RESTAURANTES POR QUILO                     |
+|          SIMULAÇÃO DE PROCESSOS DINÂMICOS:                    |
+|   DO RESTAURANTE UNIVERSITÁRIO À ENGENHARIA QUÍMICA           |
 |---------------------------------------------------------------|
 |   _______         _______         _______         _______     |
 |  |       |       |       |       |       |       |       |    |
@@ -28,7 +28,7 @@ UNIVERSIDADE MICROSOFT COPILOT
 FACULDADE DE ENGENHARIA
 CURSO DE ENGENHARIA DE PROCESSOS
 
-SIMULADOR DE TEMPO DE PERMANÊNCIA EM RESTAURANTES POR QUILO
+SIMULAÇÃO DE PROCESSOS DINÂMICOS: DO RESTAURANTE UNIVERSITÁRIO À ENGENHARIA QUÍMICA
 
 Trabalho de Conclusão de Curso apresentado ao Curso de Engenharia de Processos da Universidade Microsoft Copilot, como requisito parcial para obtenção do título de Engenheiro de Processos.
 
@@ -45,7 +45,7 @@ UNIVERSIDADE MICROSOFT COPILOT
 FACULDADE DE ENGENHARIA
 CURSO DE ENGENHARIA DE PROCESSOS
 
-SIMULADOR DE TEMPO DE PERMANÊNCIA EM RESTAURANTES POR QUILO
+SIMULAÇÃO DE PROCESSOS DINÂMICOS: DO RESTAURANTE UNIVERSITÁRIO À ENGENHARIA QUÍMICA
 
 Trabalho de Conclusão de Curso apresentado ao Curso de Engenharia de Processos da Universidade Microsoft Copilot, como requisito parcial para obtenção do título de Engenheiro de Processos.
 
@@ -88,9 +88,9 @@ A todos que, direta ou indiretamente, colaboraram para a concretização deste T
 
 ## Resumo
 
-Este Trabalho de Conclusão de Curso apresenta o desenvolvimento de um simulador computacional para análise e otimização do tempo de permanência de clientes em restaurantes por quilo. O objetivo principal é fornecer aos gestores uma ferramenta prática e acessível para avaliar diferentes configurações operacionais, identificar gargalos, reduzir tempos de espera e melhorar a experiência do cliente. O simulador foi implementado em Python, com interface gráfica intuitiva, permitindo a entrada manual de dados ou importação de arquivos, além de gerar relatórios executivos em PDF e visualizações animadas do layout do restaurante. Foram realizados testes com dados reais e simulados, demonstrando a utilidade do sistema para apoiar a tomada de decisão baseada em evidências. Os resultados evidenciam que a simulação computacional pode contribuir significativamente para a eficiência operacional, a profissionalização da gestão e a competitividade dos restaurantes. O trabalho também discute estratégias de comercialização, possibilidades de expansão futura e recomendações para adoção e desenvolvimento contínuo da solução.
+Este Trabalho de Conclusão de Curso apresenta o desenvolvimento de um **motor de Simulação por Eventos Discretos (DES)** para análise estocástica de **processos de fluxo** com capacidade finita, filas e ocupação. O restaurante universitário é utilizado como **prova de conceito** por representar, de forma intuitiva, o mesmo problema estrutural de plantas industriais: maximizar **throughput** (vazão de saída) sob restrições de recursos, minimizando **holdup** (acúmulo/inventário em processo) e tempos de residência. O sistema foi implementado em Python com interface gráfica, importação de parâmetros (YAML/Excel) e leitura de layout em ASCII, gerando relatórios executivos em PDF, gráficos e visualizações do comportamento do sistema ao longo do tempo. Os resultados evidenciam a capacidade do framework em identificar gargalos, quantificar regimes de saturação e sustentar intervenções de dimensionamento e rearranjo. Por fim, discute-se a evolução do trabalho como PoC para simuladores industriais mais complexos, incluindo aplicações em contextos como Hidrometalurgia Seletiva (Projeto ETE / Terras Raras).
 
-**Palavras-chave:** simulação, restaurantes por quilo, tempo de permanência, otimização, gestão operacional, Python.
+**Palavras-chave:** simulação por eventos discretos, engenharia de processos, teoria das filas, throughput, holdup, tempo de residência, Python.
 
 ---
 
@@ -98,32 +98,34 @@ Este Trabalho de Conclusão de Curso apresenta o desenvolvimento de um simulador
 
 ## Abstract
 
-This Final Paper presents the development of a computational simulator for the analysis and optimization of customer dwell time in pay-by-weight restaurants. The main objective is to provide managers with a practical and accessible tool to evaluate different operational configurations, identify bottlenecks, reduce waiting times, and improve the customer experience. The simulator was implemented in Python, with an intuitive graphical interface, allowing manual data entry or file import, as well as generating executive reports in PDF and animated visualizations of the restaurant layout. Tests were carried out with real and simulated data, demonstrating the usefulness of the system to support evidence-based decision making. The results show that computational simulation can significantly contribute to operational efficiency, professional management, and restaurant competitiveness. The work also discusses commercialization strategies, future expansion possibilities, and recommendations for the adoption and continuous development of the solution.
+This Final Paper presents the development of a **Discrete-Event Simulation (DES) engine** for stochastic analysis of **flow processes** with finite capacity, queues, and occupancy. A university restaurant is used as a **proof of concept** because it exposes, at human scale, the same structural challenge found in industrial plants: maximize **throughput** under resource constraints while minimizing **holdup/WIP** and residence time. The system was implemented in Python with a graphical interface, parameter import (YAML/Excel), and an ASCII layout as a spatial flowsheet, producing PDF reports, charts, and time-based visualizations. Results demonstrate the framework’s ability to identify bottlenecks, quantify saturation regimes, and support capacity/layout interventions. Finally, the work positions this TCC as a PoC towards more complex industrial simulators, including applications such as Selective Hydrometallurgy (ETE Project / Rare Earths).
 
-**Keywords:** simulation, pay-by-weight restaurants, dwell time, optimization, operational management, Python.
+**Keywords:** discrete-event simulation, process engineering, queuing theory, throughput, holdup, residence time, Python.
 
 ---
 
 ## Lista de Figuras
 
-1. Fluxograma do fluxo do cliente em um restaurante
-2. Linha do tempo do cliente em um restaurante
-3. Figura A5 - Exemplo de layout ASCII do restaurante
-4. Diagrama: Variação do fluxo de chegada de clientes ao longo do tempo
-5. Esquema do fluxo de filas em um restaurante
-6. Exemplo de histograma de clientes atendidos e não atendidos
-7. Tela esquemática da interface gráfica do simulador
-8. Fluxograma da Simulação
+As figuras abaixo estão alinhadas à apresentação do case (`index.html`) e podem ser reproduzidas por `python scripts/gerar_figuras.py` (saída em `docs/figuras/`).
+
+1. [Figura 1 — Esquema de analogia (serviços ↔ processos)](figuras/fig_01_esquema_analogia.png)
+2. [Figura 2A — Fluxo em sistema de serviços (DES)](#fluxograma-do-fluxo-do-cliente-em-um-restaurante)
+3. [Figura 2B — Fluxo em sistema de processo (engenharia química)](figuras/fig_02b_fluxo_processo.png)
+4. [Figura 3 — Layout base (planta ASCII renderizada)](figuras/fig_03_layout_base.png)
+5. [Figura 4 — Throughput ao longo do tempo](figuras/fig_04_throughput.png)
+6. [Figura 5 — Holdup e buffers (filas) por minuto](figuras/fig_05_ocupacao_e_filas.png)
+7. [Figura 6 — Distribuição do tempo de residência](figuras/fig_06_distribuicao_residencia.png)
+8. [Figura 7 — Antes vs Depois (intervenção de capacidade)](figuras/fig_07_antes_depois.png)
 
 ---
 
 ## Lista de Tabelas
 
-1. Tabela 1 – Parâmetros utilizados na simulação (layout 5.1.1)
-2. Tabela 2 – Efeitos da variação dos principais parâmetros sobre o desempenho do restaurante
-3. Tabela 3 – Exemplos de valores para pacotes de entrega e monetização
-4. Ficha 01 - B.1 - Ficha de Coleta de Dados em Campo
-5. Ficha 02 - B.2 - Ficha Comparativa para Análise de Variação de Parâmetros
+1. Tabela 1 – Parâmetros do cenário base (alimentação, capacidade e residência) (layout 5.1.1)
+2. Tabela 2 – Sensibilidade: efeitos da variação de parâmetros sobre throughput/holdup
+3. Tabela 3 – Apêndice: exemplos de valores para pacotes de entrega e monetização
+4. Ficha 01 - B.1 - Ficha de Coleta de Dados em Campo (apêndice)
+5. Ficha 02 - B.2 - Ficha Comparativa para Análise de Variação de Parâmetros (apêndice)
 
 ---
 
@@ -233,21 +235,21 @@ This Final Paper presents the development of a computational simulator for the a
 
 # Capítulo 1 – Introdução
 
-A gestão eficiente do tempo de permanência dos clientes em restaurantes é um fator determinante para o sucesso operacional e financeiro desses estabelecimentos. Com o aumento da concorrência e a busca constante por excelência no atendimento, torna-se fundamental compreender os desafios enfrentados no dia a dia dos restaurantes, especialmente em relação à formação de filas, ocupação de mesas e fluxo de clientes.
+Sistemas de serviços com alta variabilidade e recursos finitos podem ser analisados como **processos dinâmicos**: entidades entram com uma taxa (alimentação), atravessam etapas com capacidade limitada (operações unitárias) e acumulam em buffers (filas). Sob essa ótica, o restaurante universitário é um **Sistema de Eventos Discretos** que permite demonstrar, de forma didática, princípios universais de Engenharia de Processos, como throughput, holdup e tempo de residência.
 
-Este capítulo apresenta a contextualização do problema, justificativa para o desenvolvimento de um simulador, os objetivos do trabalho, a metodologia adotada e a estrutura geral do projeto, fornecendo uma visão inicial sobre a importância do tema e o propósito deste estudo.
+Este capítulo apresenta a contextualização do problema sob o enfoque de **Engenharia de Processos aplicada a serviços**, a justificativa do uso de DES como ferramenta de análise, os objetivos do trabalho, a metodologia adotada e a estrutura geral do projeto.
 
 ---
 
 ## 1.1 Contextualização do problema enfrentado por restaurantes
 
-O setor de restaurantes enfrenta desafios constantes relacionados à gestão eficiente do tempo de permanência dos clientes em seus estabelecimentos. Em horários de pico, é comum a formação de filas, atrasos no atendimento e insatisfação dos clientes devido à espera excessiva por mesas, buffet ou pagamento. Esses gargalos impactam diretamente a experiência do consumidor, a rotatividade das mesas e, consequentemente, a receita do negócio.
+Sistemas de atendimento (como restaurantes) enfrentam desafios recorrentes quando operam próximos à saturação: em horários de pico, a alimentação (chegadas) supera a capacidade efetiva de serviço, resultando em **filas**, **atrasos** e degradação do nível de serviço. Do ponto de vista de processos, esses efeitos são interpretados como aumento de **holdup/WIP** e redução do throughput efetivo.
 
-Além disso, muitos restaurantes, especialmente de pequeno e médio porte, não dispõem de ferramentas adequadas para analisar e otimizar o fluxo de clientes em seu ambiente físico. A falta de dados e de simulações realistas dificulta a tomada de decisões estratégicas, como o dimensionamento do número de mesas, a disposição do buffet e a quantidade de caixas de pagamento.
+Além disso, muitas operações não dispõem de ferramentas quantitativas para analisar o comportamento emergente gerado por variabilidade, recursos limitados e layout físico. Sem simulação, decisões como dimensionamento de capacidade, paralelização de etapas e rearranjo de layout tendem a ser tomadas por tentativa e erro.
 
 Em um cenário de alta competitividade, a capacidade de prever e minimizar tempos de espera torna-se um diferencial importante para a fidelização dos clientes e a sustentabilidade do negócio.
 
-Diante desse contexto, torna-se fundamental o desenvolvimento de soluções que permitam aos gestores de restaurantes visualizar, simular e analisar o impacto de diferentes configurações operacionais sobre o tempo de residência dos clientes, possibilitando intervenções mais assertivas e baseadas em evidências.
+Diante desse contexto, torna-se fundamental o desenvolvimento de soluções que permitam visualizar, simular e analisar o impacto de diferentes configurações operacionais (capacidade/recursos/layout) sobre throughput, holdup e tempo de residência, possibilitando intervenções mais assertivas e baseadas em evidências.
 
 ### Fluxograma do fluxo do cliente em um restaurante
 
@@ -277,11 +279,11 @@ Diante desse contexto, torna-se fundamental o desenvolvimento de soluções que 
 
 ## 1.2 Justificativa da escolha pelo desenvolvimento de um simulador
 
-A escolha pelo desenvolvimento de um simulador para restaurantes se justifica pela necessidade de oferecer aos gestores uma ferramenta prática e acessível para análise e tomada de decisão. Métodos tradicionais de avaliação, como observação direta ou planilhas, muitas vezes não conseguem capturar a complexidade do fluxo de clientes, a dinâmica das filas e o impacto de diferentes configurações do ambiente físico.
+A escolha pelo desenvolvimento de um simulador se justifica pela necessidade de capturar, de forma controlada, a interação entre **variabilidade**, **restrições de capacidade** e **layout**. Métodos tradicionais (observação direta, planilhas) tendem a perder a dinâmica de filas e a influência de eventos transientes.
 
-O simulador permite testar cenários variados sem riscos operacionais, antecipando gargalos e avaliando o efeito de mudanças no layout, número de mesas, buffets ou caixas de pagamento. Dessa forma, é possível identificar oportunidades de otimização e melhorar a experiência do cliente, reduzindo tempos de espera e aumentando a rotatividade das mesas.
+O motor DES permite testar cenários sem riscos operacionais, antecipando gargalos e avaliando intervenções como aumento de capacidade, paralelização de recursos e rearranjo de layout. Dessa forma, é possível justificar mudanças com métricas (throughput, holdup, tempos de espera e residência).
 
-Além disso, a simulação computacional democratiza o acesso a técnicas avançadas de gestão, tradicionalmente restritas a grandes redes, tornando-as viáveis para pequenos e médios restaurantes. O desenvolvimento deste simulador visa, portanto, preencher uma lacuna no mercado, promovendo eficiência operacional e embasando decisões estratégicas de forma objetiva e baseada em dados.
+Além disso, este trabalho funciona como **Prova de Conceito (PoC)** para simuladores industriais mais complexos, como aqueles aplicados a processos de separação e hidrometalurgia (ex.: Projeto ETE / Terras Raras), demonstrando que a lógica de balanço de tempo e capacidade é universal.
 
 ---
 
@@ -289,29 +291,29 @@ Além disso, a simulação computacional democratiza o acesso a técnicas avanç
 
 ### Objetivo Geral
 
-Desenvolver um simulador computacional capaz de analisar e otimizar o tempo de permanência de clientes em restaurantes, permitindo a avaliação de diferentes configurações operacionais e auxiliando gestores na tomada de decisões estratégicas.
+Desenvolver um motor de simulação computacional capaz de analisar sistemas de fluxo com recursos finitos (DES), utilizando um restaurante universitário como prova de conceito para **identificar gargalos** e **otimizar throughput/holdup** por meio de intervenções em capacidade e layout.
 
 ### Objetivos Específicos
 
-- Mapear e modelar o fluxo de clientes em ambientes de restaurante, considerando filas, mesas, buffets e caixas de pagamento.
-- Implementar algoritmos de simulação que representem de forma realista o comportamento dos clientes e a dinâmica do atendimento.
-- Permitir a personalização de parâmetros como número de mesas, cadeiras, buffets, caixas e tempo médio de refeição.
-- Gerar relatórios executivos em PDF com indicadores de desempenho, gráficos e visualização do layout do restaurante.
-- Validar o simulador por meio de testes e análise de cenários, demonstrando sua utilidade para a gestão operacional.
+- Mapear e modelar o fluxo de entidades em um sistema de serviços (restaurante) como um processo com operações unitárias, buffers e holdup.
+- Implementar simulação por eventos discretos para capturar dinâmica de filas, saturação e variabilidade.
+- Permitir parametrização de alimentação, tempos de serviço, capacidades e layout (ASCII) para análise de cenários.
+- Gerar relatórios em PDF com indicadores de processo (throughput, holdup, tempos de espera/residência) e visualizações.
+- Validar o motor por meio de testes e comparação de cenários (antes/depois), demonstrando sua utilidade para diagnóstico e otimização.
 
 ---
 
 ## 1.4 Metodologia aplicada
 
-A metodologia adotada neste trabalho envolve o desenvolvimento de um simulador computacional baseado em técnicas de simulação por eventos discretos, amplamente utilizadas para modelar sistemas dinâmicos e complexos, como o ambiente de um restaurante. O processo metodológico seguiu as seguintes etapas principais:
+A metodologia adotada neste trabalho envolve o desenvolvimento de um simulador computacional baseado em **Simulação por Eventos Discretos (DES)**, técnica amplamente utilizada para modelar processos dinâmicos em serviços e indústrias. O processo metodológico seguiu as seguintes etapas principais:
 
-- **Levantamento de requisitos**: Identificação dos principais desafios operacionais enfrentados por restaurantes, com foco no fluxo de clientes, formação de filas e ocupação de mesas.
-- **Modelagem do sistema**: Representação do ambiente do restaurante por meio de layouts ASCII e definição dos parâmetros de simulação, como número de mesas, cadeiras, buffets, caixas e tempos médios de atendimento.
+- **Levantamento de requisitos**: Identificação de restrições de capacidade, etapas críticas e variáveis de alimentação/serviço.
+- **Modelagem do sistema**: Representação do ambiente por meio de layout ASCII e definição de parâmetros de simulação (taxa de chegada, tempos médios, capacidades e variabilidade).
 - **Implementação do simulador**: Desenvolvimento do software utilizando a linguagem Python, com módulos específicos para leitura de parâmetros, processamento do layout, execução da simulação e geração de relatórios.
 - **Validação e testes**: Realização de simulações em diferentes cenários para verificar a aderência do modelo à realidade e avaliar o impacto de alterações nos parâmetros operacionais.
-- **Análise dos resultados**: Interpretação dos dados gerados pelo simulador, com apoio de gráficos e relatórios em PDF, para subsidiar recomendações de melhorias na gestão do restaurante.
+- **Análise dos resultados**: Interpretação dos dados gerados com apoio de gráficos e relatórios (PDF) para subsidiar recomendações de melhoria do processo (capacidade/layout).
 
-A escolha pela simulação por eventos discretos se deve à sua capacidade de representar com fidelidade a dinâmica do atendimento em restaurantes, permitindo a análise detalhada de gargalos, tempos de espera e utilização dos recursos disponíveis.
+A escolha pela simulação por eventos discretos se deve à sua capacidade de representar a dinâmica de processos com variabilidade, permitindo analisar gargalos, tempos de espera, holdup e utilização de recursos.
 
 ### Diagrama de componentes do simulador
 
