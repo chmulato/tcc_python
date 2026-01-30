@@ -1,105 +1,114 @@
-# Aula 03 — Conservação de Massa: o que entra tem que sair (ou acumular)
+# Aula 03 — Balanço (Conservação): Entrada − Saída = Acúmulo
 
-> **Contexto deste repositório:** esta aula é o “coração” do reenquadramento.
-> No restaurante, o balanço é de **pessoas**; na indústria, é de **massa/energia/espécies químicas**.
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Iniciante (já fez Aula 01–02) |
+| **Tempo estimado** | 25–35 min |
+| **Pré-requisitos** | Aula 01 e Aula 02 |
+| **Entrega** | 1 conclusão baseada em gráficos + 1 frase de balanço |
 
-## Guia rápido
-- **Tempo estimado**: 25–35 min
-- **Pré-requisitos**: Aula 01 e Aula 02
-- **Materiais**:
-  - `docs/figuras/fig_04_throughput.png` (saída/throughput)
-  - `docs/figuras/fig_05_ocupacao_e_filas.png` (acúmulo/holdup)
-  - `SIMULATING.md` (métricas e parâmetros)
+> **Ideia central:** quando você vê fila crescer, você está vendo **acúmulo positivo**. E acúmulo positivo acontece quando, por algum período, **Entrada > Saída**.
 
-## Objetivo da aula
-Entender a lógica de **balanço** (conservação) de forma intuitiva e aplicá-la para interpretar filas, ocupação e throughput no simulador.
+## Objetivos de aprendizagem
+
+Ao final desta aula, você consegue:
+
+- aplicar o balanço simplificado: **Acúmulo = Entrada − Saída**;
+- interpretar gráficos de saída (throughput) e acúmulo (holdup/filas);
+- escrever uma conclusão causal, e não descritiva (“fila aumentou porque…”).
+
+## Materiais (links do repositório)
+
+- Figuras: `../docs/figuras/fig_04_throughput.png` e `../docs/figuras/fig_05_ocupacao_e_filas.png`
+- Guia técnico: `../docs/SIMULATING.html`
+- Paper interativo (legendas): `../docs/index.html`
 
 ---
 
-## Explicação simples (analogia do dia a dia)
+## 1) Intuição: estacionamento (ou tanque)
+
 Pense em um estacionamento:
 
-- carros **entram**;
-- alguns **saem**;
-- o resto **fica dentro**.
+- carros entram;
+- alguns saem;
+- o resto fica dentro.
 
-Se entram mais carros do que saem, o estacionamento **enche**. Se saem mais do que entram, ele **esvazia**.
-
-No restaurante, é igual:
-
-- entram clientes (chegadas),
-- saem clientes (atendidos/saídas),
-- o resto fica acumulado (filas + mesas ocupadas).
-
-[Imagem: tanque enchendo e esvaziando, comparando com fila]
-
-Sugestões de figuras do projeto:
-
-- `docs/figuras/fig_04_throughput.png` (saída)
-- `docs/figuras/fig_05_ocupacao_e_filas.png` (acúmulo)
+Se entra mais do que sai, ele enche. Se sai mais do que entra, ele esvazia.  
+No RU é igual: **chegadas** (entrada), **saídas** (clientes finalizados), **acúmulo** (fila + ocupação).
 
 ---
 
-## O salto técnico (Balanço de Massa)
-Em Engenharia Química, a forma geral do balanço é:
+## 2) Forma de engenharia (sem “salto de fé”)
 
-\[
-\text{Entrada} - \text{Saída} + \text{Geração} - \text{Consumo} = \text{Acúmulo}
-\]
+Em Engenharia Química, a forma geral é:
 
-No restaurante (serviços), normalmente não há “reação química”, então:
+```text
+Entrada − Saída + Geração − Consumo = Acúmulo
+```
 
-- **Geração/Consumo ≈ 0**
+No RU, normalmente não há geração/consumo de “clientes” dentro do sistema (ninguém surge do nada), então:
 
-Fica:
+```text
+Entrada − Saída = Acúmulo
+```
 
-\[
-\text{Entrada} - \text{Saída} = \text{Acúmulo}
-\]
+Tradução direta:
 
-### Tradução direta
-| Termo do balanço | No simulador |
+| Termo | No RU (simulador) |
 |---|---|
 | Entrada | chegadas (feed) |
 | Saída | clientes que saem do sistema |
 | Acúmulo | filas + ocupação (holdup/WIP) |
 
-Se a fila cresce, é porque, por algum período, **Entrada > Saída**.
+> **Regra de leitura:** fila crescendo é um tipo de acúmulo crescendo — logo, por um período, Entrada > Saída.
 
 ---
 
-## Desafio prático (para testar no software)
-1) Rode uma simulação e observe `docs/figuras/fig_04_throughput.png` (saída no tempo).
-2) Em seguida, observe `docs/figuras/fig_05_ocupacao_e_filas.png` (holdup e buffers).
+## 3) Desafio de simulação (reprodutível): “casar” dois gráficos
 
-Pergunta:
+> **Objetivo:** provar a mesma história por duas evidências diferentes (saída e acúmulo).
 
-- Em quais intervalos a **saída acumulada “fica plana”** (throughput estagnado)?
-- O que acontece com o **acúmulo (fila)** nesses mesmos intervalos?
+1) Rode uma simulação (qualquer cenário base).
+2) Gere as figuras:
 
-Escreva sua conclusão em uma frase usando o balanço:
+```bash
+python scripts/gerar_figuras.py
+```
 
-> “Quando _____ > _____, o acúmulo _____.”
+3) Compare:
+
+- **Saída/throughput**: `../docs/figuras/fig_04_throughput.png`
+- **Acúmulo (holdup/filas)**: `../docs/figuras/fig_05_ocupacao_e_filas.png`
+
+4) Responda (em 3 linhas):
+
+- Em quais momentos a saída fica “fraca” (estagna/baixa)?
+- O acúmulo aumenta nesses momentos?
+- Complete a frase:
+
+> “Quando **Entrada** > **Saída**, o **Acúmulo** ____.”
 
 ---
 
-## Glossário (termos-chave)
-- **Balanço de massa**: contabilidade de entradas, saídas e acúmulo.
-- **Acúmulo (accumulation)**: aumento de “inventário” no sistema (fila/ocupação).
-- **Holdup / WIP**: material/pessoas dentro do sistema.
-- **Throughput**: taxa de saída.
+## Pain points + mini‑FAQ
+
+**1) “Acúmulo” é só fila?**  
+Não. Acúmulo pode ser fila, ocupação ou atendimento em andamento. Depende do “recorte” do balanço.
+
+**2) Por que preciso de dois gráficos?**  
+Para evitar conclusões por um único sinal. Engenharia pede **evidências convergentes**.
 
 ---
 
-## Checklist (ao final desta aula, você deve conseguir…)
-- recitar a ideia “**entrada − saída = acúmulo**” com suas palavras.
-- explicar por que **fila crescente** é um sinal de acúmulo positivo.
-- relacionar um trecho de throughput baixo (Figura 4) com aumento de holdup/filas (Figura 5).
-- dar um exemplo de “acúmulo” no restaurante e um exemplo de acúmulo em um processo industrial.
+## Checklist de domínio
+
+- Eu uso “Entrada − Saída = Acúmulo” para explicar o que vejo (não só descrever).
+- Eu consigo ligar um trecho de throughput baixo ao crescimento de holdup/filas.
 
 ---
 
 ## Navegação
-- **Anterior:** [Aula 02 — A Matemática das Filas](Aula02.md)
-- **Próxima:** [Aula 04 — O Restaurante como Reator](Aula04.md)
+
+- **Anterior:** [Aula 02 — Filas e Gargalos](Aula02.md)
+- **Próxima:** [Aula 04 — Operações Unitárias (mesa como residência)](Aula04.md)
 

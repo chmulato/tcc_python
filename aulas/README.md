@@ -1,28 +1,47 @@
-# Trilha de Aulas — Do Restaurante Universitário à Engenharia Química
+# Trilha de Aulas — Do RU à Engenharia Química (Simulação DES)
 
-Esta pasta contém uma trilha didática em Markdown para nivelar do ensino médio até a lógica de Engenharia de Processos por trás do simulador (restaurante como **PoC**).
+> Esta trilha foi escrita para **aprendizagem de adultos** (andragogia): cada aula entrega uma ideia central + uma atividade curta + um desafio reprodutível no simulador.
 
-## Como usar
-- Leia as aulas em ordem.
-- Em cada aula, faça o **Desafio prático** no simulador (`python main.py`).
-- Para as figuras do estudo de caso, gere com:
+## Onde está o “portal” publicado (GitHub Pages)
 
-```sh
+O GitHub Pages deste repositório é servido a partir de `/docs`. Os principais artefatos em HTML ficam em:
+
+- **Paper interativo (home):** `../docs/index.html`
+- **Sala Digital (portal):** `../docs/portal.html`
+- **TCC (HTML):** `../docs/tcc.html`
+- **Guia técnico (Determinística vs DES):** `../docs/SIMULATING.html`
+- **README em HTML (site):** `../docs/README.html`
+
+## Como usar (fluxo recomendado)
+
+1) **Leia as aulas em ordem** (Aula 01 → 06).  
+2) **Em cada aula**, faça:
+   - **Atividade (em sala)**: 10–15 min (tabela/frase curta).
+   - **Desafio de simulação**: 15–30 min (mudar 1 variável, medir 2–3 métricas, escrever conclusão).
+3) Para evidências visuais (figuras do case), gere:
+
+```bash
 python scripts/gerar_figuras.py
 ```
 
-E consulte `docs/figuras/`.
+As saídas ficam em `../docs/figuras/`.
 
-## Aulas
-1. `Aula01.md` — O Mundo em Fluxo (sistemas)
-2. `Aula02.md` — Matemática das Filas (gargalos)
-3. `Aula03.md` — Conservação de Massa (balanço)
-4. `Aula04.md` — Restaurante como Reator (operações unitárias)
-5. `Aula05.md` — Hidrometalurgia Seletiva (ponte conceitual para Terras Raras/ETE)
-6. `Aula06.md` — Operando o Simulador (gráficos, ROI, decisão)
+> **Regra de ouro (reprodutibilidade):** anote sempre **(a)** qual arquivo de parâmetros você usou (`config/parametros.yaml`, Excel, etc.), **(b)** qual layout (`layouts/*.txt`) e **(c)** quais valores você alterou.
 
-## Leituras de apoio no repositório
-- `index.html`: apresentação “paper-like” com figuras e narrativa
-- `README.md`: case de Engenharia de Processos aplicada
-- `SIMULATING.md`: como interpretar simulação determinística vs DES e parâmetros
+## Aulas (progressão do simples ao complexo)
+
+| Aula | Tema | Resultado de aprendizagem (1 linha) |
+|---:|---|---|
+| 01 | Sistemas e fluxo | separar **entrada → processo → saída** e reconhecer acúmulo (fila/ocupação) |
+| 02 | Filas e gargalos | entender por que acumula quando **λ** supera **μ** e quando a variabilidade “explode” filas |
+| 03 | Conservação (balanço) | usar **Entrada − Saída = Acúmulo** para interpretar gráficos do simulador |
+| 04 | Operações unitárias | mapear etapas do restaurante para **unidades** (capacidade, tempo de serviço, residência) |
+| 05 | Ponte industrial (ETE/Terras Raras) | traduzir “pessoas ↔ íons” sem perder o rigor conceitual |
+| 06 | Decisão baseada em dados | ler gráficos, comparar cenários e justificar intervenção (inclui ROI simples) |
+
+## Leituras de apoio
+
+- **Para ver o case completo e as figuras:** `../docs/index.html`
+- **Para navegar como aprendiz (trilha):** `../docs/portal.html`
+- **Para entendimento técnico da simulação:** `../docs/SIMULATING.html`
 

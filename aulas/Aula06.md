@@ -1,134 +1,120 @@
-# Aula 06 — Operando o Simulador: leitura de gráficos, ROI e decisão baseada em dados
+# Aula 06 — Operando o simulador: gráficos, decisão e ROI (sem achismo)
 
-> **Contexto deste repositório:** aqui você usa o simulador do restaurante como um **instrumento de engenharia**
-> para justificar intervenções (capacidade/layout/tempo de residência). A mesma disciplina de leitura de dados é a ponte
-> para simuladores industriais.
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Iniciante (fechamento da trilha) |
+| **Tempo estimado** | 35–50 min |
+| **Pré-requisitos** | Aula 01–05 |
+| **Entrega** | mini‑relatório (10 linhas) + 2 evidências (figuras) |
 
-## Guia rápido
-- **Tempo estimado**: 35–50 min
-- **Pré-requisitos**: Aula 01–05
-- **Materiais**:
-  - `index.html` (seção “Resultados”)
-  - `docs/figuras/fig_04_throughput.png`, `fig_05_ocupacao_e_filas.png`, `fig_06_distribuicao_residencia.png`, `fig_07_antes_depois.png`
-  - simulador (`python main.py`) + gerador de figuras (`python scripts/gerar_figuras.py`)
+> **Tese da aula:** simulação é ferramenta de engenharia quando gera **evidência**. Aqui você aprende a ler gráficos, comparar cenários e justificar uma decisão (inclui ROI simplificado).
 
-## Objetivo da aula
-Aprender a usar o simulador como uma ferramenta de engenharia: **ler gráficos**, diagnosticar gargalos, comparar cenários (antes/depois) e justificar decisões com métricas (incluindo uma noção simples de ROI).
+## Objetivos de aprendizagem
 
----
+Ao final desta aula, você consegue:
 
-## Explicação simples (analogia do dia a dia)
-Quando o restaurante fica cheio, o gestor pergunta:
+- ler throughput, holdup/filas e distribuição de residência como KPIs de processo;
+- identificar gargalo provável com base em evidência (não opinião);
+- comparar cenários “antes vs depois” e defender uma intervenção;
+- estimar um ROI simplificado com base em ganho de throughput.
 
-- “Onde está travando?”
-- “O que eu ganho se eu colocar mais um caixa?”
-- “Vale a pena aumentar mesas ou reduzir tempo de permanência?”
+## Materiais (links do repositório)
 
-O simulador serve para responder isso sem “chutar”.
-
-[Imagem: painel com 3 gráficos: throughput, fila, distribuição]
-
-Sugestão: abra `index.html` e navegue até **Resultados** para ver as Figuras 3–7 com legenda.
+- Figuras: `../docs/figuras/fig_04_throughput.png`, `fig_05_ocupacao_e_filas.png`, `fig_06_distribuicao_residencia.png`, `fig_07_antes_depois.png`
+- Paper interativo (legendas): `../docs/index.html` (seção “Resultados”)
+- Simulador: `python main.py` + `python scripts/gerar_figuras.py`
 
 ---
 
-## O salto técnico (como engenheiro lê as evidências)
+## 1) Como engenheiro lê as evidências (guia curto)
 
-### 1) Throughput (vazão de saída)
-Olhe `docs/figuras/fig_04_throughput.png`.
+### 1.1 Throughput (saída ao longo do tempo)
 
-Perguntas técnicas:
+**Perguntas:**
 
-- a saída cresce de forma regular ou “em degraus”?
-- existem períodos longos com saída baixa? (sinal de gargalo/saturação)
+- a saída cresce de modo regular ou “em degraus”?
+- há períodos longos com saída baixa? (sinal de saturação/gargalo)
 
-### 2) Holdup e buffers (filas)
-Olhe `docs/figuras/fig_05_ocupacao_e_filas.png`.
+### 1.2 Holdup e buffers (filas)
 
-Leitura:
+**Leitura:**
 
-- holdup alto + fila crescendo → sistema perto/ acima da capacidade.
-- fila que cresce “sem voltar” → \(\rho \gtrsim 1\) em algum trecho.
+- holdup alto + fila crescendo → sistema perto ou acima da capacidade;
+- fila que cresce e não “volta” → pressão alta (ρ próximo de 1 em algum trecho).
 
-### 3) Distribuição do tempo de residência
-Olhe `docs/figuras/fig_06_distribuicao_residencia.png`.
+### 1.3 Distribuição do tempo de residência
 
-Leitura:
+**Leitura:**
 
-- caudas longas significam risco: algumas entidades demoram muito.
+- caudas longas indicam risco: alguns casos demoram muito;
 - “média boa” pode esconder caudas ruins.
 
-### 4) Antes vs Depois (intervenção)
-Olhe `docs/figuras/fig_07_antes_depois.png`.
+### 1.4 Antes vs Depois (intervenção)
 
-Leitura:
+**Leitura:**
 
-- compare métricas de espera, utilização e processados.
-- use como argumento para “capex vs benefício”.
+- compare espera, utilização (se disponível) e processados;
+- use isso para discutir custo/benefício (capex/opex vs ganho).
 
 ---
 
-## Desafio prático (simular e decidir)
+## 2) Desafio de simulação (reprodutível): simular e decidir
+
+> **Objetivo:** escolher uma intervenção e defender com 2 evidências.
+
 1) Rode o simulador com `config/parametros.yaml`.
+
 2) Gere as figuras:
 
-```sh
+```bash
 python scripts/gerar_figuras.py
 ```
 
-3) Faça uma intervenção e defenda uma decisão:
+3) Faça **uma** intervenção (mude uma variável por vez):
 
-- Intervenção A: aumentar `numero_caixas`
-- Intervenção B: aumentar `numero_de_mesas`
-- Intervenção C: reduzir `tempo_medio_almoco` (melhoria operacional)
+- **A:** aumentar `numero_caixas`
+- **B:** aumentar `numero_de_mesas`
+- **C:** reduzir `tempo_medio_almoco` (melhoria operacional)
 
-Escreva um mini relatório (10 linhas):
+4) Entrega: mini‑relatório (10 linhas)
 
-- **Diagnóstico**: qual é o gargalo provável?
-- **Intervenção escolhida**: A/B/C e por quê.
-- **Evidências**: cite pelo menos 2 gráficos/figuras.
-
-Para citar figuras do repositório, use os arquivos em `docs/figuras/` (ex.: `fig_04_throughput.png`, `fig_07_antes_depois.png`).
-
-### Bônus: ROI (noção simples)
-Sem entrar em contabilidade real, use um ROI simplificado:
-
-1. Defina um “valor por cliente atendido” (ex.: R$ 20).
-2. Calcule o ganho: \(\Delta\)clientes_processados × valor
-3. Compare com um custo estimado (ex.: caixa extra por turno, ou mais mesas).
-
-O objetivo é treinar o raciocínio: **decisão baseada em dados**, não “achismo”.
+- **Diagnóstico:** qual é o gargalo provável?
+- **Intervenção escolhida:** A/B/C e por quê.
+- **Evidências (mínimo 2):** cite 2 figuras pelo nome (ex.: `fig_04_throughput.png` e `fig_05_ocupacao_e_filas.png`).
 
 ---
 
-## Glossário (termos-chave)
-- **KPI**: indicador de desempenho (ex.: throughput, tempo de espera).
-- **Evidência**: gráfico/métrica que sustenta uma conclusão.
-- **Cenário**: conjunto de parâmetros (feed, capacidade, tempos) usado na simulação.
-- **Intervenção**: mudança planejada (capacidade, layout, tempo de residência).
-- **ROI (Return on Investment)**: retorno aproximado versus custo (simplificado aqui).
+## 3) Bônus: ROI (noção simples e honesta)
+
+> **Importante:** aqui é um exercício didático de decisão; não substitui análise contábil real.
+
+1) Defina um “valor por cliente atendido” (ex.: R$ 20).  
+2) Calcule ganho aproximado: `Δ clientes_processados × valor`.  
+3) Compare com custo estimado (caixa extra por turno, mesas, etc.).  
+
+**Pergunta final:** o ganho justifica o custo no horizonte considerado?
 
 ---
 
-## Checklist (ao final desta aula, você deve conseguir…)
-- interpretar, em linguagem de engenharia, os gráficos de **throughput**, **holdup/filas** e **distribuição de residência**.
-- escrever um diagnóstico simples: “gargalo provável é ___ porque ___”.
-- comparar cenários e defender uma intervenção usando **2 evidências** (figuras/métricas).
-- fazer uma estimativa de ROI simplificada (ganho por clientes processados × custo aproximado).
+## Pain points + mini‑FAQ
+
+**1) Por que preciso citar duas evidências?**  
+Para evitar “história boa com dado ruim”. Uma única métrica pode enganar.
+
+**2) Qual é a diferença entre melhorar throughput e reduzir tempo no sistema?**  
+Uma intervenção pode aumentar throughput e ainda assim piorar o tempo médio (trade‑off). Por isso compare métricas.
+
+---
+
+## Checklist de domínio
+
+- Eu leio throughput/holdup/distribuição como KPIs.
+- Eu defendo uma intervenção com evidência (mínimo 2 figuras).
+- Eu escrevo uma decisão baseada em dados (não por intuição).
 
 ---
 
 ## Navegação
-- **Anterior:** [Aula 05 — Hidrometalurgia Seletiva](Aula05.md)
-- **Próxima:** fim da trilha (volte ao [README da trilha](README.md))
 
----
-
-## Próximos passos (ponte conceitual para indústria)
-Ao migrar para um contexto industrial (ex.: ETE/Terras Raras), o modo de operar é o mesmo:
-
-- definimos alimentação (vazão/composição),
-- definimos operações unitárias (estágios/equipamentos),
-- medimos throughput, holdup, residência e variabilidade,
-- testamos intervenções e escolhemos a melhor relação desempenho/custo.
-
+- **Anterior:** [Aula 05 — Ponte industrial](Aula05.md)
+- **Fim da trilha:** volte ao [README da trilha](README.md)

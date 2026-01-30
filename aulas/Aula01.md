@@ -1,106 +1,134 @@
-# Aula 01 — O Mundo em Fluxo: o que são sistemas?
+# Aula 01 — Sistemas e Fluxo: pensando em “Entrada → Processo → Saída”
 
-> **Contexto deste repositório:** estas aulas usam o **restaurante universitário** como estudo de caso para ensinar
-> **Engenharia de Processos**. O objetivo é você enxergar o restaurante como um **Sistema de Eventos Discretos (DES)**,
-> igual aos modelos usados em plantas industriais.
->
-> Leitura de apoio: `index.html` (paper interativo), `README.md` (case) e `SIMULATING.md` (detalhes de simulação).
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Iniciante (ensino médio/técnico → início de graduação) |
+| **Tempo estimado** | 20–30 min |
+| **Pré-requisitos** | Nenhum |
+| **Entrega** | 1 tabela (entrada/acúmulo/saída) + 3 respostas curtas |
 
-## Guia rápido
-- **Tempo estimado**: 20–30 min
-- **Pré-requisitos**: nenhum (comece por aqui)
-- **Materiais**:
-  - este repositório (`README.md`, `index.html`, `SIMULATING.md`)
-  - Python + terminal (para rodar `python main.py`)
-  - (opcional) `docs/figuras/fig_02a_fluxo_servico.png`
+> **Contexto do projeto:** estas aulas usam o **Restaurante Universitário (RU)** como estudo de caso para ensinar **Engenharia de Processos**. O RU é tratado como um **Sistema de Eventos Discretos (DES)** — a mesma lógica que aparece em plantas industriais.
 
-## Objetivo da aula
-Entender o que é um **sistema** (entrada → processamento → saída) e por que o “restaurante” do simulador é um excelente exemplo para explicar processos industriais.
+## Objetivos de aprendizagem
 
----
+Ao final desta aula, você consegue:
 
-## Explicação simples (analogia do dia a dia)
-Imagine um restaurante universitário em horário de almoço:
+- definir um sistema como **Entrada → Processo → Saída**;
+- localizar **onde o sistema acumula** (fila/ocupação) e por que isso importa;
+- reconhecer o RU como um sistema “didático”, mas com **métrica de engenharia** (throughput, holdup/WIP, tempo no sistema).
 
-- **Entram pessoas** (chegadas).
-- Elas **passam por etapas** (pegar comida, pagar, sentar).
-- No final, elas **saem**.
+## Materiais (links do repositório)
 
-Isso é exatamente como qualquer sistema de produção: **algo entra**, **é transformado**, e **algo sai**.
-
-[Imagem: Fluxograma simples “Entrada → Processo → Saída”】【restaurante→]
-
-Sugestão de figura do projeto: `docs/figuras/fig_02a_fluxo_servico.png`.
-
-### Um modelo mental útil
-Pense em três perguntas:
-
-1. **O que entra?** (pessoas por minuto)
-2. **O que acontece lá dentro?** (filas, atendimento, consumo, ocupação)
-3. **O que sai?** (pessoas atendidas por minuto)
+- **Paper interativo (figuras e narrativa):** `../docs/index.html`
+- **Sala Digital (trilha):** `../docs/portal.html`
+- **Guia técnico (simulação):** `../docs/SIMULATING.html`
+- **Figuras (se já tiver gerado):** `../docs/figuras/`
 
 ---
 
-## O salto técnico (termos de Engenharia de Processos)
-Na Engenharia de Processos, usamos termos equivalentes:
+## 1) Intuição (sem matemática): o RU como sistema
 
-| No restaurante (serviços) | Termo em processos (indústria) | Ideia central |
+Imagine o RU no horário de almoço:
+
+- pessoas **chegam** (entrada);
+- passam por etapas (processo);
+- saem do sistema (saída).
+
+Isso é o mesmo padrão de qualquer processo industrial: **algo entra**, **é transformado/atendido**, **e sai**.
+
+> **Nota de leitura:** em engenharia, “transformado” pode significar serviço (atendimento) ou reação/separação — o padrão de fluxo é o mesmo.
+
+### Modelo mental (3 perguntas)
+
+1) **O que entra?** (clientes por minuto)  
+2) **O que acontece dentro?** (filas, serviços, ocupação)  
+3) **O que sai?** (clientes processados / taxa de saída)
+
+---
+
+## 2) Tradução para linguagem de Engenharia de Processos
+
+| No RU (serviços) | Em processos (indústria) | O que significa |
 |---|---|---|
-| Pessoas chegando | **Vazão de alimentação (Feed Rate, \(\lambda\))** | taxa de entrada |
-| Etapas (buffet/caixa) | **Operações unitárias** | transformações com capacidade |
-| Pessoas sentadas | **Holdup / Inventário em processo (WIP)** | “material” dentro do sistema |
+| Pessoas chegando | **Vazão de alimentação (λ)** | taxa de entrada |
+| Buffet/Caixa | **Operações unitárias / recursos** | etapas com capacidade (μ) |
+| Filas + ocupação | **Holdup / WIP** | inventário “dentro” do sistema |
 | Pessoas saindo | **Throughput** | taxa de saída |
 
-**Mensagem-chave:** o restaurante é um **Sistema de Eventos Discretos (DES)**. O estado do sistema muda quando ocorrem eventos: chegada, início/fim de atendimento, ocupação/liberação de mesa, saída.
+> **Definição prática de DES:** o estado do sistema muda quando ocorre um evento (chegada, início/fim de atendimento, ocupar/liberar mesa, saída).
 
 ---
 
-## Desafio prático (para testar no software)
-1. Rode o simulador:
+## 3) Atividade (em sala): mapeamento de medidas
 
-```sh
+Preencha a tabela com base no seu entendimento do RU (não precisa rodar o software ainda):
+
+| Medida | Exemplo no RU | Unidade | Onde aparece |
+|---|---|---:|---|
+| **Entrada** | clientes chegando | clientes/min | parâmetro do cenário |
+| **Acúmulo** | fila + mesas ocupadas | clientes | gráfico/estado |
+| **Saída** | clientes que finalizaram | clientes/min | throughput |
+
+**Entrega (curta):** responda em 1 frase:
+
+- “O que entra no RU é ____.”
+- “O que acumula no RU é ____.”
+- “O que sai do RU é ____.”
+
+---
+
+## 4) Desafio de simulação (reprodutível)
+
+> **Objetivo:** rodar um cenário base e registrar 3 métricas.
+
+1) Instale dependências e execute o simulador:
+
+```bash
 pip install -r requirements.txt
 python main.py
 ```
 
-2. Carregue `config/parametros.yaml` e `layouts/layout_padrao.txt`.
-3. Execute uma simulação e responda:
+2) Carregue:
+- `config/parametros.yaml`
+- `layouts/layout_padrao.txt`
 
-- **Quantos clientes foram processados?** (saída total)
-- **Qual foi o tempo médio de permanência?** (tempo no sistema)
-- **O que parece “segurar” a saída?** (suspeita de gargalo)
+3) Rode a simulação e registre:
+- **Clientes processados** (saída total)
+- **Tempo médio no sistema** (tempo de permanência)
+- **Suspeita de gargalo** (qual etapa “segura” a saída?)
 
-Dica: depois, gere as figuras do case:
+4) (Opcional) gere evidências visuais:
 
-```sh
+```bash
 python scripts/gerar_figuras.py
 ```
 
-E observe `docs/figuras/fig_04_throughput.png` (throughput).
-
-Opcional: abra `index.html` e navegue até a seção **Resultados** para ver as figuras já legendadas.
+Abra `../docs/index.html` e veja “Resultados” para interpretar as figuras.
 
 ---
 
-## Glossário (termos-chave)
-- **Sistema**: conjunto de elementos com entradas, processamento interno e saídas.
-- **Entrada (input)**: o que chega ao sistema (ex.: pessoas/min).
-- **Processo (process)**: o que acontece dentro (etapas e regras).
-- **Saída (output)**: o que o sistema entrega (ex.: atendidos/min).
-- **DES (Discrete-Event Simulation)**: simulação baseada em eventos que mudam o estado do sistema.
-- **Throughput**: vazão de saída (produção/atendimento efetivo).
-- **Holdup / WIP**: acúmulo dentro do sistema (ocupação + filas).
+## Pontos de dúvida (pain points) + mini‑FAQ
+
+**1) “Fila” e “acúmulo” são a mesma coisa?**  
+Quase: “fila” é **um tipo de acúmulo**. O acúmulo total inclui **fila + ocupação + atendimento em andamento**.
+
+**2) Por que isso é Engenharia de Processos se é um restaurante?**  
+Porque a estrutura do problema é a mesma: fluxo com capacidade finita, buffers, gargalos e variabilidade.
+
+**3) O que eu devo medir primeiro?**  
+Sempre: **entrada**, **saída** e **acúmulo** (o resto deriva disso).
 
 ---
 
-## Checklist (ao final desta aula, você deve conseguir…)
-- explicar o que é um **sistema** usando “entrada → processamento → saída”.
-- apontar, no simulador do restaurante, o que é **entrada** (feed), o que é **processamento** (etapas/recursos) e o que é **saída** (throughput).
-- definir, em uma frase, o que é **DES** (simulação por eventos discretos).
-- citar (sem fórmulas) o que significam **throughput** e **holdup/WIP**.
+## Checklist de domínio (autoavaliação)
+
+- Eu explico um sistema como **Entrada → Processo → Saída**.
+- Eu sei apontar no RU onde ocorre **acúmulo** (fila/ocupação).
+- Eu sei dizer, em uma frase, o que é **DES**.
 
 ---
 
 ## Navegação
-- **Próxima:** [Aula 02 — A Matemática das Filas](Aula02.md)
+
+- **Próxima:** [Aula 02 — Filas e Gargalos (λ, μ, ρ)](Aula02.md)
 

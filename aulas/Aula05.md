@@ -1,102 +1,114 @@
-# Aula 05 — Hidrometalurgia Seletiva: do restaurante às Terras Raras (ponte conceitual)
+# Aula 05 — Ponte industrial: do RU às Terras Raras/ETE (sem perder o rigor)
 
-> **Contexto deste repositório:** o restaurante é a **Prova de Conceito (PoC)**.
-> Nesta aula, a ideia é mostrar **como a mesma lógica** pode ser levada para simuladores industriais (ex.: Terras Raras / ETE).
-> Você não precisa conhecer química avançada ainda — foque no raciocínio: fluxo, balanço, gargalo e variabilidade.
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Iniciante (síntese das Aulas 01–04) |
+| **Tempo estimado** | 30–45 min |
+| **Pré-requisitos** | Aula 01–04 |
+| **Entrega** | 1 mapa de analogia + 1 síntese (5 linhas) |
 
-## Guia rápido
-- **Tempo estimado**: 30–45 min
-- **Pré-requisitos**: Aula 01–04 (fluxo, filas, balanço e operações unitárias)
-- **Materiais**:
-  - `docs/figuras/fig_02b_fluxo_processo.png` (fluxo em processo)
-  - `README.md` (seção “Evolução Tecnológica”, PoC → ETE/Terras Raras)
-  - papel e caneta (para mapear analogias “pessoas ↔ íons”)
+> **Objetivo da aula:** mostrar o que é *transferível*: quando você troca “clientes” por “íons”, você não troca a matemática — você troca o rótulo da entidade. O raciocínio de fluxo (balanço, capacidade, gargalo, variabilidade) permanece.
 
-## Objetivo da aula
-Entender como a lógica de **fluxo + balanço + gargalos + variabilidade** se mantém quando trocamos “pessoas” por “íons” e “mesas/filas” por “tanques/operações de separação”.
+## Objetivos de aprendizagem
+
+Ao final desta aula, você consegue:
+
+- mapear entidades, buffers, unidades e saídas em um processo industrial de forma qualitativa;
+- apontar o que muda (cinética/equilíbrio) e o que não muda (balanço/capacidade/gargalo);
+- escrever uma síntese técnica em linguagem acessível.
+
+## Materiais
+
+- Figura de processo: `../docs/figuras/fig_02b_fluxo_processo.png`
+- Paper interativo (ponte conceitual): `../docs/index.html`
+- (Opcional) README do site: `../docs/README.html`
 
 ---
 
-## Explicação simples (analogia do dia a dia)
-No restaurante, você quer “separar” pessoas por etapas:
+## 1) Intuição: “separar por etapas”
 
-- quem ainda não pegou comida
+No RU, você “separa” o fluxo por etapas:
+
+- quem ainda está servindo
 - quem está pagando
-- quem está comendo
+- quem está ocupando mesa (residência)
 
-Na hidrometalurgia, você quer separar espécies químicas (íons) em etapas:
+Em uma rota de separação (hidrometalurgia, por exemplo), você também “separa por etapas”:
 
-- quem está na fase aquosa
-- quem migrou para a fase orgânica
-- quem foi “lavado” (scrub)
-- quem foi “re-extraído” (strip)
+- fase aquosa vs fase orgânica
+- lavagem (*scrub*)
+- re‑extração (*strip*)
 
-[Imagem: “linha de separação” com tanques em série]
+O ponto didático aqui não é decorar química, e sim reconhecer **unidades + buffers + restrições**.
 
 ---
 
-## O salto técnico (o que muda e o que não muda)
-O que **não muda**:
+## 2) O que muda e o que não muda (clareza conceitual)
 
-- **Balanço**: o que entra deve sair ou acumular.
-- **Capacidade**: tanques, misturadores, decantadores e colunas têm limites.
-- **Tempo de residência**: controla conversão, separação e holdup.
-- **Gargalos**: uma etapa lenta domina o throughput global.
+**Não muda (gramática de engenharia):**
 
-O que **muda**:
+- balanço: Entrada − Saída = Acúmulo (no recorte escolhido)
+- capacidade: unidades têm limite (μ efetiva)
+- residência: tempo de permanência governa holdup e estabilidade
+- gargalo: a etapa limitante governa throughput
 
-- Em vez de “pessoas”, você tem **espécies químicas** com distribuição entre fases.
-- Em vez de “fila”, você tem **inventário de solução/polpa** (volume, concentração).
-- Em vez de “atendimento”, você tem **cinética, transferência de massa e equilíbrio químico**.
+**Muda (física do fenômeno):**
+
+- em vez de pessoas, existem espécies químicas (distribuição entre fases)
+- em vez de “atendimento”, aparecem fenômenos como **cinética**, **transferência de massa** e **equilíbrio**
 
 ### Vocabulário mínimo (para não se perder)
-| Restaurante | Hidrometalurgia | Leitura de engenharia |
+
+| RU (serviço) | Processo (hidrometalurgia) | Leitura de engenharia |
 |---|---|---|
-| Entidades (clientes) | Espécies / íons | “o que se transporta” |
-| Fila/buffer | Tanque/estoque | holdup/inventário |
-| Etapas (buffet/caixa) | Mixer-settler / colunas / filtros | operações unitárias |
-| “Sair do sistema” | Produto / rejeito | vazão de saída |
+| entidades (clientes) | espécies/íons | “o que se transporta” |
+| fila/buffer | tanque/estoque | holdup/inventário |
+| buffet/caixa | mixer-settler/coluna/filtro | operações unitárias |
+| saída | produto/rejeito | vazão útil/descarga |
 
 ---
 
-## Desafio prático (transferência de raciocínio)
-Sem mexer no código, faça este exercício mental:
+## 3) Atividade (em sala): mapa de analogias
 
-1) No restaurante, qual mudança tende a **reduzir holdup** sem reduzir throughput?
-   - reduzir tempo médio de permanência (τ)
-   - aumentar capacidade de uma etapa gargalo (μ)
-   - reduzir variabilidade na chegada
+Faça um mini‑mapa em 6 linhas:
 
-2) Agora traduza para hidrometalurgia:
+1) Entidade no RU = ____  
+2) Entidade no processo = ____  
+3) Buffer no RU = ____  
+4) Buffer no processo = ____  
+5) Gargalo provável no RU = ____  
+6) Gargalo provável no processo = ____ (qualitativo)
 
-- “reduzir τ” → reduzir tempo de residência em tanques? (impacta extração/eficiência)
-- “aumentar μ” → aumentar capacidade de separação (mais estágios/unidades em paralelo)
-- “reduzir variabilidade” → estabilizar feed (concentração/vazão) por controle de processo
+---
 
-Escreva a resposta em 5 linhas usando a frase:
+## 4) Desafio (síntese técnica): “por que é universal?”
+
+Escreva 5 linhas completando:
 
 > “A lógica do simulador é universal porque …”
 
----
-
-## Glossário (termos-chave)
-- **Hidrometalurgia**: extração de metais por rotas em solução.
-- **Seletividade**: capacidade de separar espécies (preferência por um íon).
-- **Mixer-settler**: operação unitária de mistura + decantação (separação de fases).
-- **Extração / Scrub / Strip**: estágios típicos de separação em SX.
-- **Transferência de massa**: movimento de espécie entre fases (governa velocidade).
+**Requisito:** use pelo menos **2 argumentos** entre: balanço, capacidade, gargalo, variabilidade, residência.
 
 ---
 
-## Checklist (ao final desta aula, você deve conseguir…)
-- explicar, sem fórmulas, por que **fluxo + balanço + capacidade** também descrevem separação de íons em tanques.
-- mapear “fila/buffer” do restaurante para “tanque/inventário” na hidrometalurgia.
-- dar exemplos de onde entram **transferência de massa** e **equilíbrio** (o que muda vs serviços).
-- escrever a frase “a lógica é universal porque…” com pelo menos 2 argumentos técnicos.
+## Pain points + mini‑FAQ
+
+**1) Isso não é “simplificar demais” a química?**  
+É uma etapa didática: primeiro consolida-se a gramática (fluxo/capacidade/acúmulo). Depois entram as leis específicas (equilíbrio/cinética).
+
+**2) Onde entra “soberania” aqui?**  
+Quando você tem um motor/modelo próprio, você reduz tentativa‑e‑erro, acelera desenvolvimento e decide com evidência (cenários).
+
+---
+
+## Checklist de domínio
+
+- Eu separo “o que não muda” (balanço/capacidade) do “que muda” (física/termodinâmica).
+- Eu consigo escrever uma síntese técnica em linguagem acessível.
 
 ---
 
 ## Navegação
-- **Anterior:** [Aula 04 — O Restaurante como Reator](Aula04.md)
-- **Próxima:** [Aula 06 — Operando o Simulador](Aula06.md)
 
+- **Anterior:** [Aula 04 — Operações Unitárias](Aula04.md)
+- **Próxima:** [Aula 06 — Operando o simulador (decisão baseada em dados)](Aula06.md)

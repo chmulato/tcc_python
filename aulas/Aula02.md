@@ -1,114 +1,110 @@
-# Aula 02 — A Matemática das Filas: por que as coisas acumulam (gargalos)
+# Aula 02 — Filas e Gargalos: por que as coisas acumulam?
 
-> **Contexto deste repositório:** aqui, “fila” é o mesmo que **buffer/inventário** em um processo industrial.
-> Você vai usar o simulador do restaurante para visualizar quando \(\lambda\) supera a capacidade \(\mu\).
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Iniciante (já fez a Aula 01) |
+| **Tempo estimado** | 25–35 min |
+| **Pré-requisitos** | Aula 01 |
+| **Entrega** | 1 comparação (2 cenários) + 1 conclusão (2 frases) |
 
-## Guia rápido
-- **Tempo estimado**: 25–35 min
-- **Pré-requisitos**: Aula 01 (conceito de sistema e fluxo)
-- **Materiais**:
-  - `SIMULATING.md` (interpretação de \(\lambda\), \(\mu\), \(\rho\) e variabilidade)
-  - `docs/figuras/fig_05_ocupacao_e_filas.png` e `docs/figuras/fig_04_throughput.png`
-  - simulador (`python main.py`)
+> **Tese da aula:** fila é **acúmulo** (buffer/holdup). Ela cresce quando a **taxa de chegada (λ)** supera a **capacidade (μ)** — e cresce também quando a variabilidade é alta, mesmo com médias “boas”.
 
-## Objetivo da aula
-Entender, com matemática simples, por que filas surgem e como identificar **gargalos** a partir de taxas, variabilidade e capacidade.
+## Objetivos de aprendizagem
+
+Ao final desta aula, você consegue:
+
+- explicar por que fila cresce quando **λ > μ** (em média);
+- usar **ρ = λ/μ** para interpretar “perto do limite”;
+- diferenciar **problema de média** vs **problema de variabilidade**;
+- apontar um gargalo provável no RU e propor uma intervenção simples.
+
+## Materiais (links do repositório)
+
+- Guia técnico: `../docs/SIMULATING.html`
+- Figuras (se já tiver gerado): `../docs/figuras/fig_04_throughput.png` e `../docs/figuras/fig_05_ocupacao_e_filas.png`
+- Simulador: `python main.py`
 
 ---
 
-## Explicação simples (analogia do dia a dia)
+## 1) Intuição: “andar e parar”
+
 Você já viu a fila “andar e parar”:
 
-- A fila cresce quando chegam pessoas **mais rápido** do que o atendimento acontece.
-- A fila diminui quando o atendimento consegue “queimar estoque” de pessoas esperando.
+- fila cresce quando chegam pessoas **mais rápido** do que o atendimento acontece;
+- fila diminui quando o atendimento consegue “queimar” o acúmulo.
 
-[Imagem: fila aumentando (entrada > saída) e diminuindo (entrada < saída)]
-
-Sugestão de figura do projeto: `docs/figuras/fig_05_ocupacao_e_filas.png` (buffers/holdup no tempo).
-
-Uma regra intuitiva:
-
-- Se você tem **1 caixa** atendendo em média 1 pessoa por minuto, mas chegam 2 pessoas por minuto, a fila cresce.
-- Se você abre mais um caixa e passa a atender 2 por minuto, a fila para de crescer (em média).
+> **Imagem recomendada:** `../docs/figuras/fig_05_ocupacao_e_filas.png` (filas/holdup no tempo).
 
 ---
 
-## O salto técnico (termos de Engenharia de Processos)
-Em teoria das filas, duas quantidades são essenciais:
+## 2) Termos técnicos (com matemática mínima)
 
-- \(\lambda\) = **taxa média de chegada** (feed rate)
-- \(\mu\) = **taxa média de atendimento** (capacidade de serviço)
+Definições:
 
-A “pressão” sobre o sistema é a **utilização**:
+- **λ (lambda)** = taxa média de chegada (clientes/min)
+- **μ (mu)** = taxa média de atendimento de uma etapa (clientes/min)
+- **ρ (rho)** = utilização (pressão do sistema): `ρ = λ/μ`
 
-\[
-\rho = \frac{\lambda}{\mu}
-\]
+Interpretação prática:
 
-Interpretação (bem prática):
+- se **ρ < 1**: em média dá para atender, mas pode haver fila por variabilidade;
+- se **ρ ≈ 1**: o sistema fica sensível; qualquer oscilação vira fila grande;
+- se **ρ > 1**: a fila cresce até bater um limite (capacidade física ou regra).
 
-- Se \(\rho < 1\): o sistema “dá conta” em média (fila tende a estabilizar).
-- Se \(\rho \approx 1\): o sistema vira “sensível” a qualquer variação (filas explodem em horários de pico).
-- Se \(\rho > 1\): fila cresce sem parar (até atingir um limite físico ou regra de rejeição).
+### Onde os alunos se perdem (e o ajuste)
 
-### Por que a variabilidade importa?
-Mesmo com \(\rho < 1\), filas aparecem porque o mundo real não é constante:
+> **Pain point clássico:** “Se ρ < 1, então não deveria existir fila.”
 
-- chegadas variam
-- tempos de serviço variam
+Correção: o mundo real tem dispersão (chegadas/serviço). Mesmo com ρ < 1, podem existir **rajadas** de chegada ou tempos longos de atendimento, gerando fila temporária.
 
-No simulador, isso é controlado por:
-
-- `variabilidade_chegada`
-- `variabilidade_almoco`
-
-Veja `SIMULATING.md` para a interpretação completa.
-
-> Dica importante: mantenha `tempo_entre_clientes ≈ 1/clientes_por_minuto` (veja “Configuração recomendada” em `SIMULATING.md`)
-> para evitar um cenário com alimentação inconsistente.
+No simulador, isso é representado por parâmetros de variabilidade (ex.: `variabilidade_chegada`, `variabilidade_almoco`).  
+Veja `../docs/SIMULATING.html` para a interpretação.
 
 ---
 
-## Desafio prático (para testar no software)
-Objetivo: **criar e eliminar um gargalo**.
+## 3) Desafio de simulação (reprodutível): criar e remover gargalo
 
-1) Rode duas simulações mudando só `numero_caixas`:
+> **Objetivo:** rodar 2 cenários mudando **uma variável por vez** e comparar métricas.
 
-- Cenário A: `numero_caixas: 1`
-- Cenário B: `numero_caixas: 2`
+1) Execute o simulador (`python main.py`).
 
-2) Compare:
+2) Rode dois cenários mudando apenas `numero_caixas`:
 
+- **Cenário A:** `numero_caixas: 1`
+- **Cenário B:** `numero_caixas: 2`
+
+3) Compare e anote:
+
+- throughput (clientes processados / taxa de saída)
 - tempo médio de espera (fila)
-- clientes processados
-- sinais de fila crescente
+- sinais de fila persistente (cresce e não volta)
 
-Dica: gere as figuras e compare:
+4) Escreva a conclusão (2 frases):
 
-- `docs/figuras/fig_05_ocupacao_e_filas.png` (buffers/filas)
-- `docs/figuras/fig_04_throughput.png` (saída)
-
----
-
-## Glossário (termos-chave)
-- **Fila (queue)**: acúmulo de entidades esperando por capacidade.
-- **Gargalo (bottleneck)**: etapa que limita o throughput global.
-- **\(\lambda\)**: taxa de chegada (alimentação).
-- **\(\mu\)**: taxa de serviço (capacidade).
-- **\(\rho\)**: utilização (quão “perto do limite” o sistema opera).
-- **Variabilidade**: dispersão nos tempos (chegadas/serviço/residência).
+> “Ao aumentar μ (capacidade do caixa), a fila ____ porque ____.”  
+> “O gargalo provável era ____ pois ____.”
 
 ---
 
-## Checklist (ao final desta aula, você deve conseguir…)
-- explicar por que uma fila cresce quando **\(\lambda > \mu\)** (em média).
-- usar \(\rho = \lambda/\mu\) para dizer se o sistema está **longe** ou **perto** da saturação.
-- dar um exemplo prático de **gargalo** no restaurante (ex.: caixa) e como mitigá-lo.
-- explicar por que **variabilidade** cria filas mesmo quando \(\rho < 1\).
+## Mini‑FAQ (dúvidas comuns)
+
+**1) “Gargalo” é sempre o caixa?**  
+Não. Pode ser buffet, caixas ou mesas (capacidade de residência). Depende do cenário (λ, variabilidade e capacidades).
+
+**2) O que eu mudo primeiro: λ ou μ?**  
+Para diagnóstico, normalmente você testa **μ** (capacidade), pois é uma intervenção direta (ex.: mais caixas). Para política operacional, você também pode atuar em **λ** (escalonar chegadas).
+
+---
+
+## Checklist de domínio (autoavaliação)
+
+- Eu explico fila como acúmulo (buffer).
+- Eu sei interpretar `ρ = λ/μ` sem “misturar termos”.
+- Eu sei dizer por que variabilidade cria fila mesmo quando ρ < 1.
 
 ---
 
 ## Navegação
-- **Anterior:** [Aula 01 — O Mundo em Fluxo](Aula01.md)
-- **Próxima:** [Aula 03 — Conservação de Massa](Aula03.md)
 
+- **Anterior:** [Aula 01 — Sistemas e Fluxo](Aula01.md)
+- **Próxima:** [Aula 03 — Balanço (Entrada − Saída = Acúmulo)](Aula03.md)

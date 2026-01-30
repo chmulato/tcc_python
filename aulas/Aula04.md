@@ -1,113 +1,108 @@
-# Aula 04 — O Restaurante como Reator: operações unitárias (tanques, misturadores, separadores)
+# Aula 04 — Operações Unitárias: o RU como “flowsheet” (mesa = residência)
 
-> **Contexto deste repositório:** “buffet”, “caixa” e “mesa” são tratados como **operações unitárias**.
-> A “mesa” é um ótimo análogo de uma unidade com **tempo de residência** (holdup domina o desempenho).
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Iniciante (já fez Aula 01–03) |
+| **Tempo estimado** | 30–40 min |
+| **Pré-requisitos** | Aula 01–03 |
+| **Entrega** | 1 comparação (2 cenários) + 1 justificativa (3 linhas) |
 
-## Guia rápido
-- **Tempo estimado**: 30–40 min
-- **Pré-requisitos**: Aula 01–03 (fluxo, filas e balanço)
-- **Materiais**:
-  - `docs/figuras/fig_02a_fluxo_servico.png` e `docs/figuras/fig_02b_fluxo_processo.png`
-  - `docs/figuras/fig_03_layout_base.png` (planta ASCII renderizada)
-  - simulador (`python main.py`) para testar mudanças em \(\tau\)
+> **Ideia central:** buffet/caixa/mesa podem ser tratados como **operações unitárias** (unidades com capacidade e tempo). A “mesa” funciona como uma unidade de **residência**: aumentar o tempo médio de permanência eleva holdup e pode reduzir throughput.
 
-## Objetivo da aula
-Entender como etapas de um serviço (buffet/caixa/mesa) podem ser modeladas como **operações unitárias** e como isso se conecta à linguagem clássica da Engenharia Química.
+## Objetivos de aprendizagem
 
----
+Ao final desta aula, você consegue:
 
-## Explicação simples (analogia do dia a dia)
-Pense no restaurante como uma linha com estações:
+- descrever o RU como um **flowsheet** (unidades + correntes);
+- mapear capacidade (μ) e tempos (serviço/residência);
+- explicar por que aumentar a residência (τ) aumenta holdup/WIP.
 
-1. Você entra (chegada).
-2. Passa pelo buffet (pega comida).
-3. Passa pelo caixa (paga).
-4. Fica na mesa (consome / permanece).
-5. Sai.
+## Materiais
 
-Cada estação tem duas coisas:
-
-- **capacidade** (quantas pessoas consegue atender por vez)
-- **tempo de processamento** (quanto tempo cada pessoa fica nessa etapa)
-
-[Imagem: “estações” conectadas por setas]
-
-Sugestões de figuras do projeto:
-
-- `docs/figuras/fig_02a_fluxo_servico.png` (serviços)
-- `docs/figuras/fig_02b_fluxo_processo.png` (processo)
+- Figuras: `../docs/figuras/fig_02a_fluxo_servico.png`, `../docs/figuras/fig_02b_fluxo_processo.png`, `../docs/figuras/fig_03_layout_base.png`
+- Simulador: `python main.py`
 
 ---
 
-## O salto técnico (operações unitárias)
-Em plantas químicas, um processo é desenhado como um **flowsheet**:
+## 1) Intuição: “estações” em série
 
-- **Tanques** (estoques/holdup)
-- **Reatores** (transformação ao longo do tempo)
-- **Misturadores** (junção de correntes)
-- **Separadores** (divisão de correntes)
+No RU você percorre “estações”:
 
-### Analogia direta
-| Restaurante | Operação unitária (processo) | Interpretação |
+1) entrada (chegada)  
+2) buffet (serviço)  
+3) caixa (serviço)  
+4) mesa (permanência)  
+5) saída
+
+Cada estação tem:
+
+- **capacidade** (quantos atende/acomoda)
+- **tempo** (quanto tempo cada entidade permanece ali)
+
+---
+
+## 2) Tradução: serviço ↔ operação unitária
+
+Em processos, um flowsheet conecta unidades (tanques, reatores, separadores) por correntes.
+
+| RU | Processo | Leitura de engenharia |
 |---|---|---|
-| Fila | Tanque/buffer | inventário em processo |
-| Buffet/Caixa | Unidade de serviço | taxa de processamento \(\mu\) |
-| Mesa | Tanque/reator de residência | permanência \(\tau\) domina holdup |
-| Entrada/Saída | Correntes | vazões (feed/throughput) |
+| fila | buffer/tanque | acúmulo (holdup) |
+| buffet/caixa | unidade com capacidade | taxa efetiva (μ) |
+| mesa | “volume” de residência | tempo médio de permanência (τ) governa holdup |
+| entrada/saída | correntes | vazões (λ / throughput) |
 
-### Tempo de residência (\(\tau\))
-Em processos contínuos, uma relação muito usada é:
+Relação útil (interpretação, não cálculo rígido):
 
-\[
-\tau \approx \frac{\text{Holdup}}{\text{Vazão}}
-\]
-
-No restaurante:
-
-- holdup ≈ pessoas sentadas / em espera
-- vazão ≈ pessoas que entram/saem por tempo
+```text
+τ ≈ Holdup / Vazão
+```
 
 ---
 
-## Desafio prático (para testar no software)
-Objetivo: perceber o “efeito reator” da mesa.
+## 3) Desafio de simulação (reprodutível): efeito residência
 
-1) Faça duas simulações mudando apenas `tempo_medio_almoco`:
+> **Objetivo:** manter o resto constante e alterar apenas `tempo_medio_almoco`.
 
-- Cenário A: 30 min
-- Cenário B: 45 min
+1) Rode dois cenários:
+
+- **Cenário A:** `tempo_medio_almoco = 30` min
+- **Cenário B:** `tempo_medio_almoco = 45` min
 
 2) Compare:
 
-- `uso_medio_mesas (%)`
-- tempo médio de permanência
-- crescimento de fila para mesa
+- uso médio de mesas (ou ocupação média)
+- tempo médio no sistema
+- fila para mesa (se existir) e throughput
 
-Pergunta:
+3) Conclusão (3 linhas):
 
-- Por que aumentar \(\tau\) (residência) aumenta holdup e pode reduzir throughput?
+> “Ao aumentar τ (tempo médio de almoço), o holdup ____ porque ____.”  
+> “O efeito esperado no throughput é ____ porque ____.”
 
-Dica: compare `docs/figuras/fig_04_throughput.png` e `docs/figuras/fig_05_ocupacao_e_filas.png` antes/depois.
-
----
-
-## Glossário (termos-chave)
-- **Operação unitária**: etapa padrão de processamento (reator, separador, tanque).
-- **Flowsheet**: diagrama de processo (unidades + correntes).
-- **Residência (\(\tau\))**: tempo médio que algo permanece em uma unidade/sistema.
-- **Capacidade**: limite de atendimento/processamento.
+> **Dica:** gere figuras e compare `fig_04_throughput.png` vs `fig_05_ocupacao_e_filas.png`.
 
 ---
 
-## Checklist (ao final desta aula, você deve conseguir…)
-- explicar o que é uma **operação unitária** usando exemplos do restaurante (buffet/caixa/mesa).
-- dizer por que a **mesa** é um bom análogo de unidade com **tempo de residência \(\tau\)**.
-- relacionar aumento de \(\tau\) com aumento de **holdup** e possível queda de throughput.
-- identificar (em palavras) um “flowsheet” do restaurante: unidades + correntes.
+## Pain points + mini‑FAQ
+
+**1) Mesa é “reator”?**  
+É uma analogia funcional: a mesa retém entidades por um tempo (residência), como um volume de processo retém material.
+
+**2) Por que residência afeta throughput?**  
+Porque capacidade física (mesas/cadeiras) limita holdup máximo. Se τ aumenta, o sistema fica “mais cheio” por mais tempo e pode bloquear novas entradas.
+
+---
+
+## Checklist de domínio
+
+- Eu descrevo o RU como unidades conectadas (flowsheet).
+- Eu sei explicar “mesa = residência” e o efeito em holdup.
 
 ---
 
 ## Navegação
-- **Anterior:** [Aula 03 — Conservação de Massa](Aula03.md)
-- **Próxima:** [Aula 05 — Hidrometalurgia Seletiva](Aula05.md)
+
+- **Anterior:** [Aula 03 — Balanço](Aula03.md)
+- **Próxima:** [Aula 05 — Ponte industrial (RU ↔ íons/ETE)](Aula05.md)
 

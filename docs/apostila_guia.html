@@ -9,7 +9,7 @@
       content="Apostila guia do projeto: método Feynman + rigor de Engenharia Química (balanços, holdup, gargalo, tempo de residência) com links diretos para o código."
     />
     <meta name="theme-color" content="#0b1220" />
-    <link rel="icon" href="../assets/imagens/folder.png" />
+    <link rel="icon" href="assets/imagens/folder.png" />
 
     <!-- Bootstrap 5 -->
     <link
@@ -150,7 +150,7 @@
         padding: 18px 0;
       }
 
-      .h2 {
+      .section-title {
         margin: 0 0 10px;
         letter-spacing: -0.01em;
       }
@@ -230,6 +230,29 @@
         overflow-x: auto;
       }
 
+      /* Callouts (nota/dica/atenção) — sobrio e consistente com tema escuro */
+      .callout {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        padding: 12px 14px;
+      }
+      .callout strong {
+        letter-spacing: -0.01em;
+      }
+      .callout.note {
+        border-color: rgba(148, 163, 184, 0.30);
+        background: rgba(148, 163, 184, 0.10);
+      }
+      .callout.tip {
+        border-color: rgba(14, 165, 233, 0.34);
+        background: rgba(14, 165, 233, 0.10);
+      }
+      .callout.attn {
+        border-color: rgba(234, 179, 8, 0.34);
+        background: rgba(234, 179, 8, 0.10);
+      }
+
       .accordion-button {
         background: rgba(255, 255, 255, 0.06) !important;
         color: rgba(238, 242, 255, 0.90) !important;
@@ -246,6 +269,39 @@
       .accordion-body {
         color: rgba(238, 242, 255, 0.78);
         line-height: 1.65;
+      }
+
+      /* Tabela escura (contratos) */
+      .tablex {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(0, 0, 0, 0.22);
+      }
+      .tablex th,
+      .tablex td {
+        padding: 10px 12px;
+        vertical-align: top;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      }
+      .tablex th {
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(238, 242, 255, 0.90);
+        white-space: nowrap;
+      }
+      .tablex td {
+        color: rgba(238, 242, 255, 0.80);
+        line-height: 1.55;
+      }
+      .tablex tr:last-child td {
+        border-bottom: 0;
+      }
+      .tablex code {
+        color: rgba(238, 242, 255, 0.92);
       }
 
       footer {
@@ -285,7 +341,7 @@
     <header class="navglass" role="banner">
       <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Navegação">
         <div class="container py-2">
-          <a class="navbar-brand d-flex align-items-center gap-2" href="../portal.html" aria-label="Voltar à Sala Digital">
+          <a class="navbar-brand d-flex align-items-center gap-2" href="portal.html" aria-label="Voltar à Sala Digital">
             <span class="brandmark" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
                 <path
@@ -321,8 +377,8 @@
 
           <div class="collapse navbar-collapse" id="navLinks">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
-              <li class="nav-item"><a class="nav-link" href="../portal.html">Sala Digital</a></li>
-              <li class="nav-item"><a class="nav-link" href="../index.html">Case (paper)</a></li>
+              <li class="nav-item"><a class="nav-link" href="portal.html">Sala Digital</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.html">Case (paper)</a></li>
               <li class="nav-item"><a class="nav-link" href="tcc.html">TCC (HTML)</a></li>
               <li class="nav-item">
                 <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python">GitHub</a>
@@ -373,22 +429,28 @@
                   <li>Entenda com linguagem simples; depois suba para termos de engenharia (balanços, cinética, etc.).</li>
                   <li>Use os links “🔗 Código” para ver onde o simulador implementa a teoria.</li>
                 </ul>
+                <div class="callout attn mt-3" role="note" aria-label="Atenção">
+                  <strong>Atenção:</strong> os links “🔗 Código” abrem o repositório no GitHub (para leitura do código-fonte com linhas).
+                </div>
               </div>
             </div>
 
             <div class="col-12 col-lg-5">
               <div class="cardx p-3 toc" aria-label="Sumário">
                 <h2 class="h5 mb-2">Sumário</h2>
-                <div class="d-grid gap-2">
-                  <a href="#mapa-imagens">Mapa de imagens estratégicas</a>
-                  <a href="#cap1">Cap. 1 — O Fluxograma</a>
-                  <a href="#cap2">Cap. 2 — O Acúmulo (Holdup)</a>
-                  <a href="#cap3">Cap. 3 — O Gargalo</a>
-                  <a href="#cap4">Cap. 4 — Tempo de Residência (\(\tau = V/Q\))</a>
-                  <a href="#cap5">Cap. 5 — Termodinâmica e Cinética</a>
-                  <a href="#apA">Apêndice A — Reprodutibilidade</a>
-                  <a href="#apB">Apêndice B — Onde está no código</a>
-                </div>
+                <nav aria-label="Índice da apostila">
+                  <ol class="mb-0 ps-3" style="color: rgba(238, 242, 255, 0.86); line-height: 1.65">
+                    <li><a href="#mapa-imagens">Mapa de imagens estratégicas</a></li>
+                    <li><a href="#cap1">Cap. 1 — O Fluxograma</a></li>
+                    <li><a href="#cap2">Cap. 2 — O Acúmulo (Holdup)</a></li>
+                    <li><a href="#cap3">Cap. 3 — O Gargalo</a></li>
+                    <li><a href="#cap4">Cap. 4 — Tempo de Residência (\(\tau = V/Q\))</a></li>
+                    <li><a href="#cap5">Cap. 5 — Termodinâmica e Cinética</a></li>
+                    <li><a href="#apA">Apêndice A — Reprodutibilidade</a></li>
+                    <li><a href="#apB">Apêndice B — Onde está no código</a></li>
+                    <li><a href="#apC">Apêndice C — Integração de dados (YAML/Excel/Layout) e validação</a></li>
+                  </ol>
+                </nav>
               </div>
             </div>
           </div>
@@ -397,7 +459,7 @@
 
       <section class="section" id="mapa-imagens">
         <div class="container">
-          <h2 class="h2 h4">Mapa de imagens estratégicas (e placeholders)</h2>
+          <h2 class="section-title h4">Mapa de imagens estratégicas (e placeholders)</h2>
           <div class="cardx p-3">
             <p class="mb-2" style="color: rgba(238, 242, 255, 0.80)">
               Você pode substituir os placeholders por infográficos próprios. Abaixo, já usamos as figuras existentes do repositório quando possível.
@@ -418,7 +480,7 @@
       <!-- Cap 1 -->
       <section class="section" id="cap1">
         <div class="container">
-          <h2 class="h2 h4">Capítulo 1 — O Fluxograma (a mesma história em dois rótulos)</h2>
+          <h2 class="section-title h4">Capítulo 1 — O Fluxograma (a mesma história em dois rótulos)</h2>
 
           <div class="analogy">
             <div class="head">
@@ -470,11 +532,11 @@
 
           <div class="accordion mt-3" id="acc1">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="acc1h">
+              <h3 class="accordion-header" id="acc1h">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc1c" aria-expanded="false" aria-controls="acc1c">
                   Curiosidade técnica: por que “fluxograma” já é um balanço implícito?
                 </button>
-              </h2>
+              </h3>
               <div id="acc1c" class="accordion-collapse collapse" aria-labelledby="acc1h" data-bs-parent="#acc1">
                 <div class="accordion-body">
                   Qualquer seta sugere contabilidade: “o que passa por aqui por unidade de tempo”. Isso é o início de um balanço
@@ -489,7 +551,7 @@
       <!-- Cap 2 -->
       <section class="section" id="cap2">
         <div class="container">
-          <h2 class="h2 h4">Capítulo 2 — O Acúmulo (Holdup): quando “some” gente (ou material)</h2>
+          <h2 class="section-title h4">Capítulo 2 — O Acúmulo (Holdup): quando “some” gente (ou material)</h2>
 
           <div class="analogy">
             <div class="head">
@@ -532,11 +594,11 @@
 
           <div class="accordion mt-3" id="acc2">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="acc2h">
+              <h3 class="accordion-header" id="acc2h">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc2c" aria-expanded="false" aria-controls="acc2c">
                   Curiosidade técnica: holdup vs WIP vs inventário
                 </button>
-              </h2>
+              </h3>
               <div id="acc2c" class="accordion-collapse collapse" aria-labelledby="acc2h" data-bs-parent="#acc2">
                 <div class="accordion-body">
                   <ul class="mb-0">
@@ -554,7 +616,7 @@
       <!-- Cap 3 -->
       <section class="section" id="cap3">
         <div class="container">
-          <h2 class="h2 h4">Capítulo 3 — O Gargalo: a etapa que governa o sistema</h2>
+          <h2 class="section-title h4">Capítulo 3 — O Gargalo: a etapa que governa o sistema</h2>
 
           <div class="analogy">
             <div class="head">
@@ -594,9 +656,12 @@
               <div>
                 <strong>IMAGEM 3 (placeholder)</strong>
                 <div style="color: rgba(238, 242, 255, 0.78); line-height: 1.55; margin-top: 6px">
-                  Gráfico “capacidade vs demanda” (curva). Rotule:
-                  <strong>capacidade do caixa (\(\mu\))</strong> e <strong>taxa de chegada (\(\lambda\))</strong>.
-                  Quando \(\lambda > \mu\), a região de “fila explode” vira a analogia da limitação industrial (pressão/vazão).
+                  <div class="mb-1">Sugestão de infográfico “capacidade vs demanda”:</div>
+                  <ul class="mb-0">
+                    <li>Rotule <strong>capacidade do caixa (μ)</strong> e <strong>taxa de chegada (λ)</strong>.</li>
+                    <li>Mostre a fronteira de estabilidade (λ ≈ μ).</li>
+                    <li>Quando <strong>λ &gt; μ</strong>, destaque a região “fila cresce” como analogia de restrição industrial (pressão/vazão).</li>
+                  </ul>
                 </div>
               </div>
               <span class="pill">substituir por infográfico final</span>
@@ -605,11 +670,11 @@
 
           <div class="accordion mt-3" id="acc3">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="acc3h">
+              <h3 class="accordion-header" id="acc3h">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc3c" aria-expanded="false" aria-controls="acc3c">
                   Curiosidade técnica: gargalo não é “o que está cheio”, é “o que limita”
                 </button>
-              </h2>
+              </h3>
               <div id="acc3c" class="accordion-collapse collapse" aria-labelledby="acc3h" data-bs-parent="#acc3">
                 <div class="accordion-body">
                   Um buffer cheio pode ser sintoma. O gargalo é a causa: a etapa cuja capacidade efetiva governa o throughput.
@@ -623,7 +688,7 @@
       <!-- Cap 4 -->
       <section class="section" id="cap4">
         <div class="container">
-          <h2 class="h2 h4">Capítulo 4 — Tempo de Residência: \(\tau = V/Q\)</h2>
+          <h2 class="section-title h4">Capítulo 4 — Tempo de Residência: \(\tau = V/Q\)</h2>
 
           <div class="analogy">
             <div class="head">
@@ -655,8 +720,12 @@
             </p>
             <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
               No RU: \(V \approx\) número médio de pessoas no sistema (holdup). \(Q \approx\) throughput (pessoas/min).
-              Em regime, isso é a Lei de Little: \(L=\lambda W\Rightarrow W=L/\lambda\).
+              Em regime estacionário e sistema estável, isso se conecta à Lei de Little: \(L=\lambda W\Rightarrow W=L/\lambda\).
             </p>
+            <div class="callout note mt-3" role="note" aria-label="Nota">
+              <strong>Nota:</strong> \(\tau = V/Q\) é uma relação média útil. Em DES, ela emerge como média sob condições de estabilidade
+              (quando o sistema não está “explodindo” sem limite).
+            </div>
           </div>
 
           <div class="mt-3">
@@ -688,11 +757,11 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
 
           <div class="accordion mt-3" id="acc4">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="acc4h">
+              <h3 class="accordion-header" id="acc4h">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc4c" aria-expanded="false" aria-controls="acc4c">
                   Curiosidade técnica: por que \(\tau = V/Q\) continua válido em DES?
                 </button>
-              </h2>
+              </h3>
               <div id="acc4c" class="accordion-collapse collapse" aria-labelledby="acc4h" data-bs-parent="#acc4">
                 <div class="accordion-body">
                   Mesmo com variabilidade, a relação aparece como média em regime: o sistema oscila, mas o “orçamento” de fluxo ainda existe.
@@ -706,7 +775,7 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
       <!-- Cap 5 -->
       <section class="section" id="cap5">
         <div class="container">
-          <h2 class="h2 h4">Capítulo 5 — Termodinâmica e Cinética (ponte conceitual)</h2>
+          <h2 class="section-title h4">Capítulo 5 — Termodinâmica e Cinética (ponte conceitual)</h2>
 
           <div class="analogy">
             <div class="head">
@@ -730,19 +799,23 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
           </div>
 
           <div class="mt-3 cardx p-3">
-            <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
-              Em engenharia: <strong>cinética</strong> ↔ taxa de processamento (\(\mu\)); <strong>termodinâmica</strong> ↔ limites de equilíbrio;
-              <strong>transferência</strong> ↔ limitações que viram gargalos (massa/energia/momento).
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              Tradução sobria (o suficiente para orientar o aluno sem “sobrecarga de teoria”):
             </p>
+            <ul class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              <li><strong>Cinética</strong> ↔ taxa efetiva de processamento (μ).</li>
+              <li><strong>Termodinâmica</strong> ↔ limites de equilíbrio (o máximo que dá para “chegar”).</li>
+              <li><strong>Transferência</strong> ↔ limitações que viram gargalos (massa/energia/momento).</li>
+            </ul>
           </div>
 
           <div class="accordion mt-3" id="acc5">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="acc5h">
+              <h3 class="accordion-header" id="acc5h">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc5c" aria-expanded="false" aria-controls="acc5c">
                   Curiosidade técnica: “pessoa” e “molécula” são a mesma entidade matemática
                 </button>
-              </h2>
+              </h3>
               <div id="acc5c" class="accordion-collapse collapse" aria-labelledby="acc5h" data-bs-parent="#acc5">
                 <div class="accordion-body">
                   O que muda é a interpretação do estado e das taxas. O motor observa entidades, eventos e restrições.
@@ -756,12 +829,16 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
       <!-- Appendices -->
       <section class="section" id="apA">
         <div class="container">
-          <h2 class="h2 h4">Apêndice A — Figuras e reprodutibilidade</h2>
+          <h2 class="section-title h4">Apêndice A — Figuras e reprodutibilidade</h2>
           <div class="cardx p-3">
             <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
               Para regenerar as figuras do case usadas no <code>index.html</code>:
             </p>
             <pre><code>python scripts/gerar_figuras.py</code></pre>
+            <div class="callout tip mt-3" role="note" aria-label="Dica de reprodutibilidade">
+              <strong>Dica:</strong> registre o cenário (arquivo de parâmetros + layout) junto com a versão do Python e dependências
+              (<code>python --version</code> e <code>pip freeze</code>) para permitir reprodução por terceiros.
+            </div>
             <p class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
               🔗 Código: <a target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/scripts/gerar_figuras.py">`scripts/gerar_figuras.py`</a>
             </p>
@@ -771,7 +848,7 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
 
       <section class="section" id="apB">
         <div class="container">
-          <h2 class="h2 h4">Apêndice B — Onde estudar a teoria “dentro do código”</h2>
+          <h2 class="section-title h4">Apêndice B — Onde estudar a teoria “dentro do código”</h2>
           <div class="cardx p-3">
             <ul class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
               <li>
@@ -790,6 +867,272 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
           </div>
         </div>
       </section>
+
+      <section class="section" id="apC">
+        <div class="container">
+          <h2 class="section-title h4">Apêndice C — Integração de dados (YAML/Excel/Layout) e validação</h2>
+
+          <div class="cardx p-3">
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              Nesta apostila, “integração” significa <strong>ingestão de parâmetros</strong> (YAML/Excel) e <strong>importação de layout</strong>
+              (ASCII) para tornar cenários <em>reproduzíveis</em>. Não há integração via APIs/WebServices neste escopo; a fronteira do sistema é
+              arquivo + interface.
+            </p>
+
+            <div class="callout note" role="note" aria-label="Nota sobre reprodutibilidade">
+              <strong>Nota (Reproducible Research):</strong> um experimento de simulação é reprodutível quando você consegue refazer o cenário com
+              os mesmos artefatos: <code>parametros.yaml</code> (ou Excel), <code>layout.txt</code> e versão do ambiente (Python + dependências).
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Fluxo de dados (visão de sistema)</h3>
+            <pre><code>Usuário (GUI/Tkinter)
+  |
+  |-- Importa parâmetros ---------------+
+  |    - YAML (PyYAML)                  |
+  |    - Excel (.xlsx via openpyxl)     |
+  |                                     v
+  |-- Importa layout ASCII (.txt) --> Parser (matriz + contagem B/M/C)
+  |
+  v
+Motor de simulação (DES)  → métricas → figuras/PDF/logs</code></pre>
+
+            <div class="d-flex flex-wrap gap-2 mt-2">
+              <a class="pill" target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/src/yaml_loader.py"
+                >🔗 Código: `src/yaml_loader.py`</a
+              >
+              <a class="pill" target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/src/excel_loader.py"
+                >🔗 Código: `src/excel_loader.py`</a
+              >
+              <a class="pill" target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/src/layout_parser.py"
+                >🔗 Código: `src/layout_parser.py`</a
+              >
+              <a class="pill" target="_blank" rel="noopener" href="https://github.com/chmulato/tcc_python/blob/main/src/interface.py"
+                >🔗 Código: `src/interface.py` (GUI)</a
+              >
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Contrato das entradas (para reprodução por terceiros)</h3>
+            <p class="mb-3" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              Use esta tabela como checklist de “contrato”: o que o arquivo deve conter, o que o software valida e o que você precisa registrar
+              para que outra pessoa reproduza o experimento.
+            </p>
+
+            <div class="table-responsive">
+              <table class="tablex" aria-label="Contrato de entradas e validação">
+                <thead>
+                  <tr>
+                    <th>Artefato</th>
+                    <th>Formato / contrato</th>
+                    <th>Validações no projeto</th>
+                    <th>Falhas comuns</th>
+                    <th>Checklist de reprodução</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Parâmetros (YAML)</strong></td>
+                    <td>
+                      Dicionário no topo do arquivo (<code>.yaml/.yml</code>) com chaves no padrão do projeto (ex.: <code>clientes_por_minuto</code>).
+                    </td>
+                    <td>
+                      Exige um conjunto mínimo para executar: <code>clientes_por_minuto</code>, <code>tempo_medio_almoco</code>,
+                      <code>cadeiras_por_mesa</code>, <code>numero_de_mesas</code>, <code>tempo_total_simulacao</code>.
+                      Demais campos são opcionais (defaults no núcleo).
+                    </td>
+                    <td>
+                      <ul class="mb-0">
+                        <li>chave ausente (erro imediato)</li>
+                        <li>valores como texto não numérico</li>
+                        <li>cenário incoerente (ex.: alimentação inconsistente)</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul class="mb-0">
+                        <li>anexar <code>parametros.yaml</code> usado</li>
+                        <li>registrar alterações (1 variável por vez)</li>
+                        <li>registrar <code>python --version</code> e <code>pip freeze</code></li>
+                      </ul>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>Parâmetros (Excel)</strong></td>
+                    <td>
+                      Planilha (<code>.xlsx</code>) com duas colunas: <code>parametro</code> e <code>valor</code> (a partir da linha 2).
+                      Nomes devem coincidir com o YAML.
+                    </td>
+                    <td>
+                      Importa e tenta converter tipos numéricos (inclui troca de vírgula por ponto). Se falhar, mantém valor e registra warning.
+                    </td>
+                    <td>
+                      <ul class="mb-0">
+                        <li>cabeçalhos diferentes (não “parametro/valor”)</li>
+                        <li>número como string com formato ambíguo</li>
+                        <li>linha vazia (ignorada)</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul class="mb-0">
+                        <li>anexar a planilha (<code>.xlsx</code>)</li>
+                        <li>registrar conversões relevantes (λ, tempos, capacidades)</li>
+                        <li>registrar ambiente (Python + dependências)</li>
+                      </ul>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>Layout (ASCII)</strong></td>
+                    <td>
+                      Arquivo de texto (<code>.txt</code>) onde cada caractere representa um elemento: <code>M</code>, <code>C</code>, <code>B</code>,
+                      <code>#</code> e espaço.
+                    </td>
+                    <td>
+                      A GUI valida mínimo: ≥1 caixa, ≥1 mesa, ≥1 buffet e total de cadeiras &gt; 0 (mesas × cadeiras_por_mesa).
+                      O layout também pode definir contagens (mesas/caixas) e ter prioridade sobre valores importados.
+                    </td>
+                    <td>
+                      <ul class="mb-0">
+                        <li>layout sem um dos símbolos essenciais</li>
+                        <li>cadeiras_por_mesa = 0 (cadeiras totais = 0)</li>
+                        <li>layout “visual” incoerente (corredores bloqueados, etc.)</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul class="mb-0">
+                        <li>anexar <code>layout.txt</code> usado</li>
+                        <li>registrar a legenda de símbolos e versão do layout</li>
+                        <li>registrar resultados/figuras geradas</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Checklist copiável (para o relatório do TCC)</h3>
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              Copie e cole este bloco no seu relatório/apêndice. Ele cria um “registro mínimo” suficiente para outra pessoa reproduzir o experimento.
+            </p>
+            <pre><code>## Registro do experimento (Reproducible Research)
+
+### Identificação
+- Projeto: tcc_python (Simulação DES — RU ↔ Engenharia)
+- Data/hora:
+- Responsável:
+
+### Ambiente
+- Sistema operacional:
+- Python: (python --version)
+- Dependências: (pip freeze | salvar em arquivo)
+
+### Entradas (artefatos)
+- Parâmetros:
+  - Tipo: YAML / Excel
+  - Arquivo:
+  - Alterações aplicadas (uma variável por vez):
+- Layout ASCII:
+  - Arquivo:
+  - Legenda usada (M/C/B/#/espaço):
+
+### Execução
+- Modo: GUI (python main.py) / geração de figuras (python scripts/gerar_figuras.py)
+- Tempo total de simulação (min):
+- Observações (qualquer decisão/hipótese antes de rodar):
+
+### Saídas (artefatos gerados)
+- Figuras: docs/figuras/ (listar nomes relevantes)
+- PDF/relatórios (se gerados):
+- Logs (se usados):
+
+### Métricas reportadas (mínimo recomendado)
+- Throughput (saída):
+- Holdup/WIP (ocupação + filas):
+- Tempo médio no sistema (residência):
+- Nota sobre variabilidade (se aplicável):</code></pre>
+            <div class="callout tip mt-3" role="note" aria-label="Dica">
+              <strong>Dica:</strong> ao comparar cenários, registre apenas <em>uma</em> mudança por execução e guarde o “cenário base” como referência.
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">YAML: parâmetros obrigatórios vs opcionais</h3>
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              O importador YAML aplica <strong>validação mínima</strong>: exige apenas o necessário para rodar com defaults seguros no núcleo.
+              Campos opcionais ausentes são aceitos (o simulador aplica valores padrão).
+            </p>
+            <div class="row g-3">
+              <div class="col-12 col-lg-6">
+                <div class="callout attn" role="note" aria-label="Obrigatórios no YAML">
+                  <strong>Obrigatórios (mínimo para rodar):</strong>
+                  <ul class="mb-0" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+                    <li><code>clientes_por_minuto</code></li>
+                    <li><code>tempo_medio_almoco</code></li>
+                    <li><code>cadeiras_por_mesa</code></li>
+                    <li><code>numero_de_mesas</code></li>
+                    <li><code>tempo_total_simulacao</code></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6">
+                <div class="callout tip" role="note" aria-label="Opcionais no YAML">
+                  <strong>Opcionais (calibração/experimento):</strong>
+                  <div style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+                    variabilidade, tempos de etapas, limites de fila e parâmetros de modo (ex.: <code>variabilidade_chegada</code>,
+                    <code>numero_caixas</code>, <code>tempo_entre_clientes</code>).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Excel: contrato de planilha (parametro/valor)</h3>
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              A planilha Excel deve conter duas colunas (a partir da linha 2): <code>parametro</code> e <code>valor</code>. Os nomes de
+              parâmetros devem ser os mesmos usados no YAML.
+            </p>
+            <pre><code>parametro,valor
+clientes_por_minuto,12
+tempo_medio_almoco,30
+cadeiras_por_mesa,4
+numero_de_mesas,25
+tempo_total_simulacao,120</code></pre>
+            <div class="callout attn mt-3" role="note" aria-label="Atenção sobre tipos">
+              <strong>Atenção:</strong> por ser planilha, valores podem vir como texto (“12,5”). O importador tenta converter números (troca
+              vírgula por ponto). Sempre revise se os valores críticos (λ, tempos, capacidade) foram carregados como números.
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3">
+            <h3 class="h6 mb-2">Layout ASCII: validação e prioridade sobre parâmetros</h3>
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              O layout ASCII é lido como matriz. O sistema identifica elementos por símbolo:
+              <code>M</code> (mesa), <code>C</code> (caixa), <code>B</code> (buffet), <code>#</code> (parede) e espaço (livre).
+            </p>
+            <pre><code>###########
+# M M B C #
+# M M B C #
+#         #
+###########</code></pre>
+
+            <div class="callout tip mt-3" role="note" aria-label="Dica de consistência">
+              <strong>Dica:</strong> no fluxo atual, o layout pode definir (e sobrescrever) a contagem de caixas e mesas na interface, pois ele
+              é a representação “física” do sistema.
+            </div>
+
+            <div class="callout attn mt-3" role="note" aria-label="Atenção: layout mínimo">
+              <strong>Atenção:</strong> a interface valida um mínimo: pelo menos 1 caixa, 1 mesa, 1 buffet e total de cadeiras &gt; 0
+              (mesas × cadeiras_por_mesa).
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer role="contentinfo">
@@ -799,8 +1142,8 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
             Apostila Guia · Leitura responsiva · Fórmulas renderizadas (KaTeX)
           </div>
           <div class="d-flex flex-wrap gap-2">
-            <a class="footlink" href="../portal.html">Sala Digital</a>
-            <a class="footlink" href="../index.html">Case</a>
+            <a class="footlink" href="portal.html">Sala Digital</a>
+            <a class="footlink" href="index.html">Case</a>
             <a class="footlink" href="apostila_guia.html" aria-current="page">Apostila (HTML)</a>
           </div>
         </div>
