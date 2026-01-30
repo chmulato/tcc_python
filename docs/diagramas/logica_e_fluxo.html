@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lógica e Fluxos do Simulador (Diagrama)</title>
+    <meta
+      name="description"
+      content="Documento técnico: tipos de simulação (determinística vs DES), fluxo lógico do simulador, fluxograma e diagrama de sequência."
+    />
+    <link rel="icon" href="../assets/imagens/folder.png" />
+    <style>
+      :root {
+        --bg: #fbfbfc;
+        --surface: #ffffff;
+        --ink: #111827;
+        --muted: rgba(17, 24, 39, 0.72);
+        --line: rgba(17, 24, 39, 0.14);
+        --accent: #0f3d6e;
+        --radius: 14px;
+        --max: 980px;
+        --serif: ui-serif, "Georgia", "Cambria", "Times New Roman", Times, serif;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans",
+          "Liberation Sans", sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+
+      html {
+        color-scheme: light;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.85;
+        padding: clamp(18px, 3.2vw, 34px) clamp(16px, 3.4vw, 28px);
+      }
+
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+
+      header.top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.10);
+        margin-bottom: 16px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand strong {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+      }
+
+      .brand span {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+
+      .toplinks {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: rgba(255, 255, 255, 0.70);
+        text-decoration: none;
+        font-family: var(--sans);
+        font-size: 13px;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .pill:hover {
+        background: rgba(15, 61, 110, 0.06);
+        border-color: rgba(15, 61, 110, 0.22);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+      a:hover {
+        color: #0b2f55;
+      }
+
+      main {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: calc(var(--radius) + 2px);
+        padding: clamp(16px, 2.8vw, 22px);
+        box-shadow: 0 14px 44px rgba(17, 24, 39, 0.08);
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        scroll-margin-top: 18px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(26px, 3.0vw, 40px);
+      }
+      h2 {
+        margin: 22px 0 10px;
+        font-size: clamp(20px, 2.2vw, 28px);
+        padding-top: 8px;
+        border-top: 1px solid rgba(17, 24, 39, 0.08);
+      }
+      h3 {
+        margin: 18px 0 8px;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 12px 0 0;
+        color: rgba(17, 24, 39, 0.88);
+      }
+
+      ul,
+      ol {
+        margin: 12px 0 0;
+        padding-left: 1.25em;
+      }
+      li {
+        margin: 6px 0;
+        color: rgba(17, 24, 39, 0.86);
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: rgba(17, 24, 39, 0.10);
+        margin: 18px 0;
+      }
+
+      pre {
+        margin: 14px 0 0;
+        padding: 14px 14px;
+        background: rgba(17, 24, 39, 0.04);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: var(--radius);
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: var(--mono);
+        font-size: 0.95em;
+        background: rgba(17, 24, 39, 0.05);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: 8px;
+        padding: 0.12em 0.32em;
+      }
+      pre code {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        font-size: 0.92em;
+        line-height: 1.55;
+        display: block;
+        white-space: pre;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 0;
+        font-size: 0.96em;
+        background: var(--surface);
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        border-radius: 12px;
+        overflow: hidden;
+        display: block;
+        overflow-x: auto;
+      }
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.10);
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        font-family: var(--sans);
+        font-size: 0.92em;
+        color: rgba(17, 24, 39, 0.86);
+        background: rgba(17, 24, 39, 0.03);
+      }
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .callout {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: linear-gradient(180deg, rgba(15, 61, 110, 0.06), rgba(11, 107, 77, 0.04));
+      }
+      .callout strong {
+        font-family: var(--sans);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="top" aria-label="Topo do documento">
+        <a class="brand" href="../portal.html" aria-label="Voltar ao Portal">
+          <strong>Diagrama · Lógica e Fluxos</strong>
+          <span>determinística · DES · módulos</span>
+        </a>
+        <nav class="toplinks" aria-label="Atalhos">
+          <a class="pill" href="../index.html">Projeto</a>
+          <a class="pill" href="../portal.html">Sala Digital</a>
+          <a class="pill" href="../SIMULATING.html">Guia (HTML)</a>
+          <a class="pill" href="../tcc.html">TCC (HTML)</a>
+          <a class="pill" href="../README.html">README</a>
+        </nav>
+      </header>
+
+      <main>
+        <h1>📊 Lógica e Fluxos do Simulador de Restaurante</h1>
+        <p class="callout">
+          <strong>Objetivo:</strong> documentar o “como funciona” (lógica, módulos e fluxo) para leitura técnica e comunicação executiva.
+        </p>
+
+        <h2>1. Tipos de Simulação</h2>
+
+        <h3>1.1 Simulação Determinística</h3>
+        <ul>
+          <li><strong>Definição:</strong> resultados sempre iguais para os mesmos parâmetros, sem aleatoriedade.</li>
+          <li><strong>Características:</strong>
+            <ul>
+              <li>Parâmetros fixos (ex.: 12 clientes/minuto, 30 min/refeição)</li>
+              <li>Sem filas, sem variabilidade individual</li>
+              <li>Cálculo direto:</li>
+            </ul>
+          </li>
+        </ul>
+        <pre><code>total_clientes = clientes/min × tempo_total
+capacidade_total = mesas × cadeiras</code></pre>
+        <ul>
+          <li><strong>Aplicação:</strong> planejamento teórico, capacidade máxima, cenários estáticos.</li>
+        </ul>
+
+        <h3>1.2 Simulação de Eventos Discretos (DES)</h3>
+        <ul>
+          <li><strong>Definição:</strong> o sistema evolui por eventos (chegada, atendimento, saída), com variabilidade e controle de recursos.</li>
+          <li><strong>Características:</strong>
+            <ul>
+              <li>Aleatoriedade nos tempos de chegada e atendimento</li>
+              <li>Controle de ocupação de mesas, filas, rejeição de clientes</li>
+              <li>Resultados diferentes a cada execução</li>
+            </ul>
+          </li>
+          <li><strong>Aplicação:</strong> avaliação realista de filas, gargalos, rotatividade, tomada de decisão operacional.</li>
+        </ul>
+
+        <h3>1.3 Comparativo</h3>
+        <table aria-label="Comparativo de tipos de simulação">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>Simulação Determinística</th>
+              <th>Simulação de Eventos Discretos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aleatoriedade</td>
+              <td>Não</td>
+              <td>Sim</td>
+            </tr>
+            <tr>
+              <td>Variabilidade</td>
+              <td>Não</td>
+              <td>Sim</td>
+            </tr>
+            <tr>
+              <td>Cálculo</td>
+              <td>Direto</td>
+              <td>Baseado em eventos</td>
+            </tr>
+            <tr>
+              <td>Aplicação</td>
+              <td>Planejamento teórico</td>
+              <td>Análise operacional</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <hr />
+
+        <h2>2. Fluxo Lógico do Simulador</h2>
+        <h3>2.1 Algoritmo Geral</h3>
+        <pre><code>+-----------------------------+
+|     Início da Simulação     |
++-----------------------------+
+              |
+              v
+|  Ler parâmetros de entrada  |
+|  (clientes/min, tempo_refeição, mesas, etc.) |
+              |
+              v
+| Validar tempo_total_simul. (máx. 12h) |
+              |
+              v
+| Calcular total_clientes e capacidade_total |
+              |
+              v
+| Iniciar simulação minuto a minuto         |
+              |
+              v
+| Atualizar ocupação das mesas              |
+              |
+              v
+| Gerar frames PNG do layout (intervalos)   |
+              |
+              v
+| Montar GIF animado do layout              |
+              |
+              v
+| Calcular estatísticas finais              |
+              |
+              v
+| Armazenar resultados em dicionário        |
+              |
+              v
+| Exportar relatório PDF e informar GIF     |
+              |
+              v
+|        Fim da Simulação                   |
++-----------------------------+</code></pre>
+
+        <hr />
+
+        <h2>3. Fluxograma do Programa</h2>
+        <pre><code>Início do Programa
+      |
+Selecionar fonte dos parâmetros (manual, Excel, YAML)
+      |
+Importar layout ASCII
+      |
+Validar dados e layout
+      |
+Executar Simulação (determinística ou DES)
+      |
+Atualizar ocupação das mesas minuto a minuto
+      |
+Gerar frames PNG do layout
+      |
+Montar GIF animado do layout
+      |
+Gerar relatório PDF com os resultados
+      |
+Exibir caminhos dos arquivos gerados (PDF/GIF)
+      |
+Encerrar programa</code></pre>
+
+        <hr />
+
+        <h2>4. Diagrama de Sequência (Resumo Modular)</h2>
+        <pre><code>Usuário
+  |
+main.py
+  |
+src/interface.py
+  |---> src/yaml_loader.py / src/excel_loader.py / importar_dados_txt
+  |---> src/layout_parser.py
+  |---> src/simulador.py
+           |---> src/logger_config.py
+           |---> src/visualizador_layout.py (frames/GIF)
+           |---> src/pdf_exporter.py (PDF)
+           |<--- resultado
+  |
+Relatórios PDF e GIF animado gerados</code></pre>
+
+        <hr />
+
+        <h2>5. Relatório e Visualização</h2>
+        <p>O simulador gera dois principais artefatos ao final de cada execução:</p>
+        <ul>
+          <li>
+            <strong>Relatório PDF:</strong> contém parâmetros, estatísticas finais (tempo de espera, ocupação, atendidos e rejeitados),
+            recomendações e caminhos dos arquivos gerados.
+          </li>
+          <li>
+            <strong>GIF Animado:</strong> mostra a evolução do layout no tempo, destacando ocupação, movimentação e áreas críticas.
+          </li>
+        </ul>
+
+        <hr />
+
+        <h2>6. Observações e Recomendações</h2>
+        <ul>
+          <li>Parâmetros podem ser ajustados com dados reais ou cenários hipotéticos.</li>
+          <li>O simulador permite comparar estratégias de layout, atendimento e gestão de filas, apoiando decisões baseadas em dados.</li>
+          <li>Para análises realistas e identificação de gargalos, recomenda-se utilizar DES.</li>
+          <li>O sistema é modular, facilitando integração com novos módulos (visualização, exportação, coleta).</li>
+          <li>Recomenda-se coleta periódica de dados reais para calibrar e aumentar aderência operacional.</li>
+        </ul>
+
+        <p class="callout">
+          <strong>Resumo:</strong> do cálculo teórico ao DES estocástico com visualização e relatório executivo, o simulador sustenta melhoria
+          contínua, otimização de atendimento e tomada de decisão gerencial.
+        </p>
+      </main>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulação — Determinística vs DES (Guia)</title>
+    <meta
+      name="description"
+      content="Guia técnico (paper-like) explicando simulação determinística vs DES, parâmetros de entrada e leitura industrial de métricas."
+    />
+    <link rel="icon" href="assets/imagens/folder.png" />
+    <style>
+      :root {
+        --bg: #fbfbfc;
+        --surface: #ffffff;
+        --ink: #111827;
+        --muted: rgba(17, 24, 39, 0.72);
+        --line: rgba(17, 24, 39, 0.14);
+        --accent: #0f3d6e;
+        --accent-2: #0b6b4d;
+        --radius: 14px;
+        --max: 980px;
+        --serif: ui-serif, "Georgia", "Cambria", "Times New Roman", Times, serif;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans",
+          "Liberation Sans", sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+
+      html {
+        color-scheme: light;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.85;
+        padding: clamp(18px, 3.2vw, 34px) clamp(16px, 3.4vw, 28px);
+      }
+
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+
+      header.top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.10);
+        margin-bottom: 16px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand strong {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+      }
+
+      .brand span {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+
+      .toplinks {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: rgba(255, 255, 255, 0.70);
+        text-decoration: none;
+        font-family: var(--sans);
+        font-size: 13px;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .pill:hover {
+        background: rgba(15, 61, 110, 0.06);
+        border-color: rgba(15, 61, 110, 0.22);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+      a:hover {
+        color: #0b2f55;
+      }
+
+      main {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: calc(var(--radius) + 2px);
+        padding: clamp(16px, 2.8vw, 22px);
+        box-shadow: 0 14px 44px rgba(17, 24, 39, 0.08);
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        scroll-margin-top: 18px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(26px, 3.0vw, 40px);
+      }
+      h2 {
+        margin: 22px 0 10px;
+        font-size: clamp(20px, 2.2vw, 28px);
+        padding-top: 8px;
+        border-top: 1px solid rgba(17, 24, 39, 0.08);
+      }
+      h3 {
+        margin: 18px 0 8px;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 12px 0 0;
+        color: rgba(17, 24, 39, 0.88);
+      }
+
+      ul,
+      ol {
+        margin: 12px 0 0;
+        padding-left: 1.25em;
+      }
+      li {
+        margin: 6px 0;
+        color: rgba(17, 24, 39, 0.86);
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: rgba(17, 24, 39, 0.10);
+        margin: 18px 0;
+      }
+
+      pre {
+        margin: 14px 0 0;
+        padding: 14px 14px;
+        background: rgba(17, 24, 39, 0.04);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: var(--radius);
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: var(--mono);
+        font-size: 0.95em;
+        background: rgba(17, 24, 39, 0.05);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: 8px;
+        padding: 0.12em 0.32em;
+      }
+      pre code {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        font-size: 0.92em;
+        line-height: 1.55;
+        display: block;
+        white-space: pre;
+      }
+
+      /* Mini callout */
+      .callout {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: linear-gradient(180deg, rgba(15, 61, 110, 0.06), rgba(11, 107, 77, 0.04));
+      }
+      .callout strong {
+        font-family: var(--sans);
+      }
+
+      /* Print */
+      @media print {
+        body {
+          background: #ffffff;
+          padding: 0;
+        }
+        main {
+          box-shadow: none;
+          border: 0;
+          padding: 0;
+        }
+        a {
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="top" aria-label="Topo do guia">
+        <a class="brand" href="index.html" aria-label="Voltar ao index">
+          <strong>Guia · Simulação (Determinística vs DES)</strong>
+          <span>process thinking · filas · variabilidade</span>
+        </a>
+        <nav class="toplinks" aria-label="Atalhos">
+          <a class="pill" href="index.html">Voltar ao projeto</a>
+          <a class="pill" href="portal.html">Sala Digital</a>
+          <a class="pill" href="README.html">README</a>
+          <a class="pill" href="tcc.html">TCC (HTML)</a>
+        </nav>
+      </header>
+
+      <main>
+        <h1>Simulação (Determinística vs DES) no contexto de Engenharia de Processos</h1>
+        <p class="callout">
+          <strong>Ideia central:</strong> quando você troca clientes por moléculas/íons, você não troca a matemática — você troca o rótulo da
+          entidade. O resto é fluxo, capacidade, variabilidade e gargalos.
+        </p>
+
+        <h2>1. Introdução (process thinking)</h2>
+        <p>
+          Este projeto é um <strong>motor de Simulação por Eventos Discretos (DES)</strong> aplicado a um sistema de fluxo com recursos finitos.
+          O “restaurante” é um <strong>ambiente análogo</strong> para Engenharia de Processos: entidades entram com uma taxa (alimentação),
+          atravessam operações unitárias, acumulam em buffers (filas) e deixam o sistema como vazão de saída.
+        </p>
+        <p>Este documento explica:</p>
+        <ul>
+          <li>como interpretar o sistema como <strong>processo dinâmico</strong>;</li>
+          <li>a diferença entre <strong>simulação determinística</strong> e <strong>DES estocástico</strong>;</li>
+          <li>como os <strong>parâmetros de entrada</strong> se conectam a métricas industriais (throughput, holdup, tempo de residência);</li>
+          <li>como reproduzir as <strong>figuras do estudo de caso</strong> usadas na apresentação (<code>index.html</code>).</li>
+        </ul>
+
+        <hr />
+
+        <h2>2. Mapeamento de conceitos (serviços ↔ processos)</h2>
+        <ul>
+          <li><strong>clientes_por_minuto</strong> → <strong>Feed Rate</strong> (λ): taxa média de alimentação.</li>
+          <li>
+            <strong>tempo_medio_atendimento</strong>, <strong>tempo_buffet</strong>, <strong>tempo_balcao</strong> → <strong>Taxas de serviço</strong> (μ) e
+            tempos de processamento em operações unitárias.
+          </li>
+          <li><strong>tempo_medio_almoco</strong> → <strong>Tempo de residência</strong> (τ) na área de holdup (mesas).</li>
+          <li><strong>filas</strong> (buffet/caixa/mesa) → <strong>Buffers / Inventário em processo (WIP/Holdup)</strong>.</li>
+          <li><strong>uso_medio_mesas</strong> e picos de fila → <strong>assinaturas de gargalo</strong>.</li>
+        </ul>
+
+        <hr />
+
+        <h2>3. Simulação determinística (estimativa de regime médio)</h2>
+        <p>
+          A simulação determinística usa <strong>médias fixas</strong> para obter uma estimativa rápida. Ela é útil para triagem de cenários
+          (ordem de grandeza), checagens iniciais de capacidade (capacidade instalada vs demanda média) e comunicação executiva (quando variabilidade
+          não é o foco).
+        </p>
+        <p><strong>Limitação central:</strong> não captura formação de filas por variabilidade nem regimes de saturação transiente.</p>
+
+        <hr />
+
+        <h2>4. Simulação por Eventos Discretos (DES) — dinâmica e variabilidade</h2>
+        <p>
+          No DES, o sistema é uma sequência de eventos (chegada, início/fim de serviço, alocação/liberação de recurso, saída). Cada entidade é tratada
+          individualmente e o tempo evolui conforme a agenda de eventos.
+        </p>
+        <p><strong>O que o DES permite observar:</strong></p>
+        <ul>
+          <li>formação de filas (buffers) por restrição de capacidade;</li>
+          <li>saturação quando o sistema opera perto de ρ ≈ λ/μ → 1;</li>
+          <li>impacto de variabilidade nas caudas (riscos), não só na média.</li>
+        </ul>
+
+        <h3>Como a variabilidade é aplicada aqui</h3>
+        <p>Os parâmetros <code>variabilidade_chegada</code> e <code>variabilidade_almoco</code> são tratados como frações que modulam a dispersão dos tempos em torno da média.</p>
+
+        <hr />
+
+        <h2>5. Comparativo (resumo)</h2>
+        <pre><code>| Aspecto                         | Determinística                         | DES (eventos discretos)                 |
+|---------------------------------|----------------------------------------|-----------------------------------------|
+| Variabilidade (aleatoriedade)   | Não                                    | Sim                                     |
+| Filas (buffers/WIP)             | Não modela                              | Modela explicitamente                   |
+| Gargalos e saturação            | Apenas por média                         | Emergem por dinâmica + variabilidade    |
+| Saída típica                    | “média do regime”                        | distribuição de resultados              |
+| Uso recomendado                 | estimativa rápida / sanity check         | dimensionamento, gargalos, risco        |</code></pre>
+
+        <hr />
+
+        <h2>6. Variáveis de entrada (interpretação “de planta”)</h2>
+        <h3>Alimentação (feed)</h3>
+        <ul>
+          <li><strong>clientes_por_minuto</strong>: taxa média de entrada (λ).</li>
+          <li>
+            <strong>tempo_entre_clientes</strong>: intervalo médio entre chegadas (min). Referência: <code>tempo_entre_clientes ≈ 1 / clientes_por_minuto</code>.
+          </li>
+        </ul>
+
+        <h3>Configuração recomendada (para evitar “cenário desligado”)</h3>
+        <p>
+          Para manter a alimentação consistente, recomenda-se definir <code>clientes_por_minuto</code> e ajustar <code>tempo_entre_clientes</code>
+          para <code>1/clientes_por_minuto</code>.
+        </p>
+        <p>Exemplo de <code>config/parametros.yaml</code> coerente:</p>
+        <pre><code># Alimentação (feed)
+clientes_por_minuto: 12
+tempo_entre_clientes: 0.0833  # ≈ 1/12 min (≈ 5 s)
+
+# Residência (holdup)
+tempo_medio_almoco: 30
+numero_de_mesas: 25
+cadeiras_por_mesa: 4
+
+# Operações unitárias (serviço)
+numero_caixas: 2
+tempo_medio_atendimento: 2
+
+# Horizonte de simulação
+tempo_total_simulacao: 120
+
+# Variabilidade (fração relativa; ex.: 0.10 ≈ 10%)
+variabilidade_chegada: 0.10
+variabilidade_almoco: 0.15</code></pre>
+
+        <p>
+          Se <code>tempo_entre_clientes</code> estiver muito maior do que <code>1/clientes_por_minuto</code>, o sistema pode parecer “sem alimentação”
+          (poucas chegadas) e mascarar gargalos.
+        </p>
+
+        <h3>Capacidade / recursos (unit operations)</h3>
+        <ul>
+          <li><strong>numero_caixas</strong>, <strong>tempo_medio_atendimento</strong>: capacidade e tempo de serviço em operação crítica.</li>
+          <li>(se configurados) <strong>tempo_buffet</strong>, <strong>tempo_balcao</strong>: tempos de processamento intermediários.</li>
+        </ul>
+
+        <h3>Holdup (residência)</h3>
+        <ul>
+          <li><strong>numero_de_mesas</strong>, <strong>cadeiras_por_mesa</strong>: capacidade física de residência (limite de holdup).</li>
+          <li><strong>tempo_medio_almoco</strong>: tempo médio de residência.</li>
+        </ul>
+
+        <h3>Variabilidade e buffers</h3>
+        <ul>
+          <li><strong>variabilidade_chegada</strong>, <strong>variabilidade_almoco</strong>: dispersão estocástica relativa.</li>
+          <li><strong>capacidade_maxima_fila</strong> (quando aplicável): limite de buffer.</li>
+        </ul>
+
+        <hr />
+
+        <h2>7. Saídas e métricas (como ler “industrialmente”)</h2>
+        <p>Resultados típicos do DES:</p>
+        <ul>
+          <li><strong>clientes_processados</strong>: saída total (produção/throughput acumulado).</li>
+          <li><strong>tempo_medio_permanencia_cliente</strong>: tempo de residência observado.</li>
+          <li><strong>tempo_medio_espera_fila_mesa</strong> e <strong>tamanho_max_fila_mesa</strong>: holdup em buffer e severidade do gargalo.</li>
+          <li><strong>uso_medio_mesas (%)</strong>: utilização média do “volume de processo”.</li>
+        </ul>
+        <p>
+          Essas métricas alimentam as figuras do case: throughput no tempo, holdup/filas, distribuição de residência e comparação antes/depois.
+        </p>
+
+        <hr />
+
+        <h2>8. Como reproduzir as figuras do estudo de caso</h2>
+        <p>As figuras usadas no <code>index.html</code> são geradas automaticamente em <code>docs/figuras/</code>.</p>
+        <ol>
+          <li>Instale dependências:</li>
+        </ol>
+        <pre><code>pip install -r requirements.txt</code></pre>
+        <ol start="2">
+          <li>Gere as figuras:</li>
+        </ol>
+        <pre><code>python scripts/gerar_figuras.py</code></pre>
+        <p>Saídas (exemplos):</p>
+        <ul>
+          <li><code>fig_02a_fluxo_servico.png</code>, <code>fig_02b_fluxo_processo.png</code></li>
+          <li><code>fig_04_throughput.png</code></li>
+          <li><code>fig_05_ocupacao_e_filas.png</code></li>
+          <li><code>fig_06_distribuicao_residencia.png</code></li>
+          <li><code>fig_07_antes_depois.png</code></li>
+        </ul>
+
+        <hr />
+
+        <h2>9. Quando usar cada abordagem?</h2>
+        <ul>
+          <li><strong>Determinística</strong>: quando você precisa de uma estimativa rápida do “regime médio” e não pretende discutir risco/variabilidade.</li>
+          <li><strong>DES</strong>: quando o objetivo é <strong>identificar gargalos</strong>, dimensionar capacidade, avaliar impacto de variabilidade e justificar intervenções com evidência.</li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Estrutura do TCC (Checklist)</title>
+    <meta name="description" content="Estrutura sugerida dos capítulos do TCC — checklist consolidado." />
+    <link rel="icon" href="../assets/imagens/folder.png" />
+    <style>
+      :root {
+        --bg: #fbfbfc;
+        --ink: #111827;
+        --muted: rgba(17, 24, 39, 0.72);
+        --accent: #0f3d6e;
+        --radius: 14px;
+        --max: 980px;
+        --serif: ui-serif, "Georgia", "Cambria", "Times New Roman", Times, serif;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans",
+          "Liberation Sans", sans-serif;
+      }
+
+      html {
+        color-scheme: light;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.85;
+        padding: clamp(18px, 3.2vw, 34px) clamp(16px, 3.4vw, 28px);
+      }
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      header.top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.10);
+        margin-bottom: 16px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .brand strong {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+      }
+      .brand span {
+        color: var(--muted);
+        font-family: var(--sans);
+        font-size: 12px;
+      }
+      .toplinks {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: rgba(255, 255, 255, 0.70);
+        text-decoration: none;
+        font-family: var(--sans);
+        font-size: 13px;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .pill:hover {
+        background: rgba(15, 61, 110, 0.06);
+        border-color: rgba(15, 61, 110, 0.22);
+      }
+      main {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: calc(var(--radius) + 2px);
+        padding: clamp(16px, 2.8vw, 22px);
+        box-shadow: 0 14px 44px rgba(17, 24, 39, 0.08);
+      }
+      h1,
+      h2 {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(26px, 3.0vw, 40px);
+      }
+      h2 {
+        margin: 18px 0 8px;
+        font-size: 18px;
+      }
+      ul {
+        margin: 12px 0 0;
+        padding-left: 1.25em;
+      }
+      li {
+        margin: 6px 0;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .done {
+        color: rgba(11, 107, 77, 0.92);
+        font-weight: 650;
+        font-family: var(--sans);
+      }
+      .callout {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: linear-gradient(180deg, rgba(15, 61, 110, 0.06), rgba(11, 107, 77, 0.04));
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="top" aria-label="Topo do documento">
+        <a class="brand" href="../tcc.html" aria-label="Voltar ao TCC (HTML)">
+          <strong>Estrutura do TCC</strong>
+          <span>checklist · capítulos · anexos</span>
+        </a>
+        <nav class="toplinks" aria-label="Atalhos">
+          <a class="pill" href="../index.html">Projeto</a>
+          <a class="pill" href="../portal.html">Sala Digital</a>
+          <a class="pill" href="../tcc.html">TCC (HTML)</a>
+          <a class="pill" href="../README.html">README</a>
+        </nav>
+      </header>
+
+      <main>
+        <h1>📚 Estrutura Sugerida dos Capítulos do TCC</h1>
+        <p class="callout">
+          <strong>Uso:</strong> checklist rápido para garantir cobertura completa (conteúdo, método e anexos).
+        </p>
+
+        <h2>Capítulo 1 – Introdução</h2>
+        <ul>
+          <li><span class="done">[X]</span> Contextualização do problema enfrentado por restaurantes.</li>
+          <li><span class="done">[X]</span> Justificativa da escolha pelo desenvolvimento de um simulador.</li>
+          <li><span class="done">[X]</span> Objetivos geral e específicos.</li>
+          <li><span class="done">[X]</span> Metodologia aplicada.</li>
+          <li><span class="done">[X]</span> Estrutura do trabalho.</li>
+          <li><span class="done">[X]</span> Considerações finais do capítulo.</li>
+        </ul>
+
+        <h2>Capítulo 2 – Referencial Teórico</h2>
+        <ul>
+          <li><span class="done">[X]</span> Breve revisão sobre gestão de tempo em restaurantes.</li>
+          <li><span class="done">[X]</span> Aplicações de simulação em ambientes de serviços.</li>
+          <li><span class="done">[X]</span> Sistemas computacionais em apoio à tomada de decisão em pequenas empresas.</li>
+          <li><span class="done">[X]</span> Abordagens práticas no uso de Python em Engenharia de Processos.</li>
+          <li><span class="done">[X]</span> Conclusão do capítulo.</li>
+        </ul>
+
+        <h2>Capítulo 3 – Especificação do Sistema de Simulação</h2>
+        <ul>
+          <li><span class="done">[X]</span> Descrição geral da aplicação.</li>
+          <li><span class="done">[X]</span> Funcionalidades principais:</li>
+          <li style="margin-left: 16px"><span class="done">[X]</span> Entrada de dados manuais.</li>
+          <li style="margin-left: 16px"><span class="done">[X]</span> Importação de planilhas e arquivos ASCII.</li>
+          <li style="margin-left: 16px"><span class="done">[X]</span> Exportação de resultados em PDF.</li>
+          <li style="margin-left: 16px"><span class="done">[X]</span> Interface gráfica e usabilidade.</li>
+          <li style="margin-left: 16px"><span class="done">[X]</span> Visualização do layout e animação.</li>
+          <li style="margin-left: 16px"><span class="done">[X]</span> Arquitetura e estrutura de pastas organizadas.</li>
+          <li><span class="done">[X]</span> Considerações finais do capítulo.</li>
+        </ul>
+
+        <h2>Capítulo 4 – Fundamentos Matemáticos e Conceituais da Simulação</h2>
+        <ul>
+          <li><span class="done">[X]</span> Teoria das Filas aplicada ao fluxo de clientes.</li>
+          <li><span class="done">[X]</span> Análise do layout e cálculo do deslocamento interno.</li>
+          <li><span class="done">[X]</span> Simulação Discreta de Eventos: lógica e implementação.</li>
+          <li><span class="done">[X]</span> Estatística aplicada aos tempos de atendimento e consumo.</li>
+          <li><span class="done">[X]</span> Equação geral do tempo de residência.</li>
+          <li><span class="done">[X]</span> Justificativa da abordagem prática e realista adotada.</li>
+          <li><span class="done">[X]</span> Conclusão do capítulo.</li>
+        </ul>
+
+        <h2>Capítulo 5 – Estudo de Caso e Simulações</h2>
+        <ul>
+          <li><span class="done">[X]</span> Parâmetros utilizados na simulação (layout, número de mesas, tempo médio).</li>
+          <li><span class="done">[X]</span> Teste com dados reais/simulados.</li>
+          <li><span class="done">[X]</span> Análise dos resultados: gargalos, otimizações sugeridas.</li>
+          <li><span class="done">[X]</span> Discussão sobre os efeitos da variação de parâmetros.</li>
+          <li><span class="done">[X]</span> Conclusão do capítulo.</li>
+        </ul>
+
+        <h2>Capítulo 6 – Estratégia de Negócio e Aplicabilidade Comercial</h2>
+        <ul>
+          <li><span class="done">[X]</span> Público-alvo: donos de restaurantes e arrendatários.</li>
+          <li><span class="done">[X]</span> Proposta de valor do sistema.</li>
+          <li><span class="done">[X]</span> Pacotes de entrega e monetização.</li>
+          <li><span class="done">[X]</span> Limitações e formas de fidelização sem aprisionamento explícito.</li>
+          <li><span class="done">[X]</span> Possibilidades de expansão futura do produto.</li>
+          <li><span class="done">[X]</span> Conclusão do capítulo.</li>
+        </ul>
+
+        <h2>Capítulo 7 – Conclusão</h2>
+        <ul>
+          <li><span class="done">[X]</span> Síntese dos resultados obtidos.</li>
+          <li><span class="done">[X]</span> Contribuições técnicas e práticas do projeto.</li>
+          <li><span class="done">[X]</span> Recomendações para adoção e desenvolvimento contínuo.</li>
+          <li><span class="done">[X]</span> Trabalhos futuros (ex.: integração com sensores ou apps móveis).</li>
+          <li><span class="done">[X]</span> Considerações finais do trabalho.</li>
+        </ul>
+
+        <h2>Anexos</h2>
+        <ul>
+          <li><span class="done">[X]</span> Código-fonte principal do sistema.</li>
+          <li><span class="done">[X]</span> Layout de planilhas de entrada.</li>
+          <li><span class="done">[X]</span> Fluxogramas da simulação.</li>
+          <li><span class="done">[X]</span> Modelos de documentação entregue ao cliente.</li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cronograma do TCC (Checklist)</title>
+    <meta name="description" content="Checklist de atividades do TCC (cronograma por semanas)." />
+    <link rel="icon" href="../assets/imagens/folder.png" />
+    <style>
+      :root {
+        --bg: #fbfbfc;
+        --ink: #111827;
+        --muted: rgba(17, 24, 39, 0.72);
+        --accent: #0f3d6e;
+        --radius: 14px;
+        --max: 980px;
+        --serif: ui-serif, "Georgia", "Cambria", "Times New Roman", Times, serif;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans",
+          "Liberation Sans", sans-serif;
+      }
+      html {
+        color-scheme: light;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.85;
+        padding: clamp(18px, 3.2vw, 34px) clamp(16px, 3.4vw, 28px);
+      }
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      header.top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.10);
+        margin-bottom: 16px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .brand strong {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+      }
+      .brand span {
+        color: var(--muted);
+        font-family: var(--sans);
+        font-size: 12px;
+      }
+      .toplinks {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: rgba(255, 255, 255, 0.70);
+        text-decoration: none;
+        font-family: var(--sans);
+        font-size: 13px;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .pill:hover {
+        background: rgba(15, 61, 110, 0.06);
+        border-color: rgba(15, 61, 110, 0.22);
+      }
+      main {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: calc(var(--radius) + 2px);
+        padding: clamp(16px, 2.8vw, 22px);
+        box-shadow: 0 14px 44px rgba(17, 24, 39, 0.08);
+      }
+      h1,
+      h2 {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(26px, 3.0vw, 40px);
+      }
+      h2 {
+        margin: 18px 0 8px;
+        font-size: 18px;
+      }
+      p {
+        margin: 12px 0 0;
+        color: rgba(17, 24, 39, 0.88);
+      }
+      ul {
+        margin: 10px 0 0;
+        padding-left: 1.25em;
+      }
+      li {
+        margin: 6px 0;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .done {
+        color: rgba(11, 107, 77, 0.92);
+        font-weight: 650;
+        font-family: var(--sans);
+      }
+      .callout {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: linear-gradient(180deg, rgba(15, 61, 110, 0.06), rgba(11, 107, 77, 0.04));
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="top" aria-label="Topo do documento">
+        <a class="brand" href="../tcc.html" aria-label="Voltar ao TCC (HTML)">
+          <strong>Cronograma do TCC</strong>
+          <span>checklist · semanas · execução</span>
+        </a>
+        <nav class="toplinks" aria-label="Atalhos">
+          <a class="pill" href="../index.html">Projeto</a>
+          <a class="pill" href="../portal.html">Sala Digital</a>
+          <a class="pill" href="../tcc.html">TCC (HTML)</a>
+          <a class="pill" href="../README.html">README</a>
+        </nav>
+      </header>
+
+      <main>
+        <h1>📅 Checklist de Atividades – Desenvolvimento do TCC</h1>
+        <p><strong>Objetivo:</strong> concluir a redação do TCC com base no projeto do sistema de simulação em Python para restaurantes.</p>
+        <p><strong>Período:</strong> 1º de junho a 30 de agosto (dias úteis, 1h/dia).</p>
+
+        <p class="callout">
+          <strong>Nota:</strong> aqui o valor não é “marcar tarefas”, e sim garantir cadência de escrita + evidências (figuras, tabelas e apêndices).
+        </p>
+
+        <h2>Semana 1 (01/06 a 07/06) – Planejamento e Introdução</h2>
+        <ul>
+          <li><span class="done">[X]</span> 01/06 – Revisar estrutura dos capítulos e ajustar objetivos do TCC.</li>
+          <li><span class="done">[X]</span> 02/06 – Esboçar o Capítulo 1 – Introdução.</li>
+          <li><span class="done">[X]</span> 03/06 – Redigir o problema e justificativa.</li>
+          <li><span class="done">[X]</span> 04/06 – Redigir objetivos geral e específicos.</li>
+          <li><span class="done">[X]</span> 05/06 – Redigir metodologia e estrutura do TCC.</li>
+        </ul>
+
+        <h2>Semana 2 (10/06 a 14/06) – Referencial Teórico</h2>
+        <ul>
+          <li><span class="done">[X]</span> 10/06 – Levantar fontes sobre gestão de tempo em restaurantes.</li>
+          <li><span class="done">[X]</span> 11/06 – Escrever sobre uso de simulação em serviços.</li>
+          <li><span class="done">[X]</span> 12/06 – Incluir referências ao uso de Python em Engenharia.</li>
+          <li><span class="done">[X]</span> 13/06 – Revisar e finalizar Capítulo 2.</li>
+          <li><span class="done">[X]</span> 14/06 – Atualizar referências bibliográficas.</li>
+        </ul>
+
+        <h2>Semana 3 (17/06 a 21/06) – Especificação do Sistema</h2>
+        <ul>
+          <li><span class="done">[X]</span> 17/06 – Descrever funcionalidades principais.</li>
+          <li><span class="done">[X]</span> 18/06 – Documentar interface gráfica (Tkinter).</li>
+          <li><span class="done">[X]</span> 19/06 – Documentar importação de arquivos.</li>
+          <li><span class="done">[X]</span> 20/06 – Documentar exportação em PDF e GIF animado da ocupação do restaurante.</li>
+          <li><span class="done">[X]</span> 21/06 – Revisar Capítulo 3.</li>
+        </ul>
+
+        <h2>Semana 4 (24/06 a 28/06) – Fundamentos Matemáticos</h2>
+        <ul>
+          <li><span class="done">[X]</span> 24/06 – Introduzir teoria das filas.</li>
+          <li><span class="done">[X]</span> 25/06 – Análise de layout e fluxo de pessoas.</li>
+          <li><span class="done">[X]</span> 26/06 – Explicar simulação discreta de eventos.</li>
+          <li><span class="done">[X]</span> 27/06 – Esboçar equações e modelo lógico.</li>
+          <li><span class="done">[X]</span> 28/06 – Finalizar Capítulo 4.</li>
+        </ul>
+
+        <h2>Semana 5 (01/07 a 05/07) – Estudo de Caso e Simulações</h2>
+        <ul>
+          <li><span class="done">[X]</span> 01/07 – Simular cenário base com dados fictícios.</li>
+          <li><span class="done">[X]</span> 02/07 – Documentar parâmetros e resultados.</li>
+          <li><span class="done">[X]</span> 03/07 – Simular variações e analisar gargalos.</li>
+          <li><span class="done">[X]</span> 04/07 – Redigir Capítulo 5.</li>
+          <li><span class="done">[X]</span> 05/07 – Gerar gráficos para ilustração.</li>
+        </ul>
+
+        <h2>Semana 6 (08/07 a 12/07) – Estratégia de Negócio</h2>
+        <ul>
+          <li><span class="done">[X]</span> 08/07 – Definir público-alvo e abordagem comercial.</li>
+          <li><span class="done">[X]</span> 09/07 – Descrever pacotes e monetização.</li>
+          <li><span class="done">[X]</span> 10/07 – Discutir diferenciais e valor de mercado.</li>
+          <li><span class="done">[X]</span> 11/07 – Redigir Capítulo 6.</li>
+          <li><span class="done">[X]</span> 12/07 – Criar tabela de preços e proposta de venda.</li>
+        </ul>
+
+        <h2>Semana 7 (15/07 a 19/07) – Conclusão</h2>
+        <ul>
+          <li><span class="done">[X]</span> 15/07 – Redigir síntese dos resultados.</li>
+          <li><span class="done">[X]</span> 16/07 – Destacar contribuições técnicas.</li>
+          <li><span class="done">[X]</span> 17/07 – Recomendações futuras.</li>
+          <li><span class="done">[X]</span> 18/07 – Finalizar Capítulo 7.</li>
+          <li><span class="done">[X]</span> 19/07 – Revisar redação dos capítulos anteriores.</li>
+        </ul>
+
+        <h2>Semana 8 (22/07 a 26/07) – Anexos e Revisão Técnica</h2>
+        <ul>
+          <li><span class="done">[X]</span> 22/07 – Organizar anexos (fluxogramas, código, modelos).</li>
+          <li><span class="done">[X]</span> 23/07 – Revisar ortografia e consistência textual.</li>
+          <li><span class="done">[X]</span> 24/07 – Montar índice automático.</li>
+          <li><span class="done">[X]</span> 25/07 – Testar exportação final em PDF.</li>
+          <li><span class="done">[X]</span> 26/07 – Enviar para revisão de orientador (se aplicável).</li>
+        </ul>
+
+        <h2>Semanas 9 a 13 (29/07 a 30/08) – Ajustes e Entrega</h2>
+        <ul>
+          <li><span class="done">[X]</span> 29/07 a 09/08 – Realizar ajustes solicitados.</li>
+          <li><span class="done">[X]</span> 12/08 a 16/08 – Testar diferentes versões do sistema.</li>
+          <li><span class="done">[X]</span> 19/08 a 23/08 – Finalizar layout, capa, folha de rosto e normas.</li>
+          <li><span class="done">[X]</span> 26/08 a 30/08 – Entrega final e backup.</li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Estudos Teóricos (Base do TCC)</title>
+    <meta name="description" content="Estudos teóricos fundamentais: filas, DES, estatística aplicada, otimização e operação em serviços." />
+    <link rel="icon" href="../assets/imagens/folder.png" />
+    <style>
+      :root {
+        --bg: #fbfbfc;
+        --surface: #ffffff;
+        --ink: #111827;
+        --muted: rgba(17, 24, 39, 0.72);
+        --accent: #0f3d6e;
+        --radius: 14px;
+        --max: 980px;
+        --serif: ui-serif, "Georgia", "Cambria", "Times New Roman", Times, serif;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans",
+          "Liberation Sans", sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+
+      html {
+        color-scheme: light;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.85;
+        padding: clamp(18px, 3.2vw, 34px) clamp(16px, 3.4vw, 28px);
+      }
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      header.top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.10);
+        margin-bottom: 16px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .brand strong {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+      }
+      .brand span {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+      .toplinks {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: rgba(255, 255, 255, 0.70);
+        text-decoration: none;
+        font-family: var(--sans);
+        font-size: 13px;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .pill:hover {
+        background: rgba(15, 61, 110, 0.06);
+        border-color: rgba(15, 61, 110, 0.22);
+      }
+      main {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        border-radius: calc(var(--radius) + 2px);
+        padding: clamp(16px, 2.8vw, 22px);
+        box-shadow: 0 14px 44px rgba(17, 24, 39, 0.08);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--sans);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        scroll-margin-top: 18px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(26px, 3.0vw, 40px);
+      }
+      h2 {
+        margin: 22px 0 10px;
+        font-size: clamp(20px, 2.2vw, 28px);
+        padding-top: 8px;
+        border-top: 1px solid rgba(17, 24, 39, 0.08);
+      }
+      h3 {
+        margin: 18px 0 8px;
+        font-size: 18px;
+      }
+      p {
+        margin: 12px 0 0;
+        color: rgba(17, 24, 39, 0.88);
+      }
+      ul,
+      ol {
+        margin: 12px 0 0;
+        padding-left: 1.25em;
+      }
+      li {
+        margin: 6px 0;
+        color: rgba(17, 24, 39, 0.86);
+      }
+      .callout {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background: linear-gradient(180deg, rgba(15, 61, 110, 0.06), rgba(11, 107, 77, 0.04));
+      }
+      .callout strong {
+        font-family: var(--sans);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="top" aria-label="Topo do documento">
+        <a class="brand" href="../portal.html" aria-label="Voltar ao Portal">
+          <strong>Estudos Teóricos</strong>
+          <span>filas · DES · estatística · otimização</span>
+        </a>
+        <nav class="toplinks" aria-label="Atalhos">
+          <a class="pill" href="../index.html">Projeto</a>
+          <a class="pill" href="../portal.html">Sala Digital</a>
+          <a class="pill" href="../SIMULATING.html">Guia (HTML)</a>
+          <a class="pill" href="../tcc.html">TCC (HTML)</a>
+          <a class="pill" href="../README.html">README</a>
+        </nav>
+      </header>
+
+      <main>
+        <h1>Estudos Teóricos Fundamentais para o TCC</h1>
+        <p class="callout">
+          <strong>Função deste documento:</strong> organizar o que já está consolidado e o que precisa de aprofundamento, mantendo foco no que
+          sustenta a simulação (filas, DES, estatística e decisão).
+        </p>
+
+        <h2>1. Introdução</h2>
+        <p>
+          Este documento organiza os principais assuntos teóricos necessários para a elaboração do TCC “Simulador de Tempo de Permanência em
+          Restaurantes por Quilo”, considerando a base prévia em Engenharia Química e Desenvolvimento de Sistemas Web (Java). O objetivo é alinhar os
+          conhecimentos já adquiridos com os tópicos que exigem maior aprofundamento para a modelagem, simulação e análise de sistemas de atendimento
+          em restaurantes.
+        </p>
+
+        <h2>2. Fundamentos já consolidados</h2>
+        <ul>
+          <li><strong>Lógica de Programação e Estruturas de Dados</strong>
+            <ul>
+              <li>Algoritmos, variáveis, estruturas de repetição e decisão</li>
+              <li>Manipulação de listas, filas, pilhas e dicionários</li>
+            </ul>
+          </li>
+          <li><strong>Engenharia de Software</strong>
+            <ul>
+              <li>Modularização, documentação, versionamento de código</li>
+              <li>Experiência com desenvolvimento em Java e aplicações web</li>
+            </ul>
+          </li>
+          <li><strong>Modelagem de Processos</strong>
+            <ul>
+              <li>Fluxogramas, diagramas de blocos, análise de processos industriais</li>
+            </ul>
+          </li>
+          <li><strong>Estatística Básica</strong>
+            <ul>
+              <li>Média, desvio padrão, variância, análise de dados experimentais</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2>3. Assuntos a aprofundar para o TCC</h2>
+        <h3>3.1 Teoria das Filas</h3>
+        <ul>
+          <li>Conceitos: taxa de chegada (λ), taxa de atendimento (μ), número de servidores, capacidade do sistema</li>
+          <li>Modelos clássicos: M/M/1, M/M/c, M/G/1</li>
+          <li>Aplicação em ambientes de serviço (restaurantes, bancos, hospitais)</li>
+          <li>Cálculo de tempo médio de espera, tamanho médio da fila, taxa de ocupação</li>
+        </ul>
+
+        <h3>3.2 Simulação Discreta de Eventos (DES)</h3>
+        <ul>
+          <li>Conceito de eventos discretos e agenda de eventos</li>
+          <li>Diferença entre simulação determinística e estocástica</li>
+          <li>Estrutura de um simulador DES: eventos, filas, recursos, coleta de estatísticas</li>
+          <li>Exemplos práticos de DES em restaurantes e serviços</li>
+        </ul>
+
+        <h3>3.3 Estatística Aplicada à Simulação</h3>
+        <ul>
+          <li>Distribuições de probabilidade (normal, exponencial, uniforme)</li>
+          <li>Geração de números aleatórios e amostragem</li>
+          <li>Análise de resultados simulados: histogramas, intervalos de confiança</li>
+        </ul>
+
+        <h3>3.4 Pesquisa Operacional e Otimização</h3>
+        <ul>
+          <li>Modelagem de sistemas de atendimento e otimização de recursos</li>
+          <li>Identificação e análise de gargalos</li>
+          <li>Ferramentas de apoio à decisão (ex.: análise de cenários, simulação de alternativas)</li>
+        </ul>
+
+        <h3>3.5 Modelagem de Layout e Fluxo de Clientes</h3>
+        <ul>
+          <li>Representação de ambientes físicos (layout de restaurantes)</li>
+          <li>Cálculo de deslocamento interno e impacto do layout no fluxo de clientes</li>
+          <li>Técnicas de modelagem de processos de serviço</li>
+        </ul>
+
+        <h3>3.6 Gestão de Operações em Serviços</h3>
+        <ul>
+          <li>Princípios de gestão de filas, rotatividade de mesas, dimensionamento de recursos</li>
+          <li>Indicadores de desempenho operacional (tempo de espera, taxa de ocupação, rejeição de clientes)</li>
+          <li>Estratégias para otimização do atendimento</li>
+        </ul>
+
+        <h3>3.7 Visualização e Relatórios</h3>
+        <ul>
+          <li>Geração de relatórios executivos (PDF)</li>
+          <li>Visualização gráfica de resultados (gráficos, GIFs animados do layout)</li>
+          <li>Interpretação e comunicação dos resultados para gestores</li>
+        </ul>
+
+        <h2>4. Sugestão de Roteiro de Estudo</h2>
+        <ol>
+          <li>Revisar conceitos de teoria das filas e simulação de eventos discretos</li>
+          <li>Estudar exemplos práticos de DES aplicados a restaurantes</li>
+          <li>Explorar técnicas de análise estatística de resultados simulados</li>
+          <li>Pesquisar boas práticas de modelagem de layout e fluxo de clientes</li>
+          <li>Analisar casos reais de gestão de operações em restaurantes</li>
+          <li>Praticar a geração e interpretação de relatórios e visualizações</li>
+        </ol>
+
+        <h2>5. Referências Sugeridas</h2>
+        <ul>
+          <li>Gross, D., Shortle, J. F., Thompson, J. M., &amp; Harris, C. M. (2018). <em>Fundamentals of Queueing Theory</em>.</li>
+          <li>Banks, J., Carson, J. S., Nelson, B. L., &amp; Nicol, D. M. (2010). <em>Discrete-Event System Simulation</em>.</li>
+          <li>Slack, N., Chambers, S., &amp; Johnston, R. (2015). <em>Administração da Produção</em>.</li>
+          <li>Artigos e manuais sobre simulação de restaurantes e gestão de operações de serviço.</li>
+        </ul>
+
+        <p class="callout">
+          <strong>Observação:</strong> aproveite a base em programação e modelagem de processos para focar em filas, DES e estatística aplicada — o
+          diferencial direto deste projeto.
+        </p>
+      </main>
+    </div>
+  </body>
+</html>
+
