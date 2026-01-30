@@ -154,6 +154,57 @@
         text-decoration: none;
       }
 
+      /* Leitura linear (mobile): navegação não deve "quebrar" o fluxo */
+      @media (max-width: 720px) {
+        nav {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          gap: 10px;
+          padding-bottom: 2px;
+          scrollbar-width: none; /* Firefox */
+        }
+        nav::-webkit-scrollbar {
+          display: none; /* Chromium */
+        }
+        .navlink {
+          white-space: nowrap;
+          font-size: 12.5px;
+          padding: 7px 9px;
+        }
+      }
+
+      /* Retorno ao topo (dentro das seções) */
+      .section-nav {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-jump {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(12, 27, 23, 0.12);
+        background: rgba(255, 255, 255, 0.72);
+        font-size: 12px;
+        color: rgba(12, 27, 23, 0.72);
+      }
+      .section-jump svg {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+      }
+      .section-jump:hover {
+        text-decoration: none;
+        border-color: rgba(15, 94, 168, 0.22);
+        background: rgba(15, 94, 168, 0.06);
+        color: rgba(12, 27, 23, 0.82);
+      }
+
       .hero {
         padding: 44px 0 10px;
       }
@@ -1290,6 +1341,22 @@
               </p>
             </div>
           </article>
+          <div class="section-nav" aria-label="Navegação da seção">
+            <a class="section-jump" href="#analogia" aria-label="Próxima seção: Analogia visual">
+              Próxima
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 15l5 5 5-5" stroke="rgba(15,94,168,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="section-jump" href="#top" aria-label="Topo">
+              Topo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 19V5" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 9l5-5 5 5" stroke="rgba(11,107,77,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1372,6 +1439,22 @@
               sair ou ficar acumulado (filas/mesas). Em processos químicos, o mesmo raciocínio é expresso por
               balanços: <strong>Entrada − Saída + Geração − Consumo = Acúmulo</strong>.
             </p>
+          </div>
+          <div class="section-nav" aria-label="Navegação da seção">
+            <a class="section-jump" href="#fundamentos" aria-label="Próxima seção: Fundamentos">
+              Próxima
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 15l5 5 5-5" stroke="rgba(15,94,168,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="section-jump" href="#top" aria-label="Topo">
+              Topo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 19V5" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 9l5-5 5 5" stroke="rgba(11,107,77,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>
@@ -1472,6 +1555,22 @@
                 ρ = λ / μ  &nbsp;&nbsp; (saturação quando ρ → 1)
               </div>
             </div>
+          </div>
+          <div class="section-nav" aria-label="Navegação da seção">
+            <a class="section-jump" href="#resultados" aria-label="Próxima seção: Resultados">
+              Próxima
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 15l5 5 5-5" stroke="rgba(15,94,168,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="section-jump" href="#top" aria-label="Topo">
+              Topo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 19V5" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 9l5-5 5 5" stroke="rgba(11,107,77,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>
@@ -1587,6 +1686,22 @@
               </div>
             </div>
           </div>
+          <div class="section-nav" aria-label="Navegação da seção">
+            <a class="section-jump" href="#roadmap" aria-label="Próxima seção: Do TCC à inovação">
+              Próxima
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 15l5 5 5-5" stroke="rgba(15,94,168,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="section-jump" href="#top" aria-label="Topo">
+              Topo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 19V5" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 9l5-5 5 5" stroke="rgba(11,107,77,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1621,6 +1736,22 @@
               </div>
             </div>
           </div>
+          <div class="section-nav" aria-label="Navegação da seção">
+            <a class="section-jump" href="#simulador" aria-label="Próxima seção: Acessar o simulador">
+              Próxima
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 15l5 5 5-5" stroke="rgba(15,94,168,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="section-jump" href="#top" aria-label="Topo">
+              Topo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 19V5" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 9l5-5 5 5" stroke="rgba(11,107,77,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1650,6 +1781,16 @@ python main.py</pre>
               Para o enquadramento completo do case de Engenharia de Processos, veja <a href="README.html">README (HTML)</a>.
               Para (re)gerar as figuras do estudo de caso, use <code>python scripts/gerar_figuras.py</code> (saída em <code>docs/figuras/</code>).
             </p>
+          </div>
+          <div class="section-nav" aria-label="Navegação da seção">
+            <span></span>
+            <a class="section-jump" href="#top" aria-label="Topo">
+              Topo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 19V5" stroke="rgba(12,27,23,0.78)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 9l5-5 5 5" stroke="rgba(11,107,77,0.88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>
@@ -1696,12 +1837,12 @@ python main.py</pre>
               </svg>
               TCC (HTML)
             </a>
-            <a class="pill" href="#top">
+            <a class="pill" href="#top" aria-label="Topo">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M12 5v14" stroke="rgba(12,27,23,0.82)" stroke-width="1.6" stroke-linecap="round" />
                 <path d="M7 10l5-5 5 5" stroke="rgba(15,94,168,0.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-              Voltar ao topo
+              Topo
             </a>
           </div>
         </div>

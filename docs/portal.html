@@ -474,10 +474,41 @@
         width: 18px;
         height: 18px;
       }
+
+      /* Navegação discreta por seção (linear/mobile) */
+      .jumpbar {
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .jump {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(238, 242, 255, 0.84);
+        text-decoration: none;
+        font-size: 0.92rem;
+      }
+      .jump:hover {
+        background: rgba(255, 255, 255, 0.09);
+        text-decoration: none;
+      }
+      .jump svg {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 auto;
+      }
     </style>
   </head>
 
-  <body>
+  <body id="top">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
     <header class="navglass" role="banner">
@@ -593,6 +624,23 @@
                 >4) Otimização</span
               >
             </div>
+          </div>
+
+          <div class="jumpbar" aria-label="Navegação da seção">
+            <a class="jump" href="#salas" aria-label="Próxima seção: Salas">
+              Próxima
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14" stroke="rgba(238,242,255,0.80)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 15l5 5 5-5" stroke="rgba(14,165,233,0.95)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="jump" href="#top" aria-label="Topo">
+              Topo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 19V5" stroke="rgba(238,242,255,0.80)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 9l5-5 5 5" stroke="rgba(34,197,94,0.92)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>
@@ -739,11 +787,27 @@
             </div>
           </div>
 
+          <div class="jumpbar" aria-label="Navegação da seção">
+            <a class="jump" href="#rodape" aria-label="Próxima seção: Rodapé">
+              Próxima
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14" stroke="rgba(238,242,255,0.80)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 15l5 5 5-5" stroke="rgba(148,163,184,0.95)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="jump" href="#top" aria-label="Topo">
+              Topo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 19V5" stroke="rgba(238,242,255,0.80)" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 9l5-5 5 5" stroke="rgba(34,197,94,0.92)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer role="contentinfo">
+    <footer id="rodape" role="contentinfo">
       <div class="container py-4">
         <div class="row g-3 align-items-start">
           <div class="col-12 col-lg-7">
