@@ -519,11 +519,14 @@
 
           <div class="collapse navbar-collapse" id="navLinks">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
+              <li class="nav-item">
+                <span class="nav-link active" aria-current="page">Sala Digital</span>
+              </li>
               <li class="nav-item"><a class="nav-link" href="#salas">Salas</a></li>
-              <li class="nav-item"><a class="nav-link" href="#ponte">O Motor Matemático</a></li>
               <li class="nav-item"><a class="nav-link" href="docs/apostila_guia.html">Apostila Guia</a></li>
-              <li class="nav-item"><a class="nav-link" href="docs/tcc.html">Documentação</a></li>
-              <li class="nav-item"><a class="nav-link" href="index.html">Simulador Principal</a></li>
+              <li class="nav-item"><a class="nav-link" href="docs/tcc.html">TCC (HTML)</a></li>
+              <li class="nav-item"><a class="nav-link" href="README.html">README</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.html#simulador">Simulador</a></li>
             </ul>
           </div>
         </div>
@@ -715,7 +718,7 @@
                           stroke-width="1.7"
                         />
                       </svg>
-                      Tempo de residência: \( \tau \approx Holdup / Vazão \)
+                      Tempo de residência: τ ≈ Holdup / Vazão
                     </span>
                   </div>
 
@@ -736,63 +739,6 @@
             </div>
           </div>
 
-          <div class="bridge" id="ponte" aria-label="Ponte entre as duas salas">
-            <button
-              class="bridge-btn"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#bridgePanel"
-              aria-expanded="false"
-              aria-controls="bridgePanel"
-            >
-              <div class="bridge-left">
-                <span class="bridge-ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 2l2.2 5.6L20 10l-5.8 2.4L12 18l-2.2-5.6L4 10l5.8-2.4L12 2Z"
-                      stroke="rgba(238,242,255,0.90)"
-                      stroke-width="1.6"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M7 20h10"
-                      stroke="rgba(14,165,233,0.95)"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </span>
-                <div style="min-width: 0">
-                  <p class="bridge-title mb-0">O Motor Matemático: Balanço de Massa e Tempo de Residência</p>
-                  <p class="bridge-sub mb-0">Clique para abrir a ponte (o “porquê” é o mesmo nos dois mundos).</p>
-                </div>
-              </div>
-              <span class="bridge-kbd" aria-hidden="true">expandir ▾</span>
-            </button>
-
-            <div class="collapse" id="bridgePanel">
-              <div class="bridge-panel">
-                <p class="mb-2">
-                  Quando você troca <strong>clientes</strong> por <strong>moléculas/íons</strong>, você não troca a matemática:
-                  apenas muda o “rótulo” da entidade. Em ambos, vale:
-                </p>
-                <ul class="mb-2">
-                  <li>
-                    <strong>Balanço</strong>: <code>Entrada − Saída + Geração − Consumo = Acúmulo</code>
-                  </li>
-                  <li>
-                    <strong>Residência</strong>: <code>\( \tau \approx Holdup / Vazão \)</code> (tempo médio no sistema)
-                  </li>
-                  <li>
-                    <strong>Gargalo</strong>: a etapa limitante governa o throughput e “empilha” buffers (filas/inventário).
-                  </li>
-                </ul>
-                <p class="mb-0">
-                  Resultado: estudar em uma sala melhora a leitura na outra — o aprendizado é <strong>transferível</strong>.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </main>
