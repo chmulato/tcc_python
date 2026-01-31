@@ -86,13 +86,13 @@
 
 ```mermaid
 flowchart TD
-  A[Parâmetros (YAML/Excel/Manual)] --> B[UI (Tkinter)]
-  C[Layout ASCII (.txt)] --> B
-  B --> D[Núcleo DES (src/simulador.py)]
-  D --> E[Métricas: throughput, holdup, filas, residência]
-  E --> F[Figuras (docs/figuras)]
-  E --> G[PDF (reportlab)]
-  E --> H[Logs (monitoramento)]
+  A["Parametros (YAML/Excel/Manual)"] --> B["UI (Tkinter)"]
+  C["Layout ASCII (.txt)"] --> B
+  B --> D["Nucleo DES (src/simulador.py)"]
+  D --> E["Metricas: throughput, holdup, filas, residence time"]
+  E --> F["Figuras (docs/figuras)"]
+  E --> G["PDF (reportlab)"]
+  E --> H["Logs (monitoramento)"]
 ```
 
 **Módulos principais (responsabilidades):**
