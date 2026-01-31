@@ -191,6 +191,60 @@
         border-radius: 12px;
       }
 
+      /* Etapas (badges) — números alinhados */
+      #progressText {
+        font-variant-numeric: tabular-nums;
+      }
+      .step-badge {
+        border-color: rgba(255, 255, 255, 0.14) !important;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.01em;
+      }
+      .step-badge .step-n {
+        display: inline-block;
+        width: 2.2ch;
+        text-align: right;
+        opacity: 0.92;
+      }
+      .step-badge .step-t {
+        display: inline-block;
+      }
+
+      .room-steps {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .room-steps .steps-kicker {
+        margin: 0 0 8px;
+        font-size: 0.88rem;
+        font-weight: 750;
+        letter-spacing: -0.01em;
+        opacity: 0.92;
+      }
+      .step-badge--ru {
+        background: rgba(255, 255, 255, 0.74);
+        color: rgba(11, 27, 53, 0.92);
+        border-color: rgba(11, 27, 53, 0.14) !important;
+      }
+      .step-badge--ind {
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(242, 245, 247, 0.90);
+        border-color: rgba(242, 245, 247, 0.14) !important;
+      }
+      .step-badge--ru .step-n {
+        opacity: 0.78;
+      }
+      .step-badge--ind .step-n {
+        opacity: 0.86;
+      }
+      .room.ru .room-steps {
+        border-top-color: rgba(11, 27, 53, 0.14);
+      }
+      .room.ind .room-steps {
+        border-top-color: rgba(242, 245, 247, 0.14);
+      }
+
       /* Dual cards + bridge */
       .deck {
         position: relative;
@@ -611,18 +665,10 @@
               <div class="progress-bar" id="progressBar" style="width: 0%" aria-valuenow="0"></div>
             </div>
             <div class="d-flex flex-wrap gap-2 mt-3" aria-label="Etapas do aprendizado">
-              <span class="badge text-bg-dark border" style="border-color: rgba(255,255,255,0.14) !important"
-                >1) Fundamentos</span
-              >
-              <span class="badge text-bg-dark border" style="border-color: rgba(255,255,255,0.14) !important"
-                >2) Modelagem</span
-              >
-              <span class="badge text-bg-dark border" style="border-color: rgba(255,255,255,0.14) !important"
-                >3) Simulação</span
-              >
-              <span class="badge text-bg-dark border" style="border-color: rgba(255,255,255,0.14) !important"
-                >4) Otimização</span
-              >
+              <span class="badge text-bg-dark border step-badge"><span class="step-n">1</span><span class="step-t">) Fundamentos</span></span>
+              <span class="badge text-bg-dark border step-badge"><span class="step-n">2</span><span class="step-t">) Modelagem</span></span>
+              <span class="badge text-bg-dark border step-badge"><span class="step-n">3</span><span class="step-t">) Simulação</span></span>
+              <span class="badge text-bg-dark border step-badge"><span class="step-n">4</span><span class="step-t">) Otimização</span></span>
             </div>
           </div>
 
@@ -701,6 +747,16 @@
                     </span>
                   </div>
 
+                  <div class="room-steps" aria-label="Etapas da sala RU (1 a 4)">
+                    <p class="steps-kicker">Etapas (1–4)</p>
+                    <div class="d-flex flex-wrap gap-2" aria-label="Trilha em 4 etapas">
+                      <span class="badge border step-badge step-badge--ru"><span class="step-n">1</span><span class="step-t">) Fundamentos</span></span>
+                      <span class="badge border step-badge step-badge--ru"><span class="step-n">2</span><span class="step-t">) Modelagem</span></span>
+                      <span class="badge border step-badge step-badge--ru"><span class="step-n">3</span><span class="step-t">) Simulação</span></span>
+                      <span class="badge border step-badge step-badge--ru"><span class="step-n">4</span><span class="step-t">) Otimização</span></span>
+                    </div>
+                  </div>
+
                   <div class="cta" role="group" aria-label="Ações da sala RU">
                     <a class="btn btn-primary btn-wide" href="index.html" data-progress="1">
                       Entrar na Sala de Estudo
@@ -768,6 +824,16 @@
                       </svg>
                       Tempo de residência: τ ≈ Holdup / Vazão
                     </span>
+                  </div>
+
+                  <div class="room-steps" aria-label="Etapas da sala Industrial (1 a 4)">
+                    <p class="steps-kicker">Etapas (1–4)</p>
+                    <div class="d-flex flex-wrap gap-2" aria-label="Trilha em 4 etapas">
+                      <span class="badge border step-badge step-badge--ind"><span class="step-n">1</span><span class="step-t">) Fundamentos</span></span>
+                      <span class="badge border step-badge step-badge--ind"><span class="step-n">2</span><span class="step-t">) Modelagem</span></span>
+                      <span class="badge border step-badge step-badge--ind"><span class="step-n">3</span><span class="step-t">) Simulação</span></span>
+                      <span class="badge border step-badge step-badge--ind"><span class="step-n">4</span><span class="step-t">) Otimização</span></span>
+                    </div>
                   </div>
 
                   <div class="cta" role="group" aria-label="Ações da sala Industrial">
