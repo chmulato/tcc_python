@@ -18,12 +18,23 @@
 
 **Site (GitHub Pages):** [chmulato.github.io/tcc_python](https://chmulato.github.io/tcc_python/)
 
-**Artefatos de leitura (GitHub Pages /docs):**
+**Acesso rápido (online):**
+
+- **Paper interativo (home):** [Site / Case](https://chmulato.github.io/tcc_python/)
+- **Sala Digital (portal):** [Portal](https://chmulato.github.io/tcc_python/portal.html)
+- **Apostila Guia:** [Apostila](https://chmulato.github.io/tcc_python/apostila_guia.html)
+- **TCC (HTML):** [Documento](https://chmulato.github.io/tcc_python/tcc.html)
+- **Guia técnico (Determinística vs DES):** [Guia](https://chmulato.github.io/tcc_python/SIMULATING.html)
+- **README (HTML):** [README](https://chmulato.github.io/tcc_python/README.html)
+
+**Arquivos no repositório (pasta `/docs`):**
 
 - **Paper interativo (site):** `docs/index.html`
 - **Sala Digital (portal):** `docs/portal.html`
+- **Apostila Guia:** `docs/apostila_guia.html`
 - **TCC (HTML):** `docs/tcc.html`
 - **Guia técnico (Determinística vs DES):** `docs/SIMULATING.html`
+- **README (HTML):** `docs/README.html`
 
 ---
 
@@ -34,7 +45,7 @@
 **Solução.** Este TCC entrega um **motor DES em Python** que representa o sistema como uma sequência de eventos (chegada, serviço, ocupação, saída), mede métricas operacionais ao longo do tempo e exporta evidências (gráficos/relatórios). O **Restaurante Universitário** funciona como *sandbox* didático para validar, em escala humana, princípios universais de engenharia:
 
 - **Balanço (contabilidade de entidades)**: Entrada − Saída + Geração − Consumo = Acúmulo  
-- **Teoria das Filas**: saturação quando \( \rho \to 1 \) (λ/μ próximo de 1)  
+- **Teoria das Filas**: saturação quando **ρ → 1** (λ/μ próximo de 1)  
 - **Tempo de residência**: τ ≈ Holdup / Vazão (interpretação operacional)
 
 > “Não gerencie por intuição; simule por precisão.”
