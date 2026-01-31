@@ -245,6 +245,43 @@
         border-top-color: rgba(242, 245, 247, 0.14);
       }
 
+      /* Trilha rápida (mais simples) */
+      .quickpath {
+        margin-top: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        padding: 14px;
+      }
+      .quickpath h2 {
+        margin: 0 0 6px;
+        font-size: 1.02rem;
+        letter-spacing: -0.01em;
+      }
+      .quickpath p {
+        margin: 0 0 10px;
+        color: rgba(238, 242, 255, 0.74);
+        line-height: 1.55;
+      }
+      .quickpath ol {
+        margin: 0;
+        padding-left: 18px;
+        color: rgba(238, 242, 255, 0.86);
+        line-height: 1.6;
+      }
+      .quickpath li {
+        margin: 6px 0;
+      }
+      .quickpath .qp-actions {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .quickpath .btn {
+        border-radius: 14px;
+      }
+
       /* Dual cards + bridge */
       .deck {
         position: relative;
@@ -641,9 +678,8 @@
 
           <h1 class="title">Do RU à Planta: dois universos paralelos, a mesma matemática por trás.</h1>
           <p class="subtitle mb-0">
-            Escolha uma sala para estudar simulação. À esquerda, o <strong>Fluxo de Pessoas</strong> (serviços).
-            À direita, o <strong>Fluxo de Íons</strong> (processos químicos). No centro, a “ponte”:
-            <strong>Balanço de Massa e Tempo de Residência</strong>.
+            Se você ficou em dúvida: use a trilha de 4 passos abaixo. Ela te diz exatamente o que clicar e em que ordem
+            (do básico até otimização de cenários).
           </p>
 
           <div class="progress-wrap" aria-label="Nível de progresso unificado">
@@ -651,7 +687,7 @@
               <div>
                 <strong>Nível de Progresso (unificado)</strong>
                 <div class="mt-1">
-                  <span id="progressText">Você está no nível 0/4 — Fundamentos</span>
+                  <span id="progressText">Você está na etapa 1/4 — Fundamentos</span>
                 </div>
               </div>
               <div class="progress-actions d-flex gap-2">
@@ -669,6 +705,31 @@
               <span class="badge text-bg-dark border step-badge"><span class="step-n">2</span><span class="step-t">) Modelagem</span></span>
               <span class="badge text-bg-dark border step-badge"><span class="step-n">3</span><span class="step-t">) Simulação</span></span>
               <span class="badge text-bg-dark border step-badge"><span class="step-n">4</span><span class="step-t">) Otimização</span></span>
+            </div>
+          </div>
+
+          <div class="quickpath" aria-label="Trilha rápida (4 passos)">
+            <h2>Trilha rápida (30 segundos)</h2>
+            <p>Se você só quiser “entender e usar”, siga exatamente esta sequência:</p>
+            <ol>
+              <li><strong>Fundamentos:</strong> o que é fila, gargalo e vazão (sem fórmula).</li>
+              <li><strong>Modelagem:</strong> entradas (YAML/Excel/Layout) e o diagrama lógico.</li>
+              <li><strong>Simulação:</strong> rode e observe métricas (throughput, holdup, filas, residência).</li>
+              <li><strong>Otimização:</strong> compare cenários mudando 1 variável por vez (e registre).</li>
+            </ol>
+            <div class="qp-actions" role="group" aria-label="Ações da trilha rápida">
+              <a class="btn btn-sm btn-outline-light" href="SIMULATING.html" data-progress="0" aria-label="Abrir fundamentos">
+                1) Fundamentos
+              </a>
+              <a class="btn btn-sm btn-outline-light" href="diagramas/logica_e_fluxo.html" data-progress="1" aria-label="Abrir modelagem">
+                2) Modelagem
+              </a>
+              <a class="btn btn-sm btn-light text-dark" href="index.html#simulador" data-progress="2" aria-label="Abrir simulação (simulador)">
+                3) Simulação
+              </a>
+              <a class="btn btn-sm btn-outline-light" href="apostila_guia.html#apendice-c" data-progress="3" aria-label="Abrir otimização (checklist)">
+                4) Otimização
+              </a>
             </div>
           </div>
 
@@ -758,10 +819,10 @@
                   </div>
 
                   <div class="cta" role="group" aria-label="Ações da sala RU">
-                    <a class="btn btn-primary btn-wide" href="index.html" data-progress="1">
+                    <a class="btn btn-primary btn-wide" href="index.html" data-progress="0">
                       Entrar na Sala de Estudo
                     </a>
-                    <a class="btn btn-outline-primary btn-wide" href="SIMULATING.html" data-progress="1">
+                    <a class="btn btn-outline-primary btn-wide" href="SIMULATING.html" data-progress="0">
                       Guia: Determinística vs DES
                     </a>
                   </div>
@@ -837,10 +898,10 @@
                   </div>
 
                   <div class="cta" role="group" aria-label="Ações da sala Industrial">
-                    <a class="btn btn-light text-dark btn-wide" href="tcc.html" data-progress="2">
+                    <a class="btn btn-light text-dark btn-wide" href="tcc.html" data-progress="1">
                       Entrar na Sala de Estudo
                     </a>
-                    <a class="btn btn-outline-light btn-wide" href="diagramas/logica_e_fluxo.html" data-progress="2">
+                    <a class="btn btn-outline-light btn-wide" href="diagramas/logica_e_fluxo.html" data-progress="1">
                       Ver diagrama lógico
                     </a>
                   </div>
@@ -921,29 +982,6 @@
                 </svg>
                 Apostila Guia (HTML)
               </a>
-              <a class="footlink" href="apostila_guia.html">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M7 3h7l3 3v15H7V3Z"
-                    stroke="rgba(238,242,255,0.80)"
-                    stroke-width="1.6"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M14 3v3h3"
-                    stroke="rgba(14,165,233,0.95)"
-                    stroke-width="1.6"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M9 10h6M9 13h6M9 16h4"
-                    stroke="rgba(14,165,233,0.65)"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                Apostila Guia (MD)
-              </a>
               <a class="footlink" href="index.html#simulador">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
@@ -1003,7 +1041,7 @@
           const pct = step.pct;
           progressBar.style.width = pct + "%";
           progressBar.setAttribute("aria-valuenow", String(pct));
-          progressText.textContent = `Você está no nível ${levelIdx}/4 — ${step.name}`;
+          progressText.textContent = `Você está na etapa ${levelIdx + 1}/4 — ${step.name}`;
         }
 
         // Increment progress when entering either room (soft-gamification)

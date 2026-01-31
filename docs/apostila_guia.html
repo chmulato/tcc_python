@@ -428,6 +428,7 @@
                   <li>Comece sempre pelo <strong>Box de Analogia</strong> (RU ↔ Industrial).</li>
                   <li>Entenda com linguagem simples; depois suba para termos de engenharia (balanços, cinética, etc.).</li>
                   <li>Use os links “🔗 Código” para ver onde o simulador implementa a teoria.</li>
+                  <li><strong>Otimização (aqui)</strong>: comparar cenários e escolher o melhor trade-off para um objetivo (ex.: menos fila, mais throughput).</li>
                 </ul>
                 <div class="callout attn mt-3" role="note" aria-label="Atenção">
                   <strong>Atenção:</strong> os links “🔗 Código” abrem o repositório no GitHub (para leitura do código-fonte com linhas).
@@ -870,6 +871,7 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
 
       <section class="section" id="apC">
         <div class="container">
+          <div id="apendice-c" aria-hidden="true"></div>
           <h2 class="section-title h4">Apêndice C — Integração de dados (YAML/Excel/Layout) e validação</h2>
 
           <div class="cardx p-3">
@@ -882,6 +884,33 @@ def tempo_de_residencia(V: float, Q: float) -&gt; float:
             <div class="callout note" role="note" aria-label="Nota sobre reprodutibilidade">
               <strong>Nota (Reproducible Research):</strong> um experimento de simulação é reprodutível quando você consegue refazer o cenário com
               os mesmos artefatos: <code>parametros.yaml</code> (ou Excel), <code>layout.txt</code> e versão do ambiente (Python + dependências).
+            </div>
+          </div>
+
+          <div class="mt-3 cardx p-3" aria-label="O que é otimização na prática">
+            <h3 class="h6 mb-2">Otimização (na prática): o que é isso?</h3>
+            <p class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              No nosso projeto, <strong>otimização</strong> não é “rodar um algoritmo mágico”. É <strong>usar a simulação para comparar cenários</strong>
+              e escolher o melhor <em>trade-off</em> para um objetivo claro.
+            </p>
+            <ul class="mb-2" style="color: rgba(238, 242, 255, 0.80); line-height: 1.65">
+              <li><strong>Objetivo (exemplos)</strong>: reduzir fila, reduzir tempo médio no sistema (residência), aumentar throughput, reduzir lotação.</li>
+              <li><strong>Alavancas (exemplos)</strong>: nº de caixas/atendentes, tempos médios, regras/capacidades, layout (mesas/buffet).</li>
+              <li><strong>Restrições</strong>: custo, espaço, quantidade de mesas/cadeiras, limites operacionais.</li>
+            </ul>
+            <div class="callout tip" role="note" aria-label="Como fazer (5 passos)">
+              <strong>Como fazer (5 passos):</strong>
+              <ol class="mb-0 ps-3" style="color: rgba(238, 242, 255, 0.84); line-height: 1.65">
+                <li><strong>Defina 1 objetivo</strong> (ex.: “reduzir fila média”).</li>
+                <li><strong>Escolha 1 alavanca</strong> (ex.: “+1 caixa”) e mantenha o resto igual.</li>
+                <li><strong>Rode o cenário base</strong> e guarde as métricas.</li>
+                <li><strong>Rode o cenário alterado</strong> e compare (ideal: mais de uma execução se houver variabilidade).</li>
+                <li><strong>Registre</strong> a mudança + artefatos (YAML/Excel/Layout) + resultados (figuras/logs).</li>
+              </ol>
+            </div>
+            <div class="callout attn mt-3" role="note" aria-label="Atenção sobre variabilidade">
+              <strong>Atenção:</strong> como DES pode ser estocástico, uma única execução pode enganar. Para “otimização” séria, compare cenários com
+              múltiplas repetições e reporte médias/variação.
             </div>
           </div>
 
